@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">CanTrip</string>
+    <string name="trip_title">Trip 1\nPlace\nDate</string>
+    <string name="plan_title">Plan\n</string>
+    <string name="plans_tab">My Plans</string>
+    <string name="recommended_tab">Recommended</string>
+</resources>
