@@ -1,78 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
-    <LinearLayout
+    <TextView
+        android:id="@+id/trip_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        tools:context=".DetailedTripActivity">
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="@string/trip_title"
+        android:textSize="20sp" />
 
-        <TextView
-            android:id="@+id/trip_title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:padding="10dp"
-            android:text="@string/trip_title"
-            android:textSize="20sp" />
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tab_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
-        <!-- Make classes for each tab-->
-        <!--<android.support.design.widget.TabLayout-->
-            <!--android:id="@+id/tab_layout"-->
-            <!--android:background="@color/colorPrimary"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content">-->
-
-            <!--<android.support.design.widget.TabItem-->
-                <!--android:text="@string/plans_tab" />-->
-
-            <!--<android.support.design.widget.TabItem-->
-                <!--android:icon="@string/recommended_tab" />-->
-
-        <!--</android.support.design.widget.TabLayout>-->
-
-        <TextView
-            android:id="@+id/plan_item"
-            android:layout_width="match_parent"
-            android:layout_height="250dp"
-            android:layout_gravity="center"
-            android:background="@drawable/border"
-            android:padding="25dp"
-            android:text="@string/plan_title"
-            android:textSize="14sp" />
-
-        <TextView
-            android:id="@+id/plan_item2"
-            android:layout_width="match_parent"
-            android:layout_height="250dp"
-            android:layout_gravity="center"
-            android:background="@drawable/border"
-            android:padding="25dp"
-            android:text="@string/plan_title"
-            android:textSize="14sp" />
-
-        <TextView
-            android:id="@+id/plan_item3"
-            android:layout_width="match_parent"
-            android:layout_height="250dp"
-            android:layout_gravity="center"
-            android:background="@drawable/border"
-            android:padding="25dp"
-            android:text="@string/plan_title"
-            android:textSize="14sp" />
-
-        <TextView
-            android:id="@+id/plan_item4"
-            android:layout_width="match_parent"
-            android:layout_height="250dp"
-            android:layout_gravity="center"
-            android:background="@drawable/border"
-            android:padding="25dp"
-            android:text="@string/plan_title"
-            android:textSize="14sp" />
-    </LinearLayout>
-</ScrollView>
+    <ListView
+        android:id="@+id/plan_item"
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
+        android:layout_gravity="center"
+        android:background="@drawable/border"
+        android:padding="25dp"
+        android:text="@string/plan_title"
+        android:textSize="14sp" />
+</LinearLayout>
