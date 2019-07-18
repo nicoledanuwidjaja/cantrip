@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -25,6 +26,8 @@ public class MainActivity extends AppCompatActivity {
     TextView myPlans;
     TextView rec;
 
+    Button addTripButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +35,16 @@ public class MainActivity extends AppCompatActivity {
 
         myPlans = findViewById(R.id.MyPlans);
         rec = findViewById(R.id.Recommended);
+
+        addTripButton = findViewById(R.id.add_trip_button);
+
+        addTripButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, AddNewTripScreenActivity.class);
+                startActivity(intent);
+            }
+        });
 
 //        myPlans.setOnClickListener(new View.OnClickListener() {
 //            @Override
