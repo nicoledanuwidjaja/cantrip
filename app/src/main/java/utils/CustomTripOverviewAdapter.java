@@ -28,18 +28,19 @@ public class CustomTripOverviewAdapter extends BaseAdapter {
 
     @Override
     public Object getItem(int i) {
-        return null;
+        return tripAdapterItems.get(i);
     }
 
     @Override
     public long getItemId(int i) {
-        return 0;
+        return i;
     }
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
 
         if (view == null) {
+            // create and return the view
             view = View.inflate(context, R.layout.activity_trip_overview_adapter_item, null);
         }
 
@@ -49,11 +50,13 @@ public class CustomTripOverviewAdapter extends BaseAdapter {
 
         TripOverviewAdapterItem curr = tripAdapterItems.get(i);
 
+        // overwrite values of child views based on input from MainActivity
         imageView.setImageResource(curr.imageResId);
         destView.setText(curr.getStartLoc() + " to " + curr.getEndloc());
         durView.setText(curr.getStartMonth() + "/" + curr.getStartDay() + "-" + curr.getEndMonth()
-                + "/" + curr.getEndMonth() + " " + curr.getYear());
+                + "/" + curr.getEndDay() + " " + curr.getYear());
 
+        // returns view for current row
         return view;
     }
 }
