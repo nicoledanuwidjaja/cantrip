@@ -11,6 +11,7 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 
+import utils.CustomPlanAdapter;
 import utils.Plan;
 
 public class DetailedTripActivity extends AppCompatActivity {
@@ -28,11 +29,10 @@ public class DetailedTripActivity extends AppCompatActivity {
         // populate array list with character data
         populateList();
 
-        // create array adapter with defined layout
-        ArrayAdapter<Plan> listAdapter = new ArrayAdapter<>(this,
-                android.R.layout.simple_list_item_1, planList);
+        // custom plan list adapter
+        CustomPlanAdapter planAdapter = new CustomPlanAdapter(this, planList);
 
-        listOfPlans.setAdapter(listAdapter);
+        listOfPlans.setAdapter(planAdapter);
         listOfPlans.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
