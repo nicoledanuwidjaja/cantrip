@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".MainActivity">
 
     <FrameLayout
@@ -28,6 +29,18 @@
                 android:text="Recommended"
                 android:textSize="35sp"/>
         </LinearLayout>
+
+        <Button
+            android:id="@+id/add_trip_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add new trip"
+            android:textSize="15sp"
+            android:textColor="#FFFFFF"
+            android:background="@color/colorPrimary"
+            android:layout_gravity="bottom|right"
+            android:layout_marginBottom="30dp"
+            android:layout_marginRight="20dp"/>
     </FrameLayout>
 
 </LinearLayout>
