@@ -1,7 +1,11 @@
 <resources>
     <string name="app_name">CanTrip</string>
-    <string name="trip_title">Trip 1\nPlace\nDate</string>
+    <string name="trip_title">First Trip\nBoston to NYC\nJuly 5-7, 2019</string>
     <string name="plan_title">Plan\n</string>
     <string name="plans_tab">My Plans</string>
     <string name="recommended_tab">Recommended</string>
+    <string name="rome">Tevere River. The capital of the Lazio region is Italy\'s largest city with
+        a population of 2,654,100 and over 2600 years of richness in art, history, architecture,
+        monuments and culture.</string>
+    <string name="empty_recommended">no recommended plans yet</string>
 </resources>

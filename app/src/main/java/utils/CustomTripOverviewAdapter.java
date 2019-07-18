@@ -1,4 +1,4 @@
-package com.narwhalcompany.cantrip;
+package utils;
 
 import android.content.Context;
 import android.view.View;
@@ -6,6 +6,9 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.narwhalcompany.cantrip.R;
+import com.narwhalcompany.cantrip.TripOverviewAdapterItem;
 
 import java.util.ArrayList;
 
@@ -51,7 +54,7 @@ public class CustomTripOverviewAdapter extends BaseAdapter {
         TripOverviewAdapterItem curr = tripAdapterItems.get(i);
 
         // overwrite values of child views based on input from MainActivity
-        imageView.setImageResource(curr.imageResId);
+        imageView.setImageResource(curr.getImageResId());
         destView.setText(curr.getStartLoc() + " to " + curr.getEndloc());
         durView.setText(curr.getStartMonth() + "/" + curr.getStartDay() + "-" + curr.getEndMonth()
                 + "/" + curr.getEndDay() + " " + curr.getYear());

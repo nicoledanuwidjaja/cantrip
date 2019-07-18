@@ -4,23 +4,11 @@ package com.narwhalcompany.cantrip;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.app.ListActivity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 import android.widget.TextView;
 
-
-import java.util.ArrayList;
-
 public class MainActivity extends AppCompatActivity {
-
-    ListView tabs;
-
-    ArrayList<String> tabList = new ArrayList<>();
 
     TextView myPlans;
     TextView rec;
@@ -32,6 +20,8 @@ public class MainActivity extends AppCompatActivity {
 
         myPlans = findViewById(R.id.MyPlans);
         rec = findViewById(R.id.Recommended);
+
+        // Nicole: onClick Listeners for switching fragment views
 
 //        myPlans.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -77,7 +67,6 @@ public class MainActivity extends AppCompatActivity {
                 transaction.commit();
             }
         });
-
     }
 }
 
