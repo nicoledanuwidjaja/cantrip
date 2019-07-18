@@ -65,11 +65,19 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-    }
+        myPlans.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // attach my fragment to my container that's provided in my layout
+                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 
-    private void populateTabList() {
-        tabList.add("My Plans");
-        tabList.add("Recommended");
+                transaction.replace(R.id.fragmentContainer, new MyTripsFragment());
+
+                // Commit the changes
+                transaction.commit();
+            }
+        });
+
     }
 }
 
