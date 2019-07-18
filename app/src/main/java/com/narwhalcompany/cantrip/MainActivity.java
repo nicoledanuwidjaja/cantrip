@@ -79,10 +79,5 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
-
-    private void populateTabList() {
-        tabList.add("My Plans");
-        tabList.add("Recommended");
-    }
 }
 
