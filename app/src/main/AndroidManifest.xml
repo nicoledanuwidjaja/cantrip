@@ -12,6 +12,7 @@
 
         <activity android:name=".DetailedTripActivity"></activity>
         <activity android:name=".PlanActivity"></activity>
+        <activity android:name=".AddNewTripScreenActivity"></activity>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
