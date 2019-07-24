@@ -12,24 +12,27 @@ public class Plan implements Parcelable {
     private String name;
     private String time;
     private String description;
-    private int imageID;
+    // private int imageID;
+    private Reservation landmark;
 
-    public Plan(String name, String time, String description, int imageID) {
+    public Plan(String name, String time, String description, Reservation landmark) {
         this.name = name;
         this.time = time;
         this.description = description;
-        this.imageID = imageID;
+        // this.imageID = imageID;
+        this.landmark = landmark;
     }
 
     // collects properties of plan in a parcel
+
     public Plan(Parcel in) {
         name = in.readString();
         time = in.readString();
         description = in.readString();
-        imageID = in.readInt();
+        // imageID = in.readInt();
     }
-
     // builder pattern
+
     public static final Creator<Plan> CREATOR = new Creator<Plan>() {
         @Override
         public Plan createFromParcel(Parcel in) {
@@ -41,7 +44,6 @@ public class Plan implements Parcelable {
             return new Plan[size];
         }
     };
-
     public String getName() {
         return name;
     }
@@ -66,12 +68,20 @@ public class Plan implements Parcelable {
         this.description = description;
     }
 
-    public int getImageID() {
-        return imageID;
+//    public int getImageID() {
+//        return imageID;
+//    }
+//
+//    public void setImageID(int imageID) {
+//        this.imageID = imageID;
+//    }
+
+    public Reservation getLandmark() {
+        return landmark;
     }
 
-    public void setImageID(int imageID) {
-        this.imageID = imageID;
+    public void setLandmark(Reservation landmark) {
+        this.landmark = landmark;
     }
 
     @Override
@@ -84,6 +94,6 @@ public class Plan implements Parcelable {
         parcel.writeString(name);
         parcel.writeString(time);
         parcel.writeString(description);
-        parcel.writeInt(imageID);
+        // parcel.writeInt(imageID);
     }
 }

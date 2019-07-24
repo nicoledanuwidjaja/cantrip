@@ -44,14 +44,25 @@ public class CustomPlanListAdapter extends BaseAdapter {
 
         if (view == null) {
             // Create and return the view
-            view = View.inflate(context, R.layout.activity_plan, null);
+            view = View.inflate(context, R.layout.plan_list_item, null);
         }
 
         ImageView planImage = view.findViewById(R.id.plan_image);
         TextView planName = view.findViewById(R.id.plan_name);
 
         // overwrite values of child views based on input from MainActivity
-        planImage.setImageResource(planList.get(i).getImageID());
+        switch (planList.get(i).getLandmark()) {
+            case PLANE:
+                planImage.setImageResource(R.drawable.plane_horiz);
+                break;
+            case HOTEL:
+                planImage.setImageResource(R.drawable.hotel);
+                break;
+            case LANDMARK:
+                planImage.setImageResource(R.drawable.landmark);
+                break;
+        }
+
         planName.setText(planList.get(i).getName());
 
         // returns view for current row

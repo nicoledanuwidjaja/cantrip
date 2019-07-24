@@ -26,6 +26,8 @@
                 android:id="@+id/plan_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:background="@color/colorPrimary"
+                android:layout_marginLeft="45dp"
                 android:layout_gravity="start"/>
 
             <ImageView

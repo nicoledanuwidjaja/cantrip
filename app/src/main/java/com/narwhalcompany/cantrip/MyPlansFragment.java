@@ -18,6 +18,7 @@ import java.util.ArrayList;
 
 import utils.CustomPlanListAdapter;
 import utils.Plan;
+import utils.Reservation;
 
 
 /**
@@ -59,7 +60,6 @@ public class MyPlansFragment extends Fragment {
                 intent.putExtra("name", currentPlan.getName());
                 intent.putExtra("time", currentPlan.getTime());
                 intent.putExtra("description", currentPlan.getDescription());
-                intent.putExtra("imageId", currentPlan.getImageID());
 
                 startActivity(intent);
             }
@@ -91,17 +91,14 @@ public class MyPlansFragment extends Fragment {
         planList.add(new Plan("Flight to NYC", "8:00",
                 "Tevere River. The capital of the Lazio region is Italy's largest city " +
                         "with a population of 2,654,100 and over 2600 years of richness in art, " +
-                        "history, architecture, monuments and culture.",
-                R.drawable.plane_horiz));
+                        "history, architecture, monuments and culture.", Reservation.PLANE));
         planList.add(new Plan("Flight to NYC", "8:00",
                 "Tevere River. The capital of the Lazio region is Italy's largest city " +
                         "with a population of 2,654,100 and over 2600 years of richness in art, " +
-                        "history, architecture, monuments and culture.",
-                R.drawable.plane_horiz));
+                        "history, architecture, monuments and culture.", Reservation.LANDMARK));
         planList.add(new Plan("Flight to New Delhi", "8:00",
                 "Tevere River. The capital of the Lazio region is Italy's largest city " +
                         "with a population of 2,654,100 and over 2600 years of richness in art, " +
-                        "history, architecture, monuments and culture.",
-                R.drawable.plane_horiz));
+                        "history, architecture, monuments and culture.", Reservation.HOTEL));
     }
 }

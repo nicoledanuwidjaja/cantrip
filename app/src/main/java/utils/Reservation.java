@@ -5,6 +5,6 @@ public enum Reservation {
 
     PLANE,
     HOTEL,
-    LANDMARK
+    LANDMARK,
 
 }
