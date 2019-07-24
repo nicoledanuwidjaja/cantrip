@@ -3,21 +3,10 @@ package com.narwhalcompany.cantrip;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ImageView;
-import android.widget.ListView;
-import android.widget.TextView;
 
 import com.google.android.material.tabs.TabLayout;
 import com.narwhalcompany.cantrip.ui.main.SectionsPagerAdapter;
-
-import java.util.ArrayList;
-
-import utils.CustomPlanAdapter;
-import utils.Plan;
 
 public class DetailedTripActivity extends AppCompatActivity {
 
