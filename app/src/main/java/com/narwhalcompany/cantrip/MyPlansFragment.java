@@ -100,5 +100,77 @@ public class MyPlansFragment extends Fragment {
                 "Tevere River. The capital of the Lazio region is Italy's largest city " +
                         "with a population of 2,654,100 and over 2600 years of richness in art, " +
                         "history, architecture, monuments and culture.", Reservation.HOTEL));
+        planList.add(new Plan("Flight to NYC", "8:00",
+                "Tevere River. The capital of the Lazio region is Italy's largest city " +
+                        "with a population of 2,654,100 and over 2600 years of richness in art, " +
+                        "history, architecture, monuments and culture.", Reservation.PLANE));
+        planList.add(new Plan("Flight to NYC", "8:00",
+                "Tevere River. The capital of the Lazio region is Italy's largest city " +
+                        "with a population of 2,654,100 and over 2600 years of richness in art, " +
+                        "history, architecture, monuments and culture.", Reservation.LANDMARK));
+        planList.add(new Plan("Flight to New Delhi", "8:00",
+                "Tevere River. The capital of the Lazio region is Italy's largest city " +
+                        "with a population of 2,654,100 and over 2600 years of richness in art, " +
+                        "history, architecture, monuments and culture.", Reservation.HOTEL));
+        planList.add(new Plan("Flight to NYC", "8:00",
+                "Tevere River. The capital of the Lazio region is Italy's largest city " +
+                        "with a population of 2,654,100 and over 2600 years of richness in art, " +
+                        "history, architecture, monuments and culture.", Reservation.PLANE));
+        planList.add(new Plan("Flight to NYC", "8:00",
+                "Tevere River. The capital of the Lazio region is Italy's largest city " +
+                        "with a population of 2,654,100 and over 2600 years of richness in art, " +
+                        "history, architecture, monuments and culture.", Reservation.LANDMARK));
+        planList.add(new Plan("Flight to New Delhi", "8:00",
+                "Tevere River. The capital of the Lazio region is Italy's largest city " +
+                        "with a population of 2,654,100 and over 2600 years of richness in art, " +
+                        "history, architecture, monuments and culture.", Reservation.HOTEL));
+        planList.add(new Plan("Flight to NYC", "8:00",
+                "Tevere River. The capital of the Lazio region is Italy's largest city " +
+                        "with a population of 2,654,100 and over 2600 years of richness in art, " +
+                        "history, architecture, monuments and culture.", Reservation.PLANE));
+        planList.add(new Plan("Flight to NYC", "8:00",
+                "Tevere River. The capital of the Lazio region is Italy's largest city " +
+                        "with a population of 2,654,100 and over 2600 years of richness in art, " +
+                        "history, architecture, monuments and culture.", Reservation.LANDMARK));
+        planList.add(new Plan("Flight to New Delhi", "8:00",
+                "Tevere River. The capital of the Lazio region is Italy's largest city " +
+                        "with a population of 2,654,100 and over 2600 years of richness in art, " +
+                        "history, architecture, monuments and culture.", Reservation.HOTEL));
+        planList.add(new Plan("Flight to NYC", "8:00",
+                "Tevere River. The capital of the Lazio region is Italy's largest city " +
+                        "with a population of 2,654,100 and over 2600 years of richness in art, " +
+                        "history, architecture, monuments and culture.", Reservation.PLANE));
+        planList.add(new Plan("Flight to NYC", "8:00",
+                "Tevere River. The capital of the Lazio region is Italy's largest city " +
+                        "with a population of 2,654,100 and over 2600 years of richness in art, " +
+                        "history, architecture, monuments and culture.", Reservation.LANDMARK));
+        planList.add(new Plan("Flight to New Delhi", "8:00",
+                "Tevere River. The capital of the Lazio region is Italy's largest city " +
+                        "with a population of 2,654,100 and over 2600 years of richness in art, " +
+                        "history, architecture, monuments and culture.", Reservation.HOTEL));
+        planList.add(new Plan("Flight to NYC", "8:00",
+                "Tevere River. The capital of the Lazio region is Italy's largest city " +
+                        "with a population of 2,654,100 and over 2600 years of richness in art, " +
+                        "history, architecture, monuments and culture.", Reservation.PLANE));
+        planList.add(new Plan("Flight to NYC", "8:00",
+                "Tevere River. The capital of the Lazio region is Italy's largest city " +
+                        "with a population of 2,654,100 and over 2600 years of richness in art, " +
+                        "history, architecture, monuments and culture.", Reservation.LANDMARK));
+        planList.add(new Plan("Flight to New Delhi", "8:00",
+                "Tevere River. The capital of the Lazio region is Italy's largest city " +
+                        "with a population of 2,654,100 and over 2600 years of richness in art, " +
+                        "history, architecture, monuments and culture.", Reservation.HOTEL));
+        planList.add(new Plan("Flight to NYC", "8:00",
+                "Tevere River. The capital of the Lazio region is Italy's largest city " +
+                        "with a population of 2,654,100 and over 2600 years of richness in art, " +
+                        "history, architecture, monuments and culture.", Reservation.PLANE));
+        planList.add(new Plan("Flight to NYC", "8:00",
+                "Tevere River. The capital of the Lazio region is Italy's largest city " +
+                        "with a population of 2,654,100 and over 2600 years of richness in art, " +
+                        "history, architecture, monuments and culture.", Reservation.LANDMARK));
+        planList.add(new Plan("Flight to New Delhi", "8:00",
+                "Tevere River. The capital of the Lazio region is Italy's largest city " +
+                        "with a population of 2,654,100 and over 2600 years of richness in art, " +
+                        "history, architecture, monuments and culture.", Reservation.HOTEL));
     }
 }
