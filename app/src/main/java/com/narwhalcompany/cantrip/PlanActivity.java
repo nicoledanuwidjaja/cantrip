@@ -35,10 +35,10 @@ public class PlanActivity extends AppCompatActivity {
         // Using getParcelableExtra(String key) method
         Plan selectedPlan = tripIntent.getParcelableExtra("PLAN");
 
-        String planName = selectedPlan.getName();
-        String planTime = selectedPlan.getTime();
-        String planDescription = selectedPlan.getDescription();
-        int planImageID = selectedPlan.getImageID();
+        String planName = tripIntent.getStringExtra("name");
+        String planTime = tripIntent.getStringExtra("time");
+        String planDescription = tripIntent.getStringExtra("description");
+        int planImageID = tripIntent.getIntExtra("imageId", 0);
 
         name.setText(planName);
         time.setText(planTime);
