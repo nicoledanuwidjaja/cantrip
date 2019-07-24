@@ -14,7 +14,6 @@ import java.util.ArrayList;
 
 public class CustomTripOverviewAdapter extends BaseAdapter {
 
-
     Context context;
     ArrayList<TripOverviewAdapterItem> tripAdapterItems;
 
@@ -22,7 +21,6 @@ public class CustomTripOverviewAdapter extends BaseAdapter {
         this.context = context;
         this.tripAdapterItems = tripAdapterItems;
     }
-
 
     @Override
     public int getCount() {
@@ -56,8 +54,8 @@ public class CustomTripOverviewAdapter extends BaseAdapter {
         // overwrite values of child views based on input from MainActivity
         imageView.setImageResource(curr.getImageResId());
         destView.setText(curr.getStartLoc() + " to " + curr.getEndloc());
-        durView.setText(curr.getStartMonth() + "/" + curr.getStartDay() + "-" + curr.getEndMonth()
-                + "/" + curr.getEndDay() + " " + curr.getYear());
+        durView.setText(curr.getStartMonth() + "/" + curr.getStartDay() + "/" + curr.getStartYear()
+                + " to " + curr.getEndMonth() + "/" + curr.getEndDay() + "/" + curr.getEndYear());
 
         // returns view for current row
         return view;

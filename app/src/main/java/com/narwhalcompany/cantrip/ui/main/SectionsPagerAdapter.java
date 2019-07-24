@@ -9,7 +9,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
 import com.narwhalcompany.cantrip.EmptyRecommendedFragment;
-import com.narwhalcompany.cantrip.MyTripsFragment;
+import com.narwhalcompany.cantrip.MyPlansFragment;
 import com.narwhalcompany.cantrip.R;
 
 /**
@@ -35,7 +35,7 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
         switch (position) {
             case 0:
-                selectedFragment = new MyTripsFragment();
+                selectedFragment = new MyPlansFragment();
                 break;
             case 1:
                 selectedFragment = new EmptyRecommendedFragment();

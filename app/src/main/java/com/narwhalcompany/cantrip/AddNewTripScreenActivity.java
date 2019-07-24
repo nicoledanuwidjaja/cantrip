@@ -45,7 +45,7 @@ public class AddNewTripScreenActivity extends AppCompatActivity implements DateP
         completeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent addTripIntent = new Intent(AddNewTripScreenActivity.this, TabActivity.class);
+                Intent addTripIntent = new Intent(AddNewTripScreenActivity.this, MainActivity.class);
                 startActivity(addTripIntent);
             }
         });

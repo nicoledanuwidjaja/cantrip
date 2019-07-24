@@ -3,11 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MyTripsFragment">
+    tools:context=".MyPlansFragment">
 
     <ListView
-        android:id="@+id/myTripsList"
+        android:id="@+id/myPlansList"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"></ListView>
+
+
 
 </LinearLayout>
