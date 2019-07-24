@@ -5,6 +5,7 @@
     android:layout_marginLeft="30dp">
 
     <TextView
+        android:id="@+id/where_from"
         android:text="@string/trip_location_from"
         android:textSize="20sp"
         android:layout_marginTop="20dp"
@@ -14,6 +15,7 @@
         android:layout_width="200dp"
         android:layout_height="wrap_content"/>
     <TextView
+        android:id="@+id/where_to"
         android:text="@string/trip_location_to"
         android:textSize="20sp"
         android:layout_marginTop="20dp"
@@ -22,22 +24,8 @@
     <EditText
         android:layout_width="200dp"
         android:layout_height="wrap_content"/>
-    <TextView
-        android:id="@+id/date_from"
-        android:text="@string/trip_date_from"
-        android:textSize="20sp"
-        android:layout_marginTop="20dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-    <TextView
-        android:id="@+id/date_to"
-        android:text="@string/trip_date_to"
-        android:textSize="20sp"
-        android:layout_marginTop="20dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
     <Button
-        android:id="@+id/add_trip_button"
+        android:id="@+id/add_location_button"
         android:layout_marginRight="20dp"
         android:layout_gravity="bottom|end"
         android:text="@string/trip_button"

@@ -3,16 +3,20 @@ package com.narwhalcompany.cantrip;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 
 import java.util.Calendar;
 
-public class AddNewTripScreenActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener{
+public class AddNewTripDateFragment extends Fragment implements DatePickerDialog.OnDateSetListener {
 
     private TextView tripFromDate;
     private TextView tripToDate;
@@ -21,39 +25,39 @@ public class AddNewTripScreenActivity extends AppCompatActivity implements DateP
     private Button completeButton;
 
     @Override
-    protected void onCreate(Bundle savedInstance) {
-        super.onCreate(savedInstance);
-        setContentView(R.layout.activity_add_new_trip);
-
-        tripFromDate = findViewById(R.id.date_from);
-        findViewById(R.id.date_from).setOnClickListener(new View.OnClickListener() {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        View view = inflater.inflate(R.layout.fragment_add_new_trip_date_fragment, container, false);
+        tripFromDate = view.findViewById(R.id.date_from);
+        tripFromDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 showDate();
             }
         });
 
-        tripToDate = findViewById(R.id.date_to);
-        findViewById(R.id.date_to).setOnClickListener(new View.OnClickListener() {
+        tripToDate = view.findViewById(R.id.date_to);
+        tripToDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 showDate();
             }
         });
 
-        completeButton = findViewById(R.id.add_trip_button);
+        completeButton = view.findViewById(R.id.add_location_button);
         completeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent addTripIntent = new Intent(AddNewTripScreenActivity.this, MainActivity.class);
+                Intent addTripIntent = new Intent(getActivity(), MainActivity.class);
                 startActivity(addTripIntent);
             }
         });
-
+        return view;
     }
 
     private void showDate() {
-        DatePickerDialog datePicker = new DatePickerDialog(this, this, Calendar.getInstance().get(Calendar.YEAR),
+        DatePickerDialog datePicker = new DatePickerDialog(getContext(), this, Calendar.getInstance().get(Calendar.YEAR),
                 Calendar.getInstance().get(Calendar.MONTH), Calendar.getInstance().get(Calendar.DAY_OF_MONTH));
         datePicker.show();
     }

@@ -34,6 +34,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"></ListView>
 
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/fragment_container">
+        </FrameLayout>
+
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab"
             android:src="@drawable/plus"

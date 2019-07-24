@@ -6,10 +6,9 @@ import android.os.Bundle;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentTransaction;
 
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
@@ -50,8 +49,13 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent addTripIntent = new Intent(MainActivity.this, AddNewTripScreenActivity.class);
-                startActivity(addTripIntent);
+//                Intent addTripIntent = new Intent(MainActivity.this, AddNewTripLocationFragment.class);
+//                startActivity(addTripIntent);
+                // sets a fragment manager for managing all fragments (for adding new trips)
+                AddNewTripLocationFragment newTripFragment = new AddNewTripLocationFragment();
+                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                transaction.add(R.id.fragment_container, newTripFragment);
+                transaction.commit();
             }
         });
     }
