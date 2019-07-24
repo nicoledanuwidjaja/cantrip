@@ -15,5 +15,9 @@
     <string name="trip_date_to">To:</string>
     <string name="my_trips_tab">My Trip</string>
     <string name="recommended_tab">Recommended</string>
+<<<<<<< HEAD
 
+=======
+    <string name="title_activity_detailed_flight">DetailedFlight</string>
+>>>>>>> 3777f011bd367dd4903d9aba3126a51e65342f9e
 </resources>
