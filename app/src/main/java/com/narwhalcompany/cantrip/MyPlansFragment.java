@@ -9,15 +9,13 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import utils.CustomPlanAdapter;
-import utils.CustomTripOverviewAdapter;
+import utils.CustomPlanListAdapter;
 import utils.Plan;
 
 
@@ -26,7 +24,6 @@ import utils.Plan;
  */
 public class MyPlansFragment extends Fragment {
 
-    ArrayList<TripOverviewAdapterItem> tripList = new ArrayList<>();
     ListView listOfPlans;
     ArrayList<Plan> planList = new ArrayList<>();
 
@@ -43,38 +40,43 @@ public class MyPlansFragment extends Fragment {
 
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_my_plans, container, false);
+        listOfPlans = view.findViewById(R.id.myPlansList);
 
-        // plan variable items
-        listOfPlans = view.findViewById(R.id.plan_item);
-        tripImage = view.findViewById(R.id.tripOverviewAdapterItemImage);
-        tripText = view.findViewById(R.id.trip_title);
-
-        Intent detailedTripIntent = getActivity().getIntent();
-        TripOverviewAdapterItem selectedTrip = detailedTripIntent.getParcelableExtra("TRIP");
-
-        // grab variables from intent
-//        int imageResID = selectedTrip.getImageResId();
-        int startMonth = selectedTrip.getStartMonth();
-        int startDay = selectedTrip.getStartDay();
-        int startYear = selectedTrip.getStartYear();
-        int endMonth = selectedTrip.getEndMonth();
-        int endDay = selectedTrip.getEndDay();
-        int endYear = selectedTrip.getEndYear();
-        String startLoc = selectedTrip.getStartLoc();
-        String endLoc = selectedTrip.getEndloc();
-
-        // set views to resource values
-//        tripImage.setImageResource(imageResID);
-        tripText.setText(startLoc + " to " + endLoc + "\n"
-                + startMonth + "/" + startDay + "/" + startYear +
-                " to " + endMonth + "/" + endDay + "/" + endYear);
+//        // plan variable items
+//        listOfPlans = view.findViewById(R.id.plan_item);
+//        tripImage = view.findViewById(R.id.tripOverviewAdapterItemImage);
+//        tripText = view.findViewById(R.id.trip_title);
 
         // populate array list with character data
         populateList();
 
+        CustomPlanListAdapter adapter = new CustomPlanListAdapter(getContext(), planList);
+        listOfPlans.setAdapter(adapter);
+
+//        Intent detailedTripIntent = getActivity().getIntent();
+//        TripOverviewAdapterItem selectedTrip = detailedTripIntent.getParcelableExtra("TRIP");
+//
+//        // grab variables from intent
+////        int imageResID = selectedTrip.getImageResId();
+//        int startMonth = selectedTrip.getStartMonth();
+//        int startDay = selectedTrip.getStartDay();
+//        int startYear = selectedTrip.getStartYear();
+//        int endMonth = selectedTrip.getEndMonth();
+//        int endDay = selectedTrip.getEndDay();
+//        int endYear = selectedTrip.getEndYear();
+//        String startLoc = selectedTrip.getStartLoc();
+//        String endLoc = selectedTrip.getEndloc();
+//
+//        // set views to resource values
+////        tripImage.setImageResource(imageResID);
+//        tripText.setText(startLoc + " to " + endLoc + "\n"
+//                + startMonth + "/" + startDay + "/" + startYear +
+//                " to " + endMonth + "/" + endDay + "/" + endYear);
+
+
         // TODO: FIX THIS ADAPTER
         // custom plan list adapter
-//        CustomPlanAdapter planAdapter = new CustomPlanAdapter(getActivity(), planList);
+//        CustomPlanListAdapter planAdapter = new CustomPlanListAdapter(getActivity(), planList);
 //
 //        listOfPlans.setAdapter(planAdapter);
 //        listOfPlans.setOnItemClickListener(new AdapterView.OnItemClickListener() {

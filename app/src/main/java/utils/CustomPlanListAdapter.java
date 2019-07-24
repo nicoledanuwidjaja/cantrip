@@ -11,16 +11,16 @@ import com.narwhalcompany.cantrip.R;
 
 import java.util.ArrayList;
 
-public class CustomPlanAdapter extends BaseAdapter {
+public class CustomPlanListAdapter extends BaseAdapter {
 
     // receive context from main activity
-    private Context characterContext;
+    private Context context;
 
     // contains data points to be populated on items
     private ArrayList<Plan> planList;
 
-    public CustomPlanAdapter(Context characterContext, ArrayList<Plan> planList) {
-        this.characterContext = characterContext;
+    public CustomPlanListAdapter(Context context, ArrayList<Plan> planList) {
+        this.context = context;
         this.planList = planList;
     }
 
@@ -44,15 +44,15 @@ public class CustomPlanAdapter extends BaseAdapter {
 
         if (view == null) {
             // Create and return the view
-            view = View.inflate(characterContext, R.layout.activity_plan, null);
+            view = View.inflate(context, R.layout.activity_plan, null);
         }
 
-        ImageView characterImage = view.findViewById(R.id.plan_image);
-        TextView characterName = view.findViewById(R.id.plan_name);
+        ImageView planImage = view.findViewById(R.id.plan_image);
+        TextView planName = view.findViewById(R.id.plan_name);
 
         // overwrite values of child views based on input from MainActivity
-        characterImage.setImageResource(planList.get(i).getImageID());
-        characterName.setText(planList.get(i).getName());
+        planImage.setImageResource(planList.get(i).getImageID());
+        planName.setText(planList.get(i).getName());
 
         // returns view for current row
         return view;
