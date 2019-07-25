@@ -63,7 +63,6 @@ public class MyTripListFragment extends Fragment {
                 startActivity(tripIntent);
             }
         });
-        // hi this is a change
 
         FloatingActionButton fab = view.findViewById(R.id.add_trip_button);
 
