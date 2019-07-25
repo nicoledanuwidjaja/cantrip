@@ -33,5 +33,11 @@
             android:layout_marginTop="20dp"
             android:text="Jan 25 - 30, 2020"/>
     </LinearLayout>
+    <ImageView
+        android:id="@+id/delete_trip_button"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/trash"
+        android:layout_gravity="center"/>
 
 </LinearLayout>
