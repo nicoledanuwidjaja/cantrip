@@ -9,6 +9,8 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 
 /**
@@ -21,6 +23,19 @@ import android.view.ViewGroup;
  */
 public class AddFlightFragment extends Fragment {
 
+    ImageView airplaneImage;
+    TextView airlineText;
+    TextView flightText;
+
+    ImageView departImage;
+    TextView departLocation;
+    TextView departDate;
+    TextView departTime;
+
+    ImageView arriveImage;
+    TextView arriveLocation;
+    TextView arriveDate;
+    TextView arriveTime;
 
 
     // TODO: Rename parameter arguments, choose names that match
@@ -68,6 +83,10 @@ public class AddFlightFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+
+
+
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_add_flight, container, false);
     }
