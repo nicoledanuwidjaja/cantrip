@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -44,7 +45,7 @@ public class MyPlansFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_my_plans, container, false);
         listOfPlans = view.findViewById(R.id.myPlansList);
-        addNewPlanButton = view.findViewById(R.id.fab);
+        addNewPlanButton = view.findViewById(R.id.add_plan_button);
 
         // populate array list with character data
         populateList();
@@ -68,6 +69,12 @@ public class MyPlansFragment extends Fragment {
         });
 
 
+        addNewPlanButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                popUpFragment(new AddPlanOptionFragment());
+            }
+        });
 
 
         // TODO: FIX THIS ADAPTER
@@ -174,5 +181,13 @@ public class MyPlansFragment extends Fragment {
                 "Tevere River. The capital of the Lazio region is Italy's largest city " +
                         "with a population of 2,654,100 and over 2600 years of richness in art, " +
                         "history, architecture, monuments and culture.", Reservation.HOTEL));
+    }
+
+    public void popUpFragment(Fragment fragment){
+
+        FragmentTransaction popUpAddPlan = getFragmentManager().beginTransaction();
+
+        popUpAddPlan.show(fragment);
+        popUpAddPlan.commit();
     }
 }

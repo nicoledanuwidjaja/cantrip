@@ -57,7 +57,7 @@ public class MyTripListFragment extends Fragment {
         });
         // hi this is a change
 
-        FloatingActionButton fab = view.findViewById(R.id.fab);
+        FloatingActionButton fab = view.findViewById(R.id.add_trip_button);
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override

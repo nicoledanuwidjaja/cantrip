@@ -26,14 +26,14 @@ public class DetailedTripActivity extends AppCompatActivity {
         TabLayout tabs = findViewById(R.id.tabs);
         tabs.setupWithViewPager(viewPager);
 
-        FloatingActionButton fab = findViewById(R.id.fab);
-
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                popUpFragment(new AddPlanOptionFragment());
-            }
-        });
+//        FloatingActionButton fab = findViewById(R.id.add_plan_button);
+//
+//        fab.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                popUpFragment(new AddPlanOptionFragment());
+//            }
+//        });
 
     }
 
