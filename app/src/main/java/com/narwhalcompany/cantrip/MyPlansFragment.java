@@ -57,7 +57,6 @@ public class MyPlansFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent intent = new Intent(getActivity(), PlanActivity.class);
-
                 Plan currentPlan = planList.get(i);
 
                 intent.putExtra("name", currentPlan.getName());

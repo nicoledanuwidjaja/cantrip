@@ -23,19 +23,19 @@ import android.widget.TextView;
  */
 public class AddFlightFragment extends Fragment {
 
-    ImageView airplaneImage;
-    TextView airlineText;
-    TextView flightText;
-
-    ImageView departImage;
-    TextView departLocation;
-    TextView departDate;
-    TextView departTime;
-
-    ImageView arriveImage;
-    TextView arriveLocation;
-    TextView arriveDate;
-    TextView arriveTime;
+//    ImageView airplaneImage;
+//    TextView airlineText;
+//    TextView flightText;
+//
+//    ImageView departImage;
+//    TextView departLocation;
+//    TextView departDate;
+//    TextView departTime;
+//
+//    ImageView arriveImage;
+//    TextView arriveLocation;
+//    TextView arriveDate;
+//    TextView arriveTime;
 
 
     // TODO: Rename parameter arguments, choose names that match
@@ -83,12 +83,24 @@ public class AddFlightFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_add_flight, container, false);
 
+        ImageView airplaneImage = view.findViewById(R.id.airplaneImage);
+        TextView airlineText = view.findViewById(R.id.airlineText);
+        TextView flightText = view.findViewById(R.id.flightText);
 
+        ImageView departImage = view.findViewById(R.id.departImage);
+        TextView departLocation = view.findViewById(R.id.departLocation);
+        TextView departDate = view.findViewById(R.id.departDate);
+        TextView departTime = view.findViewById(R.id.departDate);
 
+        ImageView arriveImage = view.findViewById(R.id.arriveImage);
+        TextView arriveLocation = view.findViewById(R.id.arriveLocation);
+        TextView arriveDate = view.findViewById(R.id.arriveDate);
+        TextView arriveTime = view.findViewById(R.id.arriveTime);
 
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_add_flight, container, false);
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
