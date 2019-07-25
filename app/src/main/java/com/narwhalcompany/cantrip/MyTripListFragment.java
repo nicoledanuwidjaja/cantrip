@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -40,6 +41,13 @@ public class MyTripListFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_my_trip_list, container, false);
 
         populateList();
+
+        if (getArguments() != null) {
+            Bundle bundle = getArguments();
+            tripList.add(new TripOverviewAdapterItem(R.drawable.commons, bundle.getInt("startMonth"), bundle.getInt("startDay"),
+                    bundle.getInt("startYear"), bundle.getInt("endMonth"), bundle.getInt("endDay"),
+                    bundle.getInt("endYear"), bundle.getString("startLocation"), bundle.getString("endLocation")));
+        }
 
         ListView listView = view.findViewById(R.id.myTripsList);
         CustomTripOverviewAdapter adapter = new CustomTripOverviewAdapter(getContext(), tripList);

@@ -60,6 +60,11 @@ public class AddNewTripDateFragment extends Fragment implements DatePickerDialog
                 //Intent addTripIntent = new Intent(getActivity(), MainActivity.class);
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
                 Bundle bundle = new Bundle();
+
+                Bundle pastLocationArgs = getArguments();
+
+                bundle.putString("startLocation", pastLocationArgs.getString("startLocation"));
+                bundle.putString("endLocation", pastLocationArgs.getString("endLocation"));
                 bundle.putInt("startMonth", startDatePicker.getMonth());
                 bundle.putInt("startDay", startDatePicker.getDayOfMonth());
                 bundle.putInt("startYear", startDatePicker.getYear());
