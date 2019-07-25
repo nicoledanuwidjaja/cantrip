@@ -30,6 +30,11 @@
             android:name=".PlanActivity"
             android:label="@string/plan_activity"
             android:screenOrientation="portrait" />
+        <fragment
+            android:name=".AddFlightFragment"
+            android:label="Add flight reservation"
+            android:screenOrientation="portrait">
+        </fragment>
     </application>
 
 </manifest>
