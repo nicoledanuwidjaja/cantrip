@@ -35,9 +35,8 @@
     </LinearLayout>
     <ImageView
         android:id="@+id/delete_trip_button"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:src="@drawable/trash"
-        android:layout_gravity="center"/>
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:src="@drawable/trash"/>
 
 </LinearLayout>
