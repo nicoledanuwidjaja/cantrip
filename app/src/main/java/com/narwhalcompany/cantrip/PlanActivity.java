@@ -45,4 +45,6 @@ public class PlanActivity extends AppCompatActivity {
         description.setText(planDescription);
         image.setImageResource(planImageID);
     }
+
+
 }
