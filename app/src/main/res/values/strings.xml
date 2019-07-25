@@ -1,8 +1,22 @@
 <resources>
     <string name="app_name">CanTrip</string>
-    <string name="trip_title">Trip 1\nPlace\nDate</string>
+    <string name="trip_title">Trip</string>
     <string name="plan_title">Plan\n</string>
-    <string name="plans_tab">My Plans</string>
+    <string name="rome">Tevere River. The capital of the Lazio region is Italy\'s largest city with
+        a population of 2,654,100 and over 2600 years of richness in art, history, architecture,
+        monuments and culture.</string>
+    <string name="empty_recommended">no recommended plans yet</string>
+    <string name="plan_activity">My Plan</string>
+    <string name="add_trip_activity">Add New Trip</string>
+    <string name="trip_location_from">Where from?</string>
+    <string name="trip_location_to">Where to?</string>
+    <string name="trip_button">Complete</string>
+    <string name="trip_date_from">From:</string>
+    <string name="trip_date_to">To:</string>
+    <string name="my_trips_tab">My Trip</string>
     <string name="recommended_tab">Recommended</string>
-    <string name="title_activity_detailed_flight">DetailedFlight</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!--<string name="title_activity_detailed_flight">DetailedFlight</string>-->
 </resources>

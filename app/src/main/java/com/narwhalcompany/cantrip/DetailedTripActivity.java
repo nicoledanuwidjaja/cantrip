@@ -1,51 +1,47 @@
 package com.narwhalcompany.cantrip;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.viewpager.widget.ViewPager;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 
-import java.util.ArrayList;
-
-import utils.CustomPlanAdapter;
-import utils.Plan;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.tabs.TabLayout;
+import com.narwhalcompany.cantrip.ui.main.SectionsPagerAdapter;
 
 public class DetailedTripActivity extends AppCompatActivity {
-
-    ListView listOfPlans;
-    ArrayList<Plan> planList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detailed_trip);
 
-        listOfPlans = findViewById(R.id.plan_item);
+        // view and tab layout
+        ViewPager viewPager = findViewById(R.id.view_pager);
+        SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager());
+        viewPager.setAdapter(sectionsPagerAdapter);
+        TabLayout tabs = findViewById(R.id.tabs);
+        tabs.setupWithViewPager(viewPager);
 
-        // populate array list with character data
-        populateList();
+        FloatingActionButton fab = findViewById(R.id.fab);
 
-        // custom plan list adapter
-        CustomPlanAdapter planAdapter = new CustomPlanAdapter(this, planList);
-
-        listOfPlans.setAdapter(planAdapter);
-        listOfPlans.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        fab.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-
-                // trigger second activity - character information
-                Intent infoIntent = new Intent(DetailedTripActivity.this, PlanActivity.class);
-                infoIntent.putExtra("plan_name", planList.get(i).getName());
-                startActivity(infoIntent);
+            public void onClick(View view) {
+                popUpFragment(new AddPlanOptionFragment());
             }
         });
+
     }
 
-    private void populateList() {
-        planList.add(new Plan("Plan 1", "8:00", "Plan 1 Description", R.drawable.ic_launcher_background));
+    public void popUpFragment(Fragment fragment){
+
+        FragmentTransaction popUpAddPlan = getSupportFragmentManager().beginTransaction();
+
+        popUpAddPlan.show(fragment);
+        popUpAddPlan.commit();
     }
 }

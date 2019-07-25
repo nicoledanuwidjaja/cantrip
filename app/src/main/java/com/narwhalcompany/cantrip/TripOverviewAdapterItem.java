@@ -3,31 +3,59 @@ package com.narwhalcompany.cantrip;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class TripOverviewAdapterItem {
+public class TripOverviewAdapterItem implements Parcelable {
 
     int imageResId;
     int startMonth;
     int startDay;
+    int startYear;
     int endMonth;
     int endDay;
-    int year;
+    int endYear;
     String startLoc;
     String endloc;
 
-    public TripOverviewAdapterItem(int imageResId, int startMonth, int startDay, int endMonth,
-                                   int endDay, int year, String startLoc, String endloc) {
+    public TripOverviewAdapterItem(int imageResId, int startMonth, int startDay, int startYear,
+                                   int endMonth, int endDay, int endYear, String startLoc, String endloc) {
         this.imageResId = imageResId;
         this.startMonth = startMonth;
         this.startDay = startDay;
+        this.startYear = startYear;
         this.endMonth = endMonth;
         this.endDay = endDay;
-        this.year = year;
+        this.endYear = endYear;
         this.startLoc = startLoc;
         this.endloc = endloc;
     }
+
+    protected TripOverviewAdapterItem(Parcel in) {
+        imageResId = in.readInt();
+        startMonth = in.readInt();
+        startDay = in.readInt();
+        startYear = in.readInt();
+        endMonth = in.readInt();
+        endDay = in.readInt();
+        endYear = in.readInt();
+        startLoc = in.readString();
+        endloc = in.readString();
+    }
+
+    public static final Creator<TripOverviewAdapterItem> CREATOR = new Creator<TripOverviewAdapterItem>() {
+        @Override
+        public TripOverviewAdapterItem createFromParcel(Parcel in) {
+            return new TripOverviewAdapterItem(in);
+        }
+
+        @Override
+        public TripOverviewAdapterItem[] newArray(int size) {
+            return new TripOverviewAdapterItem[size];
+        }
+    };
 
     public int getImageResId() {
         return imageResId;
@@ -53,6 +81,10 @@ public class TripOverviewAdapterItem {
         this.startDay = startDay;
     }
 
+    public int getStartYear() { return startYear; }
+
+    public void setStartYear(int startYear) { this.startYear = startYear; }
+
     public int getEndMonth() {
         return endMonth;
     }
@@ -69,8 +101,8 @@ public class TripOverviewAdapterItem {
         this.endDay = endDay;
     }
 
-    public int getYear() {
-        return year;
+    public int getEndYear() {
+        return endYear;
     }
 
     public String getStartLoc() {
@@ -89,7 +121,21 @@ public class TripOverviewAdapterItem {
         this.endloc = endloc;
     }
 
-    public void setYear(int year) {
-        this.year = year;
+    @Override
+    public int describeContents() {
+        return hashCode();
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeInt(imageResId);
+        parcel.writeInt(startMonth);
+        parcel.writeInt(startDay);
+        parcel.writeInt(startYear);
+        parcel.writeInt(endMonth);
+        parcel.writeInt(endDay);
+        parcel.writeInt(endYear);
+        parcel.writeString(startLoc);
+        parcel.writeString(endloc);
     }
 }

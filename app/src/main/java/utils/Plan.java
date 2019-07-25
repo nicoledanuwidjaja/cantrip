@@ -6,21 +6,44 @@ import android.os.Parcelable;
 /**
  * Plan object for a given trip activity.
  */
-public class Plan  {
+public class Plan implements Parcelable {
 
     // editable properties of a plan
     private String name;
     private String time;
     private String description;
-    private int imageID;
+    // private int imageID;
+    private Reservation landmark;
 
-    public Plan(String name, String time, String description, int imageID) {
+    public Plan(String name, String time, String description, Reservation landmark) {
         this.name = name;
         this.time = time;
         this.description = description;
-        this.imageID = imageID;
+        // this.imageID = imageID;
+        this.landmark = landmark;
     }
 
+    // collects properties of plan in a parcel
+
+    public Plan(Parcel in) {
+        name = in.readString();
+        time = in.readString();
+        description = in.readString();
+        // imageID = in.readInt();
+    }
+    // builder pattern
+
+    public static final Creator<Plan> CREATOR = new Creator<Plan>() {
+        @Override
+        public Plan createFromParcel(Parcel in) {
+            return new Plan(in);
+        }
+
+        @Override
+        public Plan[] newArray(int size) {
+            return new Plan[size];
+        }
+    };
     public String getName() {
         return name;
     }
@@ -45,11 +68,32 @@ public class Plan  {
         this.description = description;
     }
 
-    public int getImageID() {
-        return imageID;
+//    public int getImageID() {
+//        return imageID;
+//    }
+//
+//    public void setImageID(int imageID) {
+//        this.imageID = imageID;
+//    }
+
+    public Reservation getLandmark() {
+        return landmark;
     }
 
-    public void setImageID(int imageID) {
-        this.imageID = imageID;
+    public void setLandmark(Reservation landmark) {
+        this.landmark = landmark;
+    }
+
+    @Override
+    public int describeContents() {
+        return hashCode();
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(name);
+        parcel.writeString(time);
+        parcel.writeString(description);
+        // parcel.writeInt(imageID);
     }
 }
