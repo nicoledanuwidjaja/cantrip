@@ -19,7 +19,7 @@ import com.narwhalcompany.cantrip.R;
 public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
     @StringRes
-    private static final int[] TAB_TITLES = new int[]{R.string.my_trips_tab, R.string.recommended_tab};
+    private static final int[] TAB_TITLES = new int[]{R.string.plan_activity, R.string.recommended_tab};
     private final Context mContext;
 
     public SectionsPagerAdapter(Context context, FragmentManager fm) {
@@ -49,7 +49,7 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
     public CharSequence getPageTitle(int position) {
         switch (position) {
             case 0:
-                return "My Trips";
+                return "My Plans";
             case 1:
                 return "Recommended";
             default:
