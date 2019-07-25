@@ -12,12 +12,8 @@ public class FakeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_fake);
-//        AddFlightFragment addFlightFragment = new AddFlightFragment();
-//
-//        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-//        fragmentTransaction.add(R.id.fragment_container, addFlightFragment);
-//        fragmentTransaction.commit();
+        setContentView(R.layout.fragment_add_flight);
+
 
 
     }
@@ -26,7 +22,7 @@ public class FakeActivity extends AppCompatActivity {
     public void onBackPressed(View view) {
 
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.add(R.id.fragment_container, new AddFlightFragment());
+        fragmentTransaction.add(R.id.fake_fragment_container, new AddFlightFragment());
         fragmentTransaction.commit();
     }
 }
