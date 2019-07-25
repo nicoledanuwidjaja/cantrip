@@ -1,14 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/background_color"
     tools:context=".AddPlanOptionFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+    <!-- TODO: Make all these buttons work-->
 
-</FrameLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="75dp"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true">
+
+        <ImageButton
+            android:id="@+id/flight_button"
+            android:layout_margin="20dp"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:src="@drawable/airplane" />
+
+        <ImageButton
+            android:id="@+id/hotel_button"
+            android:layout_margin="20dp"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:src="@drawable/hotel" />
+
+        <ImageButton
+            android:id="@+id/landmark_button"
+            android:layout_margin="20dp"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:src="@drawable/landmark" />
+    </LinearLayout>
+</RelativeLayout>
