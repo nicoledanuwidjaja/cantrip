@@ -41,13 +41,6 @@ public class MyTripListFragment extends Fragment {
 
         populateList();
 
-        if (getArguments() != null) {
-            Bundle bundle = getArguments();
-            tripList.add(new TripOverviewAdapterItem(R.drawable.commons, bundle.getInt("startMonth"), bundle.getInt("startDay"),
-                    bundle.getInt("startYear"), bundle.getInt("endMonth"), bundle.getInt("endDay"),
-                    bundle.getInt("endYear"), "LA", "SF"));
-        }
-
         ListView listView = view.findViewById(R.id.myTripsList);
         CustomTripOverviewAdapter adapter = new CustomTripOverviewAdapter(getContext(), tripList);
 
@@ -62,7 +55,6 @@ public class MyTripListFragment extends Fragment {
                 startActivity(tripIntent);
             }
         });
-        // hi this is a change
 
         FloatingActionButton fab = view.findViewById(R.id.add_trip_button);
 
