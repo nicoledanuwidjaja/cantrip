@@ -29,11 +29,6 @@
                 android:textAppearance="@style/TextAppearance.Widget.AppCompat.Toolbar.Title" />
         </com.google.android.material.appbar.AppBarLayout>
 
-        <ListView
-            android:id="@+id/myTripsList"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"></ListView>
-
 
         <FrameLayout
             android:layout_width="match_parent"
@@ -41,13 +36,6 @@
             android:id="@+id/fragment_container">
         </FrameLayout>
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fab"
-            android:src="@drawable/plus"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|end"
-            android:layout_margin="@dimen/fab_margin" />
     </LinearLayout>
 
 

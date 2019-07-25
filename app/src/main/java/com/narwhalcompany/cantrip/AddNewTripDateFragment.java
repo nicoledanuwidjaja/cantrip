@@ -45,7 +45,7 @@ public class AddNewTripDateFragment extends Fragment implements DatePickerDialog
             }
         });
 
-        completeButton = view.findViewById(R.id.add_location_button);
+        completeButton = view.findViewById(R.id.add_date_button);
         completeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
