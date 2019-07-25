@@ -8,47 +8,58 @@
     android:orientation="vertical">
 
     <LinearLayout
-        android:layout_below="@+id/tabs"
-        android:orientation="vertical"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tabs"
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/trip_title"
-            android:textColor="#FFFFFF"
-            android:background="@color/colorPrimary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
             android:gravity="center"
             android:padding="10dp"
             android:text="@string/trip_title"
+            android:textColor="#FFFFFF"
             android:textSize="20sp" />
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay">
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        <FrameLayout
+            android:id="@+id/add_plan_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#FFFFFF">
+        </FrameLayout>
+        </ScrollView>
 
-        <com.google.android.material.tabs.TabLayout
-            android:id="@+id/tabs"
+        <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="?attr/colorPrimary" />
-    </com.google.android.material.appbar.AppBarLayout>
+            android:theme="@style/AppTheme.AppBarOverlay">
 
-    <androidx.viewpager.widget.ViewPager
-        android:id="@+id/view_pager"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tabs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="?attr/colorPrimary" />
+        </com.google.android.material.appbar.AppBarLayout>
 
-    <ListView
-        android:id="@+id/plan_item"
-        android:layout_width="match_parent"
-        android:layout_height="500dp"
-        android:layout_gravity="center"
-        android:padding="25dp"
-        android:text="@string/plan_title"
-        android:textSize="14sp" />
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/view_pager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+        <ListView
+            android:id="@+id/plan_item"
+            android:layout_width="match_parent"
+            android:layout_height="500dp"
+            android:layout_gravity="center"
+            android:padding="25dp"
+            android:text="@string/plan_title"
+            android:textSize="14sp" />
     </LinearLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

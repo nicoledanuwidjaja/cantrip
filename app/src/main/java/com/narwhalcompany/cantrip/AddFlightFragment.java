@@ -1,6 +1,7 @@
 package com.narwhalcompany.cantrip;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -9,6 +10,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -31,15 +33,11 @@ public class AddFlightFragment extends Fragment {
 //    TextView arriveLocation;
 //    TextView arriveDate;
 //    TextView arriveTime;
-
-
+      Button saveButton;
 
     public AddFlightFragment() {
         // Required empty public constructor
     }
-
-
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -59,6 +57,15 @@ public class AddFlightFragment extends Fragment {
 //        TextView arriveLocation = view.findViewById(R.id.arriveLocation);
 //        TextView arriveDate = view.findViewById(R.id.arriveDate);
 //        TextView arriveTime = view.findViewById(R.id.arriveTime);
+
+        saveButton = view.findViewById(R.id.saveButton);
+        saveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent addFlightIntent = new Intent(getActivity(), MainActivity.class);
+                startActivity(addFlightIntent);
+            }
+        });
 
         // Inflate the layout for this fragment
         return view;

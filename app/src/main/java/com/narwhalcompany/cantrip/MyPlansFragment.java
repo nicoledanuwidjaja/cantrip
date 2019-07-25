@@ -185,12 +185,18 @@ public class MyPlansFragment extends Fragment {
     public void popUpFragment(Fragment fragment){
 
         FragmentManager popUpAddPlan = getFragmentManager();
+        FragmentTransaction popUpTransaction = popUpAddPlan.beginTransaction();
+        boolean setOn = false;
 
         if(popUpAddPlan != null) {
-            FragmentTransaction popUpTransaction = popUpAddPlan.beginTransaction();
             popUpTransaction.add(R.id.fragment_frame, fragment);
+            popUpTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
             popUpTransaction.isAddToBackStackAllowed();
-            popUpTransaction.commit();
+        } else {
+            popUpTransaction.remove(fragment);
+            popUpTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE);
         }
+
+        popUpTransaction.commit();
     }
 }

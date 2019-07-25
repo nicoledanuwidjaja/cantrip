@@ -15,6 +15,7 @@
             android:id="@+id/plan_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
             android:textSize="30sp"/>
 
         <LinearLayout
@@ -27,9 +28,9 @@
                 android:id="@+id/plan_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@color/colorPrimary"
                 android:layout_marginLeft="45dp"
-                android:layout_gravity="start"/>
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center"/>
 
             <ImageView
                 android:id="@+id/plan_image"
@@ -39,7 +40,9 @@
 
         <TextView
             android:id="@+id/plan_description"
+            android:padding="10dp"
             android:layout_width="wrap_content"
+            android:layout_centerHorizontal="true"
             android:layout_height="wrap_content"
             android:layout_below="@+id/linear"
             android:layout_gravity="start"/>
