@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".AddNewTripDateFragment">
 
     <TextView
@@ -13,6 +14,43 @@
         android:layout_marginTop="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
+    <!--<LinearLayout-->
+        <!--android:orientation="horizontal"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content">-->
+        <!--&lt;!&ndash;<EditText&ndash;&gt;-->
+            <!--&lt;!&ndash;android:id="@+id/start_month"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:hint="@string/month_hint"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_width="wrap_content"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_height="wrap_content" />&ndash;&gt;-->
+        <!--&lt;!&ndash;<TextView&ndash;&gt;-->
+            <!--&lt;!&ndash;android:text="/"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_width="wrap_content"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_height="wrap_content" />&ndash;&gt;-->
+        <!--&lt;!&ndash;<EditText&ndash;&gt;-->
+            <!--&lt;!&ndash;android:id="@+id/start_day"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:hint="@string/day_hint"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_width="wrap_content"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_height="wrap_content" />&ndash;&gt;-->
+        <!--&lt;!&ndash;<TextView&ndash;&gt;-->
+            <!--&lt;!&ndash;android:text="/"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_width="wrap_content"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_height="wrap_content" />&ndash;&gt;-->
+        <!--&lt;!&ndash;<EditText&ndash;&gt;-->
+            <!--&lt;!&ndash;android:id="@+id/start_year"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:hint="@string/year_hint"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_width="wrap_content"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_height="wrap_content" />&ndash;&gt;-->
+    <!--</LinearLayout>-->
+    <DatePicker
+        android:id="@+id/start_date_picker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:datePickerMode="spinner"
+        android:calendarViewShown="false"
+        android:startYear="2019"
+        android:layout_gravity="center"></DatePicker>
+
     <TextView
         android:id="@+id/date_to"
         android:text="@string/trip_date_to"
@@ -20,6 +58,43 @@
         android:layout_marginTop="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
+    <!--<LinearLayout-->
+        <!--android:orientation="horizontal"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content">-->
+        <!--&lt;!&ndash;<EditText&ndash;&gt;-->
+            <!--&lt;!&ndash;android:id="@+id/end_month"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:hint="@string/month_hint"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_width="wrap_content"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_height="wrap_content" />&ndash;&gt;-->
+        <!--&lt;!&ndash;<TextView&ndash;&gt;-->
+            <!--&lt;!&ndash;android:text="/"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_width="wrap_content"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_height="wrap_content" />&ndash;&gt;-->
+        <!--&lt;!&ndash;<EditText&ndash;&gt;-->
+            <!--&lt;!&ndash;android:id="@+id/end_day"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:hint="@string/day_hint"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_width="wrap_content"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_height="wrap_content" />&ndash;&gt;-->
+        <!--&lt;!&ndash;<TextView&ndash;&gt;-->
+            <!--&lt;!&ndash;android:text="/"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_width="wrap_content"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_height="wrap_content" />&ndash;&gt;-->
+        <!--&lt;!&ndash;<EditText&ndash;&gt;-->
+            <!--&lt;!&ndash;android:id="@+id/end_year"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:hint="@string/year_hint"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_width="wrap_content"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_height="wrap_content" />&ndash;&gt;-->
+        <!---->
+    <!--</LinearLayout>-->
+    <DatePicker
+        android:id="@+id/end_date_picker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:datePickerMode="spinner"
+        android:calendarViewShown="false"
+        android:startYear="2019"
+        android:layout_gravity="center"></DatePicker>
     <Button
         android:id="@+id/add_date_button"
         android:layout_marginRight="20dp"

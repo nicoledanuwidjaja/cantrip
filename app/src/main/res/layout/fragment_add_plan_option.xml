@@ -3,38 +3,67 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/background_color"
+    android:background="@color/colorPrimary"
     tools:context=".AddPlanOptionFragment">
 
     <!-- TODO: Make all these buttons work-->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/plan_texts"
+        android:layout_centerHorizontal="true"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#FFFFFF"
+            android:layout_margin="20dp"
+            android:text="New Flight"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#FFFFFF"
+            android:layout_margin="20dp"
+            android:text="New Hotel"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#FFFFFF"
+            android:layout_margin="20dp"
+            android:text="New Landmark"/>
+
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
+        android:layout_below="@+id/plan_texts"
         android:layout_marginBottom="75dp"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentBottom="true">
+        android:layout_centerHorizontal="true">
+
 
         <ImageButton
             android:id="@+id/flight_button"
-            android:layout_margin="20dp"
+            android:layout_gravity="center"
             android:layout_width="75dp"
             android:layout_height="75dp"
+            android:layout_marginRight="10dp"
             android:src="@drawable/airplane" />
 
         <ImageButton
             android:id="@+id/hotel_button"
-            android:layout_margin="20dp"
             android:layout_width="75dp"
             android:layout_height="75dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:src="@drawable/hotel" />
 
         <ImageButton
             android:id="@+id/landmark_button"
-            android:layout_margin="20dp"
             android:layout_width="75dp"
             android:layout_height="75dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:src="@drawable/landmark" />
     </LinearLayout>
 </RelativeLayout>

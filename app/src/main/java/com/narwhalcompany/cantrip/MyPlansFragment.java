@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
@@ -74,7 +75,6 @@ public class MyPlansFragment extends Fragment {
                 popUpFragment(new AddPlanOptionFragment());
             }
         });
-
 
         // TODO: FIX THIS ADAPTER
         // custom plan list adapter
@@ -184,9 +184,19 @@ public class MyPlansFragment extends Fragment {
 
     public void popUpFragment(Fragment fragment){
 
-        FragmentTransaction popUpAddPlan = getFragmentManager().beginTransaction();
+        FragmentManager popUpAddPlan = getFragmentManager();
+        FragmentTransaction popUpTransaction = popUpAddPlan.beginTransaction();
+        boolean setOn = false;
 
-        popUpAddPlan.show(fragment);
-        popUpAddPlan.commit();
+        if(popUpAddPlan != null) {
+            popUpTransaction.add(R.id.fragment_frame, fragment);
+            popUpTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+            popUpTransaction.isAddToBackStackAllowed();
+        } else {
+            popUpTransaction.remove(fragment);
+            popUpTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE);
+        }
+
+        popUpTransaction.commit();
     }
 }

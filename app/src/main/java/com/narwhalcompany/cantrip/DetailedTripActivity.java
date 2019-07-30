@@ -25,23 +25,5 @@ public class DetailedTripActivity extends AppCompatActivity {
         viewPager.setAdapter(sectionsPagerAdapter);
         TabLayout tabs = findViewById(R.id.tabs);
         tabs.setupWithViewPager(viewPager);
-
-//        FloatingActionButton fab = findViewById(R.id.add_plan_button);
-//
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                popUpFragment(new AddPlanOptionFragment());
-//            }
-//        });
-
-    }
-
-    public void popUpFragment(Fragment fragment){
-
-        FragmentTransaction popUpAddPlan = getSupportFragmentManager().beginTransaction();
-
-        popUpAddPlan.show(fragment);
-        popUpAddPlan.commit();
     }
 }

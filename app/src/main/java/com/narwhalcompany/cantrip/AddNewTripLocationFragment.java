@@ -6,15 +6,27 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 public class AddNewTripLocationFragment extends Fragment {
 
+
     private TextView tripFromDate;
+
+
     private TextView tripToDate;
+
+    @NonNull
+    private EditText startLocation;
+
+    @NonNull
+    private EditText endLocation;
 
     // TODO: FIX DATA TRANSFER
     private Button completeButton;
@@ -27,13 +39,23 @@ public class AddNewTripLocationFragment extends Fragment {
         tripFromDate = view.findViewById(R.id.where_from);
         tripToDate = view.findViewById(R.id.where_to);
 
+        startLocation = view.findViewById(R.id.start_location);
+        endLocation = view.findViewById(R.id.end_location);
+
         completeButton = view.findViewById(R.id.add_location_button);
         completeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // sets a fragment manager for managing all fragments (for adding new trips)
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                transaction.replace(R.id.fragment_container, new AddNewTripDateFragment());
+                AddNewTripDateFragment getDateFragment = new AddNewTripDateFragment();
+
+                Bundle bundle = new Bundle();
+                bundle.putString("startLocation", startLocation.getText().toString());
+                bundle.putString("endLocation", endLocation.getText().toString());
+                getDateFragment.setArguments(bundle);
+
+                transaction.replace(R.id.fragment_container, getDateFragment);
                 transaction.commit();
             }
         });
