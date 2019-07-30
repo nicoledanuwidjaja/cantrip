@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "966324593262",
+    "firebase_url": "https://cantrip-91a75.firebaseio.com",
+    "project_id": "cantrip-91a75",
+    "storage_bucket": "cantrip-91a75.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:966324593262:android:1bf1088af5e64e1d",
+        "android_client_info": {
+          "package_name": "com.narwhalcompany.cantrip"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "966324593262-12bgtlbs9pe9km9k765lneld7alo2as2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.narwhalcompany.cantrip",
+            "certificate_hash": "bfdf525f2c33a9500b60fb79ab650d02a42b8bb3"
+          }
+        },
+        {
+          "client_id": "966324593262-u2lo6rqs88h9r2329v9is0ijprcpim3d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCo6R1FdOBfft0dOpJ1thZZQzDix5WCpJc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "966324593262-u2lo6rqs88h9r2329v9is0ijprcpim3d.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
