@@ -62,7 +62,7 @@ public class AddFlightFragment extends Fragment {
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent addFlightIntent = new Intent(getActivity(), MainActivity.class);
+                Intent addFlightIntent = new Intent(getActivity(), DetailedTripActivity.class);
                 startActivity(addFlightIntent);
             }
         });
