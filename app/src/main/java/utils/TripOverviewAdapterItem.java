@@ -28,6 +28,7 @@ public class TripOverviewAdapterItem implements Parcelable {
         this.endloc = endloc;
     }
 
+
     protected TripOverviewAdapterItem(Parcel in) {
         imageResId = in.readInt();
         startMonth = in.readInt();

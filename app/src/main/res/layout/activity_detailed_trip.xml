@@ -20,7 +20,6 @@
             android:background="@color/colorPrimary"
             android:gravity="center"
             android:padding="10dp"
-            android:text="@string/trip_title"
             android:textColor="#FFFFFF"
             android:textSize="20sp" />
 
@@ -44,7 +43,7 @@
                 android:id="@+id/tabs"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="?attr/colorPrimary" />
+                android:background="@color/background_color"/>
         </com.google.android.material.appbar.AppBarLayout>
 
         <androidx.viewpager.widget.ViewPager

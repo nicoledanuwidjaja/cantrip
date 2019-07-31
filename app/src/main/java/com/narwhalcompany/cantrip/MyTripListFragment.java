@@ -26,7 +26,7 @@ import utils.TripOverviewAdapterItem;
  */
 public class MyTripListFragment extends Fragment {
 
-    private ArrayList<TripOverviewAdapterItem> tripList =new ArrayList<>();
+    private ArrayList<TripOverviewAdapterItem> tripList = new ArrayList<>();
 
 
     public MyTripListFragment() {
@@ -42,10 +42,10 @@ public class MyTripListFragment extends Fragment {
         populateList();
 
         if (getArguments() != null) {
-            Bundle bundle = getArguments();
-            tripList.add(new TripOverviewAdapterItem(R.drawable.commons, bundle.getInt("startMonth"), bundle.getInt("startDay"),
-                    bundle.getInt("startYear"), bundle.getInt("endMonth"), bundle.getInt("endDay"),
-                    bundle.getInt("endYear"), bundle.getString("startLocation"), bundle.getString("endLocation")));
+            Bundle tripBundle = getArguments();
+            tripList.add(new TripOverviewAdapterItem(R.drawable.commons, tripBundle.getInt("startMonth"), tripBundle.getInt("startDay"),
+                    tripBundle.getInt("startYear"), tripBundle.getInt("endMonth"), tripBundle.getInt("endDay"),
+                    tripBundle.getInt("endYear"), tripBundle.getString("startLocation"), tripBundle.getString("endLocation")));
         }
 
         ListView listView = view.findViewById(R.id.myTripsList);
@@ -58,7 +58,9 @@ public class MyTripListFragment extends Fragment {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 // trigger second activity - DetailedTripActivity
                 Intent tripIntent = new Intent(getContext(), DetailedTripActivity.class);
-                tripIntent.putExtra("TRIP", tripList.get(i));
+                // useless
+//                tripIntent.putExtra("TRIP", tripList.get(i));
+
                 startActivity(tripIntent);
             }
         });
