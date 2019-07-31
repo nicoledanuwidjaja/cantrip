@@ -16,7 +16,6 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
-import java.util.Date;
 
 import utils.CustomPlanListAdapter;
 import utils.Plan;
@@ -44,6 +43,16 @@ public class MyPlansFragment extends BottomSheetDialogFragment {
         // populate array list with character data
         populateList();
 
+        if (getArguments() != null) {
+            Bundle planBundle = getArguments();
+            planList.add(new Plan(planBundle.getString("name"),
+                    planBundle.getInt("startMonth"), planBundle.getInt("startDay"), planBundle.getInt("startYear"),
+                    planBundle.getInt("endMonth"), planBundle.getInt("endDay"), planBundle.getInt("endYear"),
+                    planBundle.getInt("startTime"), planBundle.getInt("endtime"), planBundle.getString("location"),
+                    convertToType(planBundle.getString("type"))));
+            ;
+        }
+
         CustomPlanListAdapter adapter = new CustomPlanListAdapter(getContext(), planList);
         listOfPlans.setAdapter(adapter);
 
@@ -63,6 +72,7 @@ public class MyPlansFragment extends BottomSheetDialogFragment {
                 planBundle.putInt("endYear", currentPlan.getEndYear());
                 planBundle.putInt("startTime", currentPlan.getStartTime());
                 planBundle.putInt("endTime", currentPlan.getEndTime());
+                planBundle.putString("location", currentPlan.getLocation());
 
                 AbstractPlanFragment fragPlan = new AbstractPlanFragment();
                 fragPlan.setArguments(planBundle);
@@ -112,5 +122,19 @@ public class MyPlansFragment extends BottomSheetDialogFragment {
         planList.add(new Plan("Ritz-Carlton New York", 5, 7, 2019, 7, 7, 2019, 7, 12, "Central Park", Reservation.HOTEL));
         planList.add(new Plan("Rockefeller Center", 6, 7, 2019, 6, 7, 2019, 12, 23, "Rockefeller Plaza", Reservation.LANDMARK));
         planList.add(new Plan("Flight to Boston", 8, 7, 2019, 8, 7, 2019, 10, 15, "Boston Logan International Airport", Reservation.FLIGHT));
+    }
+
+    private Reservation convertToType(String typeString) {
+        switch (typeString) {
+            case "flight":
+                return Reservation.FLIGHT;
+            case "hotel":
+                return Reservation.HOTEL;
+            case "landmark":
+                return Reservation.LANDMARK;
+            default:
+                break;
+        }
+        return null;
     }
 }
