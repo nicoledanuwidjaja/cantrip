@@ -24,7 +24,9 @@ import utils.Plan;
 
 public class AddPlanOptionFragment extends Fragment {
 
-    ImageButton flightButton;
+    private ImageButton flightButton;
+    private ImageButton hotelButton;
+    private ImageButton landmarkButton;
 
     public AddPlanOptionFragment() {
         // Required empty public constructor
@@ -47,7 +49,35 @@ public class AddPlanOptionFragment extends Fragment {
                 // sets a fragment manager for managing all fragments (for adding new trips)
                 AddFlightFragment newFlight = new AddFlightFragment();
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                transaction.add(R.id.add_plan_container, newFlight);
+                transaction.replace(R.id.add_plan_container, newFlight);
+                transaction.isAddToBackStackAllowed();
+                transaction.commit();
+            }
+        });
+
+        hotelButton = view.findViewById(R.id.hotel_button);
+
+        hotelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // sets a fragment manager for managing all fragments (for adding new trips)
+                AddHotelFragment newHotel = new AddHotelFragment();
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                transaction.replace(R.id.add_plan_container, newHotel);
+                transaction.isAddToBackStackAllowed();
+                transaction.commit();
+            }
+        });
+
+        landmarkButton = view.findViewById(R.id.landmark_button);
+
+        landmarkButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // sets a fragment manager for managing all fragments (for adding new trips)
+//                AddLandmarkFragment newLandmark = new AddLandmarkFragment();
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+//                transaction.add(R.id.add_plan_container, newLandmark);
                 transaction.isAddToBackStackAllowed();
                 transaction.commit();
             }
