@@ -26,7 +26,6 @@ public class AddNewTripDateFragment extends Fragment implements DatePickerDialog
     private DatePicker startDatePicker;
     private DatePicker endDatePicker;
 
-    // TODO: FIX DATA TRANSFER
     private Button completeButton;
 
     @Override

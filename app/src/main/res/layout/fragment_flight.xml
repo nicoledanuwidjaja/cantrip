@@ -8,6 +8,8 @@
     tools:context=".FlightFragment">
 
     <TextView
+        android:id="@+id/flight_name"
+        android:background="@color/colorPrimary"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Flight: Boston -> Rome"

@@ -8,14 +8,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.narwhalcompany.cantrip.R;
-import com.narwhalcompany.cantrip.TripOverviewAdapterItem;
 
 import java.util.ArrayList;
 
 public class CustomTripOverviewAdapter extends BaseAdapter {
 
-    Context context;
-    ArrayList<TripOverviewAdapterItem> tripAdapterItems;
+    private Context context;
+    private ArrayList<TripOverviewAdapterItem> tripAdapterItems;
 
     public CustomTripOverviewAdapter(Context context, ArrayList<TripOverviewAdapterItem> tripAdapterItems) {
         this.context = context;

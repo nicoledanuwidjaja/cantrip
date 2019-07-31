@@ -1,12 +1,7 @@
-package com.narwhalcompany.cantrip;
+package utils;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.os.Bundle;
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 public class TripOverviewAdapterItem implements Parcelable {
 

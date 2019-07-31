@@ -28,7 +28,6 @@ public class AddNewTripLocationFragment extends Fragment {
     @NonNull
     private EditText endLocation;
 
-    // TODO: FIX DATA TRANSFER
     private Button completeButton;
 
     @Override

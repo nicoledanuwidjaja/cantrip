@@ -17,6 +17,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
+            android:textSize="15sp"
             android:text="Flight"
             android:textColor="#FFFFFF" />
 
@@ -24,6 +25,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
+            android:textSize="15sp"
             android:text="Hotel"
             android:textColor="#FFFFFF" />
 
@@ -31,6 +33,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
+            android:textSize="15sp"
             android:text="Landmark"
             android:textColor="#FFFFFF" />
     </LinearLayout>

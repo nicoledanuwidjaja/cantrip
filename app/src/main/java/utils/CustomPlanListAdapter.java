@@ -51,8 +51,8 @@ public class CustomPlanListAdapter extends BaseAdapter {
         TextView planName = view.findViewById(R.id.plan_name);
 
         // overwrite values of child views based on input from MainActivity
-        switch (planList.get(i).getLandmark()) {
-            case PLANE:
+        switch (planList.get(i).getPlanType()) {
+            case FLIGHT:
                 planImage.setImageResource(R.drawable.plane_horiz);
                 break;
             case HOTEL:

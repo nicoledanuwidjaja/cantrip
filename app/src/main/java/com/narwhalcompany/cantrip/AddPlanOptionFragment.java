@@ -59,6 +59,7 @@ public class AddPlanOptionFragment extends BottomSheetDialogFragment
                 newHotel.show(planManager, "flight");
                 break;
             case R.id.landmark_button:
+                // TODO: ADD LANDMARK SCREENS AND BUTTON FUNCTIONALITIES
 //                DialogFragment newLandmark = new AddLandmarkFragment();
 //                newHotel.show(planManager, "landmark");
                 break;
