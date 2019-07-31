@@ -20,6 +20,8 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        // set splash screen
+        setTheme(R.style.AppTheme);
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
@@ -27,10 +29,9 @@ public class MainActivity extends AppCompatActivity {
         MyTripListFragment myTripList = new MyTripListFragment();
 
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.add(R.id.fragment_container, myTripList);
+        fragmentTransaction.replace(R.id.fragment_container, myTripList);
+        fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
-
-
     }
 
     @Override
@@ -38,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
         MyTripListFragment myTripList = new MyTripListFragment();
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.fragment_container, myTripList);
+        fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
     }
 }

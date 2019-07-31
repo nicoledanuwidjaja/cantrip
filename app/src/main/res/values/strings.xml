@@ -7,19 +7,18 @@
         monuments and culture.</string>
     <string name="empty_recommended">no recommended plans yet</string>
     <string name="plan_activity">My Plan</string>
+    <string name="add_flight">Add New Flight</string>
+    <string name="add_hotel">Add New Hotel</string>
+    <string name="add_landmark">Add New Landmark</string>
     <string name="add_trip_activity">Add New Trip</string>
     <string name="trip_location_from">Where from?</string>
     <string name="trip_location_to">Where to?</string>
     <string name="trip_button">Complete</string>
     <string name="trip_date_from">From:</string>
     <string name="trip_date_to">To:</string>
-    <string name="my_trips_tab">My Trips</string>
+    <string name="my_trips_tab">My Trip</string>
     <string name="recommended_tab">Recommended</string>
     <string name="month_hint">MM</string>
     <string name="day_hint">DD</string>
     <string name="year_hint">YYYY</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <!--<string name="title_activity_detailed_flight">DetailedFlight</string>-->
 </resources>

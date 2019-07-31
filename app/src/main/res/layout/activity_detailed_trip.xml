@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
 
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -26,12 +27,12 @@
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-        <FrameLayout
-            android:id="@+id/add_plan_container"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="#FFFFFF">
-        </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/add_plan_container"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#FFFFFF"></FrameLayout>
         </ScrollView>
 
         <com.google.android.material.appbar.AppBarLayout

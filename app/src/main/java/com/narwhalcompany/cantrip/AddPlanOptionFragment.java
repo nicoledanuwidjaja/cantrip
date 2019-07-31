@@ -1,32 +1,25 @@
 package com.narwhalcompany.cantrip;
 
-import android.content.Context;
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ImageButton;
-import android.widget.ListView;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
-import java.util.ArrayList;
-
-import utils.CustomPlanListAdapter;
-import utils.Plan;
-
-public class AddPlanOptionFragment extends Fragment {
+public class AddPlanOptionFragment extends BottomSheetDialogFragment
+        implements View.OnClickListener {
 
     private ImageButton flightButton;
     private ImageButton hotelButton;
+    private ImageButton landmarkButton;
 
     public AddPlanOptionFragment() {
         // Required empty public constructor
@@ -39,37 +32,40 @@ public class AddPlanOptionFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_add_plan_option, container, false);
 
-
-        final FragmentTransaction transaction = getFragmentManager().beginTransaction();
-
         flightButton = view.findViewById(R.id.flight_button);
-
-        // sends page to add flight screen
-        flightButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // sets a fragment manager for managing all fragments (for adding new trips)
-                AddFlightFragment newFlight = new AddFlightFragment();
-                transaction.add(R.id.add_plan_container, newFlight);
-                transaction.isAddToBackStackAllowed();
-                transaction.commit();
-            }
-        });
-
         hotelButton = view.findViewById(R.id.hotel_button);
+        landmarkButton = view.findViewById(R.id.landmark_button);
 
-        // sends page to add flight screen
-        hotelButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // sets a fragment manager for managing all fragments (for adding new trips)
-                AddHotelFragment newHotel = new AddHotelFragment();
-                transaction.add(R.id.add_plan_container, newHotel);
-                transaction.isAddToBackStackAllowed();
-                transaction.commit();
-            }
-        });
+        flightButton.setOnClickListener(this);
+        hotelButton.setOnClickListener(this);
+        landmarkButton.setOnClickListener(this);
 
         return view;
+    }
+
+    @Override
+    public void onClick(View view) {
+
+        // sets a fragment manager for managing all fragments (for adding new trips)
+        FragmentManager planManager = getActivity().getSupportFragmentManager();
+        FragmentTransaction transaction = planManager.beginTransaction();
+        switch (view.getId()) {
+            case R.id.flight_button:
+                DialogFragment newFlight = new AddFlightFragment();
+                newFlight.show(planManager, "flight");
+                break;
+            case R.id.hotel_button:
+                DialogFragment newHotel = new AddHotelFragment();
+                newHotel.show(planManager, "flight");
+                break;
+            case R.id.landmark_button:
+//                DialogFragment newLandmark = new AddLandmarkFragment();
+//                newHotel.show(planManager, "landmark");
+                break;
+            default:
+                break;
+        }
+        transaction.addToBackStack(null);
+        transaction.commit();
     }
 }

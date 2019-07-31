@@ -19,11 +19,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".DetailedHotelActivity"></activity>
         <activity
             android:name=".DetailedTripActivity"
             android:theme="@style/AppTheme.NoActionBar"
-            android:screenOrientation="portrait"></activity>
+            android:label="@string/my_trips_tab"
+            android:screenOrientation="portrait">
+        </activity>
         <activity
             android:name=".PlanActivity"
             android:label="@string/plan_activity"

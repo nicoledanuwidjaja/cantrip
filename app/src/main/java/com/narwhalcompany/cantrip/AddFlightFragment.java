@@ -1,11 +1,12 @@
 package com.narwhalcompany.cantrip;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 
-import androidx.fragment.app.Fragment;
+import androidx.fragment.app.DialogFragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,12 +16,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 
-/**
- * A simple {@link Fragment} subclass.
-*/
-public class AddFlightFragment extends Fragment {
+public class AddFlightFragment extends DialogFragment {
 
-//    ImageView airplaneImage;
+    //    ImageView airplaneImage;
 //    TextView airlineText;
 //    TextView flightText;
 //
@@ -33,15 +31,22 @@ public class AddFlightFragment extends Fragment {
 //    TextView arriveLocation;
 //    TextView arriveDate;
 //    TextView arriveTime;
-      Button saveButton;
+    private Button saveButton;
 
-    public AddFlightFragment() {
-        // Required empty public constructor
+    static AddFlightFragment newInstance() {
+        return new AddFlightFragment();
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setStyle(DialogFragment.STYLE_NORMAL, R.style.FullScreenDialogTheme);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         View view = inflater.inflate(R.layout.fragment_add_flight, container, false);
 
 //        ImageView airplaneImage = view.findViewById(R.id.airplaneImage);
@@ -70,6 +75,4 @@ public class AddFlightFragment extends Fragment {
         // Inflate the layout for this fragment
         return view;
     }
-
-
 }

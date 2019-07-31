@@ -10,15 +10,15 @@ import android.widget.TextView;
 
 public class TripOverviewAdapterItem implements Parcelable {
 
-    int imageResId;
-    int startMonth;
-    int startDay;
-    int startYear;
-    int endMonth;
-    int endDay;
-    int endYear;
-    String startLoc;
-    String endloc;
+    private int imageResId;
+    private int startMonth;
+    private int startDay;
+    private int startYear;
+    private int endMonth;
+    private int endDay;
+    private int endYear;
+    private String startLoc;
+    private String endloc;
 
     public TripOverviewAdapterItem(int imageResId, int startMonth, int startDay, int startYear,
                                    int endMonth, int endDay, int endYear, String startLoc, String endloc) {
@@ -81,9 +81,13 @@ public class TripOverviewAdapterItem implements Parcelable {
         this.startDay = startDay;
     }
 
-    public int getStartYear() { return startYear; }
+    public int getStartYear() {
+        return startYear;
+    }
 
-    public void setStartYear(int startYear) { this.startYear = startYear; }
+    public void setStartYear(int startYear) {
+        this.startYear = startYear;
+    }
 
     public int getEndMonth() {
         return endMonth;

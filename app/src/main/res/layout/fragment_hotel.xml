@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".DetailedHotelActivity">
+    tools:context=".HotelFragment">
 
 
     <TextView
@@ -91,28 +91,7 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Duration:"
-            android:layout_marginLeft="25dp"
-            android:layout_marginTop="25dp"
-            android:textSize="20sp"
-            />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="1 night"
-            android:layout_marginLeft="208dp"
-            android:layout_marginTop="25dp"
-            android:textSize="18sp"
-            android:gravity="right"
-            />
-
-    </LinearLayout>
+        android:orientation="horizontal"/>
 
     <LinearLayout
         android:layout_width="wrap_content"

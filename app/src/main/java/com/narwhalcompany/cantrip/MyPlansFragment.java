@@ -4,7 +4,6 @@ package com.narwhalcompany.cantrip;
 import android.content.Intent;
 import android.os.Bundle;
 
-import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -16,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
@@ -24,16 +24,11 @@ import utils.CustomPlanListAdapter;
 import utils.Plan;
 import utils.Reservation;
 
+public class MyPlansFragment extends BottomSheetDialogFragment {
 
-/**
- * A simple {@link Fragment} subclass.
- */
-public class MyPlansFragment extends Fragment {
-
-    ListView listOfPlans;
-    ArrayList<Plan> planList = new ArrayList<>();
-
-    FloatingActionButton addNewPlanButton;
+    private ListView listOfPlans;
+    private ArrayList<Plan> planList = new ArrayList<>();
+    private FloatingActionButton addNewPlanButton;
 
     public MyPlansFragment() {
         // Required empty public constructor
@@ -182,21 +177,13 @@ public class MyPlansFragment extends Fragment {
                         "history, architecture, monuments and culture.", Reservation.HOTEL));
     }
 
-    public void popUpFragment(Fragment fragment){
-
-        FragmentManager popUpAddPlan = getFragmentManager();
-        FragmentTransaction popUpTransaction = popUpAddPlan.beginTransaction();
-        boolean setOn = false;
-
-        if(popUpAddPlan != null) {
-            popUpTransaction.add(R.id.fragment_frame, fragment);
-            popUpTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
-            popUpTransaction.isAddToBackStackAllowed();
-        } else {
-            popUpTransaction.remove(fragment);
-            popUpTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE);
-        }
-
-        popUpTransaction.commit();
+    private void popUpFragment(BottomSheetDialogFragment fragment) {
+        // sets a fragment manager for managing all fragments (for adding new trips)
+        FragmentManager planManager = getActivity().getSupportFragmentManager();
+        FragmentTransaction transaction = planManager.beginTransaction();
+        BottomSheetDialogFragment optionFragment = new AddPlanOptionFragment();
+        optionFragment.show(planManager, "add plan");
+        transaction.addToBackStack(null);
+        transaction.commit();
     }
 }
