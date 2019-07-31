@@ -13,10 +13,13 @@ public enum Reservation {
         switch (this) {
             case FLIGHT:
                 enumString = "flight";
+                break;
             case HOTEL:
                 enumString = "hotel";
+                break;
             case LANDMARK:
                 enumString = "landmark";
+                break;
             default:
                 break;
         }

@@ -56,7 +56,6 @@ public class AddNewTripDateFragment extends Fragment implements DatePickerDialog
         completeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Intent addTripIntent = new Intent(getActivity(), MainActivity.class);
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
                 Bundle bundle = new Bundle();
 
@@ -74,7 +73,6 @@ public class AddNewTripDateFragment extends Fragment implements DatePickerDialog
                 newTripListFragment.setArguments(bundle);
                 transaction.replace(R.id.fragment_container, newTripListFragment);
                 transaction.commit();
-                //startActivity(addTripIntent);
             }
         });
         return view;

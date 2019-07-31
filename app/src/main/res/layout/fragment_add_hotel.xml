@@ -14,7 +14,7 @@
         android:padding="10dp"
         android:text="@string/add_hotel"
         android:textColor="#FFFFFF"
-        android:textSize="25sp" />
+        android:textSize="20sp" />
 
 
     <LinearLayout

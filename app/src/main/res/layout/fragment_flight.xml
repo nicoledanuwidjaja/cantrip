@@ -9,30 +9,29 @@
 
     <TextView
         android:id="@+id/flight_name"
-        android:background="@color/colorPrimary"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Flight: Boston -> Rome"
-        android:layout_marginTop="20dp"
-        android:textSize="25sp"
         android:layout_gravity="center"
-        />
+        android:background="@color/colorAccent"
+        android:padding="15dp"
+        android:textColor="#FFFFFF"
+        android:textSize="25sp" />
 
+    <!-- black line -->
     <View
         android:layout_width="match_parent"
-        android:layout_height="3dp"
-        android:layout_marginTop="23dp"
-        android:background="@color/colorPrimaryDark"
-        />
+        android:layout_height="1dp"
+        android:opacity="opaque"
+        android:background="@color/colorPrimaryDark" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Ryanair 7069"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="20dp"
-        android:textSize="20sp"
-        />
+        android:text="Ryanair 7069"
+        android:textSize="20sp" />
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -41,30 +40,31 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="BOS"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="10dp"
+            android:text="BOS"
             android:textSize="30sp" />
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/airplane"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="15dp"/>
+            android:layout_marginTop="15dp"
+            android:src="@drawable/airplane" />
+
         <View
             android:layout_width="200dp"
             android:layout_height="2dp"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="30dp"
-            android:background="@color/colorPrimaryDark"
-            />
+            android:background="@color/colorPrimaryDark" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="CIA"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
+            android:text="CIA"
             android:textSize="30sp" />
 
     </LinearLayout>
@@ -73,8 +73,7 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginTop="20dp"
-        android:background="@color/colorPrimaryDark"
-        />
+        android:background="@color/colorPrimaryDark" />
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -84,21 +83,19 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="20dp"
             android:text="Departs:"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="20dp"
-            android:textSize="20sp"
-            />
+            android:textSize="20sp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="160dp"
+            android:layout_marginTop="20dp"
+            android:gravity="right"
             android:text="Thu, Jun 21 8:05 PM"
-            android:layout_marginLeft="160dp"
-            android:layout_marginTop="20dp"
-            android:textSize="15sp"
-            android:gravity="right"
-            />
+            android:textSize="15sp" />
 
     </LinearLayout>
 
@@ -110,21 +107,19 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="162dp"
+            android:layout_marginTop="6dp"
             android:text="Terminal: B"
-            android:layout_marginLeft="162dp"
-            android:layout_marginTop="6dp"
-            android:textSize="15sp"
-            />
+            android:textSize="15sp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Gate: A"
             android:layout_marginLeft="100dp"
             android:layout_marginTop="6dp"
-            android:textSize="15sp"
             android:gravity="right"
-            />
+            android:text="Gate: A"
+            android:textSize="15sp" />
 
     </LinearLayout>
 
@@ -136,21 +131,19 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Arrives:"
             android:layout_marginLeft="15dp"
             android:layout_marginTop="25dp"
-            android:textSize="20sp"
-            />
+            android:text="Arrives:"
+            android:textSize="20sp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Thu, Jun 21 10:52 PM"
             android:layout_marginLeft="160dp"
             android:layout_marginTop="25dp"
-            android:textSize="15sp"
             android:gravity="right"
-            />
+            android:text="Thu, Jun 21 10:52 PM"
+            android:textSize="15sp" />
 
     </LinearLayout>
 
@@ -162,21 +155,19 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Terminal:   "
             android:layout_marginLeft="162dp"
             android:layout_marginTop="6dp"
-            android:textSize="15sp"
-            />
+            android:text="Terminal:   "
+            android:textSize="15sp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Gate:  "
             android:layout_marginLeft="100dp"
             android:layout_marginTop="6dp"
-            android:textSize="15sp"
             android:gravity="right"
-            />
+            android:text="Gate:  "
+            android:textSize="15sp" />
 
     </LinearLayout>
 
@@ -188,21 +179,19 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Flight duration:"
             android:layout_marginLeft="15dp"
             android:layout_marginTop="20dp"
-            android:textSize="20sp"
-            />
+            android:text="Flight duration:"
+            android:textSize="20sp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="5:47"
             android:layout_marginLeft="208dp"
             android:layout_marginTop="20dp"
-            android:textSize="15sp"
             android:gravity="right"
-            />
+            android:text="5:47"
+            android:textSize="15sp" />
 
     </LinearLayout>
 
@@ -214,11 +203,10 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Passenger(s):"
             android:layout_marginLeft="15dp"
             android:layout_marginTop="30dp"
-            android:textSize="20sp"
-            />
+            android:text="Passenger(s):"
+            android:textSize="20sp" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -228,21 +216,19 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Caroline Liu"
                 android:layout_marginLeft="162dp"
                 android:layout_marginTop="6dp"
-                android:textSize="15sp"
-                />
+                android:text="Caroline Liu"
+                android:textSize="15sp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Seat 2B"
                 android:layout_marginLeft="100dp"
                 android:layout_marginTop="6dp"
-                android:textSize="15sp"
                 android:gravity="right"
-                />
+                android:text="Seat 2B"
+                android:textSize="15sp" />
 
         </LinearLayout>
 
@@ -254,21 +240,19 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Sharon He"
                 android:layout_marginLeft="162dp"
                 android:layout_marginTop="6dp"
-                android:textSize="15sp"
-                />
+                android:text="Sharon He"
+                android:textSize="15sp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Seat 2C"
                 android:layout_marginLeft="110dp"
                 android:layout_marginTop="6dp"
-                android:textSize="15sp"
                 android:gravity="right"
-                />
+                android:text="Seat 2C"
+                android:textSize="15sp" />
 
         </LinearLayout>
 
@@ -277,10 +261,9 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Confirmation #: UH133X"
         android:layout_marginLeft="15dp"
         android:layout_marginTop="30dp"
-        android:textSize="20sp"
-        />
+        android:text="Confirmation #: UH133X"
+        android:textSize="20sp" />
 
 </LinearLayout>
