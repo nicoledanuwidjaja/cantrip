@@ -2,10 +2,12 @@ package com.narwhalcompany.cantrip;
 
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
@@ -24,12 +26,13 @@ import com.google.android.libraries.places.api.net.PlacesClient;
 import java.util.Arrays;
 import java.util.List;
 
-public class HotelFragment extends AbstractPlanFragment {
+public class LandmarkFragment extends AbstractPlanFragment {
 
     private PlacesClient placesClient;
+
     private ImageView attractionImage;
 
-    public HotelFragment() {
+    public LandmarkFragment() {
         // Required empty public constructor
     }
 
@@ -38,15 +41,14 @@ public class HotelFragment extends AbstractPlanFragment {
                              Bundle savedInstanceState) {
 
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_hotel, container, false);
+        View view = inflater.inflate(R.layout.fragment_landmark, container, false);
 
-        // rockefeller square
         String apiKey = getString(R.string.google_maps_key);
 
-        attractionImage = view.findViewById(R.id.hotelImage);
+        attractionImage = view.findViewById(R.id.landmark_image);
 
         List<Place.Field> fields = Arrays.asList(Place.Field.PHOTO_METADATAS);
-        FetchPlaceRequest placeRequest = FetchPlaceRequest.builder(apiKey, fields).build();
+        FetchPlaceRequest placeRequest = FetchPlaceRequest.builder("ChIJ9U1mz_5YwokRosza1aAk0jM", fields).build();
 
         // Initialize Places.
         Places.initialize(getActivity().getApplicationContext(), apiKey);
@@ -93,3 +95,4 @@ public class HotelFragment extends AbstractPlanFragment {
 
 
 }
+
