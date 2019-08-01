@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
 
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:orientation="vertical">
 
     <LinearLayout
@@ -20,19 +20,18 @@
             android:background="@color/colorPrimary"
             android:gravity="center"
             android:padding="10dp"
-            android:text="@string/trip_title"
             android:textColor="#FFFFFF"
             android:textSize="20sp" />
 
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-        <FrameLayout
-            android:id="@+id/add_plan_container"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="#FFFFFF">
-        </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/add_plan_container"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#FFFFFF"></FrameLayout>
         </ScrollView>
 
         <com.google.android.material.appbar.AppBarLayout
@@ -44,7 +43,7 @@
                 android:id="@+id/tabs"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="?attr/colorPrimary" />
+                android:background="@color/background_color"/>
         </com.google.android.material.appbar.AppBarLayout>
 
         <androidx.viewpager.widget.ViewPager
@@ -58,7 +57,8 @@
             android:layout_width="match_parent"
             android:layout_height="500dp"
             android:layout_gravity="center"
-            android:padding="25dp"
+            android:layout_margin="25dp"
+            android:layout_marginBottom="50dp"
             android:text="@string/plan_title"
             android:textSize="14sp" />
     </LinearLayout>

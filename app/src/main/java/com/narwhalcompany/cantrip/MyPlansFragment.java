@@ -1,10 +1,8 @@
 package com.narwhalcompany.cantrip;
 
 
-import android.content.Intent;
 import android.os.Bundle;
 
-import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -12,10 +10,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.TextView;
 
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
@@ -24,16 +21,11 @@ import utils.CustomPlanListAdapter;
 import utils.Plan;
 import utils.Reservation;
 
+public class MyPlansFragment extends BottomSheetDialogFragment {
 
-/**
- * A simple {@link Fragment} subclass.
- */
-public class MyPlansFragment extends Fragment {
-
-    ListView listOfPlans;
-    ArrayList<Plan> planList = new ArrayList<>();
-
-    FloatingActionButton addNewPlanButton;
+    private ListView listOfPlans;
+    private ArrayList<Plan> planList = new ArrayList<>();
+    private FloatingActionButton addNewPlanButton;
 
     public MyPlansFragment() {
         // Required empty public constructor
@@ -51,20 +43,44 @@ public class MyPlansFragment extends Fragment {
         // populate array list with character data
         populateList();
 
+        if (getArguments() != null) {
+            Bundle planBundle = getArguments();
+            planList.add(new Plan(planBundle.getString("name"),
+                    planBundle.getInt("startMonth"), planBundle.getInt("startDay"), planBundle.getInt("startYear"),
+                    planBundle.getInt("endMonth"), planBundle.getInt("endDay"), planBundle.getInt("endYear"),
+                    planBundle.getInt("startTime"), planBundle.getInt("endtime"), planBundle.getString("location"),
+                    convertToType(planBundle.getString("type"))));
+            ;
+        }
+
         CustomPlanListAdapter adapter = new CustomPlanListAdapter(getContext(), planList);
         listOfPlans.setAdapter(adapter);
 
         listOfPlans.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent intent = new Intent(getActivity(), PlanActivity.class);
                 Plan currentPlan = planList.get(i);
 
-                intent.putExtra("name", currentPlan.getName());
-                intent.putExtra("time", currentPlan.getTime());
-                intent.putExtra("description", currentPlan.getDescription());
+                Bundle planBundle = new Bundle();
+                planBundle.putString("type", currentPlan.getPlanType().toString());
+                planBundle.putString("name", currentPlan.getName());
+                planBundle.putInt("startMonth", currentPlan.getStartMonth());
+                planBundle.putInt("startDay", currentPlan.getStartDay());
+                planBundle.putInt("startYear", currentPlan.getStartYear());
+                planBundle.putInt("endMonth", currentPlan.getEndMonth());
+                planBundle.putInt("endDay", currentPlan.getEndDay());
+                planBundle.putInt("endYear", currentPlan.getEndYear());
+                planBundle.putInt("startTime", currentPlan.getStartTime());
+                planBundle.putInt("endTime", currentPlan.getEndTime());
+                planBundle.putString("location", currentPlan.getLocation());
 
-                startActivity(intent);
+                AbstractPlanFragment fragPlan = new AbstractPlanFragment();
+                fragPlan.setArguments(planBundle);
+
+                getFragmentManager().beginTransaction().replace(R.id.detailed_plan_container, fragPlan).commit();
+
+                System.out.println("I'M PRINTING OUT A BUNDLE " + planBundle);
+
             }
         });
 
@@ -72,7 +88,13 @@ public class MyPlansFragment extends Fragment {
         addNewPlanButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                popUpFragment(new AddPlanOptionFragment());
+                // sets a fragment manager for managing all fragments (for adding new trips)
+                FragmentManager planManager = getActivity().getSupportFragmentManager();
+                FragmentTransaction transaction = planManager.beginTransaction();
+                BottomSheetDialogFragment optionFragment = new AddPlanOptionFragment();
+                optionFragment.show(planManager, "add plan");
+                transaction.addToBackStack(null);
+                transaction.commit();
             }
         });
 
@@ -85,7 +107,7 @@ public class MyPlansFragment extends Fragment {
 //            @Override
 //            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 //                // trigger second activity - plan information
-//                Intent infoIntent = new Intent(getActivity(), PlanActivity.class);
+//                Intent infoIntent = new Intent(getActivity(), AbstractPlanFragment.class);
 //                infoIntent.putExtra("PLAN", currentPlan);
 //                startActivity(infoIntent);
 //            }
@@ -96,107 +118,23 @@ public class MyPlansFragment extends Fragment {
     }
 
     private void populateList() {
-        planList.add(new Plan("Flight to NYC", "8:00",
-                "Tevere River. The capital of the Lazio region is Italy's largest city " +
-                        "with a population of 2,654,100 and over 2600 years of richness in art, " +
-                        "history, architecture, monuments and culture.", Reservation.PLANE));
-        planList.add(new Plan("Flight to NYC", "8:00",
-                "Tevere River. The capital of the Lazio region is Italy's largest city " +
-                        "with a population of 2,654,100 and over 2600 years of richness in art, " +
-                        "history, architecture, monuments and culture.", Reservation.LANDMARK));
-        planList.add(new Plan("Flight to New Delhi", "8:00",
-                "Tevere River. The capital of the Lazio region is Italy's largest city " +
-                        "with a population of 2,654,100 and over 2600 years of richness in art, " +
-                        "history, architecture, monuments and culture.", Reservation.HOTEL));
-        planList.add(new Plan("Flight to NYC", "8:00",
-                "Tevere River. The capital of the Lazio region is Italy's largest city " +
-                        "with a population of 2,654,100 and over 2600 years of richness in art, " +
-                        "history, architecture, monuments and culture.", Reservation.PLANE));
-        planList.add(new Plan("Flight to NYC", "8:00",
-                "Tevere River. The capital of the Lazio region is Italy's largest city " +
-                        "with a population of 2,654,100 and over 2600 years of richness in art, " +
-                        "history, architecture, monuments and culture.", Reservation.LANDMARK));
-        planList.add(new Plan("Flight to New Delhi", "8:00",
-                "Tevere River. The capital of the Lazio region is Italy's largest city " +
-                        "with a population of 2,654,100 and over 2600 years of richness in art, " +
-                        "history, architecture, monuments and culture.", Reservation.HOTEL));
-        planList.add(new Plan("Flight to NYC", "8:00",
-                "Tevere River. The capital of the Lazio region is Italy's largest city " +
-                        "with a population of 2,654,100 and over 2600 years of richness in art, " +
-                        "history, architecture, monuments and culture.", Reservation.PLANE));
-        planList.add(new Plan("Flight to NYC", "8:00",
-                "Tevere River. The capital of the Lazio region is Italy's largest city " +
-                        "with a population of 2,654,100 and over 2600 years of richness in art, " +
-                        "history, architecture, monuments and culture.", Reservation.LANDMARK));
-        planList.add(new Plan("Flight to New Delhi", "8:00",
-                "Tevere River. The capital of the Lazio region is Italy's largest city " +
-                        "with a population of 2,654,100 and over 2600 years of richness in art, " +
-                        "history, architecture, monuments and culture.", Reservation.HOTEL));
-        planList.add(new Plan("Flight to NYC", "8:00",
-                "Tevere River. The capital of the Lazio region is Italy's largest city " +
-                        "with a population of 2,654,100 and over 2600 years of richness in art, " +
-                        "history, architecture, monuments and culture.", Reservation.PLANE));
-        planList.add(new Plan("Flight to NYC", "8:00",
-                "Tevere River. The capital of the Lazio region is Italy's largest city " +
-                        "with a population of 2,654,100 and over 2600 years of richness in art, " +
-                        "history, architecture, monuments and culture.", Reservation.LANDMARK));
-        planList.add(new Plan("Flight to New Delhi", "8:00",
-                "Tevere River. The capital of the Lazio region is Italy's largest city " +
-                        "with a population of 2,654,100 and over 2600 years of richness in art, " +
-                        "history, architecture, monuments and culture.", Reservation.HOTEL));
-        planList.add(new Plan("Flight to NYC", "8:00",
-                "Tevere River. The capital of the Lazio region is Italy's largest city " +
-                        "with a population of 2,654,100 and over 2600 years of richness in art, " +
-                        "history, architecture, monuments and culture.", Reservation.PLANE));
-        planList.add(new Plan("Flight to NYC", "8:00",
-                "Tevere River. The capital of the Lazio region is Italy's largest city " +
-                        "with a population of 2,654,100 and over 2600 years of richness in art, " +
-                        "history, architecture, monuments and culture.", Reservation.LANDMARK));
-        planList.add(new Plan("Flight to New Delhi", "8:00",
-                "Tevere River. The capital of the Lazio region is Italy's largest city " +
-                        "with a population of 2,654,100 and over 2600 years of richness in art, " +
-                        "history, architecture, monuments and culture.", Reservation.HOTEL));
-        planList.add(new Plan("Flight to NYC", "8:00",
-                "Tevere River. The capital of the Lazio region is Italy's largest city " +
-                        "with a population of 2,654,100 and over 2600 years of richness in art, " +
-                        "history, architecture, monuments and culture.", Reservation.PLANE));
-        planList.add(new Plan("Flight to NYC", "8:00",
-                "Tevere River. The capital of the Lazio region is Italy's largest city " +
-                        "with a population of 2,654,100 and over 2600 years of richness in art, " +
-                        "history, architecture, monuments and culture.", Reservation.LANDMARK));
-        planList.add(new Plan("Flight to New Delhi", "8:00",
-                "Tevere River. The capital of the Lazio region is Italy's largest city " +
-                        "with a population of 2,654,100 and over 2600 years of richness in art, " +
-                        "history, architecture, monuments and culture.", Reservation.HOTEL));
-        planList.add(new Plan("Flight to NYC", "8:00",
-                "Tevere River. The capital of the Lazio region is Italy's largest city " +
-                        "with a population of 2,654,100 and over 2600 years of richness in art, " +
-                        "history, architecture, monuments and culture.", Reservation.PLANE));
-        planList.add(new Plan("Flight to NYC", "8:00",
-                "Tevere River. The capital of the Lazio region is Italy's largest city " +
-                        "with a population of 2,654,100 and over 2600 years of richness in art, " +
-                        "history, architecture, monuments and culture.", Reservation.LANDMARK));
-        planList.add(new Plan("Flight to New Delhi", "8:00",
-                "Tevere River. The capital of the Lazio region is Italy's largest city " +
-                        "with a population of 2,654,100 and over 2600 years of richness in art, " +
-                        "history, architecture, monuments and culture.", Reservation.HOTEL));
+        planList.add(new Plan("Flight to NYC", 4, 7, 2019, 4, 7, 2019, 13, 20, "John F. Kennedy International Airport", Reservation.FLIGHT));
+        planList.add(new Plan("Ritz-Carlton New York", 5, 7, 2019, 7, 7, 2019, 7, 12, "Central Park", Reservation.HOTEL));
+        planList.add(new Plan("Rockefeller Center", 6, 7, 2019, 6, 7, 2019, 12, 23, "Rockefeller Plaza", Reservation.LANDMARK));
+        planList.add(new Plan("Flight to Boston", 8, 7, 2019, 8, 7, 2019, 10, 15, "Boston Logan International Airport", Reservation.FLIGHT));
     }
 
-    public void popUpFragment(Fragment fragment){
-
-        FragmentManager popUpAddPlan = getFragmentManager();
-        FragmentTransaction popUpTransaction = popUpAddPlan.beginTransaction();
-        boolean setOn = false;
-
-        if(popUpAddPlan != null) {
-            popUpTransaction.add(R.id.fragment_frame, fragment);
-            popUpTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
-            popUpTransaction.isAddToBackStackAllowed();
-        } else {
-            popUpTransaction.remove(fragment);
-            popUpTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE);
+    private Reservation convertToType(String typeString) {
+        switch (typeString) {
+            case "flight":
+                return Reservation.FLIGHT;
+            case "hotel":
+                return Reservation.HOTEL;
+            case "landmark":
+                return Reservation.LANDMARK;
+            default:
+                break;
         }
-
-        popUpTransaction.commit();
+        return null;
     }
 }

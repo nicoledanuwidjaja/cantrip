@@ -6,25 +6,36 @@
     android:orientation="vertical"
     tools:context=".AddFlightFragment">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@color/colorAccent"
+        android:padding="10dp"
+        android:text="@string/add_hotel"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp" />
 
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
+
         <ImageView
             android:id="@+id/hotelImage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/hotel_bed"
+            android:layout_marginLeft="15dp"
             android:layout_marginTop="30dp"
-            android:layout_marginLeft="15dp"/>
+            android:src="@drawable/hotel_bed" />
+
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="330dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="20dp"
-            android:hint= "Hotel name">
+            android:hint="Hotel name">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/hotelName"
@@ -36,29 +47,31 @@
     </LinearLayout>
 
     <LinearLayout
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal">
-    <ImageView
-        android:id="@+id/addressImage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/location"
-        android:layout_marginTop="30dp"
-        android:layout_marginLeft="15dp"/>
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="330dp"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="20dp"
-        android:hint= "Address">
+        android:orientation="horizontal">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/addressText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+        <ImageView
+            android:id="@+id/addressImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="30dp"
+            android:src="@drawable/location" />
 
-    </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="330dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="20dp"
+            android:hint="Address">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/addressText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </com.google.android.material.textfield.TextInputLayout>
 
     </LinearLayout>
 
@@ -66,20 +79,22 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
+
         <ImageView
             android:id="@+id/checkInImage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/event_in"
+            android:layout_marginLeft="15dp"
             android:layout_marginTop="30dp"
-            android:layout_marginLeft="15dp"/>
+            android:src="@drawable/event_in" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="130dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="20dp"
-            android:hint= "Check in">
+            android:hint="Check in">
+
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/checkInDate"
                 android:layout_width="match_parent"
@@ -90,16 +105,16 @@
             android:id="@+id/checkOutImage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/event_out"
+            android:layout_marginLeft="24dp"
             android:layout_marginTop="30dp"
-            android:layout_marginLeft="24dp"/>
+            android:src="@drawable/event_out" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="130dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="20dp"
-            android:hint= "Check out">
+            android:hint="Check out">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/checkOutDate"
@@ -115,20 +130,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
+
         <ImageView
             android:id="@+id/ticketImage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/confirmation_num"
+            android:layout_marginLeft="15dp"
             android:layout_marginTop="30dp"
-            android:layout_marginLeft="15dp"/>
+            android:src="@drawable/confirmation_num" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="330dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="20dp"
-            android:hint= "Confirmation #">
+            android:hint="Confirmation #">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/confirmationNum"
@@ -143,20 +159,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
+
         <ImageView
             android:id="@+id/phoneImage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/phone"
+            android:layout_marginLeft="15dp"
             android:layout_marginTop="30dp"
-            android:layout_marginLeft="15dp"/>
+            android:src="@drawable/phone" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="330dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="20dp"
-            android:hint= "Phone number">
+            android:hint="Phone number">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/phoneNum"
@@ -171,8 +188,8 @@
         android:id="@+id/saveButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
         android:layout_marginLeft="295dp"
-        android:text="Save"/>
+        android:layout_marginTop="40dp"
+        android:text="Save" />
 
 </LinearLayout>

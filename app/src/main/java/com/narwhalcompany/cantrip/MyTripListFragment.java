@@ -1,6 +1,7 @@
 package com.narwhalcompany.cantrip;
 
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -11,7 +12,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ImageView;
 import android.widget.ListView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -19,6 +19,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.ArrayList;
 
 import utils.CustomTripOverviewAdapter;
+import utils.TripOverviewAdapterItem;
 
 
 /**
@@ -26,13 +27,14 @@ import utils.CustomTripOverviewAdapter;
  */
 public class MyTripListFragment extends Fragment {
 
-    ArrayList<TripOverviewAdapterItem> tripList = new ArrayList<>();
+//    private Context context;
+
+    private ArrayList<TripOverviewAdapterItem> tripList = new ArrayList<>();
 
 
     public MyTripListFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -43,10 +45,10 @@ public class MyTripListFragment extends Fragment {
         populateList();
 
         if (getArguments() != null) {
-            Bundle bundle = getArguments();
-            tripList.add(new TripOverviewAdapterItem(R.drawable.commons, bundle.getInt("startMonth"), bundle.getInt("startDay"),
-                    bundle.getInt("startYear"), bundle.getInt("endMonth"), bundle.getInt("endDay"),
-                    bundle.getInt("endYear"), bundle.getString("startLocation"), bundle.getString("endLocation")));
+            Bundle tripBundle = getArguments();
+            tripList.add(new TripOverviewAdapterItem(R.drawable.commons, tripBundle.getInt("startMonth"), tripBundle.getInt("startDay"),
+                    tripBundle.getInt("startYear"), tripBundle.getInt("endMonth"), tripBundle.getInt("endDay"),
+                    tripBundle.getInt("endYear"), tripBundle.getString("startLocation"), tripBundle.getString("endLocation")));
         }
 
         ListView listView = view.findViewById(R.id.myTripsList);
@@ -58,12 +60,15 @@ public class MyTripListFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 // trigger second activity - DetailedTripActivity
-                Intent tripIntent = new Intent(getContext(), DetailedTripActivity.class);
-                tripIntent.putExtra("TRIP", tripList.get(i));
+                Intent tripIntent = new Intent(getActivity().getApplicationContext(), DetailedTripActivity.class);
+//                tripIntent.putExtra("TRIP", tripList.get(i));
+
+                String tripName = tripList.get(i).getStartLoc() + " to " + tripList.get(i).getEndloc();
+                System.out.println("THIS IS MY TRIP " + tripName);
+                tripIntent.putExtra("tripName", tripName);
                 startActivity(tripIntent);
             }
         });
-
         FloatingActionButton fab = view.findViewById(R.id.add_trip_button);
 
         fab.setOnClickListener(new View.OnClickListener() {

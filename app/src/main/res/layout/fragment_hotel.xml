@@ -5,36 +5,37 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".DetailedHotelActivity">
-
+    tools:context=".HotelFragment">
 
     <TextView
-        android:layout_width="wrap_content"
+        android:id="@+id/flight_name"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Stay: Hotel Alessandro"
-        android:layout_marginTop="20dp"
-        android:textSize="25sp"
         android:layout_gravity="center"
-        />
+        android:background="@color/colorAccent"
+        android:padding="15dp"
+        android:text="Hotel Alessandro"
+        android:textColor="#FFFFFF"
+        android:textSize="25sp" />
 
+    <!-- black line -->
     <View
         android:layout_width="match_parent"
-        android:layout_height="3dp"
-        android:layout_marginTop="23dp"
-        android:background="@color/colorPrimaryDark"
-        />
+        android:layout_height="1dp"
+        android:opacity="opaque"
+        android:background="@color/colorPrimaryDark" />
 
     <ImageView
+        android:id="@+id/hotelImage"
         android:layout_width="match_parent"
         android:layout_height="180dp"
-        android:src="@drawable/detailed_hotel_image"/>
+        android:src="@drawable/detailed_hotel_image" />
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
 
-        android:background="@color/colorPrimaryDark"
-        />
+        android:background="@color/colorPrimaryDark" />
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -44,21 +45,19 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Check in:"
             android:layout_marginLeft="25dp"
             android:layout_marginTop="15dp"
-            android:textSize="20sp"
-            />
+            android:text="Check in:"
+            android:textSize="20sp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Thu, Jun 25"
             android:layout_marginLeft="172dp"
             android:layout_marginTop="15dp"
-            android:textSize="18sp"
             android:gravity="right"
-            />
+            android:text="Thu, Jun 25"
+            android:textSize="18sp" />
 
     </LinearLayout>
 
@@ -70,23 +69,26 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Check out:"
             android:layout_marginLeft="25dp"
             android:layout_marginTop="25dp"
-            android:textSize="20sp"
-            />
+            android:text="Check out:"
+            android:textSize="20sp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Sat, Jun 27"
             android:layout_marginLeft="160dp"
             android:layout_marginTop="25dp"
-            android:textSize="18sp"
             android:gravity="right"
-            />
+            android:text="Sat, Jun 27"
+            android:textSize="18sp" />
 
     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" />
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -96,59 +98,28 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Duration:"
             android:layout_marginLeft="25dp"
             android:layout_marginTop="25dp"
-            android:textSize="20sp"
-            />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="1 night"
-            android:layout_marginLeft="208dp"
-            android:layout_marginTop="25dp"
-            android:textSize="18sp"
-            android:gravity="right"
-            />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:text="Confirmation # :"
-            android:layout_marginLeft="25dp"
-            android:layout_marginTop="25dp"
-            android:textSize="20sp"
-            />
+            android:textSize="20sp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="753-347189341"
             android:layout_marginLeft="76dp"
             android:layout_marginTop="25dp"
-            android:textSize="18sp"
             android:gravity="right"
-            />
+            android:text="753-347189341"
+            android:textSize="18sp" />
 
     </LinearLayout>
-
-
 
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginTop="10dp"
-        android:background="@color/colorPrimaryDark"
-        />
+        android:background="@color/colorPrimaryDark" />
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -158,27 +129,25 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="25dp"
-            android:src="@drawable/location"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="18dp"/>
+            android:layout_marginTop="18dp"
+            android:src="@drawable/location" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Via Vicenza, 42, 00185 Rome, Metropolitan City of Rome, Italy"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="15dp"
-            android:textSize="20sp"
-            />
+            android:text="Via Vicenza, 42, 00185 Rome, Metropolitan City of Rome, Italy"
+            android:textSize="20sp" />
 
     </LinearLayout>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-android:layout_marginTop="10dp"
-        android:background="@color/colorPrimaryDark"
-        />
+        android:layout_marginTop="10dp"
+        android:background="@color/colorPrimaryDark" />
 
 
 </LinearLayout>
