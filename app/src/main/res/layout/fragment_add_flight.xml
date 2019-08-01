@@ -38,7 +38,8 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/airlineText"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:maxLines="1" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -51,7 +52,8 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/flightText"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:maxLines="1" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -80,7 +82,8 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/departLocation"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:maxLines="1" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -101,7 +104,8 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/departDate"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:maxLines="1" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -115,7 +119,8 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:maxLines="1" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -144,7 +149,8 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/arriveLocation"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:maxLines="1" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -165,7 +171,8 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/arriveDate"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:maxLines="1" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -179,7 +186,8 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/arriveTime"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:maxLines="1" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -208,7 +216,8 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/passengerText"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:maxLines="1" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -222,7 +231,8 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/seatText"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:maxLines="1" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -251,7 +261,8 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/confirmationNum"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:maxLines="1" />
 
         </com.google.android.material.textfield.TextInputLayout>
 

@@ -78,6 +78,7 @@ public class MyTripListFragment extends Fragment {
                 AddNewTripLocationFragment newTripFragment = new AddNewTripLocationFragment();
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
                 transaction.replace(R.id.fragment_container, newTripFragment);
+                transaction.addToBackStack(null);
                 transaction.commit();
             }
         });

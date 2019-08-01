@@ -11,6 +11,7 @@
         android:id="@+id/date_from"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_margin="20dp"
         android:layout_marginTop="20dp"
         android:text="@string/trip_date_from"
         android:textSize="20sp" />
@@ -28,38 +29,11 @@
         android:id="@+id/date_to"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_margin="20dp"
         android:layout_marginTop="20dp"
         android:text="@string/trip_date_to"
         android:textSize="20sp" />
-    <!--<LinearLayout-->
-    <!--android:orientation="horizontal"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="wrap_content">-->
-    <!--&lt;!&ndash;<EditText&ndash;&gt;-->
-    <!--&lt;!&ndash;android:id="@+id/end_month"&ndash;&gt;-->
-    <!--&lt;!&ndash;android:hint="@string/month_hint"&ndash;&gt;-->
-    <!--&lt;!&ndash;android:layout_width="wrap_content"&ndash;&gt;-->
-    <!--&lt;!&ndash;android:layout_height="wrap_content" />&ndash;&gt;-->
-    <!--&lt;!&ndash;<TextView&ndash;&gt;-->
-    <!--&lt;!&ndash;android:text="/"&ndash;&gt;-->
-    <!--&lt;!&ndash;android:layout_width="wrap_content"&ndash;&gt;-->
-    <!--&lt;!&ndash;android:layout_height="wrap_content" />&ndash;&gt;-->
-    <!--&lt;!&ndash;<EditText&ndash;&gt;-->
-    <!--&lt;!&ndash;android:id="@+id/end_day"&ndash;&gt;-->
-    <!--&lt;!&ndash;android:hint="@string/day_hint"&ndash;&gt;-->
-    <!--&lt;!&ndash;android:layout_width="wrap_content"&ndash;&gt;-->
-    <!--&lt;!&ndash;android:layout_height="wrap_content" />&ndash;&gt;-->
-    <!--&lt;!&ndash;<TextView&ndash;&gt;-->
-    <!--&lt;!&ndash;android:text="/"&ndash;&gt;-->
-    <!--&lt;!&ndash;android:layout_width="wrap_content"&ndash;&gt;-->
-    <!--&lt;!&ndash;android:layout_height="wrap_content" />&ndash;&gt;-->
-    <!--&lt;!&ndash;<EditText&ndash;&gt;-->
-    <!--&lt;!&ndash;android:id="@+id/end_year"&ndash;&gt;-->
-    <!--&lt;!&ndash;android:hint="@string/year_hint"&ndash;&gt;-->
-    <!--&lt;!&ndash;android:layout_width="wrap_content"&ndash;&gt;-->
-    <!--&lt;!&ndash;android:layout_height="wrap_content" />&ndash;&gt;-->
-    <!---->
-    <!--</LinearLayout>-->
+
     <DatePicker
         android:id="@+id/end_date_picker"
         android:layout_width="wrap_content"

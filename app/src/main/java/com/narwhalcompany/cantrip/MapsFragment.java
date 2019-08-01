@@ -18,8 +18,11 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 public class MapsFragment extends Fragment implements OnMapReadyCallback {
+    private SupportMapFragment smf;
     private GoogleMap googleMap;
     private MapView map;
     private View v;
@@ -31,7 +34,15 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         v = inflater.inflate(R.layout.fragment_map, container, false);
+        smf = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
 
+        if (smf == null) {
+            FragmentManager fm = getFragmentManager();
+            FragmentTransaction ft = fm.beginTransaction();
+            smf = new SupportMapFragment();
+            ft.replace(R.id.map, smf).commit();
+        }
+        smf.getMapAsync(this);
         return v;
     }
 

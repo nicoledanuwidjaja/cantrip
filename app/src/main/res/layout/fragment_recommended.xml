@@ -13,31 +13,33 @@
         android:layout_marginTop="@dimen/mtrl_card_spacing"
         android:layout_marginRight="@dimen/mtrl_card_spacing"
         android:minHeight="200dp">
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <ImageView
                 android:id="@+id/statueImage"
-                android:src="@drawable/statue_of_liberty"
-                android:scaleType="centerCrop"
                 android:layout_width="match_parent"
-                android:layout_height="200dp" />
+                android:layout_height="200dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/statue_of_liberty" />
+
             <TextView
                 android:id="@+id/statueTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="20dp"
-                android:layout_marginTop="12dp"
-                android:layout_marginLeft="8dp"
                 android:layout_below="@+id/statueImage"
-                android:text="Statue of Liberty"/>
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="12dp"
+                android:text="Statue of Liberty"
+                android:textSize="20dp" />
 
             <LinearLayout
                 android:id="@+id/item1Stars"
-                android:layout_below="@+id/statueTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_below="@+id/statueTitle"
                 android:orientation="horizontal">
 
                 <TextView
@@ -50,21 +52,21 @@
                     android:textSize="16sp" />
 
                 <RatingBar
+                    style="?android:attr/ratingBarStyleSmall"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    style="?android:attr/ratingBarStyleSmall"
 
-                    android:layout_marginTop="15dp"
                     android:layout_marginLeft="6dp"
-                    android:stepSize="0.1"
-                    android:rating="4.6"/>
+                    android:layout_marginTop="15dp"
+                    android:rating="4.6"
+                    android:stepSize="0.1" />
 
             </LinearLayout>
 
             <LinearLayout
-                android:layout_below="@id/item1Stars"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_below="@id/item1Stars"
                 android:orientation="horizontal">
 
                 <ImageView
@@ -95,31 +97,33 @@
         android:layout_marginTop="@dimen/mtrl_card_spacing"
         android:layout_marginRight="@dimen/mtrl_card_spacing"
         android:minHeight="200dp">
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <ImageView
                 android:id="@+id/item2Image"
-                android:src="@drawable/central_park"
-                android:scaleType="centerCrop"
                 android:layout_width="match_parent"
-                android:layout_height="200dp" />
+                android:layout_height="200dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/central_park" />
+
             <TextView
                 android:id="@+id/item2Title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="20dp"
-                android:layout_marginTop="12dp"
-                android:layout_marginLeft="8dp"
                 android:layout_below="@+id/item2Image"
-                android:text="Central Park"/>
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="12dp"
+                android:text="Central Park"
+                android:textSize="20dp" />
 
             <LinearLayout
                 android:id="@+id/item2Stars"
-                android:layout_below="@+id/item2Title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_below="@+id/item2Title"
                 android:orientation="horizontal">
 
                 <TextView
@@ -132,21 +136,21 @@
                     android:textSize="16sp" />
 
                 <RatingBar
+                    style="?android:attr/ratingBarStyleSmall"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    style="?android:attr/ratingBarStyleSmall"
 
-                    android:layout_marginTop="15dp"
                     android:layout_marginLeft="6dp"
-                    android:stepSize="0.1"
-                    android:rating="4.6"/>
+                    android:layout_marginTop="15dp"
+                    android:rating="4.6"
+                    android:stepSize="0.1" />
 
             </LinearLayout>
 
             <LinearLayout
-                android:layout_below="@id/item2Stars"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_below="@id/item2Stars"
                 android:orientation="horizontal">
 
                 <ImageView
@@ -177,16 +181,17 @@
         android:layout_marginTop="@dimen/mtrl_card_spacing"
         android:layout_marginRight="@dimen/mtrl_card_spacing"
         android:minHeight="200dp">
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <ImageView
                 android:id="@+id/item3Image"
-                android:src="@drawable/empire_state_building"
-                android:scaleType="centerCrop"
                 android:layout_width="match_parent"
-                android:layout_height="200dp" />
+                android:layout_height="200dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/empire_state_building" />
 
 
         </RelativeLayout>
