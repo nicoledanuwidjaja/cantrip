@@ -63,10 +63,10 @@ public class AbstractPlanFragment extends DialogFragment {
                 fragPlan.show(planManager, "hotel");
                 break;
             case "landmark":
-//                fragPlan = new LandmarkFragment();
+                fragPlan = new LandmarkFragment();
                 planBundle.putString("landmarkName", planName);
-//                fragPlan.setArguments(planBundle);
-//                fragPlan.show(planManager, "landmark");
+                fragPlan.setArguments(planBundle);
+                fragPlan.show(planManager, "landmark");
                 break;
             default:
                 break;

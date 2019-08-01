@@ -40,57 +40,56 @@ public class HotelFragment extends AbstractPlanFragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_hotel, container, false);
 
+        // rockefeller square
+        String apiKey = getString(R.string.google_maps_key);
 
+        attractionImage = view.findViewById(R.id.hotelImage);
 
-            String apiKey = getString(R.string.google_maps_key);
+        List<Place.Field> fields = Arrays.asList(Place.Field.PHOTO_METADATAS);
+        FetchPlaceRequest placeRequest = FetchPlaceRequest.builder(apiKey, fields).build();
 
-            attractionImage = view.findViewById(R.id.hotelImage);
+        // Initialize Places.
+        Places.initialize(getActivity().getApplicationContext(), apiKey);
 
-            List<Place.Field> fields = Arrays.asList(Place.Field.PHOTO_METADATAS);
-            FetchPlaceRequest placeRequest = FetchPlaceRequest.builder(apiKey, fields).build();
+        // Create a new Places client instance.
+        placesClient = Places.createClient(getContext());
 
-            // Initialize Places.
-            Places.initialize(getActivity().getApplicationContext(), apiKey);
+        placesClient.fetchPlace(placeRequest).addOnSuccessListener(new OnSuccessListener<FetchPlaceResponse>() {
+            @Override
+            public void onSuccess(FetchPlaceResponse fetchPlaceResponse) {
+                Place place = fetchPlaceResponse.getPlace();
 
-            // Create a new Places client instance.
-            placesClient = Places.createClient(getContext());
+                // Get the photo metadata.
+                PhotoMetadata photoMetadata = place.getPhotoMetadatas().get(0);
 
-            placesClient.fetchPlace(placeRequest).addOnSuccessListener(new OnSuccessListener<FetchPlaceResponse>() {
-                @Override
-                public void onSuccess(FetchPlaceResponse fetchPlaceResponse) {
-                    Place place = fetchPlaceResponse.getPlace();
+                // Get the attribution text.
+                String attributions = photoMetadata.getAttributions();
 
-                    // Get the photo metadata.
-                    PhotoMetadata photoMetadata = place.getPhotoMetadatas().get(0);
-
-                    // Get the attribution text.
-                    String attributions = photoMetadata.getAttributions();
-
-                    // Create a FetchPhotoRequest.
-                    FetchPhotoRequest photoRequest = FetchPhotoRequest.builder(photoMetadata)
-                            .setMaxWidth(500) // Optional.
-                            .setMaxHeight(300) // Optional.
-                            .build();
-                    placesClient.fetchPhoto(photoRequest).addOnSuccessListener(new OnSuccessListener<FetchPhotoResponse>() {
-                        @Override
-                        public void onSuccess(FetchPhotoResponse fetchPhotoResponse) {
-                            Bitmap bitmap = fetchPhotoResponse.getBitmap();
-                            attractionImage.setImageBitmap(bitmap);
+                // Create a FetchPhotoRequest.
+                FetchPhotoRequest photoRequest = FetchPhotoRequest.builder(photoMetadata)
+                        .setMaxWidth(500) // Optional.
+                        .setMaxHeight(300) // Optional.
+                        .build();
+                placesClient.fetchPhoto(photoRequest).addOnSuccessListener(new OnSuccessListener<FetchPhotoResponse>() {
+                    @Override
+                    public void onSuccess(FetchPhotoResponse fetchPhotoResponse) {
+                        Bitmap bitmap = fetchPhotoResponse.getBitmap();
+                        attractionImage.setImageBitmap(bitmap);
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        if (e instanceof ApiException) {
+                            ApiException apiException = (ApiException) e;
+                            int statusCode = apiException.getStatusCode();
                         }
-                    }).addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            if (e instanceof ApiException) {
-                                ApiException apiException = (ApiException) e;
-                                int statusCode = apiException.getStatusCode();
-                            }
-                        }
-                    });
-                }
-            });
+                    }
+                });
+            }
+        });
 
-            return view;
-        }
+        return view;
+    }
 
 
 }
