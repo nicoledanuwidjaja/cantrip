@@ -120,7 +120,6 @@ public class MyTripListFragment extends Fragment {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 TripObject newTrip = dataSnapshot.getValue(TripObject.class);
                 tripObjectList.add(newTrip);
-                databaseRef.child(newTrip.toString()).setValue(newTrip);
             }
 
             @Override
@@ -128,7 +127,7 @@ public class MyTripListFragment extends Fragment {
 
             }
         };
-        databaseRef.push().setValue("hello world");
+        // databaseRef.push().setValue("hello world");
 
         databaseRef.addValueEventListener(tripListener);
     }

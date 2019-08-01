@@ -42,4 +42,24 @@ public class TripObject {
     public ArrayList<ItineraryItem> getPlans() {
         return plans;
     }
+
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
+    }
+
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
+    }
+
+    public void setStartLoc(String startLoc) {
+        this.startLoc = startLoc;
+    }
+
+    public void setEndLoc(String endLoc) {
+        this.endLoc = endLoc;
+    }
+
+    public void setPlans(ArrayList<ItineraryItem> plans) {
+        this.plans = plans;
+    }
 }

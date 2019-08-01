@@ -112,6 +112,8 @@ public class AddNewTripDateFragment extends Fragment implements DatePickerDialog
                 // SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
                 SimpleDateFormat neededDateFormat = new SimpleDateFormat("MM-dd-yyyy");
 
+                Date startDateParsed = null;
+                Date endDateParsed = null;
 
                 try {
 //                    DatabaseReference postRef = databaseReference.child("trips");
@@ -119,18 +121,11 @@ public class AddNewTripDateFragment extends Fragment implements DatePickerDialog
 //                    String postedRefKey =  databaseReference.child("trips").push().getKey();
 //                    Log.d("DATABASE REFERENCE", postedRefKey);
 
-                    Date startDateParsed = neededDateFormat.parse(startDate);
-                    Date endDateParsed = neededDateFormat.parse(endDate);
+                    startDateParsed = neededDateFormat.parse(startDate);
+                    endDateParsed = neededDateFormat.parse(endDate);
 
                     System.out.println(startDateParsed);
                     System.out.println(endDateParsed);
-
-                    final TripObject newTrip = new TripObject(startDateParsed, endDateParsed,
-                            pastLocationArgs.getString("startLocation"),
-                            pastLocationArgs.getString("endLocation"),
-                            new ArrayList<ItineraryItem>());
-
-                    databaseReference.child("idkwhy").push().setValue(newTrip);
 
 //                    Map<String, Object> newTripMap = new HashMap<>();
 //                    newTripMap.put(postedRefKey, newTrip);
@@ -160,6 +155,15 @@ public class AddNewTripDateFragment extends Fragment implements DatePickerDialog
                 }
 
 
+                final TripObject newTrip = new TripObject();
+                newTrip.setStartLoc(pastLocationArgs.getString("startLocation"));
+                newTrip.setEndLoc(pastLocationArgs.getString("endLocation"));
+                newTrip.setStartDate(startDateParsed);
+                newTrip.setEndDate(endDateParsed);
+                newTrip.setPlans(new ArrayList<ItineraryItem>());
+
+
+                databaseReference.child("trips").push().setValue(newTrip);
 
 
 

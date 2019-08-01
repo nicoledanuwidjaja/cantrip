@@ -1,6 +1,7 @@
 package utils;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -36,6 +37,7 @@ public class CustomTripOverviewAdapter extends BaseAdapter {
         dataFromDB.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                Log.d("CHILD ADDED", dataSnapshot.getValue().toString());
                 snapshots.add(dataSnapshot);
             }
 
@@ -93,8 +95,8 @@ public class CustomTripOverviewAdapter extends BaseAdapter {
             viewHolder = (ViewHolder)view.getTag();
         }
 
-        viewHolder.tripLocations.setText(((TripObject)getItem(i).getStartLoc()) + " to " + ((TripObject)getItem(i).getEndLoc));
-        viewHolder.tripDates.setText(((TripObject)getItem(i).getStartDate()) + " to " + ((TripObject)getItem(i).getEndDate));
+//        viewHolder.tripLocations.setText((getItem(i).getStartLoc()) + " to " + ((TripObject)getItem(i).getEndLoc));
+//        viewHolder.tripDates.setText(((TripObject)getItem(i).getStartDate()) + " to " + ((TripObject)getItem(i).getEndDate));
 
         return view;
     }
