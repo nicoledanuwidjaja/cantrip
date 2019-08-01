@@ -3,6 +3,7 @@ package com.narwhalcompany.cantrip;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.google.android.libraries.places.api.net.PlacesClient;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,8 +16,11 @@ import android.widget.ListView;
 import java.util.ArrayList;
 
 import utils.CustomTripOverviewAdapter;
+import com.google.android.libraries.places.api.Places;
 
 public class MainActivity extends AppCompatActivity {
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.replace(R.id.fragment_container, myTripList);
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
+
     }
 
     @Override

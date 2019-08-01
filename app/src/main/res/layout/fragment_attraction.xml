@@ -27,6 +27,7 @@
         android:background="@color/colorPrimaryDark" />
 
     <ImageView
+        android:id="@+id/attractionImage"
         android:layout_width="wrap_content"
         android:layout_height="200dp"
         android:scaleType="centerCrop"
