@@ -6,6 +6,17 @@
     android:orientation="vertical"
     tools:context=".MyTripListFragment">
 
+    <TextView
+        android:id="@+id/trip_tab"
+        android:text="@string/my_trips_tab"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/background_color"
+        android:gravity="center"
+        android:padding="10dp"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp" />
+
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">

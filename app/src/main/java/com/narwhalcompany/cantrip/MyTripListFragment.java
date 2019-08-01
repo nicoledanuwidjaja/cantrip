@@ -1,6 +1,7 @@
 package com.narwhalcompany.cantrip;
 
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -25,6 +26,8 @@ import utils.TripOverviewAdapterItem;
  * A simple {@link Fragment} subclass.
  */
 public class MyTripListFragment extends Fragment {
+
+//    private Context context;
 
     private ArrayList<TripOverviewAdapterItem> tripList = new ArrayList<>();
 
@@ -57,14 +60,15 @@ public class MyTripListFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 // trigger second activity - DetailedTripActivity
-                Intent tripIntent = new Intent(getContext(), DetailedTripActivity.class);
-                // useless
+                Intent tripIntent = new Intent(getActivity().getApplicationContext(), DetailedTripActivity.class);
 //                tripIntent.putExtra("TRIP", tripList.get(i));
 
+                String tripName = tripList.get(i).getStartLoc() + " to " + tripList.get(i).getEndloc();
+                System.out.println("THIS IS MY TRIP " + tripName);
+                tripIntent.putExtra("tripName", tripName);
                 startActivity(tripIntent);
             }
         });
-
         FloatingActionButton fab = view.findViewById(R.id.add_trip_button);
 
         fab.setOnClickListener(new View.OnClickListener() {
