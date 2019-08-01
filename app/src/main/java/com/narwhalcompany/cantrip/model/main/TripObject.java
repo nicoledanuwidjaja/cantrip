@@ -10,4 +10,56 @@ public class TripObject {
     private String startLoc;
     private String endLoc;
     private ArrayList<ItineraryItem> plans;
+
+    public TripObject(Date startDate, Date endDate, String startLoc, String endLoc, ArrayList<ItineraryItem> plans) {
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.startLoc = startLoc;
+        this.endLoc = endLoc;
+        this.plans = plans;
+    }
+
+    public TripObject() {
+
+    }
+
+    public Date getStartDate() {
+        return startDate;
+    }
+
+    public Date getEndDate() {
+        return endDate;
+    }
+
+    public String getStartLoc() {
+        return startLoc;
+    }
+
+    public String getEndLoc() {
+        return endLoc;
+    }
+
+    public ArrayList<ItineraryItem> getPlans() {
+        return plans;
+    }
+
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
+    }
+
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
+    }
+
+    public void setStartLoc(String startLoc) {
+        this.startLoc = startLoc;
+    }
+
+    public void setEndLoc(String endLoc) {
+        this.endLoc = endLoc;
+    }
+
+    public void setPlans(ArrayList<ItineraryItem> plans) {
+        this.plans = plans;
+    }
 }
