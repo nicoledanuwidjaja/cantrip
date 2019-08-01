@@ -1,25 +1,11 @@
 package com.narwhalcompany.cantrip;
 
-import android.content.Intent;
 import android.os.Bundle;
-
-import com.google.android.libraries.places.api.net.PlacesClient;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ListView;
-
-import java.util.ArrayList;
-
-import utils.CustomTripOverviewAdapter;
-import com.google.android.libraries.places.api.Places;
-
 public class MainActivity extends AppCompatActivity {
-
 
 
     @Override
