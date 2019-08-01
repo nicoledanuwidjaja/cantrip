@@ -5,11 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".HotelFragment">
+    tools:context=".LandmarkFragment">
 
 
     <TextView
-        android:id="@+id/flight_name"
+        android:id="@+id/landmark_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -23,11 +23,11 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:opacity="opaque"
-        android:background="@color/colorPrimaryDark" />
+        android:background="@color/colorPrimaryDark"
+        android:opacity="opaque" />
 
     <ImageView
-        android:id="@+id/attractionImage"
+        android:id="@+id/landmark_image"
         android:layout_width="wrap_content"
         android:layout_height="200dp"
         android:scaleType="centerCrop"
@@ -54,14 +54,14 @@
             android:textSize="16sp" />
 
         <RatingBar
+            style="?android:attr/ratingBarStyleSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="?android:attr/ratingBarStyleSmall"
 
-            android:layout_marginTop="15dp"
             android:layout_marginLeft="6dp"
-            android:stepSize="0.1"
-            android:rating="4.6"/>
+            android:layout_marginTop="15dp"
+            android:rating="4.6"
+            android:stepSize="0.1" />
 
     </LinearLayout>
 
@@ -87,6 +87,7 @@
             android:textSize="20sp" />
 
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -108,6 +109,7 @@
             android:textSize="20sp" />
 
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -131,14 +133,9 @@
     </LinearLayout>
 
     <!--<View-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="1dp"-->
-        <!--android:layout_marginTop="10dp"-->
-        <!--android:background="@color/colorPrimaryDark" />-->
-
-
-
-
-
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="1dp"-->
+    <!--android:layout_marginTop="10dp"-->
+    <!--android:background="@color/colorPrimaryDark" />-->
 
 </LinearLayout>

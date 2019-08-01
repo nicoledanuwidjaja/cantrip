@@ -26,28 +26,26 @@ import com.google.android.libraries.places.api.net.PlacesClient;
 import java.util.Arrays;
 import java.util.List;
 
-public class AttractionFragment extends AbstractPlanFragment {
+public class LandmarkFragment extends AbstractPlanFragment {
 
     private PlacesClient placesClient;
 
     private ImageView attractionImage;
 
-    public AttractionFragment() {
+    public LandmarkFragment() {
         // Required empty public constructor
     }
-
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_attraction, container, false);
+        View view = inflater.inflate(R.layout.fragment_landmark, container, false);
 
         String apiKey = getString(R.string.google_maps_key);
 
-        attractionImage = view.findViewById(R.id.attractionImage);
+        attractionImage = view.findViewById(R.id.landmark_image);
 
         List<Place.Field> fields = Arrays.asList(Place.Field.PHOTO_METADATAS);
         FetchPlaceRequest placeRequest = FetchPlaceRequest.builder("ChIJ9U1mz_5YwokRosza1aAk0jM", fields).build();
