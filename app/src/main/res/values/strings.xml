@@ -9,7 +9,7 @@
     <string name="plan_activity">My Plan</string>
     <string name="add_flight">Add New Flight</string>
     <string name="add_hotel">Add New Hotel</string>
-    <string name="add_landmark">Add New Landmark</string>
+    <string name="add_attraction">Add New Attraction Visit</string>
     <string name="add_trip_activity">Add New Trip</string>
     <string name="trip_location_from">Where from?</string>
     <string name="trip_location_to">Where to?</string>
