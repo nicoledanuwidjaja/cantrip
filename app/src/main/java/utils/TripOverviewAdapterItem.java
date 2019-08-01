@@ -3,6 +3,8 @@ package utils;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.narwhalcompany.cantrip.model.main.TripObject;
+
 public class TripOverviewAdapterItem implements Parcelable {
 
     private int imageResId;
@@ -137,5 +139,12 @@ public class TripOverviewAdapterItem implements Parcelable {
         parcel.writeInt(endYear);
         parcel.writeString(startLoc);
         parcel.writeString(endloc);
+    }
+
+    public static TripOverviewAdapterItem createAdapterItemFromTripObject(TripObject trip, int imageResId) {
+        return new TripOverviewAdapterItem(imageResId, trip.getStartDate().getMonth(),
+                trip.getStartDate().getDay(), trip.getStartDate().getYear(), trip.getEndDate()
+                .getMonth(), trip.getEndDate().getDay(), trip.getEndDate().getYear(),
+                trip.getStartLoc(), trip.getEndLoc());
     }
 }
