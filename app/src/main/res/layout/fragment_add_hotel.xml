@@ -40,7 +40,9 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/hotelName"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:maxLines="1" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -69,7 +71,9 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/addressText"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:maxLines="1" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -98,7 +102,12 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/checkInDate"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:maxLines="1">
+
+            </com.google.android.material.textfield.TextInputEditText>
+
         </com.google.android.material.textfield.TextInputLayout>
 
         <ImageView
@@ -119,10 +128,11 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/checkOutDate"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:maxLines="1" />
 
         </com.google.android.material.textfield.TextInputLayout>
-
 
     </LinearLayout>
 
@@ -149,7 +159,8 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/confirmationNum"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:maxLines="1" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -178,7 +189,9 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/phoneNum"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:maxLines="1" />
 
         </com.google.android.material.textfield.TextInputLayout>
 

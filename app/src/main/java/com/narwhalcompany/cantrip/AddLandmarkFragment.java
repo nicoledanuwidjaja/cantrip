@@ -14,13 +14,13 @@ import androidx.fragment.app.Fragment;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class AddAttractionFragment extends DialogFragment {
+public class AddLandmarkFragment extends DialogFragment {
 
     private Button saveButton;
 
 
-    static AddAttractionFragment newInstance() {
-        return new AddAttractionFragment();
+    static AddLandmarkFragment newInstance() {
+        return new AddLandmarkFragment();
     }
 
     @Override
@@ -32,14 +32,14 @@ public class AddAttractionFragment extends DialogFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_add_hotel, container, false);
+        View view = inflater.inflate(R.layout.fragment_add_landmark, container, false);
 
         saveButton = view.findViewById(R.id.saveButton);
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent addHotelIntent = new Intent(getActivity(), DetailedTripActivity.class);
-                startActivity(addHotelIntent);
+                Intent addLandmarkIntent = new Intent(getActivity(), DetailedTripActivity.class);
+                startActivity(addLandmarkIntent);
             }
         });
 

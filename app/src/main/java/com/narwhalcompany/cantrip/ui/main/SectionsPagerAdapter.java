@@ -11,6 +11,7 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import com.narwhalcompany.cantrip.EmptyRecommendedFragment;
 import com.narwhalcompany.cantrip.MyPlansFragment;
 import com.narwhalcompany.cantrip.R;
+import com.narwhalcompany.cantrip.RecommendedFragment;
 
 /**
  * A [FragmentPagerAdapter] that returns a fragment corresponding to
@@ -38,7 +39,7 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
                 selectedFragment = new MyPlansFragment();
                 break;
             case 1:
-                selectedFragment = new EmptyRecommendedFragment();
+                selectedFragment = new RecommendedFragment();
                 break;
         }
         return selectedFragment;
