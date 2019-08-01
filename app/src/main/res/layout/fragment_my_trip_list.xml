@@ -8,12 +8,12 @@
 
     <TextView
         android:id="@+id/trip_tab"
-        android:text="@string/my_trips_tab"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/background_color"
         android:gravity="center"
         android:padding="10dp"
+        android:text="@string/my_trips_tab"
         android:textColor="#FFFFFF"
         android:textSize="20sp" />
 
@@ -24,16 +24,15 @@
         <ListView
             android:id="@+id/myTripsList"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"></ListView>
+            android:layout_height="wrap_content">
+        </ListView>
 
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/add_trip_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="@dimen/fab_margin"
+            android:src="@drawable/plus" />
     </FrameLayout>
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/add_trip_button"
-        android:src="@drawable/plus"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin" />
-
 </LinearLayout>

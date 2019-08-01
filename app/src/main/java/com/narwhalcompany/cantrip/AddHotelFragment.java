@@ -18,7 +18,6 @@ public class AddHotelFragment extends DialogFragment {
 
     private Button saveButton;
 
-
     static AddHotelFragment newInstance() {
         return new AddHotelFragment();
     }
