@@ -5,6 +5,15 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ListView;
+
+import java.util.ArrayList;
+
+//import utils.CustomTripOverviewAdapter;
+
+
 public class MainActivity extends AppCompatActivity {
 
 
