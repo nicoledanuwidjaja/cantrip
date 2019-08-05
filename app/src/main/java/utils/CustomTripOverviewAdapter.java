@@ -93,8 +93,10 @@ public class CustomTripOverviewAdapter extends BaseAdapter {
             viewHolder = (ViewHolder)view.getTag();
         }
 
-        viewHolder.tripLocations.setText(((TripObject)getItem(i).getStartLoc()) + " to " + ((TripObject)getItem(i).getEndLoc));
-        viewHolder.tripDates.setText(((TripObject)getItem(i).getStartDate()) + " to " + ((TripObject)getItem(i).getEndDate));
+        TripObject currentTrip = (TripObject) getItem(i);
+
+        viewHolder.tripLocations.setText(currentTrip.getStartLoc() + " to " + currentTrip.getEndLoc());
+        viewHolder.tripDates.setText(currentTrip.getStartDate() + " to " + currentTrip.getEndDate());
 
         return view;
     }

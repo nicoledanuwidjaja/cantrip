@@ -43,7 +43,7 @@ public class LandmarkFragment extends AbstractPlanFragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_landmark, container, false);
 
-        String apiKey = getString(R.string.google_maps_key);
+        String apiKey = getString(R.string.google_places_api);
 
         attractionImage = view.findViewById(R.id.landmark_image);
 

@@ -23,6 +23,31 @@ public class TripObject {
 
     }
 
+    @Override
+    public String toString() {
+        return startLoc + " to " + endLoc;
+    }
+
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
+    }
+
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
+    }
+
+    public void setStartLoc(String startLoc) {
+        this.startLoc = startLoc;
+    }
+
+    public void setEndLoc(String endLoc) {
+        this.endLoc = endLoc;
+    }
+
+    public void setPlans(ArrayList<ItineraryItem> plans) {
+        this.plans = plans;
+    }
+
     public Date getStartDate() {
         return startDate;
     }

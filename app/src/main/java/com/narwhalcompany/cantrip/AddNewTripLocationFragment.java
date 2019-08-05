@@ -2,6 +2,7 @@ package com.narwhalcompany.cantrip;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,19 +15,23 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.google.android.gms.common.api.Status;
+import com.google.android.libraries.places.api.Places;
+import com.google.android.libraries.places.api.model.Place;
+import com.google.android.libraries.places.widget.AutocompleteSupportFragment;
+import com.google.android.libraries.places.widget.listener.PlaceSelectionListener;
+
+import java.util.Arrays;
+
+import static androidx.constraintlayout.widget.Constraints.TAG;
+
 public class AddNewTripLocationFragment extends Fragment {
 
-
-    private TextView tripFromDate;
-
-
-    private TextView tripToDate;
+    @NonNull
+    private TextView startLocation;
 
     @NonNull
-    private EditText startLocation;
-
-    @NonNull
-    private EditText endLocation;
+    private TextView endLocation;
 
     private Button completeButton;
 
@@ -35,11 +40,54 @@ public class AddNewTripLocationFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_add_new_trip_location, container, false);
 
-        tripFromDate = view.findViewById(R.id.where_from);
-        tripToDate = view.findViewById(R.id.where_to);
+        String apiKey = getString(R.string.google_places_api);
+
+        // Inflate the layout for this fragment
+//        return inflater.inflate(R.layout.fragment_empty_recommended, container, false);
+
+        Places.initialize(getActivity().getApplicationContext(), apiKey);
+        // Initialize the AutocompleteSupportFragment for start location
+        AutocompleteSupportFragment autocompleteFragment = (AutocompleteSupportFragment)
+                getChildFragmentManager().findFragmentById(R.id.autocomplete_fragment);
+
+        // Specify the types of place data to return.
+        autocompleteFragment.setPlaceFields(Arrays.asList(Place.Field.ID, Place.Field.NAME));
+
+        // Set up a PlaceSelectionListener to handle the response.
+        autocompleteFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
+            @Override
+            public void onPlaceSelected(Place place) {
+                startLocation.setText(place.getName());
+            }
+
+            @Override
+            public void onError(Status status) {
+                Log.i(TAG, "An error occurred: " + status);
+            }
+        });
 
         startLocation = view.findViewById(R.id.start_location);
         endLocation = view.findViewById(R.id.end_location);
+
+        // Initialize the AutocompleteSupportFragment for destination
+        AutocompleteSupportFragment autocompleteFragment2 = (AutocompleteSupportFragment)
+                getChildFragmentManager().findFragmentById(R.id.autocomplete_fragment_2);
+
+        // Specify the types of place data to return.
+        autocompleteFragment2.setPlaceFields(Arrays.asList(Place.Field.ID, Place.Field.NAME));
+
+        // Set up a PlaceSelectionListener to handle the response.
+        autocompleteFragment2.setOnPlaceSelectedListener(new PlaceSelectionListener() {
+            @Override
+            public void onPlaceSelected(Place place) {
+                endLocation.setText(place.getName());
+            }
+
+            @Override
+            public void onError(Status status) {
+                Log.i(TAG, "An error occurred: " + status);
+            }
+        });
 
         completeButton = view.findViewById(R.id.add_location_button);
         completeButton.setOnClickListener(new View.OnClickListener() {
@@ -58,8 +106,7 @@ public class AddNewTripLocationFragment extends Fragment {
                 transaction.commit();
             }
         });
-        // Inflate the layout for this fragment
-//        return inflater.inflate(R.layout.fragment_empty_recommended, container, false);
+
         return view;
     }
 }

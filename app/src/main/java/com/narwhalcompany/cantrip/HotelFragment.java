@@ -10,6 +10,12 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 
 import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.libraries.places.api.Places;
@@ -24,7 +30,7 @@ import com.google.android.libraries.places.api.net.PlacesClient;
 import java.util.Arrays;
 import java.util.List;
 
-public class HotelFragment extends AbstractPlanFragment {
+public class HotelFragment extends AbstractPlanFragment implements OnMapReadyCallback {
 
     private PlacesClient placesClient;
     private ImageView attractionImage;
@@ -40,8 +46,11 @@ public class HotelFragment extends AbstractPlanFragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_hotel, container, false);
 
-        // rockefeller square
-        String apiKey = getString(R.string.google_maps_key);
+        String apiKey = getString(R.string.google_maps_api);
+
+        SupportMapFragment mapFragment = (SupportMapFragment) getActivity().getSupportFragmentManager()
+                .findFragmentById(R.id.map);
+        mapFragment.getMapAsync(this);
 
         attractionImage = view.findViewById(R.id.hotelImage);
 
@@ -92,4 +101,10 @@ public class HotelFragment extends AbstractPlanFragment {
     }
 
 
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+        googleMap.addMarker(new MarkerOptions()
+                .position(new LatLng(0, 0))
+                .title("Marker"));
+    }
 }
