@@ -14,6 +14,8 @@ import android.widget.ListView;
 
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
@@ -26,6 +28,7 @@ public class MyPlansFragment extends BottomSheetDialogFragment {
     private ListView listOfPlans;
     private ArrayList<Plan> planList = new ArrayList<>();
     private FloatingActionButton addNewPlanButton;
+    DatabaseReference dataRef = FirebaseDatabase.getInstance().getReference();
 
     public MyPlansFragment() {
         // Required empty public constructor
@@ -118,22 +121,7 @@ public class MyPlansFragment extends BottomSheetDialogFragment {
     }
 
     private void populateList() {
-        planList.add(new Plan("Flight to NYC", 4, 7, 2019, 4, 7, 2019, 13, 20, "John F. Kennedy International Airport", Reservation.FLIGHT));
-        planList.add(new Plan("Ritz-Carlton New York", 5, 7, 2019, 7, 7, 2019, 7, 12, "Central Park", Reservation.HOTEL));
-        planList.add(new Plan("Rockefeller Center", 6, 7, 2019, 6, 7, 2019, 12, 23, "Rockefeller Plaza", Reservation.LANDMARK));
-        planList.add(new Plan("Flight to Boston", 8, 7, 2019, 8, 7, 2019, 10, 15, "Boston Logan International Airport", Reservation.FLIGHT));
-        planList.add(new Plan("Flight to NYC", 4, 7, 2019, 4, 7, 2019, 13, 20, "John F. Kennedy International Airport", Reservation.FLIGHT));
-        planList.add(new Plan("Ritz-Carlton New York", 5, 7, 2019, 7, 7, 2019, 7, 12, "Central Park", Reservation.HOTEL));
-        planList.add(new Plan("Rockefeller Center", 6, 7, 2019, 6, 7, 2019, 12, 23, "Rockefeller Plaza", Reservation.LANDMARK));
-        planList.add(new Plan("Flight to Boston", 8, 7, 2019, 8, 7, 2019, 10, 15, "Boston Logan International Airport", Reservation.FLIGHT));
-        planList.add(new Plan("Flight to NYC", 4, 7, 2019, 4, 7, 2019, 13, 20, "John F. Kennedy International Airport", Reservation.FLIGHT));
-        planList.add(new Plan("Ritz-Carlton New York", 5, 7, 2019, 7, 7, 2019, 7, 12, "Central Park", Reservation.HOTEL));
-        planList.add(new Plan("Rockefeller Center", 6, 7, 2019, 6, 7, 2019, 12, 23, "Rockefeller Plaza", Reservation.LANDMARK));
-        planList.add(new Plan("Flight to Boston", 8, 7, 2019, 8, 7, 2019, 10, 15, "Boston Logan International Airport", Reservation.FLIGHT));
-        planList.add(new Plan("Flight to NYC", 4, 7, 2019, 4, 7, 2019, 13, 20, "John F. Kennedy International Airport", Reservation.FLIGHT));
-        planList.add(new Plan("Ritz-Carlton New York", 5, 7, 2019, 7, 7, 2019, 7, 12, "Central Park", Reservation.HOTEL));
-        planList.add(new Plan("Rockefeller Center", 6, 7, 2019, 6, 7, 2019, 12, 23, "Rockefeller Plaza", Reservation.LANDMARK));
-        planList.add(new Plan("Flight to Boston", 8, 7, 2019, 8, 7, 2019, 10, 15, "Boston Logan International Airport", Reservation.FLIGHT));
+
     }
 
     private Reservation convertToType(String typeString) {

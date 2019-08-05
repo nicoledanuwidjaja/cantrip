@@ -9,13 +9,15 @@ public class TripObject {
     private Date endDate;
     private String startLoc;
     private String endLoc;
+    private String id;
     private ArrayList<ItineraryItem> plans;
 
-    public TripObject(Date startDate, Date endDate, String startLoc, String endLoc, ArrayList<ItineraryItem> plans) {
+    public TripObject(Date startDate, Date endDate, String startLoc, String endLoc, String id, ArrayList<ItineraryItem> plans) {
         this.startDate = startDate;
         this.endDate = endDate;
         this.startLoc = startLoc;
         this.endLoc = endLoc;
+        this.id = id;
         this.plans = plans;
     }
 
@@ -38,6 +40,8 @@ public class TripObject {
     public String getEndLoc() {
         return endLoc;
     }
+
+    public String getId() { return id; }
 
     public ArrayList<ItineraryItem> getPlans() {
         return plans;
@@ -62,4 +66,6 @@ public class TripObject {
     public void setPlans(ArrayList<ItineraryItem> plans) {
         this.plans = plans;
     }
+
+    public void setId(String id) { this.id = id; }
 }
