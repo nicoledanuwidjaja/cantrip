@@ -47,8 +47,11 @@ public class LandmarkFragment extends AbstractPlanFragment {
 
         attractionImage = view.findViewById(R.id.landmark_image);
 
+        String placeId = "ChIJ9U1mz_5YwokRosza1aAk0jM";
+
+
         List<Place.Field> fields = Arrays.asList(Place.Field.PHOTO_METADATAS);
-        FetchPlaceRequest placeRequest = FetchPlaceRequest.builder("ChIJ9U1mz_5YwokRosza1aAk0jM", fields).build();
+        FetchPlaceRequest placeRequest = FetchPlaceRequest.builder(placeId, fields).build();
 
         // Initialize Places.
         Places.initialize(getActivity().getApplicationContext(), apiKey);
@@ -69,8 +72,8 @@ public class LandmarkFragment extends AbstractPlanFragment {
 
                 // Create a FetchPhotoRequest.
                 FetchPhotoRequest photoRequest = FetchPhotoRequest.builder(photoMetadata)
-                        .setMaxWidth(500) // Optional.
-                        .setMaxHeight(300) // Optional.
+//                        .setMaxWidth(500) // Optional.
+//                        .setMaxHeight(300) // Optional.
                         .build();
                 placesClient.fetchPhoto(photoRequest).addOnSuccessListener(new OnSuccessListener<FetchPhotoResponse>() {
                     @Override
