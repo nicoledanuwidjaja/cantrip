@@ -3,9 +3,11 @@ package com.narwhalcompany.cantrip;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +16,11 @@ import android.widget.ListView;
 
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
@@ -26,14 +33,28 @@ public class MyPlansFragment extends BottomSheetDialogFragment {
     private ListView listOfPlans;
     private ArrayList<Plan> planList = new ArrayList<>();
     private FloatingActionButton addNewPlanButton;
+    DatabaseReference dataRef = FirebaseDatabase.getInstance().getReference();
+
+    private Bundle bundle;
 
     public MyPlansFragment() {
         // Required empty public constructor
     }
 
+    public MyPlansFragment(Bundle bundle) {
+        this.bundle = bundle;
+    }
+
+     private String tripId;
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        if (bundle != null) {
+            tripId = bundle.getString("trip id");
+        }
 
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_my_plans, container, false);
@@ -43,97 +64,75 @@ public class MyPlansFragment extends BottomSheetDialogFragment {
         // populate array list with character data
         populateList();
 
-        if (getArguments() != null) {
-            Bundle planBundle = getArguments();
-            planList.add(new Plan(planBundle.getString("name"),
-                    planBundle.getInt("startMonth"), planBundle.getInt("startDay"), planBundle.getInt("startYear"),
-                    planBundle.getInt("endMonth"), planBundle.getInt("endDay"), planBundle.getInt("endYear"),
-                    planBundle.getInt("startTime"), planBundle.getInt("endtime"), planBundle.getString("location"),
-                    convertToType(planBundle.getString("type"))));
-            ;
+        // IF NONE ADDED, DON'T GET DATA REF
+        if (tripId != null) {
+
+            CustomPlanListAdapter adapter = new CustomPlanListAdapter(getContext(), planList,
+                    dataRef.child("trips").child(tripId).child("plans"));
+            listOfPlans.setAdapter(adapter);
+
+            listOfPlans.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                    Plan currentPlan = planList.get(i);
+
+                    Bundle planBundle = new Bundle();
+                    planBundle.putString("type", currentPlan.getPlanType().toString());
+                    planBundle.putString("name", currentPlan.getName());
+                    planBundle.putString("start time", currentPlan.getStartTime().toString());
+                    planBundle.putInt("start hour", currentPlan.getStartHour());
+                    planBundle.putInt("start min", currentPlan.getStartMin());
+                    planBundle.putString("end time", currentPlan.getEndTime().toString());
+                    planBundle.putInt("end hour", currentPlan.getEndHour());
+                    planBundle.putInt("end min", currentPlan.getEndMin());
+                    planBundle.putString("location", currentPlan.getLocation());
+
+                    if (currentPlan.getEndLocation() != null) {
+                        planBundle.putString("end location", currentPlan.getEndLocation());
+                    }
+
+                    AbstractPlanFragment fragPlan = new AbstractPlanFragment();
+                    fragPlan.setArguments(planBundle);
+
+                    getFragmentManager().beginTransaction().replace(R.id.detailed_plan_container, fragPlan).commit();
+                }
+            });
+
+
+            addNewPlanButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    // sets a fragment manager for managing all fragments (for adding new trips)
+                    FragmentManager planManager = getActivity().getSupportFragmentManager();
+                    FragmentTransaction transaction = planManager.beginTransaction();
+                    BottomSheetDialogFragment optionFragment = new AddPlanOptionFragment();
+                    optionFragment.setArguments(getArguments());
+                    optionFragment.show(planManager, "add plan");
+                    transaction.addToBackStack(null);
+                    transaction.commit();
+                }
+            });
         }
-
-        CustomPlanListAdapter adapter = new CustomPlanListAdapter(getContext(), planList);
-        listOfPlans.setAdapter(adapter);
-
-        listOfPlans.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Plan currentPlan = planList.get(i);
-
-                Bundle planBundle = new Bundle();
-                planBundle.putString("type", currentPlan.getPlanType().toString());
-                planBundle.putString("name", currentPlan.getName());
-                planBundle.putInt("startMonth", currentPlan.getStartMonth());
-                planBundle.putInt("startDay", currentPlan.getStartDay());
-                planBundle.putInt("startYear", currentPlan.getStartYear());
-                planBundle.putInt("endMonth", currentPlan.getEndMonth());
-                planBundle.putInt("endDay", currentPlan.getEndDay());
-                planBundle.putInt("endYear", currentPlan.getEndYear());
-                planBundle.putInt("startTime", currentPlan.getStartTime());
-                planBundle.putInt("endTime", currentPlan.getEndTime());
-                planBundle.putString("location", currentPlan.getLocation());
-
-                AbstractPlanFragment fragPlan = new AbstractPlanFragment();
-                fragPlan.setArguments(planBundle);
-
-                getFragmentManager().beginTransaction().replace(R.id.detailed_plan_container, fragPlan).commit();
-
-                System.out.println("I'M PRINTING OUT A BUNDLE " + planBundle);
-
-            }
-        });
-
-
-        addNewPlanButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // sets a fragment manager for managing all fragments (for adding new trips)
-                FragmentManager planManager = getActivity().getSupportFragmentManager();
-                FragmentTransaction transaction = planManager.beginTransaction();
-                BottomSheetDialogFragment optionFragment = new AddPlanOptionFragment();
-                optionFragment.show(planManager, "add plan");
-                transaction.addToBackStack(null);
-                transaction.commit();
-            }
-        });
-
-        // TODO: FIX THIS ADAPTER
-        // custom plan list adapter
-//        CustomPlanListAdapter planAdapter = new CustomPlanListAdapter(getActivity(), planList);
-//
-//        listOfPlans.setAdapter(planAdapter);
-//        listOfPlans.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-//                // trigger second activity - plan information
-//                Intent infoIntent = new Intent(getActivity(), AbstractPlanFragment.class);
-//                infoIntent.putExtra("PLAN", currentPlan);
-//                startActivity(infoIntent);
-//            }
-//        });
-
 
         return view;
     }
 
     private void populateList() {
-        planList.add(new Plan("Flight to NYC", 4, 7, 2019, 4, 7, 2019, 13, 20, "John F. Kennedy International Airport", Reservation.FLIGHT));
-        planList.add(new Plan("Ritz-Carlton New York", 5, 7, 2019, 7, 7, 2019, 7, 12, "Central Park", Reservation.HOTEL));
-        planList.add(new Plan("Rockefeller Center", 6, 7, 2019, 6, 7, 2019, 12, 23, "Rockefeller Plaza", Reservation.LANDMARK));
-        planList.add(new Plan("Flight to Boston", 8, 7, 2019, 8, 7, 2019, 10, 15, "Boston Logan International Airport", Reservation.FLIGHT));
-        planList.add(new Plan("Flight to NYC", 4, 7, 2019, 4, 7, 2019, 13, 20, "John F. Kennedy International Airport", Reservation.FLIGHT));
-        planList.add(new Plan("Ritz-Carlton New York", 5, 7, 2019, 7, 7, 2019, 7, 12, "Central Park", Reservation.HOTEL));
-        planList.add(new Plan("Rockefeller Center", 6, 7, 2019, 6, 7, 2019, 12, 23, "Rockefeller Plaza", Reservation.LANDMARK));
-        planList.add(new Plan("Flight to Boston", 8, 7, 2019, 8, 7, 2019, 10, 15, "Boston Logan International Airport", Reservation.FLIGHT));
-        planList.add(new Plan("Flight to NYC", 4, 7, 2019, 4, 7, 2019, 13, 20, "John F. Kennedy International Airport", Reservation.FLIGHT));
-        planList.add(new Plan("Ritz-Carlton New York", 5, 7, 2019, 7, 7, 2019, 7, 12, "Central Park", Reservation.HOTEL));
-        planList.add(new Plan("Rockefeller Center", 6, 7, 2019, 6, 7, 2019, 12, 23, "Rockefeller Plaza", Reservation.LANDMARK));
-        planList.add(new Plan("Flight to Boston", 8, 7, 2019, 8, 7, 2019, 10, 15, "Boston Logan International Airport", Reservation.FLIGHT));
-        planList.add(new Plan("Flight to NYC", 4, 7, 2019, 4, 7, 2019, 13, 20, "John F. Kennedy International Airport", Reservation.FLIGHT));
-        planList.add(new Plan("Ritz-Carlton New York", 5, 7, 2019, 7, 7, 2019, 7, 12, "Central Park", Reservation.HOTEL));
-        planList.add(new Plan("Rockefeller Center", 6, 7, 2019, 6, 7, 2019, 12, 23, "Rockefeller Plaza", Reservation.LANDMARK));
-        planList.add(new Plan("Flight to Boston", 8, 7, 2019, 8, 7, 2019, 10, 15, "Boston Logan International Airport", Reservation.FLIGHT));
+        dataRef.child("trips").child(tripId).child("plans").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+//                    Plan planObject = snapshot.getValue(Plan.class);
+//                    planList.add(planObject);
+                    Log.d("snapshot", snapshot.toString());
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Log.d("Cancelled: ", databaseError.getMessage());
+            }
+        });
     }
 
     private Reservation convertToType(String typeString) {

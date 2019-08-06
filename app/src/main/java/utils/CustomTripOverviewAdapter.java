@@ -1,6 +1,7 @@
 package utils;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -24,39 +25,43 @@ import java.util.Date;
 public class CustomTripOverviewAdapter extends BaseAdapter {
 //
     Context context;
-//    ArrayList<TripOverviewAdapterItem> tripAdapterItems;
+    ArrayList<TripOverviewAdapterItem> tripAdapterItems;
     DatabaseReference databaseChildRef;
-    ArrayList<DataSnapshot> snapshots;
+    ArrayList<DataSnapshot> snapshots = new ArrayList<>();
 
 //
-    public CustomTripOverviewAdapter(Context context, DatabaseReference dataFromDB) {
+    public CustomTripOverviewAdapter(Context context, DatabaseReference dataFromDB,
+                                     ArrayList<TripOverviewAdapterItem> tripAdapterItems) {
         this.context = context;
-//        // this.tripAdapterItems = tripAdapterItems;
         this.databaseChildRef = dataFromDB;
+        this.tripAdapterItems = tripAdapterItems;
         dataFromDB.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                Log.d("CHILD ADDED", dataSnapshot.getValue(TripObject.class).getStartLoc());
+                TripObject dataTrip = dataSnapshot.getValue(TripObject.class);
                 snapshots.add(dataSnapshot);
+                notifyDataSetChanged();
             }
 
             @Override
             public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
+                notifyDataSetChanged();
             }
 
             @Override
             public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
-
+                notifyDataSetChanged();
             }
 
             @Override
             public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
+                notifyDataSetChanged();
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-
+                notifyDataSetChanged();
             }
         });
     }
@@ -68,7 +73,7 @@ public class CustomTripOverviewAdapter extends BaseAdapter {
 
     @Override
     public Object getItem(int i) {
-        return snapshots.get(i).getValue();
+        return snapshots.get(i).getValue(TripObject.class);
     }
 
     @Override
@@ -82,7 +87,7 @@ public class CustomTripOverviewAdapter extends BaseAdapter {
         ViewHolder viewHolder;
 
         if (view == null) {
-            view = view.inflate(context, R.layout.trip_object_adapter_item, null);
+            view = View.inflate(context, R.layout.trip_object_adapter_item, null);
 
             viewHolder = new ViewHolder();
             viewHolder.tripLocations = view.findViewById(R.id.trip_locations);
@@ -93,10 +98,10 @@ public class CustomTripOverviewAdapter extends BaseAdapter {
             viewHolder = (ViewHolder)view.getTag();
         }
 
-        TripObject currentTrip = (TripObject) getItem(i);
+        TripObject tripObject = (TripObject)getItem(i);
+        viewHolder.tripLocations.setText(tripObject.getStartLoc() + " to " + tripObject.getEndLoc());
+        viewHolder.tripDates.setText(tripObject.getStartDate() + " to " + tripObject.getEndDate());
 
-        viewHolder.tripLocations.setText(currentTrip.getStartLoc() + " to " + currentTrip.getEndLoc());
-        viewHolder.tripDates.setText(currentTrip.getStartDate() + " to " + currentTrip.getEndDate());
 
         return view;
     }
@@ -105,46 +110,7 @@ public class CustomTripOverviewAdapter extends BaseAdapter {
         TextView tripLocations;
         TextView tripDates;
     }
-//
-//    @Override
-//    public int getCount() {
-//        return tripAdapterItems.size();
-//    }
-//
-//    @Override
-//    public Object getItem(int i) {
-//        return tripAdapterItems.get(i);
-//    }
-//
-//    @Override
-//    public long getItemId(int i) {
-//        return i;
-//    }
-//
-//    @Override
-//    public View getView(int i, View view, ViewGroup viewGroup) {
-//
-//        if (view == null) {
-//            // create and return the view
-//            view = View.inflate(context, R.layout.activity_trip_overview_adapter_item, null);
-//        }
-//
-//        ImageView imageView = view.findViewById(R.id.tripOverviewAdapterItemImage);
-//        TextView destView = view.findViewById(R.id.tripOverviewAdapterItemDestination);
-//        TextView durView = view.findViewById(R.id.tripOverviewAdapterItemDuration);
-//
-//        TripOverviewAdapterItem curr = TripOverviewAdapterItem
-//                .createAdapterItemFromTripObject(dataFromDB.child("trips")., R.drawable.commons);
-//
-//        // overwrite values of child views based on input from MainActivity
-//        imageView.setImageResource(curr.getImageResId());
-//        destView.setText(curr.getStartLoc() + " to " + curr.getEndloc());
-//        durView.setText(curr.getStartMonth() + "/" + curr.getStartDay() + "/" + curr.getStartYear()
-//                + " to " + curr.getEndMonth() + "/" + curr.getEndDay() + "/" + curr.getEndYear());
-//
-//        // returns view for current row
-//        return view;
-//    }
+
 }
 
 

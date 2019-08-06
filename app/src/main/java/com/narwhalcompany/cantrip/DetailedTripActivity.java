@@ -24,7 +24,9 @@ public class DetailedTripActivity extends AppCompatActivity {
 
         // view and tab layout
         ViewPager viewPager = findViewById(R.id.view_pager);
-        SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager());
+        String tripId = getIntent().getStringExtra("trip id");
+        SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this,
+                getSupportFragmentManager(), tripId);
         viewPager.setAdapter(sectionsPagerAdapter);
         TabLayout tabs = findViewById(R.id.tabs);
         tabs.setupWithViewPager(viewPager);
@@ -36,7 +38,6 @@ public class DetailedTripActivity extends AppCompatActivity {
 
         // populates data from List of Trips
         String tripName = getIntent().getStringExtra("tripName");
-        System.out.println("THIS " + tripName);
 
         tripTitle.setText(tripName);
     }

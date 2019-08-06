@@ -52,6 +52,7 @@ public class AddPlanOptionFragment extends BottomSheetDialogFragment
         switch (view.getId()) {
             case R.id.flight_button:
                 DialogFragment newFlight = new AddFlightFragment();
+                newFlight.setArguments(getArguments());
                 newFlight.show(planManager, "flight");
                 break;
             case R.id.hotel_button:
