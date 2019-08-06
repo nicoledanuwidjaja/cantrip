@@ -36,13 +36,14 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
         // getItem is called to instantiate the fragment for the given page.
         // Return a PlaceholderFragment (defined as a static inner class below).
         Fragment selectedFragment = null;
+        Bundle bundle = new Bundle();
+        bundle.putString("trip id", this.tripId);
 
         switch (position) {
             case 0:
-                selectedFragment = new MyPlansFragment();
-                Bundle bundle = new Bundle();
-                bundle.putString("trip id", this.tripId);
-                selectedFragment.setArguments(bundle);
+
+                selectedFragment = new MyPlansFragment(bundle);
+
                 break;
             case 1:
                 selectedFragment = new RecommendedFragment();

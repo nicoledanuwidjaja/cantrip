@@ -35,13 +35,26 @@ public class MyPlansFragment extends BottomSheetDialogFragment {
     private FloatingActionButton addNewPlanButton;
     DatabaseReference dataRef = FirebaseDatabase.getInstance().getReference();
 
+    private Bundle bundle;
+
     public MyPlansFragment() {
         // Required empty public constructor
     }
 
+    public MyPlansFragment(Bundle bundle) {
+        this.bundle = bundle;
+    }
+
+     private String tripId;
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        if (bundle != null) {
+            tripId = bundle.getString("trip id");
+        }
 
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_my_plans, container, false);
@@ -50,9 +63,6 @@ public class MyPlansFragment extends BottomSheetDialogFragment {
 
         // populate array list with character data
         populateList();
-
-        String tripId = getArguments().getString("trip id");
-        Log.d("bundle from my trips list", getArguments().toString());
 
         // IF NONE ADDED, DON'T GET DATA REF
         if (tripId != null) {
@@ -108,7 +118,7 @@ public class MyPlansFragment extends BottomSheetDialogFragment {
     }
 
     private void populateList() {
-        dataRef.addValueEventListener(new ValueEventListener() {
+        dataRef.child("trips").child(tripId).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
