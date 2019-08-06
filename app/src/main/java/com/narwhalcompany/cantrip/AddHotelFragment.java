@@ -10,6 +10,10 @@ import android.widget.Button;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 
+import com.google.android.material.textfield.TextInputEditText;
+
+import utils.OnDateClick;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -17,6 +21,8 @@ import androidx.fragment.app.Fragment;
 public class AddHotelFragment extends DialogFragment {
 
     private Button saveButton;
+    TextInputEditText checkInText;
+    TextInputEditText checkOutText;
 
     static AddHotelFragment newInstance() {
         return new AddHotelFragment();
@@ -32,6 +38,12 @@ public class AddHotelFragment extends DialogFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_add_hotel, container, false);
+
+        checkInText = view.findViewById(R.id.checkInDate);
+        checkInText.setOnClickListener(new OnDateClick());
+
+        checkOutText = view.findViewById(R.id.checkOutDate);
+        checkOutText.setOnClickListener(new OnDateClick());
 
         saveButton = view.findViewById(R.id.saveButton);
         saveButton.setOnClickListener(new View.OnClickListener() {
