@@ -10,6 +10,11 @@ import android.widget.Button;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 
+import com.google.android.material.textfield.TextInputEditText;
+
+import utils.OnDateClick;
+import utils.OnTimeClick;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -17,6 +22,10 @@ import androidx.fragment.app.Fragment;
 public class AddLandmarkFragment extends DialogFragment {
 
     private Button saveButton;
+    TextInputEditText startDateText;
+    TextInputEditText startTimeText;
+    TextInputEditText endDateText;
+    TextInputEditText endTimeText;
 
 
     static AddLandmarkFragment newInstance() {
@@ -33,6 +42,16 @@ public class AddLandmarkFragment extends DialogFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_add_landmark, container, false);
+
+        startDateText = view.findViewById(R.id.startDateText);
+        startDateText.setOnClickListener(new OnDateClick());
+        startTimeText = view.findViewById(R.id.startTimeText);
+        startTimeText.setOnClickListener(new OnTimeClick());
+
+        endDateText = view.findViewById(R.id.endDateText);
+        endDateText.setOnClickListener(new OnDateClick());
+        endTimeText = view.findViewById(R.id.endTimeText);
+        endTimeText.setOnClickListener(new OnTimeClick());
 
         saveButton = view.findViewById(R.id.saveButton);
         saveButton.setOnClickListener(new View.OnClickListener() {
