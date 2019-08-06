@@ -2,6 +2,7 @@ package com.narwhalcompany.cantrip;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -72,7 +73,7 @@ public class AddFlightFragment extends DialogFragment {
         class OnDateClick implements View.OnClickListener {
             @Override
             public void onClick(final View view){
-                int mYear, mMonth, mDay, mHour, mMinute;
+                int mYear, mMonth, mDay;
 
                 final Calendar c = Calendar.getInstance();
                 mYear = c.get(Calendar.YEAR);
@@ -86,6 +87,27 @@ public class AddFlightFragment extends DialogFragment {
                     }
                 }, mYear, mMonth, mDay);
                 datePickerDialog.show();
+            }
+
+        }
+
+        class OnTimeClick implements View.OnClickListener {
+            @Override
+            public void onClick(final View view){
+                int mHour, mMinute;
+
+                final Calendar c = Calendar.getInstance();
+                mHour = c.get(Calendar.HOUR_OF_DAY);
+                mMinute = c.get(Calendar.MINUTE);
+
+                TimePickerDialog timePickerDialog = new TimePickerDialog(getContext(), new TimePickerDialog.OnTimeSetListener() {
+
+                    @Override
+                    public void onTimeSet(TimePicker timePicker, int hour, int minute) {
+                        ((TextInputEditText) view).setText(hour + ":" + minute);
+                    }
+                }, mHour, mMinute, false);
+                timePickerDialog.show();
             }
 
         }
@@ -106,6 +128,7 @@ public class AddFlightFragment extends DialogFragment {
         departDate.setOnClickListener(new OnDateClick());
 
         departTime = view.findViewById(R.id.departTime);
+        departTime.setOnClickListener(new OnTimeClick());
 
         arriveImage = view.findViewById(R.id.arriveImage);
         arriveLocation = view.findViewById(R.id.arriveLocation);
@@ -113,6 +136,7 @@ public class AddFlightFragment extends DialogFragment {
         arriveDate.setOnClickListener(new OnDateClick());
 
         arriveTime = view.findViewById(R.id.arriveTime);
+        arriveTime.setOnClickListener(new OnTimeClick());
 
         ticketImage = view.findViewById(R.id.ticketImage);
         confirmationNum = view.findViewById(R.id.confirmationNum);
