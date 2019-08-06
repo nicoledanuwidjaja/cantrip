@@ -1,7 +1,6 @@
 package com.narwhalcompany.cantrip;
 
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -9,6 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,12 +22,13 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.narwhalcompany.cantrip.model.main.TripObject;
-import com.narwhalcompany.cantrip.ui.main.CustomTripObjectAdapter;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 
 // import utils.CustomTripOverviewAdapter;
+import utils.CustomTripOverviewAdapter;
 import utils.TripOverviewAdapterItem;
 
 
@@ -59,19 +60,16 @@ public class MyTripListFragment extends Fragment {
 
         populateList();
 
-
-        if (getArguments() != null) {
-            Bundle tripBundle = getArguments();
-            tripList.add(new TripOverviewAdapterItem(R.drawable.commons, tripBundle.getInt("startMonth"), tripBundle.getInt("startDay"),
-                    tripBundle.getInt("startYear"), tripBundle.getInt("endMonth"), tripBundle.getInt("endDay"),
-                    tripBundle.getInt("endYear"), tripBundle.getString("startLocation"), tripBundle.getString("endLocation")));
+        for (TripOverviewAdapterItem tripOverviewAdapterItem : tripList) {
+            Log.d("trip overview", tripOverviewAdapterItem.getStartLoc());
         }
 
+        System.out.println("trip length" + "" + tripList.size() + "");
 
         ListView listView = view.findViewById(R.id.myTripsList);
         // CustomTripOverviewAdapter adapter = new CustomTripOverviewAdapter(getContext(), databaseRef.child("user"));
 
-        CustomTripObjectAdapter adapter = new CustomTripObjectAdapter(getContext());
+        CustomTripOverviewAdapter adapter = new CustomTripOverviewAdapter(getContext(), databaseRef.child("trips"), tripList);
 
         // code for accessing view for each trip
         listView.setAdapter(adapter);
@@ -81,14 +79,11 @@ public class MyTripListFragment extends Fragment {
                 // trigger second activity - DetailedTripActivity
 
                 Intent tripIntent = new Intent(getActivity().getApplicationContext(), DetailedTripActivity.class);
-//                tripIntent.putExtra("TRIP", tripList.get(i));
+                tripIntent.putExtra("trip id", tripObjectList.get(i).getId());
 
                 String tripName = tripList.get(i).getStartLoc() + " to " + tripList.get(i).getEndloc();
                 System.out.println("THIS IS MY TRIP " + tripName);
                 tripIntent.putExtra("tripName", tripName);
-
-//                Intent tripIntent = new Intent(getContext(), DetailedTripActivity.class);
-//                tripIntent.putExtra("TRIP", tripList.get(i).getEndLoc());
 
                 startActivity(tripIntent);
             }
@@ -110,28 +105,26 @@ public class MyTripListFragment extends Fragment {
     }
 
     public void populateList() {
-//        tripList.add(new TripOverviewAdapterItem(R.drawable.sedan, 7, 4, 2019,
-//                7, 8, 2019, "Boston", "NYC"));
-//        tripList.add(new TripOverviewAdapterItem(R.drawable.commons, 7, 9, 2019,
-//                7, 30, 2019, "Sacramento", "Boston"));
-//        tripList.add(new TripOverviewAdapterItem(R.drawable.northeastern, 9, 4, 2019,
-//                4, 15, 2020, "Las Vegas", "Boston"));
-        ValueEventListener tripListener = new ValueEventListener() {
+
+        tripList.add(new TripOverviewAdapterItem("place 1", "place2", new Date(), new Date()));
+
+
+        databaseRef.child("trips").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                TripObject newTrip = dataSnapshot.getValue(TripObject.class);
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                TripObject newTrip = snapshot.getValue(TripObject.class);
                 tripObjectList.add(newTrip);
-                databaseRef.child(newTrip.toString()).setValue(newTrip);
+                tripList.add(new TripOverviewAdapterItem(newTrip.getStartLoc(), newTrip.getEndLoc(),
+                        newTrip.getStartDate(), newTrip.getEndDate()));
+                }
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-
+                Log.d("CANCELLED", databaseError.getMessage());
             }
-        };
-        databaseRef.push().setValue("hello world");
-
-        databaseRef.addValueEventListener(tripListener);
+        });
     }
 
 }

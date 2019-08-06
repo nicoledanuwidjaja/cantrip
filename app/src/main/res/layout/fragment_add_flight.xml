@@ -101,7 +101,7 @@
             android:layout_marginTop="5dp"
             android:hint="On what date?">
 
-            <com.google.android.material.textfield.TextInputEditText
+            <DatePicker
                 android:id="@+id/departDate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -110,14 +110,14 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/departTime"
             android:layout_width="142dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="23dp"
             android:layout_marginTop="5dp"
             android:hint="At what time?">
 
-            <com.google.android.material.textfield.TextInputEditText
+            <TimePicker
+                android:id="@+id/departTime"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:maxLines="1" />
@@ -168,7 +168,7 @@
             android:layout_marginTop="5dp"
             android:hint="On what date?">
 
-            <com.google.android.material.textfield.TextInputEditText
+            <DatePicker
                 android:id="@+id/arriveDate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -183,7 +183,7 @@
             android:layout_marginTop="5dp"
             android:hint="At what time?">
 
-            <com.google.android.material.textfield.TextInputEditText
+            <TimePicker
                 android:id="@+id/arriveTime"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

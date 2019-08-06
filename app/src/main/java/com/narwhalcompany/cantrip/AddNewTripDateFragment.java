@@ -78,91 +78,43 @@ public class AddNewTripDateFragment extends Fragment {
                     endMonth = "" + endDatePicker.getMonth() + 1 + "";
                 }
 
-                // TODO: FIX THIS?
-                System.out.println(startDatePicker.getYear() + " " + startDatePicker.getMonth() + " " + startDatePicker.getDayOfMonth());
+                String startDate = "" + startMonth+"-" +
+                        (startDatePicker.getDayOfMonth()) + "-" + startDatePicker.getYear() + "";
+                String endDate = "" + endMonth+"-" +
+                        (endDatePicker.getDayOfMonth()) + "-" + endDatePicker.getYear() + "";
+                SimpleDateFormat neededDateFormat = new SimpleDateFormat("MM-dd-yyyy");
+
+                Date startDateParsed = null;
+                Date endDateParsed = null;
 
                 try {
-                    final Calendar startCalendar = Calendar.getInstance();
-                    int y = startCalendar.get(startDatePicker.getYear());
-                    int m = startCalendar.get(startDatePicker.getMonth());
-                    int d = startCalendar.get(startDatePicker.getDayOfMonth());
 
-                    startCalendar.set(y, m, d);
+                    startDateParsed = neededDateFormat.parse(startDate);
+                    endDateParsed = neededDateFormat.parse(endDate);
 
-                    System.out.println(startCalendar);
-                    // restricts the end date to be no earlier than the start date
-                    endDatePicker.setMinDate(startCalendar.getTimeInMillis());
-
-                    String startDate = "" + startMonth + "-" +
-                            (startDatePicker.getDayOfMonth()) + "-" + startDatePicker.getYear() + "";
-                    String endDate = "" + endMonth + "-" +
-                            (endDatePicker.getDayOfMonth()) + "-" + endDatePicker.getYear() + "";
-                    // SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
-                    SimpleDateFormat neededDateFormat = new SimpleDateFormat("MM-dd-yyyy");
-
-
-                    try {
-//                    DatabaseReference postRef = databaseReference.child("trips");
-//                    DatabaseReference pushedPostRef = postRef.push();
-//                    String postedRefKey =  databaseReference.child("trips").push().getKey();
-//                    Log.d("DATABASE REFERENCE", postedRefKey);
-
-                        Date startDateParsed = neededDateFormat.parse(startDate);
-                        Date endDateParsed = neededDateFormat.parse(endDate);
-
-                        System.out.println(startDateParsed);
-                        System.out.println(endDateParsed);
-
-                        final TripObject newTrip = new TripObject(startDateParsed, endDateParsed,
-                                pastLocationArgs.getString("startLocation"),
-                                pastLocationArgs.getString("endLocation"),
-                                new ArrayList<ItineraryItem>());
-
-                        databaseReference.child("idkwhy").push().setValue(newTrip);
-
-//                    Map<String, Object> newTripMap = new HashMap<>();
-//                    newTripMap.put(postedRefKey, newTrip);
-
-//                    pushedPostRef.setValue(newTrip);
-
-
-//                    DatabaseReference pushedRef = databaseReference.child("trips/").push();
-//                    pushedRef.setValue(newTrip);
-//
-//                    String pushedKey = pushedRef.getKey();
-//
-//                    System.out.println(pushedKey);
-//                    System.out.println(newTrip);
-//
-//                    Map<String, Object> newTripMap = new HashMap<>();
-//                    newTripMap.put(pushedRef.getKey(), newTrip);
-//
-//                    databaseReference.child("trips").updateChildren(newTripMap);
-
-                        // databaseReference.child(pushedKey).setValue(newTrip);
-                        //pushedRef.setValue(newTrip);
-//                    databaseReference.child("trips").child(postedRefKey).updateChildren(newTripMap);
-                    } catch (ParseException e) {
-                        Log.d("PARSE EXCEPTION", e.getLocalizedMessage());
-                    }
-
-
-//                bundle.putString("startLocation", pastLocationArgs.getString("startLocation"));
-//                bundle.putString("endLocation", pastLocationArgs.getString("endLocation"));
-//                bundle.putInt("startMonth", startDatePicker.getMonth());
-//                bundle.putInt("startDay", startDatePicker.getDayOfMonth());
-//                bundle.putInt("startYear", startDatePicker.getYear());
-//                bundle.putInt("endMonth", endDatePicker.getMonth());
-//                bundle.putInt("endDay", endDatePicker.getDayOfMonth());
-//                bundle.putInt("endYear", endDatePicker.getYear());
-                    MyTripListFragment newTripListFragment = new MyTripListFragment();
-                    // newTripListFragment.setArguments(bundle);
-                    transaction.replace(R.id.fragment_container, newTripListFragment);
-                    transaction.commit();
-                } catch (
-                        ArrayIndexOutOfBoundsException e) {
-                    Toast.makeText(getActivity(), "End date not valid.", Toast.LENGTH_SHORT).show();
+                } catch (ParseException e) {
+                    Log.d("PARSE EXCEPTION", e.getLocalizedMessage());
                 }
+
+
+                final TripObject newTrip = new TripObject();
+                newTrip.setStartLoc(pastLocationArgs.getString("startLocation"));
+                newTrip.setEndLoc(pastLocationArgs.getString("endLocation"));
+                newTrip.setStartDate(startDateParsed);
+                newTrip.setEndDate(endDateParsed);
+                newTrip.setPlans(new ArrayList<ItineraryItem>());
+
+
+                DatabaseReference pushedReference = databaseReference.child("trips").push();
+
+                final String tripKey = pushedReference.getKey();
+                newTrip.setId(tripKey);
+
+                pushedReference.setValue(newTrip);
+
+                MyTripListFragment newTripListFragment = new MyTripListFragment();
+                transaction.replace(R.id.fragment_container, newTripListFragment);
+                transaction.commit();
             }
         });
         return view;

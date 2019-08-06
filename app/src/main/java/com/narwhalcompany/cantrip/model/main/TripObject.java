@@ -9,13 +9,15 @@ public class TripObject {
     private Date endDate;
     private String startLoc;
     private String endLoc;
+    private String id;
     private ArrayList<ItineraryItem> plans;
 
-    public TripObject(Date startDate, Date endDate, String startLoc, String endLoc, ArrayList<ItineraryItem> plans) {
+    public TripObject(Date startDate, Date endDate, String startLoc, String endLoc, String id, ArrayList<ItineraryItem> plans) {
         this.startDate = startDate;
         this.endDate = endDate;
         this.startLoc = startLoc;
         this.endLoc = endLoc;
+        this.id = id;
         this.plans = plans;
     }
 
@@ -26,6 +28,28 @@ public class TripObject {
     @Override
     public String toString() {
         return startLoc + " to " + endLoc;
+    }
+
+    public Date getStartDate() {
+        return startDate;
+    }
+
+    public Date getEndDate() {
+        return endDate;
+    }
+
+    public String getStartLoc() {
+        return startLoc;
+    }
+
+    public String getEndLoc() {
+        return endLoc;
+    }
+
+    public String getId() { return id; }
+
+    public ArrayList<ItineraryItem> getPlans() {
+        return plans;
     }
 
     public void setStartDate(Date startDate) {
@@ -48,23 +72,5 @@ public class TripObject {
         this.plans = plans;
     }
 
-    public Date getStartDate() {
-        return startDate;
-    }
-
-    public Date getEndDate() {
-        return endDate;
-    }
-
-    public String getStartLoc() {
-        return startLoc;
-    }
-
-    public String getEndLoc() {
-        return endLoc;
-    }
-
-    public ArrayList<ItineraryItem> getPlans() {
-        return plans;
-    }
+    public void setId(String id) { this.id = id; }
 }
