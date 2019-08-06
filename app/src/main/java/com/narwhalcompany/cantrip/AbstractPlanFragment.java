@@ -39,7 +39,6 @@ public class AbstractPlanFragment extends DialogFragment {
 
         assert getArguments() != null;
         String planSelection = getArguments().getString("type");
-
         FragmentManager planManager = getActivity().getSupportFragmentManager();
         FragmentTransaction transaction = planManager.beginTransaction();
 

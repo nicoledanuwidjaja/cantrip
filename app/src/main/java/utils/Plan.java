@@ -25,6 +25,7 @@ public class Plan {
     private int endYear;
     private int startTime;
     private int endTime;
+
     private String location;
 
     // throwaway test constructor

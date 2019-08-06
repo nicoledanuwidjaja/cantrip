@@ -79,13 +79,19 @@
             android:layout_marginTop="20dp"
             android:hint="Departing from...">
 
-            <com.google.android.material.textfield.TextInputEditText
+            <TextView
                 android:id="@+id/departLocation"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:maxLines="1" />
 
         </com.google.android.material.textfield.TextInputLayout>
+
+        <fragment
+            android:id="@+id/search_bar_flight"
+            android:name="com.google.android.libraries.places.widget.AutocompleteSupportFragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
     </LinearLayout>
 
@@ -106,7 +112,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:maxLines="1" />
-
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -146,13 +151,19 @@
             android:layout_marginTop="20dp"
             android:hint="Arriving in...">
 
-            <com.google.android.material.textfield.TextInputEditText
+            <TextView
                 android:id="@+id/arriveLocation"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:maxLines="1" />
 
         </com.google.android.material.textfield.TextInputLayout>
+
+        <fragment
+            android:id="@+id/search_bar_flight_2"
+            android:name="com.google.android.libraries.places.widget.AutocompleteSupportFragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
     </LinearLayout>
 

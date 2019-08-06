@@ -28,8 +28,10 @@ import java.util.List;
 
 public class LandmarkFragment extends AbstractPlanFragment {
 
-    private PlacesClient placesClient;
 
+    private TextView address;
+    private TextView phone;
+    private PlacesClient placesClient;
     private ImageView attractionImage;
 
     public LandmarkFragment() {
@@ -46,6 +48,7 @@ public class LandmarkFragment extends AbstractPlanFragment {
         String apiKey = getString(R.string.google_places_api);
 
         attractionImage = view.findViewById(R.id.landmark_image);
+        address = view.findViewById(R.id.address_label);
 
         List<Place.Field> fields = Arrays.asList(Place.Field.PHOTO_METADATAS);
         FetchPlaceRequest placeRequest = FetchPlaceRequest.builder("ChIJ9U1mz_5YwokRosza1aAk0jM", fields).build();

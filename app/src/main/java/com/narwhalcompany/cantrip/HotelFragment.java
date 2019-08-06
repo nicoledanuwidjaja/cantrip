@@ -2,10 +2,12 @@ package com.narwhalcompany.cantrip;
 
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.view.InflateException;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
@@ -32,6 +34,10 @@ import java.util.List;
 
 public class HotelFragment extends AbstractPlanFragment implements OnMapReadyCallback {
 
+
+    private TextView checkIn;
+    private TextView checkOut;
+    private TextView address;
     private PlacesClient placesClient;
     private ImageView attractionImage;
 
@@ -46,56 +52,65 @@ public class HotelFragment extends AbstractPlanFragment implements OnMapReadyCal
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_hotel, container, false);
 
-        String apiKey = getString(R.string.google_maps_api);
+        try {
+            String apiKey = getString(R.string.google_maps_api);
 
-        SupportMapFragment mapFragment = (SupportMapFragment) getActivity().getSupportFragmentManager()
-                .findFragmentById(R.id.map);
-        mapFragment.getMapAsync(this);
+            SupportMapFragment mapFragment = (SupportMapFragment) getActivity().getSupportFragmentManager()
+                    .findFragmentById(R.id.map);
+            mapFragment.getMapAsync(this);
 
-        attractionImage = view.findViewById(R.id.hotelImage);
+            attractionImage = view.findViewById(R.id.hotelImage);
+            checkIn = view.findViewById(R.id.check_in_label);
+            checkOut = view.findViewById(R.id.check_out_label);
+            address = view.findViewById(R.id.address);
 
-        List<Place.Field> fields = Arrays.asList(Place.Field.PHOTO_METADATAS);
-        FetchPlaceRequest placeRequest = FetchPlaceRequest.builder(apiKey, fields).build();
+            List<Place.Field> fields = Arrays.asList(Place.Field.PHOTO_METADATAS);
+            FetchPlaceRequest placeRequest = FetchPlaceRequest.builder(apiKey, fields).build();
 
-        // Initialize Places.
-        Places.initialize(getActivity().getApplicationContext(), apiKey);
+            // TODO: FIX THIS!
 
-        // Create a new Places client instance.
-        placesClient = Places.createClient(getContext());
+            // Initialize Places.
+            Places.initialize(getActivity().getApplicationContext(), apiKey);
 
-        placesClient.fetchPlace(placeRequest).addOnSuccessListener(new OnSuccessListener<FetchPlaceResponse>() {
-            @Override
-            public void onSuccess(FetchPlaceResponse fetchPlaceResponse) {
-                Place place = fetchPlaceResponse.getPlace();
+            // Create a new Places client instance.
+            placesClient = Places.createClient(getContext());
 
-                // Get the photo metadata.
-                PhotoMetadata photoMetadata = place.getPhotoMetadatas().get(0);
+            placesClient.fetchPlace(placeRequest).addOnSuccessListener(new OnSuccessListener<FetchPlaceResponse>() {
+                @Override
+                public void onSuccess(FetchPlaceResponse fetchPlaceResponse) {
+                    Place place = fetchPlaceResponse.getPlace();
 
-                // Get the attribution text.
-                String attributions = photoMetadata.getAttributions();
+                    // Get the photo metadata.
+                    PhotoMetadata photoMetadata = place.getPhotoMetadatas().get(0);
 
-                // Create a FetchPhotoRequest.
-                FetchPhotoRequest photoRequest = FetchPhotoRequest.builder(photoMetadata)
-                        .setMaxWidth(500) // Optional.
-                        .setMaxHeight(300) // Optional.
-                        .build();
-                placesClient.fetchPhoto(photoRequest).addOnSuccessListener(new OnSuccessListener<FetchPhotoResponse>() {
-                    @Override
-                    public void onSuccess(FetchPhotoResponse fetchPhotoResponse) {
-                        Bitmap bitmap = fetchPhotoResponse.getBitmap();
-                        attractionImage.setImageBitmap(bitmap);
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        if (e instanceof ApiException) {
-                            ApiException apiException = (ApiException) e;
-                            int statusCode = apiException.getStatusCode();
+                    // Get the attribution text.
+                    String attributions = photoMetadata.getAttributions();
+
+                    // Create a FetchPhotoRequest.
+                    FetchPhotoRequest photoRequest = FetchPhotoRequest.builder(photoMetadata)
+                            .setMaxWidth(500) // Optional.
+                            .setMaxHeight(300) // Optional.
+                            .build();
+                    placesClient.fetchPhoto(photoRequest).addOnSuccessListener(new OnSuccessListener<FetchPhotoResponse>() {
+                        @Override
+                        public void onSuccess(FetchPhotoResponse fetchPhotoResponse) {
+                            Bitmap bitmap = fetchPhotoResponse.getBitmap();
+                            attractionImage.setImageBitmap(bitmap);
                         }
-                    }
-                });
-            }
-        });
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            if (e instanceof ApiException) {
+                                ApiException apiException = (ApiException) e;
+                                int statusCode = apiException.getStatusCode();
+                            }
+                        }
+                    });
+                }
+            });
+        } catch (InflateException e) {
+            e.printStackTrace();
+        }
 
         return view;
     }
