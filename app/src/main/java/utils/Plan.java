@@ -46,6 +46,10 @@ public class Plan {
         this.endLocation = endLocation;
     }
 
+    public Plan() {
+        // empty constructor for adapter
+    }
+
     public String getPlanId() { return planId; }
 
     public String getLocation() {

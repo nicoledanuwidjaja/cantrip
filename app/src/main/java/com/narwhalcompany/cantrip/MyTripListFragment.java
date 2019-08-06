@@ -113,7 +113,6 @@ public class MyTripListFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    Log.d("key", snapshot.getValue(TripObject.class).getStartLoc());
                 TripObject newTrip = snapshot.getValue(TripObject.class);
                 tripObjectList.add(newTrip);
                 tripList.add(new TripOverviewAdapterItem(newTrip.getStartLoc(), newTrip.getEndLoc(),

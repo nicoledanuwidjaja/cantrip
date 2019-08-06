@@ -112,6 +112,8 @@ public class AddFlightFragment extends DialogFragment {
                         departTime.getHour(), departTime.getMinute(), arriveTime.getHour(), arriveTime.getMinute(),
                         arriveLocation.getText().toString());
 
+                planRef.setValue(newFlight);
+
                 startActivity(addFlightIntent);
             }
         });
