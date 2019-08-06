@@ -1,7 +1,10 @@
 package com.narwhalcompany.cantrip;
 
+import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.app.TimePickerDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -13,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.TimePicker;
@@ -21,8 +25,12 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.text.DateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
+import utils.OnDateClick;
+import utils.OnTimeClick;
 import utils.Plan;
 import utils.Reservation;
 import utils.Utils;
@@ -36,13 +44,13 @@ public class AddFlightFragment extends DialogFragment {
 
     ImageView departImage;
     TextInputEditText departLocation;
-    DatePicker departDate;
-    TimePicker departTime;
+    TextInputEditText departDate;
+    TextInputEditText departTime;
 
     ImageView arriveImage;
     TextInputEditText arriveLocation;
-    DatePicker arriveDate;
-    TimePicker arriveTime;
+    TextInputEditText arriveDate;
+    TextInputEditText arriveTime;
 
     ImageView ticketImage;
     TextInputEditText confirmationNum;
@@ -67,19 +75,28 @@ public class AddFlightFragment extends DialogFragment {
 
         View view = inflater.inflate(R.layout.fragment_add_flight, container, false);
 
+
+
         airplaneImage = view.findViewById(R.id.airplaneImage);
         airlineText = view.findViewById(R.id.airlineText);
         flightText = view.findViewById(R.id.flightText);
 
         departImage = view.findViewById(R.id.departImage);
         departLocation = view.findViewById(R.id.departLocation);
+
         departDate = view.findViewById(R.id.departDate);
+        departDate.setOnClickListener(new OnDateClick());
+
         departTime = view.findViewById(R.id.departTime);
+        departTime.setOnClickListener(new OnTimeClick());
 
         arriveImage = view.findViewById(R.id.arriveImage);
         arriveLocation = view.findViewById(R.id.arriveLocation);
         arriveDate = view.findViewById(R.id.arriveDate);
+        arriveDate.setOnClickListener(new OnDateClick());
+
         arriveTime = view.findViewById(R.id.arriveTime);
+        arriveTime.setOnClickListener(new OnTimeClick());
 
         ticketImage = view.findViewById(R.id.ticketImage);
         confirmationNum = view.findViewById(R.id.confirmationNum);
@@ -89,27 +106,23 @@ public class AddFlightFragment extends DialogFragment {
             @Override
             public void onClick(View view) {
                 Intent addFlightIntent = new Intent(getActivity(), DetailedTripActivity.class);
-//                addFlightIntent.putExtra("depart location", departLocation.getText().toString());
-//                addFlightIntent.putExtra("depart date", Utils.formatDateToString(departDate));
-//                addFlightIntent.putExtra("depart hour", departTime.getHour());
-//                addFlightIntent.putExtra("depart min", departTime.getMinute());
-//
-//                addFlightIntent.putExtra("arrive location", arriveLocation.getText().toString());
-//                addFlightIntent.putExtra("arrive date", Utils.formatDateToString(arriveDate));
-//                addFlightIntent.putExtra("arrive hour", arriveTime.getHour());
-//                addFlightIntent.putExtra("arrive min", arriveTime.getMinute());
-//
-//                addFlightIntent.putExtra("confirmation number", confirmationNum.getText().toString());
 
                 String tripId = getArguments().getString("trip id");
                 DatabaseReference planRef = databaseReference.child("trips").child(tripId)
                         .child("plans").push();
                 String planKey = planRef.getKey();
 
+
                 Plan newFlight = new Plan(planKey,
-                        "Flight to " + arriveLocation.getText().toString(), Utils.getStaticDate(departDate),
-                        Utils.getStaticDate(arriveDate), tripId, Reservation.FLIGHT, departLocation.getText().toString(),
-                        departTime.getHour(), departTime.getMinute(), arriveTime.getHour(), arriveTime.getMinute(),
+                        "Flight to " + arriveLocation.getText().toString(),
+                        Utils.stringToDate(departDate.getText().toString()),
+                        Utils.stringToDate(arriveDate.getText().toString()),
+                        tripId,
+                        Reservation.FLIGHT, departLocation.getText().toString(),
+                        Utils.stringToHours(departTime.getText().toString()),
+                        Utils.stringToMins(departTime.getText().toString()),
+                        Utils.stringToHours(arriveTime.getText().toString()),
+                        Utils.stringToMins(arriveTime.getText().toString()),
                         arriveLocation.getText().toString());
 
                 planRef.setValue(newFlight);
@@ -118,7 +131,12 @@ public class AddFlightFragment extends DialogFragment {
             }
         });
 
-        // Inflate the layout for this fragment
+
         return view;
     }
+
+
+
 }
+
+
