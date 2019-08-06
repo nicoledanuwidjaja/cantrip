@@ -57,7 +57,17 @@ public class AddFlightFragment extends DialogFragment {
 
     private Button saveButton;
 
+    private String tripId;
+
     private DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+
+    public AddFlightFragment(String tripId) {
+        this.tripId = tripId;
+    }
+
+    public AddFlightFragment() {
+        // empty constructor
+    }
 
     static AddFlightFragment newInstance() {
         return new AddFlightFragment();
@@ -107,7 +117,7 @@ public class AddFlightFragment extends DialogFragment {
             public void onClick(View view) {
                 Intent addFlightIntent = new Intent(getActivity(), DetailedTripActivity.class);
 
-                String tripId = getArguments().getString("trip id");
+//                String tripId = getArguments().getString("trip id");
                 DatabaseReference planRef = databaseReference.child("trips").child(tripId)
                         .child("plans").push();
                 String planKey = planRef.getKey();

@@ -25,6 +25,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
+import utils.Utils;
+
 public class AddNewTripDateFragment extends Fragment {
 
     private TextView tripFromDate;
@@ -57,64 +59,33 @@ public class AddNewTripDateFragment extends Fragment {
 
                 Bundle pastLocationArgs = getArguments();
 
-                String startMonth;
-                String endMonth;
 
-                if (startDatePicker.getMonth() < 9) {
-                    int month = startDatePicker.getMonth() + 1;
-                    startMonth = "0" + month;
-                } else if (startDatePicker.getMonth() == 9) {
-                    startMonth = "10";
-                } else {
-                    startMonth = "" + startDatePicker.getMonth() + 1 + "";
-                }
+               if (!Utils.checkEndDateValid(startDatePicker, endDatePicker)) {
+                   Toast.makeText(getContext(), "End date cannot be before start date", Toast.LENGTH_SHORT).show();
+               } else {
 
-                if (endDatePicker.getMonth() < 9) {
-                    int month = (endDatePicker.getMonth() + 1);
-                    endMonth = "0" + "" + month + "";
-                } else if (endDatePicker.getMonth() == 9) {
-                    endMonth = "10";
-                } else {
-                    endMonth = "" + endDatePicker.getMonth() + 1 + "";
-                }
+                   Date startDateParsed = Utils.getStaticDate(startDatePicker);
+                   Date endDateParsed = Utils.getStaticDate(endDatePicker);
 
-                String startDate = "" + startMonth+"-" +
-                        (startDatePicker.getDayOfMonth()) + "-" + startDatePicker.getYear() + "";
-                String endDate = "" + endMonth+"-" +
-                        (endDatePicker.getDayOfMonth()) + "-" + endDatePicker.getYear() + "";
-                SimpleDateFormat neededDateFormat = new SimpleDateFormat("MM-dd-yyyy");
-
-                Date startDateParsed = null;
-                Date endDateParsed = null;
-
-                try {
-
-                    startDateParsed = neededDateFormat.parse(startDate);
-                    endDateParsed = neededDateFormat.parse(endDate);
-
-                } catch (ParseException e) {
-                    Log.d("PARSE EXCEPTION", e.getLocalizedMessage());
-                }
+                   final TripObject newTrip = new TripObject();
+                   newTrip.setStartLoc(pastLocationArgs.getString("startLocation"));
+                   newTrip.setEndLoc(pastLocationArgs.getString("endLocation"));
+                   newTrip.setStartDate(startDateParsed);
+                   newTrip.setEndDate(endDateParsed);
+                   newTrip.setPlans(new ArrayList<ItineraryItem>());
 
 
-                final TripObject newTrip = new TripObject();
-                newTrip.setStartLoc(pastLocationArgs.getString("startLocation"));
-                newTrip.setEndLoc(pastLocationArgs.getString("endLocation"));
-                newTrip.setStartDate(startDateParsed);
-                newTrip.setEndDate(endDateParsed);
-                newTrip.setPlans(new ArrayList<ItineraryItem>());
+                   DatabaseReference pushedReference = databaseReference.child("trips").push();
 
+                   final String tripKey = pushedReference.getKey();
+                   newTrip.setId(tripKey);
 
-                DatabaseReference pushedReference = databaseReference.child("trips").push();
+                   pushedReference.setValue(newTrip);
 
-                final String tripKey = pushedReference.getKey();
-                newTrip.setId(tripKey);
-
-                pushedReference.setValue(newTrip);
-
-                MyTripListFragment newTripListFragment = new MyTripListFragment();
-                transaction.replace(R.id.fragment_container, newTripListFragment);
-                transaction.commit();
+                   MyTripListFragment newTripListFragment = new MyTripListFragment();
+                   transaction.replace(R.id.fragment_container, newTripListFragment);
+                   transaction.commit();
+               }
             }
         });
         return view;

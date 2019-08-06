@@ -20,9 +20,14 @@ public class AddPlanOptionFragment extends BottomSheetDialogFragment
     private ImageButton flightButton;
     private ImageButton hotelButton;
     private ImageButton landmarkButton;
+    private String tripId;
 
     public AddPlanOptionFragment() {
         // Required empty public constructor
+    }
+
+    public AddPlanOptionFragment(String tripId) {
+       this.tripId = tripId;
     }
 
     @Override
@@ -49,10 +54,11 @@ public class AddPlanOptionFragment extends BottomSheetDialogFragment
         // sets a fragment manager for managing all fragments (for adding new trips)
         FragmentManager planManager = getActivity().getSupportFragmentManager();
         FragmentTransaction transaction = planManager.beginTransaction();
+ //       Bundle bundle = new Bundle();
+//        bundle.putString("trip id", getArguments().getString("trip id"));
         switch (view.getId()) {
             case R.id.flight_button:
-                DialogFragment newFlight = new AddFlightFragment();
-                newFlight.setArguments(getArguments());
+                DialogFragment newFlight = new AddFlightFragment(tripId);
                 newFlight.show(planManager, "flight");
                 break;
             case R.id.hotel_button:

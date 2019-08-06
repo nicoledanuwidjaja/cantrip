@@ -71,4 +71,18 @@ public class Utils {
 
         return date;
     }
+
+    public static boolean checkEndDateValid(DatePicker start, DatePicker end) {
+        if (start.getYear() > end.getYear()) {
+            return false;
+        } else if (start.getYear() == end.getYear()) {
+            if (start.getMonth() > end.getMonth()) {
+                return false;
+            } else if (start.getMonth() == end.getMonth()) {
+                return start.getDayOfMonth() <= end.getDayOfMonth();
+            }
+        }
+
+        return true;
+    }
 }
