@@ -25,6 +25,11 @@ public class TripObject {
 
     }
 
+    @Override
+    public String toString() {
+        return startLoc + " to " + endLoc;
+    }
+
     public Date getStartDate() {
         return startDate;
     }

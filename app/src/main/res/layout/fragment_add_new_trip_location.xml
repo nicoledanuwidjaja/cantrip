@@ -1,36 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginLeft="30dp">
+    android:layout_marginLeft="30dp"
+    android:orientation="vertical">
 
     <TextView
         android:id="@+id/where_from"
-        android:text="@string/trip_location_from"
-        android:textSize="20sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
+        android:text="@string/trip_location_from"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/start_location"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
-    <EditText
-        android:id="@+id/start_location"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"/>
+
+    <fragment
+        android:id="@+id/autocomplete_fragment"
+        android:name="com.google.android.libraries.places.widget.AutocompleteSupportFragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
     <TextView
         android:id="@+id/where_to"
-        android:text="@string/trip_location_to"
-        android:textSize="20sp"
-        android:layout_marginTop="20dp"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-    <EditText
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="@string/trip_location_to"
+        android:textSize="20sp" />
+
+    <TextView
         android:id="@+id/end_location"
         android:layout_width="200dp"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content" />
+
+    <fragment
+        android:id="@+id/autocomplete_fragment_2"
+        android:name="com.google.android.libraries.places.widget.AutocompleteSupportFragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
     <Button
         android:id="@+id/add_location_button"
-        android:layout_marginRight="20dp"
-        android:layout_gravity="bottom|end"
-        android:text="@string/trip_button"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginRight="20dp"
+        android:text="@string/add_date_button" />
 </LinearLayout>
