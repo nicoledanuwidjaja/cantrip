@@ -46,16 +46,6 @@ public class MyPlansFragment extends BottomSheetDialogFragment {
         // populate array list with character data
         populateList();
 
-        if (getArguments() != null) {
-            Bundle planBundle = getArguments();
-            planList.add(new Plan(planBundle.getString("name"),
-                    planBundle.getInt("startMonth"), planBundle.getInt("startDay"), planBundle.getInt("startYear"),
-                    planBundle.getInt("endMonth"), planBundle.getInt("endDay"), planBundle.getInt("endYear"),
-                    planBundle.getInt("startTime"), planBundle.getInt("endtime"), planBundle.getString("location"),
-                    convertToType(planBundle.getString("type"))));
-            ;
-        }
-
         CustomPlanListAdapter adapter = new CustomPlanListAdapter(getContext(), planList);
         listOfPlans.setAdapter(adapter);
 
@@ -67,23 +57,22 @@ public class MyPlansFragment extends BottomSheetDialogFragment {
                 Bundle planBundle = new Bundle();
                 planBundle.putString("type", currentPlan.getPlanType().toString());
                 planBundle.putString("name", currentPlan.getName());
-                planBundle.putInt("startMonth", currentPlan.getStartMonth());
-                planBundle.putInt("startDay", currentPlan.getStartDay());
-                planBundle.putInt("startYear", currentPlan.getStartYear());
-                planBundle.putInt("endMonth", currentPlan.getEndMonth());
-                planBundle.putInt("endDay", currentPlan.getEndDay());
-                planBundle.putInt("endYear", currentPlan.getEndYear());
-                planBundle.putInt("startTime", currentPlan.getStartTime());
-                planBundle.putInt("endTime", currentPlan.getEndTime());
+                planBundle.putString("start time", currentPlan.getStartTime().toString());
+                planBundle.putInt("start hour", currentPlan.getStartHour());
+                planBundle.putInt("start min", currentPlan.getStartMin());
+                planBundle.putString("end time", currentPlan.getEndTime().toString());
+                planBundle.putInt("end hour", currentPlan.getEndHour());
+                planBundle.putInt("end min", currentPlan.getEndMin());
                 planBundle.putString("location", currentPlan.getLocation());
+
+                if (currentPlan.getEndLocation() != null) {
+                    planBundle.putString("end location", currentPlan.getEndLocation());
+                }
 
                 AbstractPlanFragment fragPlan = new AbstractPlanFragment();
                 fragPlan.setArguments(planBundle);
 
                 getFragmentManager().beginTransaction().replace(R.id.detailed_plan_container, fragPlan).commit();
-
-                System.out.println("I'M PRINTING OUT A BUNDLE " + planBundle);
-
             }
         });
 
@@ -95,26 +84,12 @@ public class MyPlansFragment extends BottomSheetDialogFragment {
                 FragmentManager planManager = getActivity().getSupportFragmentManager();
                 FragmentTransaction transaction = planManager.beginTransaction();
                 BottomSheetDialogFragment optionFragment = new AddPlanOptionFragment();
+                optionFragment.setArguments(getArguments());
                 optionFragment.show(planManager, "add plan");
                 transaction.addToBackStack(null);
                 transaction.commit();
             }
         });
-
-        // TODO: FIX THIS ADAPTER
-        // custom plan list adapter
-//        CustomPlanListAdapter planAdapter = new CustomPlanListAdapter(getActivity(), planList);
-//
-//        listOfPlans.setAdapter(planAdapter);
-//        listOfPlans.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-//                // trigger second activity - plan information
-//                Intent infoIntent = new Intent(getActivity(), AbstractPlanFragment.class);
-//                infoIntent.putExtra("PLAN", currentPlan);
-//                startActivity(infoIntent);
-//            }
-//        });
 
 
         return view;

@@ -78,20 +78,20 @@ public class AddNewTripDateFragment extends Fragment {
                     endMonth = "" + endDatePicker.getMonth() + 1 + "";
                 }
 
-                Date startDateParsed;
-                Date endDateParsed;
+                String startDate = "" + startMonth+"-" +
+                        (startDatePicker.getDayOfMonth()) + "-" + startDatePicker.getYear() + "";
+                String endDate = "" + endMonth+"-" +
+                        (endDatePicker.getDayOfMonth()) + "-" + endDatePicker.getYear() + "";
+                SimpleDateFormat neededDateFormat = new SimpleDateFormat("MM-dd-yyyy");
+
+                Date startDateParsed = null;
+                Date endDateParsed = null;
 
                 try {
 
-                    String startDate = "" + startMonth + "-" +
-                            (startDatePicker.getDayOfMonth()) + "-" + startDatePicker.getYear() + "";
-                    String endDate = "" + endMonth + "-" +
-                            (endDatePicker.getDayOfMonth()) + "-" + endDatePicker.getYear() + "";
-                    // SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
-                    SimpleDateFormat neededDateFormat = new SimpleDateFormat("MM-dd-yyyy");
+                    startDateParsed = neededDateFormat.parse(startDate);
+                    endDateParsed = neededDateFormat.parse(endDate);
 
-                        startDateParsed = neededDateFormat.parse(startDate);
-                        endDateParsed = neededDateFormat.parse(endDate);
                 } catch (ParseException e) {
                     Log.d("PARSE EXCEPTION", e.getLocalizedMessage());
                 }
@@ -105,12 +105,17 @@ public class AddNewTripDateFragment extends Fragment {
                 newTrip.setPlans(new ArrayList<ItineraryItem>());
 
 
-                databaseReference.child("trips").push().setValue(newTrip);
+                DatabaseReference pushedReference = databaseReference.child("trips").push();
 
-                    MyTripListFragment newTripListFragment = new MyTripListFragment();
-                    transaction.replace(R.id.fragment_container, newTripListFragment);
-                    transaction.commit();
-                }
+                final String tripKey = pushedReference.getKey();
+                newTrip.setId(tripKey);
+
+                pushedReference.setValue(newTrip);
+
+                MyTripListFragment newTripListFragment = new MyTripListFragment();
+                transaction.replace(R.id.fragment_container, newTripListFragment);
+                transaction.commit();
+            }
         });
         return view;
     }

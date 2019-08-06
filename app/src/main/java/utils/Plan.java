@@ -1,9 +1,5 @@
 package utils;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-
-import java.sql.Time;
 import java.util.Date;
 
 /**
@@ -12,103 +8,49 @@ import java.util.Date;
 public class Plan {
 
     // editable properties of a planType
+    private String planId;
+
     private String name;
-    private String time;
-    private String description;
+
+    private Date startTime;
+
+    private Date endTime;
+    private String tripId;
     private Reservation planType;
-
-    private int startDay;
-    private int startMonth;
-    private int startYear;
-    private int endDay;
-    private int endMonth;
-    private int endYear;
-    private int startTime;
-    private int endTime;
     private String location;
+    private String endLocation;
+    private int startHour;
+    private int startMin;
+    private int endHour;
+    private int endMin;
 
-    // throwaway test constructor
-    public Plan(String name, String time, String description, Reservation planType) {
+// throwaway test constructor
+    public Plan(String planId, String name, Date startTime, Date endTime, String tripId, Reservation planType,
+                String location, int startHour, int startMin, int endHour, int endMin) {
+        this.planId = planId;
         this.name = name;
-        this.time = time;
-        this.description = description;
-        // this.imageID = imageID;
-        this.planType = planType;
-    }
-
-    // New Basic Plan Constructor
-    public Plan(String name, int startDay, int startMonth, int startYear, int endDay, int endMonth, int endYear,
-                int startTime, int endTime, String location, Reservation planType) {
-        this.name = name;
-        this.startDay = startDay;
-        this.startMonth = startMonth;
-        this.startYear = startYear;
-        this.endDay = endDay;
-        this.endMonth = endMonth;
-        this.endYear = endYear;
         this.startTime = startTime;
         this.endTime = endTime;
-        this.location = location;
+        this.tripId = tripId;
         this.planType = planType;
+        this.location = location;
+        this.startHour = startHour;
+        this.startMin = startMin;
+        this.endHour = endHour;
+        this.endMin = endMin;
     }
 
-    public int getStartDay() {
-        return startDay;
+    public Plan(String planId, String name, Date startTime, Date endTime, String tripId, Reservation planType,
+                String location, int startHour, int startMin, int endHour, int endMin, String endLocation) {
+        this(planId, name, startTime, endTime, tripId, planType, location, startHour, startMin, endHour, endMin);
+        this.endLocation = endLocation;
     }
 
-    public int getStartMonth() {
-        return startMonth;
-    }
-
-    public int getStartYear() {
-        return startYear;
-    }
-
-    public int getEndDay() {
-        return endDay;
-    }
-
-    public int getEndMonth() {
-        return endMonth;
-    }
-
-    public int getEndYear() {
-        return endYear;
-    }
-
-    public int getStartTime() {
-        return startTime;
-    }
-
-    public int getEndTime() {
-        return endTime;
-    }
+    public String getPlanId() { return planId; }
 
     public String getLocation() {
         return location;
     }
-
-    // collects properties of planType in a parcel
-
-    public Plan(Parcel in) {
-        name = in.readString();
-        time = in.readString();
-        description = in.readString();
-        // imageID = in.readInt();
-    }
-    // builder pattern
-
-//    public static final Creator<Plan> CREATOR = new Creator<Plan>() {
-//        @Override
-//        public Plan createFromParcel(Parcel in) {
-//            return new Plan(in);
-//        }
-//
-//        @Override
-//        public Plan[] newArray(int size) {
-//            return new Plan[size];
-//        }
-//    };
 
     public String getName() {
         return name;
@@ -118,13 +60,6 @@ public class Plan {
         this.name = name;
     }
 
-    public String getTime() {
-        return time;
-    }
-
-    public String getDescription() {
-        return description;
-    }
 
     public Reservation getPlanType() {
         return planType;
@@ -134,16 +69,72 @@ public class Plan {
         this.planType = planType;
     }
 
-//    @Override
-//    public int describeContents() {
-//        return hashCode();
-//    }
+    public Date getStartTime() {
+        return startTime;
+    }
 
-//    @Override
-//    public void writeToParcel(Parcel parcel, int i) {
-//        parcel.writeString(name);
-//        parcel.writeString(time);
-//        parcel.writeString(description);
-//        parcel.writeInt(imageID);
-//    }
+    public void setStartTime(Date startTime) {
+        this.startTime = startTime;
+    }
+
+    public Date getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(Date endTime) {
+        this.endTime = endTime;
+    }
+
+    public String getTripId() {
+        return tripId;
+    }
+
+    public void setTripId(String tripId) {
+        this.tripId = tripId;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public String getEndLocation() {
+        return endLocation;
+    }
+
+    public void setEndLocation(String endLocation) {
+        this.endLocation = endLocation;
+    }
+
+    public int getStartHour() {
+        return startHour;
+    }
+
+    public void setStartHour(int startHour) {
+        this.startHour = startHour;
+    }
+
+    public int getStartMin() {
+        return startMin;
+    }
+
+    public void setStartMin(int startMin) {
+        this.startMin = startMin;
+    }
+
+    public int getEndHour() {
+        return endHour;
+    }
+
+    public void setEndHour(int endHour) {
+        this.endHour = endHour;
+    }
+
+    public int getEndMin() {
+        return endMin;
+    }
+
+    public void setEndMin(int endMin) {
+        this.endMin = endMin;
+    }
+
 }

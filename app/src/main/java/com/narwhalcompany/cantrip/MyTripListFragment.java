@@ -79,15 +79,11 @@ public class MyTripListFragment extends Fragment {
                 // trigger second activity - DetailedTripActivity
 
                 Intent tripIntent = new Intent(getActivity().getApplicationContext(), DetailedTripActivity.class);
-//                tripIntent.putExtra("TRIP", tripList.get(i));
                 tripIntent.putExtra("trip id", tripObjectList.get(i).getId());
 
                 String tripName = tripList.get(i).getStartLoc() + " to " + tripList.get(i).getEndloc();
                 System.out.println("THIS IS MY TRIP " + tripName);
                 tripIntent.putExtra("tripName", tripName);
-
-//                Intent tripIntent = new Intent(getContext(), DetailedTripActivity.class);
-//                tripIntent.putExtra("TRIP", tripList.get(i).getEndLoc());
 
                 startActivity(tripIntent);
             }

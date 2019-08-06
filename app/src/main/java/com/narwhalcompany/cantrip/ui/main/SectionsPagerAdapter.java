@@ -1,6 +1,7 @@
 package com.narwhalcompany.cantrip.ui.main;
 
 import android.content.Context;
+import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
@@ -22,10 +23,12 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
     @StringRes
     private static final int[] TAB_TITLES = new int[]{R.string.plan_activity, R.string.recommended_tab};
     private final Context mContext;
+    private final String tripId;
 
-    public SectionsPagerAdapter(Context context, FragmentManager fm) {
+    public SectionsPagerAdapter(Context context, FragmentManager fm, String tripId) {
         super(fm);
         mContext = context;
+        this.tripId = tripId;
     }
 
     @Override
@@ -37,6 +40,9 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
         switch (position) {
             case 0:
                 selectedFragment = new MyPlansFragment();
+                Bundle bundle = new Bundle();
+                bundle.putString("trip id", this.tripId);
+                selectedFragment.setArguments(bundle);
                 break;
             case 1:
                 selectedFragment = new RecommendedFragment();
