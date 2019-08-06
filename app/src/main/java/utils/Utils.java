@@ -9,6 +9,32 @@ import java.util.Date;
 
 public class Utils {
 
+    public static Date stringToDate(String s) {
+
+        SimpleDateFormat neededDateFormat = new SimpleDateFormat("MM-dd-yyyy");
+
+        Date dateParsed = null;
+
+        try {
+
+            dateParsed = neededDateFormat.parse(s);
+        } catch (ParseException e) {
+            Log.d("PARSE EXCEPTION", e.getLocalizedMessage());
+        }
+
+        return dateParsed;
+    }
+
+    public static int stringToHours(String s) {
+                String[] stringArr = s.split(":");
+                return Integer.parseInt(stringArr[0]);
+    }
+
+    public static int stringToMins(String s) {
+        String[] stringArr = s.split(":");
+        return Integer.parseInt(stringArr[1]);
+    }
+
     public static Date getStaticDate(DatePicker datePicker) {
 
         String date = formatDateToString(datePicker);
