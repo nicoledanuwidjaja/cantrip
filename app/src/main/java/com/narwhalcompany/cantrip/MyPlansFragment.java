@@ -68,7 +68,7 @@ public class MyPlansFragment extends BottomSheetDialogFragment {
         if (tripId != null) {
 
             CustomPlanListAdapter adapter = new CustomPlanListAdapter(getContext(), planList,
-                    dataRef.child("trips").child(tripId));
+                    dataRef.child("trips").child(tripId).child("plans"));
             listOfPlans.setAdapter(adapter);
 
             listOfPlans.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -118,12 +118,13 @@ public class MyPlansFragment extends BottomSheetDialogFragment {
     }
 
     private void populateList() {
-        dataRef.child("trips").child(tripId).addValueEventListener(new ValueEventListener() {
+        dataRef.child("trips").child(tripId).child("plans").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    Plan planObject = (Plan)snapshot.getValue(Plan.class);
-                    planList.add(planObject);
+//                    Plan planObject = snapshot.getValue(Plan.class);
+//                    planList.add(planObject);
+                    Log.d("snapshot", snapshot.toString());
                 }
             }
 

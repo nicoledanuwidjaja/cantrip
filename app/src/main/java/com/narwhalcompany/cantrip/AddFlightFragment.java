@@ -103,7 +103,7 @@ public class AddFlightFragment extends DialogFragment {
 
                 String tripId = getArguments().getString("trip id");
                 DatabaseReference planRef = databaseReference.child("trips").child(tripId)
-                        .child("plans " + tripId).push();
+                        .child("plans").push();
                 String planKey = planRef.getKey();
 
                 Plan newFlight = new Plan(planKey,
