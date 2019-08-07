@@ -142,7 +142,7 @@ public class AddFlightFragment extends DialogFragment {
         Places.initialize(getActivity().getApplicationContext(), apiKey);
         // Initialize the AutocompleteSupportFragment for start location
         AutocompleteSupportFragment startFlightLocation = (AutocompleteSupportFragment)
-                getChildFragmentManager().findFragmentById(R.id.home_flight_search);
+                getFragmentManager().findFragmentById(R.id.home_flight_search);
 
         // Specify the types of place data to return.
         startFlightLocation.setPlaceFields(Arrays.asList(Place.Field.ID, Place.Field.NAME));
