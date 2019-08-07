@@ -25,10 +25,12 @@ import com.narwhalcompany.cantrip.model.main.TripObject;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Map;
 
 
 // import utils.CustomTripOverviewAdapter;
 import utils.CustomTripOverviewAdapter;
+import utils.Plan;
 import utils.TripOverviewAdapterItem;
 
 
@@ -111,12 +113,14 @@ public class MyTripListFragment extends Fragment {
 
         databaseRef.child("trips").addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+            public void onDataChange(@NonNull final DataSnapshot dataSnapshot) {
+
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                TripObject newTrip = snapshot.getValue(TripObject.class);
-                tripObjectList.add(newTrip);
-                tripList.add(new TripOverviewAdapterItem(newTrip.getStartLoc(), newTrip.getEndLoc(),
-                        newTrip.getStartDate(), newTrip.getEndDate()));
+                    TripObject newTrip = snapshot.getValue(TripObject.class);
+
+                    tripObjectList.add(newTrip);
+                    tripList.add(new TripOverviewAdapterItem(newTrip.getStartLoc(), newTrip.getEndLoc(),
+                            newTrip.getStartDate(), newTrip.getEndDate()));
                 }
             }
 

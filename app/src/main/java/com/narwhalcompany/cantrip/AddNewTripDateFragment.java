@@ -25,6 +25,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
+import utils.Plan;
 import utils.Utils;
 
 public class AddNewTripDateFragment extends Fragment {
@@ -72,7 +73,7 @@ public class AddNewTripDateFragment extends Fragment {
                    newTrip.setEndLoc(pastLocationArgs.getString("endLocation"));
                    newTrip.setStartDate(startDateParsed);
                    newTrip.setEndDate(endDateParsed);
-                   newTrip.setPlans(new ArrayList<ItineraryItem>());
+                   newTrip.setPlans(new ArrayList<Plan>());
 
 
                    DatabaseReference pushedReference = databaseReference.child("trips").push();

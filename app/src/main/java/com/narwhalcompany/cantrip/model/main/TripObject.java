@@ -3,6 +3,8 @@ package com.narwhalcompany.cantrip.model.main;
 import java.util.ArrayList;
 import java.util.Date;
 
+import utils.Plan;
+
 public class TripObject {
 
     private Date startDate;
@@ -10,9 +12,9 @@ public class TripObject {
     private String startLoc;
     private String endLoc;
     private String id;
-    private ArrayList<ItineraryItem> plans;
+    private ArrayList<Plan> plans;
 
-    public TripObject(Date startDate, Date endDate, String startLoc, String endLoc, String id, ArrayList<ItineraryItem> plans) {
+    public TripObject(Date startDate, Date endDate, String startLoc, String endLoc, String id, ArrayList<Plan> plans) {
         this.startDate = startDate;
         this.endDate = endDate;
         this.startLoc = startLoc;
@@ -48,7 +50,7 @@ public class TripObject {
 
     public String getId() { return id; }
 
-    public ArrayList<ItineraryItem> getPlans() {
+    public ArrayList<Plan> getPlans() {
         return plans;
     }
 
@@ -68,7 +70,7 @@ public class TripObject {
         this.endLoc = endLoc;
     }
 
-    public void setPlans(ArrayList<ItineraryItem> plans) {
+    public void setPlans(ArrayList<Plan> plans) {
         this.plans = plans;
     }
 
