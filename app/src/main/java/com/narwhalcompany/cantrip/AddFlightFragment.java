@@ -139,7 +139,28 @@ public class AddFlightFragment extends DialogFragment {
             }
         });
 
+        Places.initialize(getActivity().getApplicationContext(), apiKey);
+        // Initialize the AutocompleteSupportFragment for start location
+        AutocompleteSupportFragment startFlightLocation = (AutocompleteSupportFragment)
+                getChildFragmentManager().findFragmentById(R.id.home_flight_search);
+
+        // Specify the types of place data to return.
+        startFlightLocation.setPlaceFields(Arrays.asList(Place.Field.ID, Place.Field.NAME));
+
+        // Set up a PlaceSelectionListener to handle the response.
+        startFlightLocation.setOnPlaceSelectedListener(new PlaceSelectionListener() {
+            @Override
+            public void onPlaceSelected(Place place) {
+                startLoc = place.getName();
+            }
+
+            @Override
+            public void onError(Status status) {
+                Log.i(TAG, "An error occurred: " + status);
+            }
+        });
         // Initialize the AutocompleteSupportFragment for destination
+
         AutocompleteSupportFragment flightEndLocation = (AutocompleteSupportFragment)
                 getFragmentManager().findFragmentById(R.id.destination_flight_search);
 

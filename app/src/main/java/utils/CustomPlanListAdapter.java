@@ -50,7 +50,16 @@ public class CustomPlanListAdapter extends BaseAdapter {
 
             @Override
             public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
-                snapshots.remove(dataSnapshot);
+                Log.d("REMOVED", dataSnapshot.toString());
+
+                String removeKey = dataSnapshot.getKey();
+                for (int i = 0; i < snapshots.size(); i++) {
+                    if (snapshots.get(i).getKey().compareTo(removeKey) == 0) {
+                        snapshots.remove(i);
+                        break;
+                    }
+                }
+
                 notifyDataSetChanged();
             }
 
@@ -82,17 +91,31 @@ public class CustomPlanListAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int i, View view, ViewGroup viewGroup) {
+    public View getView(final int i, View view, ViewGroup viewGroup) {
 
         Plan retrieved = (Plan) getItem(i);
+
+        ImageView planImage;
+        TextView planName;
+        ImageView removeIcon;
+
+
+        ViewHolder viewHolder;
 
         if (view == null) {
             // Create and return the view
             view = View.inflate(context, R.layout.plan_list_item, null);
+
+            viewHolder = new ViewHolder();
+            viewHolder.planImage = view.findViewById(R.id.plan_image);
+            viewHolder.planName = view.findViewById(R.id.plan_name);
+            viewHolder.removeIcon = view.findViewById(R.id.remove_icon);
+
+            view.setTag(viewHolder);
+        } else {
+            viewHolder = (ViewHolder)view.getTag();
         }
 
-        ImageView planImage = view.findViewById(R.id.plan_image);
-        TextView planName = view.findViewById(R.id.plan_name);
 
         // overwrite values of child views based on input from MainActivity
 
@@ -110,17 +133,32 @@ public class CustomPlanListAdapter extends BaseAdapter {
 //                    break;
 //            }
             if (retrieved.getPlanType() == Reservation.FLIGHT) {
-                planImage.setImageResource(R.drawable.plane_horiz);
+                viewHolder.planImage.setImageResource(R.drawable.plane_horiz);
             } else if (retrieved.getPlanType() == Reservation.HOTEL) {
-                planImage.setImageResource(R.drawable.hotel);
+                viewHolder.planImage.setImageResource(R.drawable.hotel);
             } else {
-                planImage.setImageResource(R.drawable.landmark);
+               viewHolder.planImage.setImageResource(R.drawable.landmark);
             }
         }
 
-        planName.setText(retrieved.getName());
+        viewHolder.planName.setText(retrieved.getName());
+        viewHolder.removeIcon.setImageResource(R.drawable.trash);
+
+        viewHolder.removeIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Plan removePlan = (Plan)getItem(i);
+                databaseReference.child(removePlan.getPlanId()).removeValue();
+            }
+        });
 
         // returns view for current row
         return view;
+    }
+
+    static class ViewHolder {
+        TextView planName;
+        ImageView planImage;
+        ImageView removeIcon;
     }
 }

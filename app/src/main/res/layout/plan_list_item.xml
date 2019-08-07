@@ -15,5 +15,10 @@
         android:id="@+id/plan_image"
         android:layout_width="25dp"
         android:layout_height="25dp" />
+    <ImageView
+        android:id="@+id/remove_icon"
+        android:layout_width="18dp"
+        android:layout_height="18dp"
+        android:layout_gravity="right"/>
 
 </LinearLayout>
