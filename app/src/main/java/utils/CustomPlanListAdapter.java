@@ -50,7 +50,16 @@ public class CustomPlanListAdapter extends BaseAdapter {
 
             @Override
             public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
-                snapshots.remove(dataSnapshot);
+                Log.d("REMOVED", dataSnapshot.toString());
+
+                String removeKey = dataSnapshot.getKey();
+                for (int i = 0; i < snapshots.size(); i++) {
+                    if (snapshots.get(i).getKey().compareTo(removeKey) == 0) {
+                        snapshots.remove(i);
+                        break;
+                    }
+                }
+
                 notifyDataSetChanged();
             }
 
