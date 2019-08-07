@@ -113,55 +113,55 @@ public class AddFlightFragment extends DialogFragment {
 
         ticketImage = view.findViewById(R.id.ticketImage);
         confirmationNum = view.findViewById(R.id.confirmationNum);
-        String apiKey = getString(R.string.google_places_api);
+//        String apiKey = getString(R.string.google_places_api);
 
         // Inflate the layout for this fragment
 //        return inflater.inflate(R.layout.fragment_empty_recommended, container, false);
 
-        Places.initialize(getActivity().getApplicationContext(), apiKey);
+//        Places.initialize(getActivity().getApplicationContext(), apiKey);
 
         // Initialize the AutocompleteSupportFragment for start location
-        AutocompleteSupportFragment autocompleteFragment = (AutocompleteSupportFragment)
-                getChildFragmentManager().findFragmentById(R.id.search_bar_flight);
+//        AutocompleteSupportFragment autocompleteFragment = (AutocompleteSupportFragment)
+//                getChildFragmentManager().findFragmentById(R.id.search_bar_flight);
 
         // Specify the types of place data to return.
-        autocompleteFragment.setPlaceFields(Arrays.asList(Place.Field.ID, Place.Field.NAME));
+        // autocompleteFragment.setPlaceFields(Arrays.asList(Place.Field.ID, Place.Field.NAME));
 
         // Set up a PlaceSelectionListener to handle the response.
-        autocompleteFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
-            @Override
-            public void onPlaceSelected(Place place) {
-                departLocation.setText(place.getName());
-            }
-
-            @Override
-            public void onError(Status status) {
-                Log.i(TAG, "An error occurred: " + status);
-            }
-        });
+        // autocompleteFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
+//            @Override
+//            public void onPlaceSelected(Place place) {
+//                departLocation.setText(place.getName());
+//            }
+//
+//            @Override
+//            public void onError(Status status) {
+//                Log.i(TAG, "An error occurred: " + status);
+//            }
+//        });
 
         departLocation = view.findViewById(R.id.departLocation);
         arriveLocation = view.findViewById(R.id.arriveLocation);
 
         // Initialize the AutocompleteSupportFragment for destination
-        AutocompleteSupportFragment autocompleteFragment2 = (AutocompleteSupportFragment)
-                getChildFragmentManager().findFragmentById(R.id.search_bar_flight_2);
+//        AutocompleteSupportFragment autocompleteFragment2 = (AutocompleteSupportFragment)
+//                getChildFragmentManager().findFragmentById(R.id.search_bar_flight_2);
 
         // Specify the types of place data to return.
-        autocompleteFragment2.setPlaceFields(Arrays.asList(Place.Field.ID, Place.Field.NAME));
+//        autocompleteFragment2.setPlaceFields(Arrays.asList(Place.Field.ID, Place.Field.NAME));
 
         // Set up a PlaceSelectionListener to handle the response.
-        autocompleteFragment2.setOnPlaceSelectedListener(new PlaceSelectionListener() {
-            @Override
-            public void onPlaceSelected(Place place) {
-                arriveLocation.setText(place.getName());
-            }
-
-            @Override
-            public void onError(Status status) {
-                Log.i(TAG, "An error occurred: " + status);
-            }
-        });
+//        autocompleteFragment2.setOnPlaceSelectedListener(new PlaceSelectionListener() {
+//            @Override
+//            public void onPlaceSelected(Place place) {
+//                arriveLocation.setText(place.getName());
+//            }
+//
+//            @Override
+//            public void onError(Status status) {
+//                Log.i(TAG, "An error occurred: " + status);
+//            }
+//        });
 
         saveButton = view.findViewById(R.id.saveButton);
         saveButton.setOnClickListener(new View.OnClickListener() {

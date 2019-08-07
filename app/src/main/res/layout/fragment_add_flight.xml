@@ -79,7 +79,7 @@
             android:layout_marginTop="20dp"
             android:hint="Departing from...">
 
-            <TextView
+            <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/departLocation"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -167,7 +167,7 @@
             android:layout_marginTop="20dp"
             android:hint="Arriving in...">
 
-            <TextView
+            <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/arriveLocation"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
