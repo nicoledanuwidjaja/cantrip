@@ -92,14 +92,23 @@
             android:layout_marginTop="30dp"
             android:src="@drawable/event_in" />
 
-        <TextView
-            android:id="@+id/check_in"
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="130dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="20dp"
             android:hint="Check in">
-        </TextView>
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/check_in_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:maxLines="1">
+
+            </com.google.android.material.textfield.TextInputEditText>
+
+        </com.google.android.material.textfield.TextInputLayout>
 
         <ImageView
             android:id="@+id/checkOutImage"
@@ -109,14 +118,28 @@
             android:layout_marginTop="30dp"
             android:src="@drawable/event_out" />
 
-        <TextView
-            android:id="@+id/check_out"
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="130dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="20dp"
             android:hint="Check out">
-        </TextView>
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/check_out_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:maxLines="1" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <fragment
+            android:id="@+id/search_bar_hotel"
+            android:name="com.google.android.libraries.places.widget.AutocompleteSupportFragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center" />
 
     </LinearLayout>
 
