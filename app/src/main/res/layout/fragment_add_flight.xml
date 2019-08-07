@@ -72,24 +72,25 @@
             android:layout_marginTop="30dp"
             android:src="@drawable/depart" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="330dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="20dp"
-            android:hint="Departing from...">
+        <!--<com.google.android.material.textfield.TextInputLayout-->
+            <!--android:layout_width="330dp"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginLeft="10dp"-->
+            <!--android:layout_marginTop="20dp"-->
+            <!--android:hint="Departing from...">-->
 
-            <TextView
-                android:id="@+id/departLocation"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:maxLines="1" />
+            <!--<TextView-->
+                <!--android:id="@+id/departLocation"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:maxLines="1" />-->
 
-        </com.google.android.material.textfield.TextInputLayout>
+        <!--</com.google.android.material.textfield.TextInputLayout>-->
 
         <fragment
             android:id="@+id/search_bar_flight"
             android:name="com.google.android.libraries.places.widget.AutocompleteSupportFragment"
+            android:layout_marginLeft="15dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center" />
@@ -160,24 +161,25 @@
             android:layout_marginTop="30dp"
             android:src="@drawable/arrive" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="330dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="20dp"
-            android:hint="Arriving in...">
+        <!--<com.google.android.material.textfield.TextInputLayout-->
+            <!--android:layout_width="330dp"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginLeft="10dp"-->
+            <!--android:layout_marginTop="20dp"-->
+            <!--android:hint="Arriving in...">-->
 
-            <TextView
-                android:id="@+id/arriveLocation"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:maxLines="1" />
+            <!--<TextView-->
+                <!--android:id="@+id/arriveLocation"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:maxLines="1" />-->
 
-        </com.google.android.material.textfield.TextInputLayout>
+        <!--</com.google.android.material.textfield.TextInputLayout>-->
 
         <fragment
             android:id="@+id/search_bar_flight_2"
             android:name="com.google.android.libraries.places.widget.AutocompleteSupportFragment"
+            android:layout_marginLeft="15dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center" />
