@@ -3,6 +3,13 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="20dp">
+
+    <!-- border line -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorPrimaryDark" />
+
     <TextView
         android:id="@+id/plan_name"
         android:textSize="20sp"

@@ -35,7 +35,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="20dp"
-            android:hint="Hotel name">
+            android:hint="@string/hotel_name">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/hotelName"

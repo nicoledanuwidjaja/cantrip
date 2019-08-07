@@ -37,14 +37,16 @@ public class Plan {
         this.endMin = endMin;
     }
 
+    // General Plan Object
     public Plan(String planId, String name, Date startTime, Date endTime, String tripId, Reservation planType,
                 String location, int startHour, int startMin, int endHour, int endMin, String endLocation) {
         this(planId, name, startTime, endTime, tripId, planType, location, startHour, startMin, endHour, endMin);
         this.endLocation = endLocation;
     }
 
+    // empty constructor for adapter
     public Plan() {
-        // empty constructor for adapter
+
     }
 
     public String getPlanId() { return planId; }

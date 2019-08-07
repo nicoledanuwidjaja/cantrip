@@ -151,9 +151,8 @@ public class AddHotelFragment extends DialogFragment {
                         .child("plans").push();
                 String planKey = planRef.getKey();
 
-
 //                Plan newHotel = new Plan(planKey,
-//                        "Flight to " + location,
+//                        "Hotel at " + location,
 //                        Utils.stringToDate(departDate.getText().toString()),
 //                        Utils.stringToDate(arriveDate.getText().toString()),
 //                        tripId,
@@ -163,10 +162,10 @@ public class AddHotelFragment extends DialogFragment {
 //                        Utils.stringToHours(arriveTime.getText().toString()),
 //                        Utils.stringToMins(arriveTime.getText().toString()),
 //                        location);
-//
-//                planRef.setValue(newFlight);
-//
-//                startActivity(addHotelintent);
+
+//                planRef.setValue(newHotel);
+
+                startActivity(addHotelIntent);
             }
         });
 
