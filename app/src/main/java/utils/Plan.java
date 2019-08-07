@@ -9,11 +9,8 @@ public class Plan {
 
     // editable properties of a planType
     private String planId;
-
     private String name;
-
     private Date startTime;
-
     private Date endTime;
     private String tripId;
     private Reservation planType;

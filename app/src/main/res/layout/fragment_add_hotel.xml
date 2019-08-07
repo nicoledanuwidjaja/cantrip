@@ -92,23 +92,14 @@
             android:layout_marginTop="30dp"
             android:src="@drawable/event_in" />
 
-        <com.google.android.material.textfield.TextInputLayout
+        <TextView
+            android:id="@+id/check_in"
             android:layout_width="130dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="20dp"
             android:hint="Check in">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/checkInDate"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="number"
-                android:maxLines="1">
-
-            </com.google.android.material.textfield.TextInputEditText>
-
-        </com.google.android.material.textfield.TextInputLayout>
+        </TextView>
 
         <ImageView
             android:id="@+id/checkOutImage"
@@ -118,21 +109,14 @@
             android:layout_marginTop="30dp"
             android:src="@drawable/event_out" />
 
-        <com.google.android.material.textfield.TextInputLayout
+        <TextView
+            android:id="@+id/check_out"
             android:layout_width="130dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="20dp"
             android:hint="Check out">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/checkOutDate"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="number"
-                android:maxLines="1" />
-
-        </com.google.android.material.textfield.TextInputLayout>
+        </TextView>
 
     </LinearLayout>
 
