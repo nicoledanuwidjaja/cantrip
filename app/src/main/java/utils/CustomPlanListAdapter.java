@@ -117,21 +117,7 @@ public class CustomPlanListAdapter extends BaseAdapter {
         }
 
 
-        // overwrite values of child views based on input from MainActivity
-
         if (retrieved != null) {
-
-//            switch (retrieved.getPlanType()) {
-//                case FLIGHT:
-//                    planImage.setImageResource(R.drawable.plane_horiz);
-//                    break;
-//                case HOTEL:
-//                    planImage.setImageResource(R.drawable.hotel);
-//                    break;
-//                case LANDMARK:
-//                    planImage.setImageResource(R.drawable.landmark);
-//                    break;
-//            }
             if (retrieved.getPlanType() == Reservation.FLIGHT) {
                 viewHolder.planImage.setImageResource(R.drawable.plane_horiz);
             } else if (retrieved.getPlanType() == Reservation.HOTEL) {
