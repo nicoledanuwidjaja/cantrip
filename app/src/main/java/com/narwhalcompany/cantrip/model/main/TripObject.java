@@ -1,7 +1,9 @@
 package com.narwhalcompany.cantrip.model.main;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Locale;
 
 import utils.Plan;
 
@@ -13,6 +15,7 @@ public class TripObject {
     private String endLoc;
     private String id;
     private ArrayList<Plan> plans;
+    private SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy", Locale.US);
 
     public TripObject(Date startDate, Date endDate, String startLoc, String endLoc, String id, ArrayList<Plan> plans) {
         this.startDate = startDate;
@@ -25,6 +28,11 @@ public class TripObject {
 
     public TripObject() {
 
+    }
+
+    // formats a date to US calendar format
+    public String formatDate(Date date) {
+        return format.format(date);
     }
 
     @Override

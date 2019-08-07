@@ -91,7 +91,8 @@ public class CustomTripOverviewAdapter extends BaseAdapter {
 
             viewHolder = new ViewHolder();
             viewHolder.tripLocations = view.findViewById(R.id.trip_locations);
-            viewHolder.tripDates = view.findViewById(R.id.trip_dates);
+            viewHolder.startDate = view.findViewById(R.id.start_date);
+            viewHolder.endDate = view.findViewById(R.id.end_date);
 
             view.setTag(viewHolder);
         } else {
@@ -100,7 +101,8 @@ public class CustomTripOverviewAdapter extends BaseAdapter {
 
         TripObject tripObject = (TripObject)getItem(i);
         viewHolder.tripLocations.setText(tripObject.getStartLoc() + " to " + tripObject.getEndLoc());
-        viewHolder.tripDates.setText(tripObject.getStartDate() + " to " + tripObject.getEndDate());
+        viewHolder.startDate.setText("Start: " + tripObject.formatDate(tripObject.getStartDate()));
+        viewHolder.endDate.setText("End: " + tripObject.formatDate(tripObject.getEndDate()));
 
 
         return view;
@@ -108,9 +110,9 @@ public class CustomTripOverviewAdapter extends BaseAdapter {
 
     static class ViewHolder {
         TextView tripLocations;
-        TextView tripDates;
+        TextView startDate;
+        TextView endDate;
     }
-
 }
 
 
