@@ -56,7 +56,9 @@ public class TripObject {
         return endLoc;
     }
 
-    public String getId() { return id; }
+    public String getId() {
+        return id;
+    }
 
     public ArrayList<Plan> getPlans() {
         return plans;
@@ -82,5 +84,7 @@ public class TripObject {
         this.plans = plans;
     }
 
-    public void setId(String id) { this.id = id; }
+    public void setId(String id) {
+        this.id = id;
+    }
 }

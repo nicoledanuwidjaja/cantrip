@@ -17,11 +17,22 @@
             android:id="@+id/trip_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textStyle="bold"
             android:background="@color/colorPrimary"
             android:gravity="center"
             android:padding="10dp"
             android:textColor="#FFFFFF"
             android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/trip_duration"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorPrimary"
+            android:gravity="center"
+            android:padding="10dp"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"></TextView>
 
         <ScrollView
             android:layout_width="match_parent"
@@ -43,7 +54,7 @@
                 android:id="@+id/tabs"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/background_color"/>
+                android:background="@color/background_color" />
         </com.google.android.material.appbar.AppBarLayout>
 
         <androidx.viewpager.widget.ViewPager

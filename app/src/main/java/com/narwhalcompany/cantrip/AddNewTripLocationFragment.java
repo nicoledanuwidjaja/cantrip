@@ -50,6 +50,7 @@ public class AddNewTripLocationFragment extends Fragment {
         AutocompleteSupportFragment autocompleteFragment = (AutocompleteSupportFragment)
                 getChildFragmentManager().findFragmentById(R.id.autocomplete_fragment);
 
+        Log.d("Fragment WORKS", Place.Field.ID.toString() + Place.Field.NAME);
         // Specify the types of place data to return.
         autocompleteFragment.setPlaceFields(Arrays.asList(Place.Field.ID, Place.Field.NAME));
 

@@ -67,21 +67,21 @@ public class AddHotelFragment extends DialogFragment {
         Places.initialize(getActivity().getApplicationContext(), apiKey);
 
         // Initialize the AutocompleteSupportFragment for start location
-                AutocompleteSupportFragment hotelLocation = (AutocompleteSupportFragment)
-                        getChildFragmentManager().findFragmentById(R.id.search_bar_hotel);
+        AutocompleteSupportFragment hotelLocation = (AutocompleteSupportFragment)
+                getFragmentManager().findFragmentById(R.id.search_bar_hotel);
 
-                // Specify the types of place data to return.
-                hotelLocation.setPlaceFields(Arrays.asList(Place.Field.ID, Place.Field.NAME));
+        // Specify the types of place data to return.
+        hotelLocation.setPlaceFields(Arrays.asList(Place.Field.ID, Place.Field.NAME));
 
-                // Set up a PlaceSelectionListener to handle the response.
-                hotelLocation.setOnPlaceSelectedListener(new PlaceSelectionListener() {
-                    @Override
-                    public void onPlaceSelected(Place place) {
-                        location = place.getName();
-                    }
+        // Set up a PlaceSelectionListener to handle the response.
+        hotelLocation.setOnPlaceSelectedListener(new PlaceSelectionListener() {
+            @Override
+            public void onPlaceSelected(Place place) {
+                location = place.getName();
+            }
 
-                    @Override
-                    public void onError(Status status) {
+            @Override
+            public void onError(Status status) {
                 Log.i(TAG, "An error occurred: " + status);
             }
         });
@@ -141,34 +141,34 @@ public class AddHotelFragment extends DialogFragment {
                         hotelEndDate.get(Calendar.DAY_OF_MONTH)).show();
             }
         });
-//
-//        saveButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent addHotelIntent = new Intent(getActivity(), DetailedTripActivity.class);
-//                String tripId = getArguments().getString("trip id");
-//                DatabaseReference planRef = databaseReference.child("trips").child(tripId)
-//                        .child("plans").push();
-//                String planKey = planRef.getKey();
-//
-//
+
+        saveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent addHotelIntent = new Intent(getActivity(), DetailedTripActivity.class);
+                String tripId = getArguments().getString("trip id");
+                DatabaseReference planRef = databaseReference.child("trips").child(tripId)
+                        .child("plans").push();
+                String planKey = planRef.getKey();
+
+
 //                Plan newHotel = new Plan(planKey,
-//                        "Flight to " + endLocation,
+//                        "Flight to " + location,
 //                        Utils.stringToDate(departDate.getText().toString()),
 //                        Utils.stringToDate(arriveDate.getText().toString()),
 //                        tripId,
-//                        Reservation.HOTEL, startLocation,
+//                        Reservation.HOTEL, null,
 //                        Utils.stringToHours(departTime.getText().toString()),
 //                        Utils.stringToMins(departTime.getText().toString()),
 //                        Utils.stringToHours(arriveTime.getText().toString()),
 //                        Utils.stringToMins(arriveTime.getText().toString()),
-//                        endLocation);
+//                        location);
 //
 //                planRef.setValue(newFlight);
 //
 //                startActivity(addHotelintent);
-//            }
-//        });
+            }
+        });
 
         // Inflate the layout for this fragment
         return view;

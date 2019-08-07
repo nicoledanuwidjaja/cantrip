@@ -41,9 +41,7 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
         switch (position) {
             case 0:
-
                 selectedFragment = new MyPlansFragment(bundle);
-
                 break;
             case 1:
                 selectedFragment = new RecommendedFragment();

@@ -25,19 +25,9 @@ import com.narwhalcompany.cantrip.model.main.TripObject;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Map;
-
-
-// import utils.CustomTripOverviewAdapter;
 import utils.CustomTripOverviewAdapter;
-import utils.Plan;
 import utils.TripOverviewAdapterItem;
 
-
-
-/**
- * A simple {@link Fragment} subclass.
- */
 public class MyTripListFragment extends Fragment {
 
 
@@ -47,7 +37,6 @@ public class MyTripListFragment extends Fragment {
 
     ArrayList<TripObject> tripObjectList = new ArrayList<>();
     DatabaseReference databaseRef = FirebaseDatabase.getInstance().getReference();
-
 
 
     public MyTripListFragment() {
@@ -81,11 +70,14 @@ public class MyTripListFragment extends Fragment {
                 // trigger second activity - DetailedTripActivity
 
                 Intent tripIntent = new Intent(getActivity().getApplicationContext(), DetailedTripActivity.class);
-                tripIntent.putExtra("trip id", tripObjectList.get(i).getId());
 
                 String tripName = tripList.get(i).getStartLoc() + " to " + tripList.get(i).getEndloc();
-                System.out.println("THIS IS MY TRIP " + tripName);
+                String tripDuration = tripObjectList.get(i).formatDate(tripList.get(i).getStartDate())
+                        + " - " + tripObjectList.get(i).formatDate(tripList.get(i).getEndDate());
+
+                tripIntent.putExtra("trip id", tripObjectList.get(i).getId());
                 tripIntent.putExtra("tripName", tripName);
+                tripIntent.putExtra("tripDuration", tripDuration);
 
                 startActivity(tripIntent);
             }
@@ -109,7 +101,6 @@ public class MyTripListFragment extends Fragment {
     public void populateList() {
 
         tripList.add(new TripOverviewAdapterItem("place 1", "place2", new Date(), new Date()));
-
 
         databaseRef.child("trips").addValueEventListener(new ValueEventListener() {
             @Override

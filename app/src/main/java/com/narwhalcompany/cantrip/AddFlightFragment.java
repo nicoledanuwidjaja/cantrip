@@ -17,11 +17,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
 import utils.OnDateClick;
 import utils.OnTimeClick;
 import utils.Plan;
@@ -42,26 +45,27 @@ import static androidx.constraintlayout.widget.Constraints.TAG;
 
 public class AddFlightFragment extends DialogFragment {
 
-    ImageView airplaneImage;
-    TextInputEditText airlineText;
-    TextInputEditText flightText;
+    private ImageView airplaneImage;
+    private EditText airlineText;
+    private EditText flightText;
 
-    ImageView departImage;
-    TextInputEditText departLocation;
-    TextInputEditText departDate;
-    TextInputEditText departTime;
+    private ImageView departImage;
+    private TextView departLocation;
+    private EditText departDate;
+    private EditText departTime;
 
-    ImageView arriveImage;
-    TextInputEditText arriveLocation;
-    TextInputEditText arriveDate;
-    TextInputEditText arriveTime;
+    private ImageView arriveImage;
+    private TextView arriveLocation;
+    private EditText arriveDate;
+    private EditText arriveTime;
 
-    ImageView ticketImage;
-    TextInputEditText confirmationNum;
+    private ImageView ticketImage;
+    private EditText confirmationNum;
 
     private Button saveButton;
-
     private String tripId;
+    private String startLoc;
+    private String endLoc;
 
     private DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
 
@@ -95,7 +99,6 @@ public class AddFlightFragment extends DialogFragment {
         flightText = view.findViewById(R.id.flightText);
 
         departImage = view.findViewById(R.id.departImage);
-        departLocation = view.findViewById(R.id.departLocation);
 
         departDate = view.findViewById(R.id.departDate);
         departDate.setOnClickListener(new OnDateClick());
@@ -104,7 +107,6 @@ public class AddFlightFragment extends DialogFragment {
         departTime.setOnClickListener(new OnTimeClick());
 
         arriveImage = view.findViewById(R.id.arriveImage);
-        arriveLocation = view.findViewById(R.id.arriveLocation);
         arriveDate = view.findViewById(R.id.arriveDate);
         arriveDate.setOnClickListener(new OnDateClick());
 
@@ -115,23 +117,20 @@ public class AddFlightFragment extends DialogFragment {
         confirmationNum = view.findViewById(R.id.confirmationNum);
         String apiKey = getString(R.string.google_places_api);
 
-        // Inflate the layout for this fragment
-//        return inflater.inflate(R.layout.fragment_empty_recommended, container, false);
-
         Places.initialize(getActivity().getApplicationContext(), apiKey);
 
         // Initialize the AutocompleteSupportFragment for start location
-        AutocompleteSupportFragment autocompleteFragment = (AutocompleteSupportFragment)
-                getChildFragmentManager().findFragmentById(R.id.search_bar_flight);
+        AutocompleteSupportFragment flightStartLocation = (AutocompleteSupportFragment)
+                getFragmentManager().findFragmentById(R.id.home_flight_search);
 
         // Specify the types of place data to return.
-        autocompleteFragment.setPlaceFields(Arrays.asList(Place.Field.ID, Place.Field.NAME));
+        flightStartLocation.setPlaceFields(Arrays.asList(Place.Field.ID, Place.Field.NAME));
 
         // Set up a PlaceSelectionListener to handle the response.
-        autocompleteFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
+        flightStartLocation.setOnPlaceSelectedListener(new PlaceSelectionListener() {
             @Override
             public void onPlaceSelected(Place place) {
-                departLocation.setText(place.getName());
+                startLoc = place.getName();
             }
 
             @Override
@@ -140,21 +139,18 @@ public class AddFlightFragment extends DialogFragment {
             }
         });
 
-        departLocation = view.findViewById(R.id.departLocation);
-        arriveLocation = view.findViewById(R.id.arriveLocation);
-
         // Initialize the AutocompleteSupportFragment for destination
-        AutocompleteSupportFragment autocompleteFragment2 = (AutocompleteSupportFragment)
-                getChildFragmentManager().findFragmentById(R.id.search_bar_flight_2);
+        AutocompleteSupportFragment flightEndLocation = (AutocompleteSupportFragment)
+                getFragmentManager().findFragmentById(R.id.destination_flight_search);
 
         // Specify the types of place data to return.
-        autocompleteFragment2.setPlaceFields(Arrays.asList(Place.Field.ID, Place.Field.NAME));
+        flightEndLocation.setPlaceFields(Arrays.asList(Place.Field.ID, Place.Field.NAME));
 
         // Set up a PlaceSelectionListener to handle the response.
-        autocompleteFragment2.setOnPlaceSelectedListener(new PlaceSelectionListener() {
+        flightEndLocation.setOnPlaceSelectedListener(new PlaceSelectionListener() {
             @Override
             public void onPlaceSelected(Place place) {
-                arriveLocation.setText(place.getName());
+                endLoc = place.getName();
             }
 
             @Override
@@ -170,23 +166,20 @@ public class AddFlightFragment extends DialogFragment {
                 Intent addFlightIntent = new Intent(getActivity(), DetailedTripActivity.class);
 
                 addFlightIntent.putExtra("trip id", tripId);
-
-//                String tripId = getArguments().getString("trip id");
                 DatabaseReference planRef = databaseReference.child("plans" + tripId).push();
                 String planKey = planRef.getKey();
 
-
                 Plan newFlight = new Plan(planKey,
-                        "Flight to " + arriveLocation.getText().toString(),
+                        "Flight to " + endLoc,
                         Utils.stringToDate(departDate.getText().toString()),
                         Utils.stringToDate(arriveDate.getText().toString()),
                         tripId,
-                        Reservation.FLIGHT, departLocation.getText().toString(),
+                        Reservation.FLIGHT, startLoc,
                         Utils.stringToHours(departTime.getText().toString()),
                         Utils.stringToMins(departTime.getText().toString()),
                         Utils.stringToHours(arriveTime.getText().toString()),
                         Utils.stringToMins(arriveTime.getText().toString()),
-                        arriveLocation.getText().toString());
+                        endLoc);
 
                 planRef.setValue(newFlight);
 
@@ -197,7 +190,6 @@ public class AddFlightFragment extends DialogFragment {
 
         return view;
     }
-
 
 
 }

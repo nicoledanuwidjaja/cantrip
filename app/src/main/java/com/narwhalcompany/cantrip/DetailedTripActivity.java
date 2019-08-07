@@ -17,6 +17,9 @@ import com.narwhalcompany.cantrip.ui.main.SectionsPagerAdapter;
 
 public class DetailedTripActivity extends AppCompatActivity {
 
+    private TextView tripTitle;
+    private TextView tripDuration;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,6 +27,8 @@ public class DetailedTripActivity extends AppCompatActivity {
 
         // view and tab layout
         ViewPager viewPager = findViewById(R.id.view_pager);
+
+        // unique trip id for each trip
         String tripId = getIntent().getStringExtra("trip id");
         SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this,
                 getSupportFragmentManager(), tripId);
@@ -31,14 +36,14 @@ public class DetailedTripActivity extends AppCompatActivity {
         TabLayout tabs = findViewById(R.id.tabs);
         tabs.setupWithViewPager(viewPager);
 
-        TextView tripTitle = findViewById(R.id.trip_title);
-
-        FragmentManager manager = getSupportFragmentManager();
-        FragmentTransaction transaction = manager.beginTransaction();
+        tripTitle = findViewById(R.id.trip_title);
+        tripDuration = findViewById(R.id.trip_duration);
 
         // populates data from List of Trips
         String tripName = getIntent().getStringExtra("tripName");
+        String tripTime = getIntent().getStringExtra("tripDuration");
 
-        tripTitle.setText(tripName);
+        tripTitle.setText("Trip from " + tripName);
+        tripDuration.setText("Date: " +  tripTime);
     }
 }
