@@ -25,10 +25,12 @@ import com.narwhalcompany.cantrip.model.main.TripObject;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Map;
 
 
 // import utils.CustomTripOverviewAdapter;
 import utils.CustomTripOverviewAdapter;
+import utils.Plan;
 import utils.TripOverviewAdapterItem;
 
 
@@ -111,12 +113,36 @@ public class MyTripListFragment extends Fragment {
 
         databaseRef.child("trips").addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+            public void onDataChange(@NonNull final DataSnapshot dataSnapshot) {
+//                final TripObject newTrip = new TripObject();
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                TripObject newTrip = snapshot.getValue(TripObject.class);
-                tripObjectList.add(newTrip);
-                tripList.add(new TripOverviewAdapterItem(newTrip.getStartLoc(), newTrip.getEndLoc(),
-                        newTrip.getStartDate(), newTrip.getEndDate()));
+//                    final ArrayList<Plan> plansList = new ArrayList<>();
+//                    databaseRef.child("trips").child(snapshot.getKey()).child("plans").addValueEventListener(new ValueEventListener() {
+//                        @Override
+//                        public void onDataChange(@NonNull DataSnapshot dataSnapshot1) {
+//                            for (DataSnapshot snapshot1 : dataSnapshot1.getChildren()) {
+//                                Plan newPlan = snapshot1.getValue(Plan.class);
+//                                plansList.add(newPlan);
+//                            }
+//                            newTrip.setPlans(plansList);
+//                        }
+//
+//                        @Override
+//                        public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//                        }
+//                    });
+                    TripObject newTrip = snapshot.getValue(TripObject.class);
+
+//                    newTrip.setId(snapshot.getKey());
+//                    newTrip.setStartLoc(snapshot.child(snapshot.getKey()).child("startLoc").toString());
+//                    newTrip.setEndLoc(snapshot.child(snapshot.getKey()).child("endLoc").toString());
+//                    newTrip.setStartDate(snapshot.child(snapshot.getKey()).child("startDate").getValue(Date.class));
+//                    newTrip.setEndDate(snapshot.child(snapshot.getKey()).child("endDate").getValue(Date.class));
+
+                    tripObjectList.add(newTrip);
+                    tripList.add(new TripOverviewAdapterItem(newTrip.getStartLoc(), newTrip.getEndLoc(),
+                            newTrip.getStartDate(), newTrip.getEndDate()));
                 }
             }
 
