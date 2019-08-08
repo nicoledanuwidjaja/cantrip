@@ -84,7 +84,8 @@ public class MyPlansFragment extends BottomSheetDialogFragment {
                     planBundle.putInt("end hour", currentPlan.getEndHour());
                     planBundle.putInt("end min", currentPlan.getEndMin());
 
-                   // planBundle.putString("start time", currentPlan.getStartTime().toString());
+                    planBundle.putString("start time", currentPlan.getStartTime().toString());
+                    planBundle.putString("end time", currentPlan.getEndTime().toString());
 
                     // edge cases is true for landmark or hotel which only have one location
                     if (currentPlan.getEndLocation() != null) {

@@ -46,8 +46,8 @@ public class AbstractPlanFragment extends DialogFragment {
         String planName = getArguments().getString("name");
         String planStartLoc = getArguments().getString("start location");
         String planEndLoc = getArguments().getString("end location");
-        String planStartDate = getArguments().getString("start date");
-        String planEndDate = getArguments().getString("end date");
+        String planStartDate = getArguments().getString("start time");
+        String planEndDate = getArguments().getString("end time");
         String planStartTime = getArguments().getInt("start hour") + ":" +
                 getArguments().getInt("start min");
         String planEndTime = getArguments().getInt("end hour") + ":" +
