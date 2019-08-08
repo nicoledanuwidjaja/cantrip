@@ -60,11 +60,9 @@ public class AddNewTripDateFragment extends Fragment {
 
                 Bundle pastLocationArgs = getArguments();
 
-
                if (!Utils.checkEndDateValid(startDatePicker, endDatePicker)) {
                    Toast.makeText(getContext(), "End date cannot be before start date", Toast.LENGTH_SHORT).show();
                } else {
-
                    Date startDateParsed = Utils.getStaticDate(startDatePicker);
                    Date endDateParsed = Utils.getStaticDate(endDatePicker);
 
@@ -74,7 +72,6 @@ public class AddNewTripDateFragment extends Fragment {
                    newTrip.setStartDate(startDateParsed);
                    newTrip.setEndDate(endDateParsed);
                    newTrip.setPlans(new ArrayList<Plan>());
-
 
                    DatabaseReference pushedReference = databaseReference.child("trips").push();
 

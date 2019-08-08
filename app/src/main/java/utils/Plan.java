@@ -63,7 +63,6 @@ public class Plan {
         this.name = name;
     }
 
-
     public Reservation getPlanType() {
         return planType;
     }

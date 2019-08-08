@@ -27,7 +27,7 @@ public class CustomPlanListAdapter extends BaseAdapter {
     // contains data points to be populated on items
     private ArrayList<Plan> planList;
 
-    private  ArrayList<DataSnapshot> snapshots = new ArrayList<>();
+    private ArrayList<DataSnapshot> snapshots = new ArrayList<>();
     private DatabaseReference databaseReference;
 
     public CustomPlanListAdapter(Context context, ArrayList<Plan> planList,
@@ -98,7 +98,6 @@ public class CustomPlanListAdapter extends BaseAdapter {
         ImageView planImage;
         TextView planName;
         ImageView removeIcon;
-
 
         ViewHolder viewHolder;
 

@@ -46,4 +46,10 @@ public class DetailedTripActivity extends AppCompatActivity {
         tripTitle.setText("Trip from " + tripName);
         tripDuration.setText("Date: " +  tripTime);
     }
+
+    @Override
+    public void onBackPressed() {
+        Intent tripListIntent = new Intent(this, MainActivity.class);
+        startActivity(tripListIntent);
+    }
 }

@@ -33,7 +33,7 @@ public class MyPlansFragment extends BottomSheetDialogFragment {
     private ListView listOfPlans;
     private ArrayList<Plan> planList = new ArrayList<>();
     private FloatingActionButton addNewPlanButton;
-    DatabaseReference dataRef = FirebaseDatabase.getInstance().getReference();
+    private DatabaseReference dataRef = FirebaseDatabase.getInstance().getReference();
 
     private Bundle bundle;
 

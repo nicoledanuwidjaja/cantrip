@@ -4,13 +4,13 @@
     android:layout_height="wrap_content"
     android:background="@color/colorPrimary">
 
+    <item android:background="#FFFFFF"/>
 
     <item>
         <bitmap
             android:gravity="center"
             android:src="@drawable/cantriplogo" />
     </item>
-    <item android:drawable="@android:color/white" />
 
 
 </layer-list>
