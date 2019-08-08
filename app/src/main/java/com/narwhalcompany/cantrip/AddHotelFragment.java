@@ -47,6 +47,7 @@ public class AddHotelFragment extends DialogFragment {
     private String location;
 
     private String tripId;
+    private String placeId;
     private String startLoc;
     private String endLoc;
 
@@ -59,8 +60,6 @@ public class AddHotelFragment extends DialogFragment {
     public AddHotelFragment(String tripId) {
         this.tripId = tripId;
     }
-
-
 
 
     static AddHotelFragment newInstance() {
@@ -105,6 +104,7 @@ public class AddHotelFragment extends DialogFragment {
         hotelLocation.setOnPlaceSelectedListener(new PlaceSelectionListener() {
             @Override
             public void onPlaceSelected(Place place) {
+                placeId = place.getId();
                 location = place.getName();
             }
 
@@ -119,6 +119,8 @@ public class AddHotelFragment extends DialogFragment {
             public void onClick(View view) {
                 Intent addHotelIntent = new Intent(getActivity(), DetailedTripActivity.class);
                 addHotelIntent.putExtra("trip id", tripId);
+                addHotelIntent.putExtra("place id", placeId);
+
                 DatabaseReference planRef = databaseReference.child("plans" + tripId).push();
                 String planKey = planRef.getKey();
 

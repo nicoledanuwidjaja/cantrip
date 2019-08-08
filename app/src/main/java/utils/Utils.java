@@ -18,8 +18,8 @@ public class Utils {
     }
 
     public static int stringToHours(String s) {
-                String[] stringArr = s.split(":");
-                return Integer.parseInt(stringArr[0]);
+        String[] stringArr = s.split(":");
+        return Integer.parseInt(stringArr[0]);
     }
 
     public static int stringToMins(String s) {

@@ -37,17 +37,21 @@ public class FlightFragment extends AbstractPlanFragment {
         String planName = getArguments().getString("flightName");
         String planFromLocation = getArguments().getString("flightStartLoc");
         String planToLocation = getArguments().getString("flightEndLoc");
+        String planFromDate = getArguments().getString("flightStartDate");
+        String planToDate = getArguments().getString("flightEndDate");
         String planFromTime = getArguments().getString("flightStartTime");
         String planToTime = getArguments().getString("flightEndTime");
+
+        String flightFromDate = planFromDate + " at " + planFromTime;
+        String flightToDate = planToDate + " at " + planToTime;
         String flightName = "Flight to " + planToLocation;
 
         name.setText(flightName);
         airplaneName.setText(planName);
         fromLocation.setText(planFromLocation);
-
         toLocation.setText(planToLocation);
-        fromTime.setText(planFromTime);
-        toTime.setText(planToTime);
+        fromTime.setText(flightFromDate);
+        toTime.setText(flightToDate);
 
         return view;
     }

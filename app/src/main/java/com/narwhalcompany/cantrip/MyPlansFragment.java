@@ -84,7 +84,6 @@ public class MyPlansFragment extends BottomSheetDialogFragment {
                     planBundle.putInt("start min", currentPlan.getStartMin());
                     planBundle.putInt("end hour", currentPlan.getEndHour());
                     planBundle.putInt("end min", currentPlan.getEndMin());
-
                     planBundle.putString("start time", Utils.formatDate(currentPlan.getStartTime()));
                     planBundle.putString("end time", Utils.formatDate(currentPlan.getEndTime()));
 

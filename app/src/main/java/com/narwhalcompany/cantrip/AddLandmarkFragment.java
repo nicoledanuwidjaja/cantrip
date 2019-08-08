@@ -93,11 +93,7 @@ public class AddLandmarkFragment extends DialogFragment {
         // set up Places API
         String apiKey = getString(R.string.google_places_api);
 
-        Places.initialize(
-
-                getActivity().
-
-                        getApplicationContext(), apiKey);
+        Places.initialize(getActivity().getApplicationContext(), apiKey);
 
         // Initialize the AutocompleteSupportFragment for start location
         AutocompleteSupportFragment landmarkLocation = (AutocompleteSupportFragment)

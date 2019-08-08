@@ -46,8 +46,8 @@ public class AbstractPlanFragment extends DialogFragment {
         String planName = getArguments().getString("name");
         String planStartLoc = getArguments().getString("start location");
         String planEndLoc = getArguments().getString("end location");
-        String planStartDate = getArguments().getString("start time");
-        String planEndDate = getArguments().getString("end time");
+        String planStartDate = getArguments().getString("start date");
+        String planEndDate = getArguments().getString("end date");
         String planStartTime = getArguments().getInt("start hour") + ":" +
                 getArguments().getInt("start min");
         String planEndTime = getArguments().getInt("end hour") + ":" +
@@ -59,7 +59,6 @@ public class AbstractPlanFragment extends DialogFragment {
         switch (planSelection) {
             case "flight":
                 fragPlan = new FlightFragment();
-
                 planBundle.putString("flightName", planName);
                 planBundle.putString("flightStartLoc", planStartLoc);
                 planBundle.putString("flightEndLoc", planEndLoc);
@@ -67,7 +66,6 @@ public class AbstractPlanFragment extends DialogFragment {
                 planBundle.putString("flightEndTime", planEndTime);
                 planBundle.putString("flightStartDate", planStartDate);
                 planBundle.putString("flightEndDate", planEndDate);
-
                 fragPlan.setArguments(planBundle);
                 fragPlan.show(planManager, "flight");
                 break;
