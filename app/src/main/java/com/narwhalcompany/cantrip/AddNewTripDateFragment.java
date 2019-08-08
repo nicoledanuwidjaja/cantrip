@@ -1,6 +1,7 @@
 package com.narwhalcompany.cantrip;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -11,6 +12,7 @@ import android.widget.DatePicker;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -28,7 +30,7 @@ import java.util.Date;
 import utils.Plan;
 import utils.Utils;
 
-public class AddNewTripDateFragment extends Fragment {
+public class AddNewTripDateFragment extends DialogFragment {
 
     private TextView tripFromDate;
     private TextView tripToDate;
@@ -39,6 +41,15 @@ public class AddNewTripDateFragment extends Fragment {
 
     private Button completeButton;
 
+    static AddNewTripDateFragment newInstance() {
+        return new AddNewTripDateFragment();
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setStyle(DialogFragment.STYLE_NORMAL, R.style.FullScreenDialogTheme);
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -80,6 +91,9 @@ public class AddNewTripDateFragment extends Fragment {
                    newTrip.setId(tripKey);
 
                    pushedReference.setValue(newTrip);
+
+                   Intent mainIntent = new Intent(getActivity(), MainActivity.class);
+                   startActivity(mainIntent);
 
                    MyTripListFragment newTripListFragment = new MyTripListFragment();
                    transaction.replace(R.id.fragment_container, newTripListFragment);

@@ -31,7 +31,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="20dp"
-        android:text="Ryanair 7069"
+        android:text="Airlines"
         android:textSize="20sp" />
 
     <LinearLayout
@@ -39,39 +39,21 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/from_airport"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="10dp"
-            android:text="BOS"
-            android:textSize="30sp" />
-
         <ImageView
             android:id="@+id/plane_image"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="20dp"
             android:layout_marginTop="15dp"
             android:src="@drawable/airplane" />
 
         <View
             android:id="@+id/border_line2"
-            android:layout_width="200dp"
+            android:layout_width="325dp"
             android:layout_height="2dp"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="20dp"
             android:layout_marginTop="30dp"
             android:background="@color/colorPrimaryDark" />
-
-        <TextView
-            android:id="@+id/to_airport"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:text="CIA"
-            android:textSize="30sp" />
 
     </LinearLayout>
 
@@ -82,7 +64,63 @@
         android:background="@color/colorPrimaryDark" />
 
     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/from_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="25dp"
+            android:gravity="right"
+            android:text="From:"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/from_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="35dp"
+            android:layout_marginTop="25dp"
+            android:gravity="end"
+            android:text="Thu, Jun 21 8:05 PM"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/to_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="25dp"
+            android:text="To:"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/to_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="35dp"
+            android:layout_marginTop="25dp"
+            android:gravity="right"
+            android:text="Thu, Jun 21 10:52 PM"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="20dp"
+        android:background="@color/colorPrimaryDark" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
@@ -96,21 +134,11 @@
             android:textSize="20sp" />
 
         <TextView
-            android:id="@+id/from_location"
+            android:id="@+id/start_location"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
+            android:layout_marginLeft="20dp"
             android:layout_marginTop="25dp"
-            android:text="From:"
-            android:textSize="20sp" />
-
-        <TextView
-            android:id="@+id/from_time"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:gravity="right"
-            android:text="Thu, Jun 21 8:05 PM"
             android:textSize="15sp" />
     </LinearLayout>
 
@@ -120,7 +148,7 @@
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/to_label"
+            android:id="@+id/arrives_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="15dp"
@@ -129,21 +157,11 @@
             android:textSize="20sp" />
 
         <TextView
-            android:id="@+id/to_location"
+            android:id="@+id/end_location"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
+            android:layout_marginLeft="20dp"
             android:layout_marginTop="25dp"
-            android:text="To:"
-            android:textSize="20sp" />
-
-        <TextView
-            android:id="@+id/to_time"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="25dp"
-            android:gravity="right"
-            android:text="Thu, Jun 21 10:52 PM"
             android:textSize="15sp" />
 
     </LinearLayout>
@@ -158,7 +176,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="15dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="25dp"
             android:text="Flight duration:"
             android:textSize="20sp" />
 
@@ -166,37 +184,11 @@
             android:id="@+id/flight_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="208dp"
+            android:layout_marginLeft="20dp"
             android:layout_marginTop="25dp"
             android:gravity="right"
             android:text="5:47"
             android:textSize="15sp" />
 
     </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/confirmation_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="30dp"
-            android:text="@string/confirmation_text"
-            android:textSize="20sp" />
-
-        <TextView
-            android:id="@+id/confirmation_code"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="200dp"
-            android:layout_marginTop="25dp"
-            android:gravity="right"
-            android:text="753-347189341"
-            android:textSize="18sp" />
-    </LinearLayout>
-
 </LinearLayout>

@@ -16,7 +16,6 @@ public class Plan {
     private Reservation planType;
     private String location;
     private String endLocation;
-    private String confirmation;
     private int startHour;
     private int startMin;
     private int endHour;
@@ -40,10 +39,9 @@ public class Plan {
 
     // General Plan Object
     public Plan(String planId, String name, Date startTime, Date endTime, String tripId, Reservation planType,
-                String location, int startHour, int startMin, int endHour, int endMin, String endLocation, String confirmation) {
+                String location, int startHour, int startMin, int endHour, int endMin, String endLocation) {
         this(planId, name, startTime, endTime, tripId, planType, location, startHour, startMin, endHour, endMin);
         this.endLocation = endLocation;
-        this.confirmation = confirmation;
     }
 
     // empty constructor for adapter
@@ -141,14 +139,6 @@ public class Plan {
 
     public void setPlanId(String planId) {
         this.planId = planId;
-    }
-
-    public String getConfirmation() {
-        return confirmation;
-    }
-
-    public void setConfirmation(String confirmation) {
-        this.confirmation = confirmation;
     }
 
     public String getPlanId() {
