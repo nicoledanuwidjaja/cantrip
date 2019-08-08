@@ -86,7 +86,6 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="150dp"
             android:layout_marginTop="15dp"
-            android:gravity="right"
             android:text="Thu, Jun 25"
             android:textSize="18sp" />
 
@@ -110,9 +109,8 @@
             android:id="@+id/visit_end_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="150dp"
+            android:layout_marginLeft="160dp"
             android:layout_marginTop="25dp"
-            android:gravity="right"
             android:text="Sat, Jun 27"
             android:textSize="18sp" />
 

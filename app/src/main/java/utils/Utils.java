@@ -6,6 +6,7 @@ import android.widget.DatePicker;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 public class Utils {
 
@@ -75,5 +76,11 @@ public class Utils {
         }
 
         return true;
+    }
+
+    // formats a date to US calendar format
+    public static String formatDate(Date date) {
+        SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy", Locale.US);
+        return format.format(date);
     }
 }

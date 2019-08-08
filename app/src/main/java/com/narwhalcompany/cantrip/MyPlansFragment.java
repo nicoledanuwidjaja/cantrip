@@ -27,6 +27,7 @@ import java.util.ArrayList;
 import utils.CustomPlanListAdapter;
 import utils.Plan;
 import utils.Reservation;
+import utils.Utils;
 
 public class MyPlansFragment extends BottomSheetDialogFragment {
 
@@ -84,8 +85,8 @@ public class MyPlansFragment extends BottomSheetDialogFragment {
                     planBundle.putInt("end hour", currentPlan.getEndHour());
                     planBundle.putInt("end min", currentPlan.getEndMin());
 
-                    planBundle.putString("start time", currentPlan.getStartTime().toString());
-                    planBundle.putString("end time", currentPlan.getEndTime().toString());
+                    planBundle.putString("start time", Utils.formatDate(currentPlan.getStartTime()));
+                    planBundle.putString("end time", Utils.formatDate(currentPlan.getEndTime()));
 
                     // edge cases is true for landmark or hotel which only have one location
                     if (currentPlan.getEndLocation() != null) {
