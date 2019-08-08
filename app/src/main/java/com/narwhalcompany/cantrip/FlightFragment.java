@@ -1,6 +1,7 @@
 package com.narwhalcompany.cantrip;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,13 +37,14 @@ public class FlightFragment extends AbstractPlanFragment {
         String planName = getArguments().getString("flightName");
         String planFromLocation = getArguments().getString("flightStartLoc");
         String planToLocation = getArguments().getString("flightEndLoc");
-        String planFromTime = getArguments().getString("flightFromTime");
-        String planToTime = getArguments().getString("flightToTime");
+        String planFromTime = getArguments().getString("flightStartTime");
+        String planToTime = getArguments().getString("flightEndTime");
         String flightName = "Flight to " + planToLocation;
 
         name.setText(flightName);
         airplaneName.setText(planName);
         fromLocation.setText(planFromLocation);
+
         toLocation.setText(planToLocation);
         fromTime.setText(planFromTime);
         toTime.setText(planToTime);
