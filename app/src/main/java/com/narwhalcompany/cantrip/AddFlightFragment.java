@@ -11,6 +11,8 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -74,6 +76,8 @@ public class AddFlightFragment extends DialogFragment {
 
     private DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
 
+    private AutocompleteSupportFragment flightStartLocation;
+
     public AddFlightFragment() {
         // empty constructor
     }
@@ -93,10 +97,20 @@ public class AddFlightFragment extends DialogFragment {
     }
 
     @Override
+    public void onDestroyView(){
+        super.onDestroyView();
+        if(flightStartLocation != null){
+            getFragmentManager().beginTransaction().remove(flightStartLocation).commit();
+        }
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_add_flight, container, false);
+
+        // TODO: Date clickers
 
         OnDateClick departDatePicker = new OnDateClick();
         OnDateClick arriveDatePicker = new OnDateClick();
@@ -127,8 +141,9 @@ public class AddFlightFragment extends DialogFragment {
         Places.initialize(getActivity().getApplicationContext(), apiKey);
 
         // Initialize the AutocompleteSupportFragment for start location
-        AutocompleteSupportFragment flightStartLocation = (AutocompleteSupportFragment)
+        flightStartLocation = (AutocompleteSupportFragment)
                 getFragmentManager().findFragmentById(R.id.home_flight_search);
+
 
         flightStartLocation.setTypeFilter(TypeFilter.ADDRESS);
 

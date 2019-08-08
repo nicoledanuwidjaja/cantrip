@@ -33,12 +33,9 @@ import utils.TripOverviewAdapterItem;
 public class MyTripListFragment extends Fragment {
 
 
-//    private Context context;
-
     private ArrayList<TripOverviewAdapterItem> tripList = new ArrayList<>();
-
-    ArrayList<TripObject> tripObjectList = new ArrayList<>();
-    DatabaseReference databaseRef = FirebaseDatabase.getInstance().getReference();
+    private ArrayList<TripObject> tripObjectList = new ArrayList<>();
+    private DatabaseReference databaseRef = FirebaseDatabase.getInstance().getReference();
 
 
     public MyTripListFragment() {
