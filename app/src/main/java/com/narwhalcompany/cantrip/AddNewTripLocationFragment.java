@@ -14,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.gms.common.api.Status;
@@ -105,17 +106,19 @@ public class AddNewTripLocationFragment extends DialogFragment {
         completeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                System.out.println("Hi");
                 // sets a fragment manager for managing all fragments (for adding new trips)
-                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                FragmentManager tripManager = getActivity().getSupportFragmentManager();
+                FragmentTransaction tripTransaction = tripManager.beginTransaction();
                 AddNewTripDateFragment getDateFragment = new AddNewTripDateFragment();
 
                 Bundle bundle = new Bundle();
                 bundle.putString("startLocation", startLocation.getText().toString());
                 bundle.putString("endLocation", endLocation.getText().toString());
                 getDateFragment.setArguments(bundle);
-
-                transaction.replace(R.id.fragment_container, getDateFragment);
-                transaction.commit();
+                getDateFragment.show(tripManager, "add trip");
+                tripTransaction.addToBackStack(null);
+                tripTransaction.commit();
             }
         });
 

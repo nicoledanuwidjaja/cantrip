@@ -179,7 +179,7 @@ public class AddFlightFragment extends DialogFragment {
                         Utils.stringToMins(departTime.getText().toString()),
                         Utils.stringToHours(arriveTime.getText().toString()),
                         Utils.stringToMins(arriveTime.getText().toString()),
-                        endLoc, departDate.getText().toString());
+                        endLoc);
 
                 planRef.setValue(newFlight);
 
