@@ -111,6 +111,7 @@ public class MyTripListFragment extends Fragment {
 
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     TripObject newTrip = snapshot.getValue(TripObject.class);
+                    Log.d("child populated", snapshot.toString());
 
                     tripObjectList.add(newTrip);
                     tripList.add(new TripOverviewAdapterItem(newTrip.getStartLoc(), newTrip.getEndLoc(),

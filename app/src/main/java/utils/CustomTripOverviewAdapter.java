@@ -51,6 +51,12 @@ public class CustomTripOverviewAdapter extends BaseAdapter {
 
             @Override
             public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+                String removeKey = dataSnapshot.getKey();
+                for (int i = 0; i < snapshots.size(); i++) {
+                    if (snapshots.get(i).getKey().compareTo(removeKey) == 0) {
+                        snapshots.remove(i);
+                    }
+                }
                 notifyDataSetChanged();
             }
 
@@ -82,7 +88,7 @@ public class CustomTripOverviewAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int i, View view, ViewGroup viewGroup) {
+    public View getView(final int i, View view, ViewGroup viewGroup) {
 
         ViewHolder viewHolder;
 
@@ -93,6 +99,7 @@ public class CustomTripOverviewAdapter extends BaseAdapter {
             viewHolder.tripLocations = view.findViewById(R.id.trip_locations);
             viewHolder.startDate = view.findViewById(R.id.start_date);
             viewHolder.endDate = view.findViewById(R.id.end_date);
+            viewHolder.removeIcon = view.findViewById(R.id.remove_trip_icon);
 
             view.setTag(viewHolder);
         } else {
@@ -103,6 +110,15 @@ public class CustomTripOverviewAdapter extends BaseAdapter {
         viewHolder.tripLocations.setText(tripObject.getStartLoc() + " to " + tripObject.getEndLoc());
         viewHolder.startDate.setText("Start: " + tripObject.formatDate(tripObject.getStartDate()));
         viewHolder.endDate.setText("End: " + tripObject.formatDate(tripObject.getEndDate()));
+        viewHolder.removeIcon.setImageResource(R.drawable.trash);
+
+        viewHolder.removeIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                TripObject trip = (TripObject)getItem(i);
+                databaseChildRef.child(trip.getId()).removeValue();
+            }
+        });
 
 
         return view;
@@ -112,6 +128,7 @@ public class CustomTripOverviewAdapter extends BaseAdapter {
         TextView tripLocations;
         TextView startDate;
         TextView endDate;
+        ImageView removeIcon;
     }
 }
 
