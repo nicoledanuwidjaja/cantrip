@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -25,7 +26,7 @@ import java.util.Arrays;
 
 import static androidx.constraintlayout.widget.Constraints.TAG;
 
-public class AddNewTripLocationFragment extends Fragment {
+public class AddNewTripLocationFragment extends DialogFragment {
 
     @NonNull
     private TextView startLocation;
@@ -34,6 +35,16 @@ public class AddNewTripLocationFragment extends Fragment {
     private TextView endLocation;
 
     private Button completeButton;
+
+    static AddNewTripLocationFragment newInstance() {
+        return new AddNewTripLocationFragment();
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setStyle(DialogFragment.STYLE_NORMAL, R.style.FullScreenDialogTheme);
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -48,7 +59,7 @@ public class AddNewTripLocationFragment extends Fragment {
         Places.initialize(getActivity().getApplicationContext(), apiKey);
         // Initialize the AutocompleteSupportFragment for start location
         AutocompleteSupportFragment autocompleteFragment = (AutocompleteSupportFragment)
-                getChildFragmentManager().findFragmentById(R.id.autocomplete_fragment);
+                getFragmentManager().findFragmentById(R.id.autocomplete_fragment);
 
         Log.d("Fragment WORKS", Place.Field.ID.toString() + Place.Field.NAME);
         // Specify the types of place data to return.
@@ -72,7 +83,7 @@ public class AddNewTripLocationFragment extends Fragment {
 
         // Initialize the AutocompleteSupportFragment for destination
         AutocompleteSupportFragment autocompleteFragment2 = (AutocompleteSupportFragment)
-                getChildFragmentManager().findFragmentById(R.id.autocomplete_fragment_2);
+                getFragmentManager().findFragmentById(R.id.autocomplete_fragment_2);
 
         // Specify the types of place data to return.
         autocompleteFragment2.setPlaceFields(Arrays.asList(Place.Field.ID, Place.Field.NAME));

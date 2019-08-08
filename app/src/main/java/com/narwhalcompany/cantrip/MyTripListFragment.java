@@ -5,7 +5,9 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.util.Log;
@@ -87,12 +89,13 @@ public class MyTripListFragment extends Fragment {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // sets a fragment manager for managing all fragments (for adding new trips)
-                AddNewTripLocationFragment newTripFragment = new AddNewTripLocationFragment();
-                FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                transaction.replace(R.id.fragment_container, newTripFragment);
-                transaction.addToBackStack(null);
-                transaction.commit();
+
+                FragmentManager tripManager = getActivity().getSupportFragmentManager();
+                FragmentTransaction tripTransaction = tripManager.beginTransaction();
+                DialogFragment newTrip = new AddNewTripLocationFragment();
+                newTrip.show(tripManager, "newTrip");
+                tripTransaction.addToBackStack(null);
+                tripTransaction.commit();
             }
         });
         return view;

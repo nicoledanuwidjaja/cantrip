@@ -156,12 +156,12 @@ public class AddHotelFragment extends DialogFragment {
 //                        Utils.stringToDate(departDate.getText().toString()),
 //                        Utils.stringToDate(arriveDate.getText().toString()),
 //                        tripId,
-//                        Reservation.HOTEL, null,
+//                        Reservation.HOTEL, location,
 //                        Utils.stringToHours(departTime.getText().toString()),
 //                        Utils.stringToMins(departTime.getText().toString()),
 //                        Utils.stringToHours(arriveTime.getText().toString()),
 //                        Utils.stringToMins(arriveTime.getText().toString()),
-//                        location);
+//                        null);
 
 //                planRef.setValue(newHotel);
 

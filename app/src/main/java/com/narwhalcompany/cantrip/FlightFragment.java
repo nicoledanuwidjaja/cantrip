@@ -8,11 +8,12 @@ import android.widget.TextView;
 
 public class FlightFragment extends AbstractPlanFragment {
 
-    private TextView flightName;
+    private TextView name;
     private TextView fromLocation;
     private TextView toLocation;
     private TextView fromTime;
     private TextView toTime;
+    private TextView confirmation;
 
     public FlightFragment() {
         // Required empty public constructor
@@ -25,16 +26,27 @@ public class FlightFragment extends AbstractPlanFragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_flight, container, false);
 
-        flightName = view.findViewById(R.id.flight_name);
+
+        name = view.findViewById(R.id.flight_name);
         fromLocation = view.findViewById(R.id.from_location);
         toLocation = view.findViewById(R.id.to_location);
         fromTime = view.findViewById(R.id.from_time);
         toTime = view.findViewById(R.id.to_time);
+        confirmation = view.findViewById(R.id.confirmation_label);
 
-
-        // TODO: ADD MORE OF THESE LOL
         String planName = getArguments().getString("flightName");
-        flightName.setText(planName);
+        String planFromLocation = getArguments().getString("flightStartLoc");
+        String planToLocation = getArguments().getString("flightEndLoc");
+        String planFromTime = getArguments().getString("flightFromTime");
+        String planToTime = getArguments().getString("flightToTime");
+        String planConfirmation = getArguments().getString("flightConfirmation");
+
+        name.setText(planName);
+        fromLocation.setText(planFromLocation);
+        toLocation.setText(planToLocation);
+        fromTime.setText(planFromTime);
+        toTime.setText(planToTime);
+        confirmation.setText(planConfirmation);
 
         return view;
     }

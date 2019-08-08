@@ -8,194 +8,171 @@
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
-        android:layout_height="320dp"
-        android:layout_marginLeft="@dimen/mtrl_card_spacing"
-        android:layout_marginTop="@dimen/mtrl_card_spacing"
-        android:layout_marginRight="@dimen/mtrl_card_spacing"
-        android:minHeight="200dp">
+        android:layout_height="wrap_content"
+        android:padding="10dp">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+        <!--<RelativeLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent">-->
 
-            <ImageView
-                android:id="@+id/statueImage"
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/statue_of_liberty" />
+        <!--<ImageView-->
+        <!--android:id="@+id/statueImage"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="200dp"-->
+        <!--android:scaleType="centerCrop"-->
+        <!--android:src="@drawable/statue_of_liberty" />-->
 
-            <TextView
-                android:id="@+id/statueTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/statueImage"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="12dp"
-                android:text="Statue of Liberty"
-                android:textSize="20dp" />
+        <!--<TextView-->
+        <!--android:id="@+id/statueTitle"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_below="@+id/statueImage"-->
+        <!--android:layout_marginLeft="8dp"-->
+        <!--android:layout_marginTop="12dp"-->
+        <!--android:text="Statue of Liberty"-->
+        <!--android:textSize="20dp" />-->
 
-            <LinearLayout
-                android:id="@+id/item1Stars"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/statueTitle"
-                android:orientation="horizontal">
+        <!--<LinearLayout-->
+        <!--android:id="@+id/item1Stars"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_below="@+id/statueTitle"-->
+        <!--android:orientation="horizontal">-->
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="25dp"
-                    android:layout_marginTop="12dp"
-                    android:text="4.6"
-                    android:textColor="@color/quantum_yellow600"
-                    android:textSize="16sp" />
+        <!--<TextView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginLeft="25dp"-->
+        <!--android:layout_marginTop="12dp"-->
+        <!--android:text="4.6"-->
+        <!--android:textColor="@color/quantum_yellow600"-->
+        <!--android:textSize="16sp" />-->
 
-                <RatingBar
-                    style="?android:attr/ratingBarStyleSmall"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+        <!--<RatingBar-->
+        <!--style="?android:attr/ratingBarStyleSmall"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
 
-                    android:layout_marginLeft="6dp"
-                    android:layout_marginTop="15dp"
-                    android:rating="4.6"
-                    android:stepSize="0.1" />
+        <!--android:layout_marginLeft="6dp"-->
+        <!--android:layout_marginTop="15dp"-->
+        <!--android:rating="4.6"-->
+        <!--android:stepSize="0.1" />-->
 
-            </LinearLayout>
+        <!--</LinearLayout>-->
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/item1Stars"
-                android:orientation="horizontal">
+        <!--<LinearLayout-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_below="@id/item1Stars"-->
+        <!--android:orientation="horizontal">-->
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="20dp"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginTop="6dp"
-                    android:src="@drawable/time" />
+        <!--<ImageView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="20dp"-->
+        <!--android:layout_marginLeft="16dp"-->
+        <!--android:layout_marginTop="6dp"-->
+        <!--android:src="@drawable/time" />-->
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:text=" 8:30 AM - 4:00 PM"
-                    android:textSize="16sp" />
+        <!--<TextView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginTop="5dp"-->
+        <!--android:text=" 8:30 AM - 4:00 PM"-->
+        <!--android:textSize="16sp" />-->
 
-            </LinearLayout>
+        <!--</LinearLayout>-->
 
-        </RelativeLayout>
+        <!--</RelativeLayout>-->
 
 
-    </com.google.android.material.card.MaterialCardView>
+        <!--</com.google.android.material.card.MaterialCardView>-->
 
-    <com.google.android.material.card.MaterialCardView
-        android:layout_width="match_parent"
-        android:layout_height="320dp"
-        android:layout_marginLeft="@dimen/mtrl_card_spacing"
-        android:layout_marginTop="@dimen/mtrl_card_spacing"
-        android:layout_marginRight="@dimen/mtrl_card_spacing"
-        android:minHeight="200dp">
+        <!--<com.google.android.material.card.MaterialCardView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="320dp"-->
+        <!--android:layout_marginLeft="@dimen/mtrl_card_spacing"-->
+        <!--android:layout_marginTop="@dimen/mtrl_card_spacing"-->
+        <!--android:layout_marginRight="@dimen/mtrl_card_spacing"-->
+        <!--android:minHeight="200dp">-->
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+        <!--<RelativeLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent">-->
 
-            <ImageView
-                android:id="@+id/item2Image"
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/central_park" />
+        <!--<ImageView-->
+        <!--android:id="@+id/item2Image"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="200dp"-->
+        <!--android:scaleType="centerCrop"-->
+        <!--android:src="@drawable/central_park" />-->
 
-            <TextView
-                android:id="@+id/item2Title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/item2Image"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="12dp"
-                android:text="Central Park"
-                android:textSize="20dp" />
+        <!--<TextView-->
+        <!--android:id="@+id/item2Title"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_below="@+id/item2Image"-->
+        <!--android:layout_marginLeft="8dp"-->
+        <!--android:layout_marginTop="12dp"-->
+        <!--android:text="Central Park"-->
+        <!--android:textSize="20dp" />-->
 
-            <LinearLayout
-                android:id="@+id/item2Stars"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/item2Title"
-                android:orientation="horizontal">
+        <!--<LinearLayout-->
+        <!--android:id="@+id/item2Stars"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_below="@+id/item2Title"-->
+        <!--android:orientation="horizontal">-->
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="25dp"
-                    android:layout_marginTop="12dp"
-                    android:text="4.8"
-                    android:textColor="@color/quantum_yellow600"
-                    android:textSize="16sp" />
+        <!--<TextView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginLeft="25dp"-->
+        <!--android:layout_marginTop="12dp"-->
+        <!--android:text="4.8"-->
+        <!--android:textColor="@color/quantum_yellow600"-->
+        <!--android:textSize="16sp" />-->
 
-                <RatingBar
-                    style="?android:attr/ratingBarStyleSmall"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+        <!--<RatingBar-->
+        <!--style="?android:attr/ratingBarStyleSmall"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
 
-                    android:layout_marginLeft="6dp"
-                    android:layout_marginTop="15dp"
-                    android:rating="4.6"
-                    android:stepSize="0.1" />
+        <!--android:layout_marginLeft="6dp"-->
+        <!--android:layout_marginTop="15dp"-->
+        <!--android:rating="4.6"-->
+        <!--android:stepSize="0.1" />-->
 
-            </LinearLayout>
+        <!--</LinearLayout>-->
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/item2Stars"
-                android:orientation="horizontal">
+        <!--<LinearLayout-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_below="@id/item2Stars"-->
+        <!--android:orientation="horizontal">-->
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="20dp"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginTop="6dp"
-                    android:src="@drawable/time" />
+        <!--<ImageView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="20dp"-->
+        <!--android:layout_marginLeft="16dp"-->
+        <!--android:layout_marginTop="6dp"-->
+        <!--android:src="@drawable/time" />-->
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:text=" 6:00 AM - 1:00 AM"
-                    android:textSize="16sp" />
+        <!--<TextView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginTop="5dp"-->
+        <!--android:text=" 6:00 AM - 1:00 AM"-->
+        <!--android:textSize="16sp" />-->
 
-            </LinearLayout>
+        <!--</LinearLayout>-->
 
-        </RelativeLayout>
-
-
-    </com.google.android.material.card.MaterialCardView>
-
-    <com.google.android.material.card.MaterialCardView
-        android:layout_width="match_parent"
-        android:layout_height="320dp"
-        android:layout_marginLeft="@dimen/mtrl_card_spacing"
-        android:layout_marginTop="@dimen/mtrl_card_spacing"
-        android:layout_marginRight="@dimen/mtrl_card_spacing"
-        android:minHeight="200dp">
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <ImageView
-                android:id="@+id/item3Image"
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/empire_state_building" />
+        <!--</RelativeLayout>-->
 
 
-        </RelativeLayout>
-
+        <ImageView
+            android:id="@+id/attraction_image"
+            android:layout_width="150dp"
+            android:layout_height="150dp" />
 
     </com.google.android.material.card.MaterialCardView>
 </LinearLayout>

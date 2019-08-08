@@ -45,7 +45,7 @@ public class MyPlansFragment extends BottomSheetDialogFragment {
         this.bundle = bundle;
     }
 
-     private String tripId;
+    private String tripId;
 
 
     @Override
@@ -79,16 +79,19 @@ public class MyPlansFragment extends BottomSheetDialogFragment {
                     Bundle planBundle = new Bundle();
                     planBundle.putString("type", currentPlan.getPlanType().toString());
                     planBundle.putString("name", currentPlan.getName());
-//                    planBundle.putString("start time", currentPlan.getStartTime().toString());
                     planBundle.putInt("start hour", currentPlan.getStartHour());
                     planBundle.putInt("start min", currentPlan.getStartMin());
-//                    planBundle.putString("end time", currentPlan.getEndTime().toString());
                     planBundle.putInt("end hour", currentPlan.getEndHour());
                     planBundle.putInt("end min", currentPlan.getEndMin());
-                    planBundle.putString("location", currentPlan.getLocation());
+                    planBundle.putString("start location", currentPlan.getLocation());
 
+                    // edge cases is true for landmark or hotel which only have one location
                     if (currentPlan.getEndLocation() != null) {
                         planBundle.putString("end location", currentPlan.getEndLocation());
+                    }
+
+                    if (currentPlan.getConfirmation() != null) {
+                        planBundle.putString("confirmation", currentPlan.getConfirmation());
                     }
 
                     AbstractPlanFragment fragPlan = new AbstractPlanFragment();

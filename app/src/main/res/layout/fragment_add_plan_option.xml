@@ -1,10 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_alignParentBottom="true"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/colorPrimary"
     tools:context=".AddPlanOptionFragment">
+
+
+    <TextView
+        android:id="@+id/add_plan"
+        android:textSize="20sp"
+        android:gravity="center"
+        android:textColor="#FFFFFF"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/add_new_plan"/>
+
+    <LinearLayout
+        android:id="@+id/plan_texts"
+        android:layout_below="@id/add_plan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:layout_marginLeft="75dp"
+            android:text="Flight"
+            android:textColor="#FFFFFF" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:layout_marginLeft="55dp"
+            android:text="Hotel"
+            android:textColor="#FFFFFF" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:layout_marginLeft="40dp"
+            android:text="Landmark"
+            android:textColor="#FFFFFF" />
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -13,11 +59,11 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="75dp">
 
-
         <ImageButton
             android:id="@+id/flight_button"
             android:layout_width="75dp"
             android:layout_height="75dp"
+            android:layout_weight="0.33"
             android:layout_gravity="center"
             android:layout_marginRight="10dp"
             android:src="@drawable/airplane" />
@@ -26,6 +72,7 @@
             android:id="@+id/hotel_button"
             android:layout_width="75dp"
             android:layout_height="75dp"
+            android:layout_weight="0.33"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:src="@drawable/hotel" />
@@ -34,40 +81,9 @@
             android:id="@+id/landmark_button"
             android:layout_width="75dp"
             android:layout_height="75dp"
+            android:layout_weight="0.33"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:src="@drawable/landmark" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/plan_texts"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="20dp"
-            android:textSize="18sp"
-            android:text="Flight"
-            android:textColor="#FFFFFF" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="20dp"
-            android:textSize="18sp"
-            android:text="Hotel"
-            android:textColor="#FFFFFF" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="20dp"
-            android:textSize="18sp"
-            android:text="Landmark"
-            android:textColor="#FFFFFF" />
     </LinearLayout>
 </RelativeLayout>

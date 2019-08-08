@@ -16,6 +16,7 @@
     <string name="trip_location_to">Where to?</string>
     <string name="trip_button">Complete</string>
     <string name="trip_date_from">From:</string>
+    <string name="add_new_trip">Add New Trip</string>
     <string name="trip_date_to">To:</string>
     <string name="hotel_name">Hotel name</string>
     <string name="my_trips_tab">My Trips</string>
@@ -23,5 +24,6 @@
     <string name="month_hint">MM</string>
     <string name="day_hint">DD</string>
     <string name="year_hint">YYYY</string>
+    <string name="add_new_plan">Add New Plan</string>
     <string name="add_date_button">Next</string>
 </resources>
