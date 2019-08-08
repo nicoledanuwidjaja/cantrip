@@ -117,6 +117,10 @@ public class CustomTripOverviewAdapter extends BaseAdapter {
             public void onClick(View view) {
                 TripObject trip = (TripObject)getItem(i);
                 databaseChildRef.child(trip.getId()).removeValue();
+
+                if (databaseChildRef.getParent().child("plans" + trip.getId()) != null) {
+                    databaseChildRef.getParent().child("plans" + trip.getId()).removeValue();
+                }
             }
         });
 
