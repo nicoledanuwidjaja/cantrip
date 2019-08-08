@@ -192,8 +192,8 @@ public class AddFlightFragment extends DialogFragment {
                 @Override
                 public void onClick(View view) {
                     Intent addFlightIntent = new Intent(getActivity(), DetailedTripActivity.class);
-
                     addFlightIntent.putExtra("trip id", tripId);
+
                     DatabaseReference planRef = databaseReference.child("plans" + tripId).push();
                     String planKey = planRef.getKey();
 

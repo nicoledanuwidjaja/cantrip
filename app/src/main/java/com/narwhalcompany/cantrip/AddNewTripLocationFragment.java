@@ -62,7 +62,6 @@ public class AddNewTripLocationFragment extends DialogFragment {
         AutocompleteSupportFragment autocompleteFragment = (AutocompleteSupportFragment)
                 getFragmentManager().findFragmentById(R.id.autocomplete_fragment);
 
-        Log.d("Fragment WORKS", Place.Field.ID.toString() + Place.Field.NAME);
         // Specify the types of place data to return.
         autocompleteFragment.setPlaceFields(Arrays.asList(Place.Field.ID, Place.Field.NAME));
 
@@ -106,7 +105,6 @@ public class AddNewTripLocationFragment extends DialogFragment {
         completeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                System.out.println("Hi");
                 // sets a fragment manager for managing all fragments (for adding new trips)
                 FragmentManager tripManager = getActivity().getSupportFragmentManager();
                 FragmentTransaction tripTransaction = tripManager.beginTransaction();

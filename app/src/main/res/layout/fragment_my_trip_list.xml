@@ -24,7 +24,7 @@
         <ListView
             android:id="@+id/myTripsList"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"></ListView>
+            android:layout_height="wrap_content"></ListView>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/add_trip_button"

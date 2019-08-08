@@ -1,5 +1,6 @@
 package utils;
 
+import android.text.Editable;
 import android.util.Log;
 import android.widget.DatePicker;
 
@@ -9,13 +10,25 @@ import java.util.Date;
 import java.util.Locale;
 
 public class Utils {
-
     public static Date stringToDate(String s) {
 
         String[] stringArr = s.split("/");
         return new Date(Integer.parseInt(stringArr[2]), Integer.parseInt(stringArr[1]), Integer.parseInt(stringArr[0]));
-
     }
+// new method - nicole
+//    public static Date textToDate(String s) {
+//        try {
+//            Date newDate;
+//
+//            SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy", Locale.US);
+//
+//            newDate = format.parse(s);
+//            return newDate;
+//        } catch (ParseException e) {
+//            e.printStackTrace();
+//        }
+//        throw new IllegalArgumentException("Impossible.");
+//    }
 
     public static int stringToHours(String s) {
         String[] stringArr = s.split(":");
@@ -31,7 +44,7 @@ public class Utils {
 
         String date = formatDateToString(datePicker);
 
-        SimpleDateFormat neededDateFormat = new SimpleDateFormat("MM-dd-yyyy");
+        SimpleDateFormat neededDateFormat = new SimpleDateFormat("MM/dd/yyyy");
 
         Date dateParsed = null;
 
@@ -58,7 +71,7 @@ public class Utils {
             startMonth = "" + datePicker.getMonth() + 1 + "";
         }
 
-        date = "" + startMonth+"-" +
+        date = "" + startMonth + "-" +
                 (datePicker.getDayOfMonth()) + "-" + datePicker.getYear() + "";
 
         return date;
