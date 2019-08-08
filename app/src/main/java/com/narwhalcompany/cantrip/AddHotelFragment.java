@@ -175,7 +175,7 @@ public class AddHotelFragment extends DialogFragment {
             public void onClick(View view) {
                 Intent addHotelIntent = new Intent(getActivity(), DetailedTripActivity.class);
                 addHotelIntent.putExtra("trip id", tripId);
-                DatabaseReference planRef = databaseReference.child("trips" + tripId).push();
+                DatabaseReference planRef = databaseReference.child("plans" + tripId).push();
                 String planKey = planRef.getKey();
 
                 Plan newHotel = new Plan(planKey,

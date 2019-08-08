@@ -11,18 +11,9 @@ public class Utils {
 
     public static Date stringToDate(String s) {
 
-        SimpleDateFormat neededDateFormat = new SimpleDateFormat("MM-dd-yyyy");
+        String[] stringArr = s.split("/");
+        return new Date(Integer.parseInt(stringArr[2]), Integer.parseInt(stringArr[1]), Integer.parseInt(stringArr[0]));
 
-        Date dateParsed = null;
-
-        try {
-
-            dateParsed = neededDateFormat.parse(s);
-        } catch (ParseException e) {
-            Log.d("PARSE EXCEPTION", e.getLocalizedMessage());
-        }
-
-        return dateParsed;
     }
 
     public static int stringToHours(String s) {
