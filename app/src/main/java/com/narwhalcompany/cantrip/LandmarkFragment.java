@@ -29,8 +29,13 @@ import java.util.List;
 public class LandmarkFragment extends AbstractPlanFragment {
 
 
-    private TextView address;
+    private TextView location;
     private TextView phone;
+    private TextView name;
+    private TextView startTime;
+    private TextView endTime;
+    private TextView startDate;
+    private TextView endDate;
     private PlacesClient placesClient;
     private ImageView attractionImage;
 
@@ -48,11 +53,29 @@ public class LandmarkFragment extends AbstractPlanFragment {
         String apiKey = getString(R.string.google_places_api);
 
         attractionImage = view.findViewById(R.id.landmark_image);
-        address = view.findViewById(R.id.address_label);
+        location = view.findViewById(R.id.address_label);
+        name = view.findViewById(R.id.landmark_name);
+        startTime = view.findViewById(R.id.hours_open);
+        startDate = view.findViewById(R.id.visit_start_date);
+        endDate = view.findViewById(R.id.visit_end_date);
+
+        String planName = getArguments().getString("landmarkName");
+        String planLocation = getArguments().getString("landmarkLoc");
+        String planStartTime = getArguments().getString("landmarkStartTime");
+        String planEndTime = getArguments().getString("landmarkEndTime");
+        String planStartDate = getArguments().getString("landmarkStartDate");
+        String planEndDate = getArguments().getString("landmarkEndDate");
 
         String placeId = "ChIJ9U1mz_5YwokRosza1aAk0jM";
 
+        name.setText(planName);
+        location.setText(planLocation);
+        startDate.setText(planStartDate);
+        endDate.setText(planEndDate);
+//        startTime.setText(planStartTime);
+//        endTime.setText(planEndTime);
 
+        // PLACES API
         List<Place.Field> fields = Arrays.asList(Place.Field.PHOTO_METADATAS);
         FetchPlaceRequest placeRequest = FetchPlaceRequest.builder(placeId, fields).build();
 
@@ -75,8 +98,6 @@ public class LandmarkFragment extends AbstractPlanFragment {
 
                 // Create a FetchPhotoRequest.
                 FetchPhotoRequest photoRequest = FetchPhotoRequest.builder(photoMetadata)
-//                        .setMaxWidth(500) // Optional.
-//                        .setMaxHeight(300) // Optional.
                         .build();
                 placesClient.fetchPhoto(photoRequest).addOnSuccessListener(new OnSuccessListener<FetchPhotoResponse>() {
                     @Override

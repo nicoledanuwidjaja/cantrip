@@ -114,62 +114,6 @@ public class AddHotelFragment extends DialogFragment {
             }
         });
 
-//        final Calendar hotelStartDate = Calendar.getInstance();
-//
-//        final DatePickerDialog.OnDateSetListener datePicker = new DatePickerDialog.OnDateSetListener() {
-//
-//            @Override
-//            public void onDateSet(DatePicker view, int year, int monthOfYear,
-//                                  int dayOfMonth) {
-//                // sets the calendar date of the hotel start date
-//                hotelStartDate.set(Calendar.YEAR, year);
-//                hotelStartDate.set(Calendar.MONTH, monthOfYear);
-//                hotelStartDate.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-//                String myFormat = "MM/dd/yy";
-//                SimpleDateFormat date = new SimpleDateFormat(myFormat, Locale.US);
-//
-//                checkInText.setText(date.format(hotelStartDate.getTime()));
-//            }
-//
-//        };
-//
-//        checkInText.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                new DatePickerDialog(getContext(), datePicker, hotelStartDate
-//                        .get(Calendar.YEAR), hotelStartDate.get(Calendar.MONTH),
-//                        hotelStartDate.get(Calendar.DAY_OF_MONTH)).show();
-//            }
-//        });
-//
-//        final Calendar hotelEndDate = Calendar.getInstance();
-//
-//        final DatePickerDialog.OnDateSetListener datePicker2 = new DatePickerDialog.OnDateSetListener() {
-//
-//            @Override
-//            public void onDateSet(DatePicker view, int year, int monthOfYear,
-//                                  int dayOfMonth) {
-//                // sets the calendar date of the hotel end date
-//                hotelEndDate.set(Calendar.YEAR, year);
-//                hotelEndDate.set(Calendar.MONTH, monthOfYear);
-//                hotelEndDate.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-//                String myFormat = "MM/dd/yy";
-//                SimpleDateFormat date = new SimpleDateFormat(myFormat, Locale.US);
-//
-//                checkOutText.setText(date.format(hotelEndDate.getTime()));
-//            }
-//
-//        };
-//
-//        checkOutText.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                new DatePickerDialog(getContext(), datePicker2, hotelEndDate
-//                        .get(Calendar.YEAR), hotelEndDate.get(Calendar.MONTH),
-//                        hotelEndDate.get(Calendar.DAY_OF_MONTH)).show();
-//            }
-//        });
-
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

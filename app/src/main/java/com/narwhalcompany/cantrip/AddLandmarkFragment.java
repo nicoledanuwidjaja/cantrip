@@ -11,6 +11,7 @@ import android.widget.EditText;
 
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import com.google.android.gms.common.api.Status;
 import com.google.android.libraries.places.api.Places;
@@ -71,20 +72,32 @@ public class AddLandmarkFragment extends DialogFragment {
         View view = inflater.inflate(R.layout.fragment_add_landmark, container, false);
 
         landmarkName = view.findViewById(R.id.landmarkName);
-        startDate = view.findViewById(R.id.startDateText);
-        endDate = view.findViewById(R.id.endDateText);
+        startDate = view.findViewById(R.id.visit_start_date);
+        endDate = view.findViewById(R.id.visit_end_date);
         startTime = view.findViewById(R.id.startTimeText);
         endTime = view.findViewById(R.id.endTimeText);
 
-        startDate.setOnClickListener(new OnDateClick());
-        endDate.setOnClickListener(new OnDateClick());
-        startTime.setOnClickListener(new OnTimeClick());
-        endTime.setOnClickListener(new OnTimeClick());
+        startDate.setOnClickListener(new
+
+                OnDateClick());
+        endDate.setOnClickListener(new
+
+                OnDateClick());
+        startTime.setOnClickListener(new
+
+                OnTimeClick());
+        endTime.setOnClickListener(new
+
+                OnTimeClick());
 
         // set up Places API
         String apiKey = getString(R.string.google_places_api);
 
-        Places.initialize(getActivity().getApplicationContext(), apiKey);
+        Places.initialize(
+
+                getActivity().
+
+                        getApplicationContext(), apiKey);
 
         // Initialize the AutocompleteSupportFragment for start location
         AutocompleteSupportFragment landmarkLocation = (AutocompleteSupportFragment)
@@ -97,7 +110,7 @@ public class AddLandmarkFragment extends DialogFragment {
         landmarkLocation.setOnPlaceSelectedListener(new PlaceSelectionListener() {
             @Override
             public void onPlaceSelected(Place place) {
-                location = place.getName();
+                 location = place.getName();
             }
 
             @Override
@@ -121,12 +134,12 @@ public class AddLandmarkFragment extends DialogFragment {
                         landmarkName.getText().toString(),
                         Utils.stringToDate(startDate.getText().toString()),
                         Utils.stringToDate(endDate.getText().toString()),
-                        tripId, Reservation.LANDMARK, null,
+                        tripId, Reservation.LANDMARK, location,
                         Utils.stringToHours(startTime.getText().toString()),
                         Utils.stringToMins(startTime.getText().toString()),
                         Utils.stringToHours(endTime.getText().toString()),
                         Utils.stringToMins(endTime.getText().toString()),
-                        location);
+                        null);
 
                 planRef.setValue(newFlight);
                 startActivity(addLandmarkIntent);
@@ -136,5 +149,4 @@ public class AddLandmarkFragment extends DialogFragment {
         // Inflate the layout for this fragment
         return view;
     }
-
 }

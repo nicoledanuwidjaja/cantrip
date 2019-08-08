@@ -5,8 +5,8 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 public class RecAdapterItem {
-    int imageID;
-    String title;
+    private int imageID;
+    private String title;
 
     public RecAdapterItem(int imageResID, String title) {
         this.imageID = imageResID;

@@ -46,6 +46,8 @@ public class AbstractPlanFragment extends DialogFragment {
         String planName = getArguments().getString("name");
         String planStartLoc = getArguments().getString("start location");
         String planEndLoc = getArguments().getString("end location");
+        String planStartDate = getArguments().getString("start date");
+        String planEndDate = getArguments().getString("end date");
         String planStartTime = getArguments().getString("start hour") + ":" +
                 getArguments().getString("start min");
         String planEndTime = getArguments().getString("end hour") + ":" +
@@ -63,6 +65,8 @@ public class AbstractPlanFragment extends DialogFragment {
                 planBundle.putString("flightEndLoc", planEndLoc);
                 planBundle.putString("flightStartTime", planStartTime);
                 planBundle.putString("flightEndTime", planEndTime);
+                planBundle.putString("flightStartDate", planStartDate);
+                planBundle.putString("flightEndDate", planEndDate);
 
                 fragPlan.setArguments(planBundle);
                 fragPlan.show(planManager, "flight");
@@ -70,12 +74,22 @@ public class AbstractPlanFragment extends DialogFragment {
             case "hotel":
                 fragPlan = new HotelFragment();
                 planBundle.putString("hotelName", planName);
+                planBundle.putString("hotelLoc", planEndLoc);
+                planBundle.putString("hotelStartTime", planStartTime);
+                planBundle.putString("hotelEndTime", planEndTime);
+                planBundle.putString("hotelStartDate", planStartDate);
+                planBundle.putString("hotelEndDate", planEndDate);
                 fragPlan.setArguments(planBundle);
                 fragPlan.show(planManager, "hotel");
                 break;
             case "landmark":
                 fragPlan = new LandmarkFragment();
                 planBundle.putString("landmarkName", planName);
+                planBundle.putString("landmarkLoc", planEndLoc);
+                planBundle.putString("landmarkStartTime", planStartTime);
+                planBundle.putString("landmarkEndTime", planEndTime);
+                planBundle.putString("landmarkStartDate", planStartDate);
+                planBundle.putString("landmarkEndDate", planEndDate);
                 fragPlan.setArguments(planBundle);
                 fragPlan.show(planManager, "landmark");
                 break;

@@ -36,9 +36,10 @@
 
         <ImageView
             android:id="@+id/remove_trip_icon"
+            android:layout_marginLeft="10dp"
             android:layout_width="18dp"
             android:layout_height="18dp"
-            android:layout_gravity="right"/>
+            android:layout_gravity="bottom|end"/>
     </LinearLayout>
 
 </LinearLayout>
