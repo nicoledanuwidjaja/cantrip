@@ -17,11 +17,16 @@ import com.google.android.libraries.places.api.Places;
 import com.google.android.libraries.places.api.model.Place;
 import com.google.android.libraries.places.widget.AutocompleteSupportFragment;
 import com.google.android.libraries.places.widget.listener.PlaceSelectionListener;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Arrays;
 
 import utils.OnDateClick;
 import utils.OnTimeClick;
+import utils.Plan;
+import utils.Reservation;
+import utils.Utils;
 
 import static androidx.constraintlayout.widget.Constraints.TAG;
 
@@ -37,8 +42,18 @@ public class AddLandmarkFragment extends DialogFragment {
     private EditText endDate;
     private EditText startTime;
     private EditText endTime;
+    private DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
 
     private String location;
+    private String tripId;
+
+    public AddLandmarkFragment() {
+
+    }
+
+    public AddLandmarkFragment(String tripId) {
+        this.tripId = tripId;
+    }
 
     static AddLandmarkFragment newInstance() {
         return new AddLandmarkFragment();
@@ -96,6 +111,24 @@ public class AddLandmarkFragment extends DialogFragment {
             @Override
             public void onClick(View view) {
                 Intent addLandmarkIntent = new Intent(getActivity(), DetailedTripActivity.class);
+
+                addLandmarkIntent.putExtra("trip id", tripId);
+                DatabaseReference planRef = databaseReference.child("plans" + tripId).push();
+                String planKey = planRef.getKey();
+
+                // create a new plan and save data
+                Plan newFlight = new Plan(planKey,
+                        landmarkName.getText().toString(),
+                        Utils.stringToDate(startDate.getText().toString()),
+                        Utils.stringToDate(endDate.getText().toString()),
+                        tripId, Reservation.FLIGHT, null,
+                        Utils.stringToHours(startTime.getText().toString()),
+                        Utils.stringToMins(startTime.getText().toString()),
+                        Utils.stringToHours(endTime.getText().toString()),
+                        Utils.stringToMins(endTime.getText().toString()),
+                        location);
+
+                planRef.setValue(newFlight);
                 startActivity(addLandmarkIntent);
             }
         });

@@ -28,6 +28,8 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Locale;
 
+import utils.OnDateClick;
+import utils.OnTimeClick;
 import utils.Plan;
 import utils.Reservation;
 import utils.Utils;
@@ -39,9 +41,27 @@ public class AddHotelFragment extends DialogFragment {
     private Button saveButton;
     private EditText checkInText;
     private EditText checkOutText;
+    private EditText checkInTime;
+    private EditText checkOutTime;
+    private EditText hotelName;
     private String location;
 
+    private String tripId;
+    private String startLoc;
+    private String endLoc;
+
     private DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+
+    public AddHotelFragment() {
+
+    }
+
+    public AddHotelFragment(String tripId) {
+        this.tripId = tripId;
+    }
+
+
+
 
     static AddHotelFragment newInstance() {
         return new AddHotelFragment();
@@ -59,8 +79,16 @@ public class AddHotelFragment extends DialogFragment {
         View view = inflater.inflate(R.layout.fragment_add_hotel, container, false);
 
         saveButton = view.findViewById(R.id.saveButton);
+        hotelName = view.findViewById(R.id.hotel_name);
         checkInText = view.findViewById(R.id.check_in_text);
         checkOutText = view.findViewById(R.id.check_out_text);
+        checkInTime = view.findViewById(R.id.check_in_time);
+        checkOutTime = view.findViewById(R.id.check_out_time);
+
+        checkInText.setOnClickListener(new OnDateClick());
+        checkOutText.setOnClickListener(new OnDateClick());
+        checkInTime.setOnClickListener(new OnTimeClick());
+        checkOutTime.setOnClickListener(new OnTimeClick());
 
         String apiKey = getString(R.string.google_places_api);
 
@@ -86,84 +114,83 @@ public class AddHotelFragment extends DialogFragment {
             }
         });
 
-        final Calendar hotelStartDate = Calendar.getInstance();
-
-        final DatePickerDialog.OnDateSetListener datePicker = new DatePickerDialog.OnDateSetListener() {
-
-            @Override
-            public void onDateSet(DatePicker view, int year, int monthOfYear,
-                                  int dayOfMonth) {
-                // sets the calendar date of the hotel start date
-                hotelStartDate.set(Calendar.YEAR, year);
-                hotelStartDate.set(Calendar.MONTH, monthOfYear);
-                hotelStartDate.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-                String myFormat = "MM/dd/yy";
-                SimpleDateFormat date = new SimpleDateFormat(myFormat, Locale.US);
-
-                checkInText.setText(date.format(hotelStartDate.getTime()));
-            }
-
-        };
-
-        checkInText.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                new DatePickerDialog(getContext(), datePicker, hotelStartDate
-                        .get(Calendar.YEAR), hotelStartDate.get(Calendar.MONTH),
-                        hotelStartDate.get(Calendar.DAY_OF_MONTH)).show();
-            }
-        });
-
-        final Calendar hotelEndDate = Calendar.getInstance();
-
-        final DatePickerDialog.OnDateSetListener datePicker2 = new DatePickerDialog.OnDateSetListener() {
-
-            @Override
-            public void onDateSet(DatePicker view, int year, int monthOfYear,
-                                  int dayOfMonth) {
-                // sets the calendar date of the hotel end date
-                hotelEndDate.set(Calendar.YEAR, year);
-                hotelEndDate.set(Calendar.MONTH, monthOfYear);
-                hotelEndDate.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-                String myFormat = "MM/dd/yy";
-                SimpleDateFormat date = new SimpleDateFormat(myFormat, Locale.US);
-
-                checkOutText.setText(date.format(hotelEndDate.getTime()));
-            }
-
-        };
-
-        checkOutText.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                new DatePickerDialog(getContext(), datePicker2, hotelEndDate
-                        .get(Calendar.YEAR), hotelEndDate.get(Calendar.MONTH),
-                        hotelEndDate.get(Calendar.DAY_OF_MONTH)).show();
-            }
-        });
+//        final Calendar hotelStartDate = Calendar.getInstance();
+//
+//        final DatePickerDialog.OnDateSetListener datePicker = new DatePickerDialog.OnDateSetListener() {
+//
+//            @Override
+//            public void onDateSet(DatePicker view, int year, int monthOfYear,
+//                                  int dayOfMonth) {
+//                // sets the calendar date of the hotel start date
+//                hotelStartDate.set(Calendar.YEAR, year);
+//                hotelStartDate.set(Calendar.MONTH, monthOfYear);
+//                hotelStartDate.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+//                String myFormat = "MM/dd/yy";
+//                SimpleDateFormat date = new SimpleDateFormat(myFormat, Locale.US);
+//
+//                checkInText.setText(date.format(hotelStartDate.getTime()));
+//            }
+//
+//        };
+//
+//        checkInText.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                new DatePickerDialog(getContext(), datePicker, hotelStartDate
+//                        .get(Calendar.YEAR), hotelStartDate.get(Calendar.MONTH),
+//                        hotelStartDate.get(Calendar.DAY_OF_MONTH)).show();
+//            }
+//        });
+//
+//        final Calendar hotelEndDate = Calendar.getInstance();
+//
+//        final DatePickerDialog.OnDateSetListener datePicker2 = new DatePickerDialog.OnDateSetListener() {
+//
+//            @Override
+//            public void onDateSet(DatePicker view, int year, int monthOfYear,
+//                                  int dayOfMonth) {
+//                // sets the calendar date of the hotel end date
+//                hotelEndDate.set(Calendar.YEAR, year);
+//                hotelEndDate.set(Calendar.MONTH, monthOfYear);
+//                hotelEndDate.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+//                String myFormat = "MM/dd/yy";
+//                SimpleDateFormat date = new SimpleDateFormat(myFormat, Locale.US);
+//
+//                checkOutText.setText(date.format(hotelEndDate.getTime()));
+//            }
+//
+//        };
+//
+//        checkOutText.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                new DatePickerDialog(getContext(), datePicker2, hotelEndDate
+//                        .get(Calendar.YEAR), hotelEndDate.get(Calendar.MONTH),
+//                        hotelEndDate.get(Calendar.DAY_OF_MONTH)).show();
+//            }
+//        });
 
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent addHotelIntent = new Intent(getActivity(), DetailedTripActivity.class);
-                String tripId = getArguments().getString("trip id");
-                DatabaseReference planRef = databaseReference.child("trips").child(tripId)
-                        .child("plans").push();
+                addHotelIntent.putExtra("trip id", tripId);
+                DatabaseReference planRef = databaseReference.child("trips" + tripId).push();
                 String planKey = planRef.getKey();
 
-//                Plan newHotel = new Plan(planKey,
-//                        "Hotel at " + location,
-//                        Utils.stringToDate(departDate.getText().toString()),
-//                        Utils.stringToDate(arriveDate.getText().toString()),
-//                        tripId,
-//                        Reservation.HOTEL, location,
-//                        Utils.stringToHours(departTime.getText().toString()),
-//                        Utils.stringToMins(departTime.getText().toString()),
-//                        Utils.stringToHours(arriveTime.getText().toString()),
-//                        Utils.stringToMins(arriveTime.getText().toString()),
-//                        null);
+                Plan newHotel = new Plan(planKey,
+                        hotelName.getText().toString(),
+                        Utils.stringToDate(checkInText.getText().toString()),
+                        Utils.stringToDate(checkOutText.getText().toString()),
+                        tripId,
+                        Reservation.HOTEL, location,
+                        Utils.stringToHours(checkInTime.getText().toString()),
+                        Utils.stringToMins(checkInTime.getText().toString()),
+                        Utils.stringToHours(checkOutTime.getText().toString()),
+                        Utils.stringToMins(checkOutTime.getText().toString()),
+                        null);
 
-//                planRef.setValue(newHotel);
+                planRef.setValue(newHotel);
 
                 startActivity(addHotelIntent);
             }

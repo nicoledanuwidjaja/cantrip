@@ -54,6 +54,7 @@ public class AddFlightFragment extends DialogFragment {
     private TextView departLocation;
     private EditText departDate;
     private EditText departTime;
+    private TextView flightNumber;
 
     private ImageView arriveImage;
     private TextView arriveLocation;
@@ -94,8 +95,8 @@ public class AddFlightFragment extends DialogFragment {
 
         View view = inflater.inflate(R.layout.fragment_add_flight, container, false);
 
-
-        airplaneLabel = view.findViewById(R.id.airplane_label);
+        flightNumber = view.findViewById(R.id.flightText);
+        airplaneLabel = view.findViewById(R.id.airlineText);
         airplaneImage = view.findViewById(R.id.airplaneImage);
         airlineText = view.findViewById(R.id.airlineText);
         flightText = view.findViewById(R.id.flightText);
@@ -114,9 +115,6 @@ public class AddFlightFragment extends DialogFragment {
 
         arriveTime = view.findViewById(R.id.arriveTime);
         arriveTime.setOnClickListener(new OnTimeClick());
-
-        ticketImage = view.findViewById(R.id.ticketImage);
-        confirmationNum = view.findViewById(R.id.confirmationNum);
         String apiKey = getString(R.string.google_places_api);
 
         Places.initialize(getActivity().getApplicationContext(), apiKey);
@@ -171,7 +169,8 @@ public class AddFlightFragment extends DialogFragment {
                 String planKey = planRef.getKey();
 
                 // create a new plan and save data
-                Plan newFlight = new Plan(planKey, airplaneLabel.getText().toString(),
+                Plan newFlight = new Plan(planKey,
+                        airplaneLabel.getText().toString() + " #" + flightNumber.getText(),
                         Utils.stringToDate(departDate.getText().toString()),
                         Utils.stringToDate(arriveDate.getText().toString()),
                         tripId, Reservation.FLIGHT, startLoc,
