@@ -9,6 +9,9 @@ import android.widget.ListView;
 
 import androidx.fragment.app.Fragment;
 
+import com.google.android.libraries.places.api.model.Place;
+import com.google.android.libraries.places.api.net.FetchPlaceRequest;
+
 import java.util.ArrayList;
 
 import utils.CustomRecListAdapter;
@@ -50,5 +53,4 @@ public class RecommendedListFragment extends Fragment {
         recArray.add(new RecAdapterItem(R.drawable.central_park, "Central Park"));
         recArray.add(new RecAdapterItem(R.drawable.empire_state_building, "Empire State Building"));
     }
-
 }
