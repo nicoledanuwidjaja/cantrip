@@ -121,7 +121,7 @@ public class AddLandmarkFragment extends DialogFragment {
                         landmarkName.getText().toString(),
                         Utils.stringToDate(startDate.getText().toString()),
                         Utils.stringToDate(endDate.getText().toString()),
-                        tripId, Reservation.FLIGHT, null,
+                        tripId, Reservation.LANDMARK, null,
                         Utils.stringToHours(startTime.getText().toString()),
                         Utils.stringToMins(startTime.getText().toString()),
                         Utils.stringToHours(endTime.getText().toString()),
