@@ -9,10 +9,9 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
-import com.narwhalcompany.cantrip.EmptyRecommendedFragment;
 import com.narwhalcompany.cantrip.MyPlansFragment;
 import com.narwhalcompany.cantrip.R;
-import com.narwhalcompany.cantrip.RecommendedFragment;
+import com.narwhalcompany.cantrip.RecommendedListFragment;
 
 /**
  * A [FragmentPagerAdapter] that returns a fragment corresponding to
@@ -44,7 +43,7 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
                 selectedFragment = new MyPlansFragment(bundle);
                 break;
             case 1:
-                selectedFragment = new RecommendedFragment();
+                selectedFragment = new RecommendedListFragment();
                 break;
         }
         return selectedFragment;
