@@ -6,6 +6,17 @@
     android:orientation="vertical">
 
     <TextView
+        android:id="@+id/new_trip"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorAccent"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="@string/add_new_trip"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"></TextView>
+
+    <TextView
         android:id="@+id/where_from"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

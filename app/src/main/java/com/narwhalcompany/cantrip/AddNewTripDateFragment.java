@@ -39,6 +39,7 @@ public class AddNewTripDateFragment extends Fragment {
 
     private Button completeButton;
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
