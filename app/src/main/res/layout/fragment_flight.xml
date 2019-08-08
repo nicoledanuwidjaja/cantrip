@@ -112,32 +112,7 @@
             android:gravity="right"
             android:text="Thu, Jun 21 8:05 PM"
             android:textSize="15sp" />
-
     </LinearLayout>
-
-    <!--<LinearLayout-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:orientation="horizontal">-->
-
-        <!--<TextView-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_marginLeft="162dp"-->
-            <!--android:layout_marginTop="6dp"-->
-            <!--android:text="Terminal: B"-->
-            <!--android:textSize="15sp" />-->
-
-        <!--<TextView-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_marginLeft="100dp"-->
-            <!--android:layout_marginTop="6dp"-->
-            <!--android:gravity="right"-->
-            <!--android:text="Gate: A"-->
-            <!--android:textSize="15sp" />-->
-
-    <!--</LinearLayout>-->
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -173,30 +148,6 @@
 
     </LinearLayout>
 
-    <!--<LinearLayout-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:orientation="horizontal">-->
-
-        <!--<TextView-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_marginLeft="162dp"-->
-            <!--android:layout_marginTop="6dp"-->
-            <!--android:text="Terminal:   "-->
-            <!--android:textSize="15sp" />-->
-
-        <!--<TextView-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_marginLeft="100dp"-->
-            <!--android:layout_marginTop="6dp"-->
-            <!--android:gravity="right"-->
-            <!--android:text="Gate:  "-->
-            <!--android:textSize="15sp" />-->
-
-    <!--</LinearLayout>-->
-
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -216,83 +167,36 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="208dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="25dp"
             android:gravity="right"
             android:text="5:47"
             android:textSize="15sp" />
 
     </LinearLayout>
 
-    <!--<LinearLayout-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:orientation="vertical">-->
-
-        <!--<TextView-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_marginLeft="15dp"-->
-            <!--android:layout_marginTop="30dp"-->
-            <!--android:text="Passenger(s):"-->
-            <!--android:textSize="20sp" />-->
-
-        <!--<LinearLayout-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:orientation="horizontal">-->
-
-            <!--<TextView-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_marginLeft="162dp"-->
-                <!--android:layout_marginTop="6dp"-->
-                <!--android:text="Caroline Liu"-->
-                <!--android:textSize="15sp" />-->
-
-            <!--<TextView-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_marginLeft="100dp"-->
-                <!--android:layout_marginTop="6dp"-->
-                <!--android:gravity="right"-->
-                <!--android:text="Seat 2B"-->
-                <!--android:textSize="15sp" />-->
-
-        <!--</LinearLayout>-->
-
-        <!--<LinearLayout-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:orientation="horizontal">-->
-
-            <!--<TextView-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_marginLeft="162dp"-->
-                <!--android:layout_marginTop="6dp"-->
-                <!--android:text="Sharon He"-->
-                <!--android:textSize="15sp" />-->
-
-            <!--<TextView-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_marginLeft="110dp"-->
-                <!--android:layout_marginTop="6dp"-->
-                <!--android:gravity="right"-->
-                <!--android:text="Seat 2C"-->
-                <!--android:textSize="15sp" />-->
-
-        <!--</LinearLayout>-->
-
-    <!--</LinearLayout>-->
-
-    <TextView
-        android:id="@+id/confirmation_label"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="30dp"
-        android:text="Confirmation #: UH133X"
-        android:textSize="20sp" />
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/confirmation_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="30dp"
+            android:text="@string/confirmation_text"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/confirmation_code"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="200dp"
+            android:layout_marginTop="25dp"
+            android:gravity="right"
+            android:text="753-347189341"
+            android:textSize="18sp" />
+    </LinearLayout>
 
 </LinearLayout>

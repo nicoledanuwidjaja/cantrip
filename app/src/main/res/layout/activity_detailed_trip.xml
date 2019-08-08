@@ -17,12 +17,12 @@
             android:id="@+id/trip_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textStyle="bold"
             android:background="@color/colorPrimary"
             android:gravity="center"
             android:padding="10dp"
             android:textColor="#FFFFFF"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/trip_duration"

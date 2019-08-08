@@ -48,6 +48,7 @@ public class AddFlightFragment extends DialogFragment {
     private ImageView airplaneImage;
     private EditText airlineText;
     private EditText flightText;
+    private TextView airplaneLabel;
 
     private ImageView departImage;
     private TextView departLocation;
@@ -94,6 +95,7 @@ public class AddFlightFragment extends DialogFragment {
         View view = inflater.inflate(R.layout.fragment_add_flight, container, false);
 
 
+        airplaneLabel = view.findViewById(R.id.airplane_label);
         airplaneImage = view.findViewById(R.id.airplaneImage);
         airlineText = view.findViewById(R.id.airlineText);
         flightText = view.findViewById(R.id.flightText);
@@ -168,17 +170,16 @@ public class AddFlightFragment extends DialogFragment {
                 DatabaseReference planRef = databaseReference.child("plans" + tripId).push();
                 String planKey = planRef.getKey();
 
-                Plan newFlight = new Plan(planKey,
-                        "Flight to " + endLoc,
+                // create a new plan and save data
+                Plan newFlight = new Plan(planKey, airplaneLabel.getText().toString(),
                         Utils.stringToDate(departDate.getText().toString()),
                         Utils.stringToDate(arriveDate.getText().toString()),
-                        tripId,
-                        Reservation.FLIGHT, startLoc,
+                        tripId, Reservation.FLIGHT, startLoc,
                         Utils.stringToHours(departTime.getText().toString()),
                         Utils.stringToMins(departTime.getText().toString()),
                         Utils.stringToHours(arriveTime.getText().toString()),
                         Utils.stringToMins(arriveTime.getText().toString()),
-                        endLoc);
+                        endLoc, departDate.getText().toString());
 
                 planRef.setValue(newFlight);
 
