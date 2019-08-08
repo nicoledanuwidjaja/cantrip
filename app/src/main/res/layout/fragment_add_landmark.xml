@@ -91,6 +91,8 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/startDateText"
+                android:focusable="false"
+                android:inputType="none"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:maxLines="1" />
@@ -113,6 +115,8 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/startTimeText"
+                android:focusable="false"
+                android:inputType="none"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:maxLines="1" />
@@ -144,6 +148,8 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/endDateText"
+                android:focusable="false"
+                android:inputType="none"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:maxLines="1" />
@@ -166,6 +172,8 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/endTimeText"
+                android:focusable="false"
+                android:inputType="none"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:maxLines="1" />

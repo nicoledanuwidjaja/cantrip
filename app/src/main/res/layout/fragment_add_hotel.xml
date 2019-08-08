@@ -93,9 +93,10 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/check_in_text"
+                android:focusable="false"
+                android:inputType="none"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="number"
                 android:maxLines="1"></com.google.android.material.textfield.TextInputEditText>
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -141,9 +142,10 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/check_out_text"
+                android:focusable="false"
+                android:inputType="none"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="number"
                 android:maxLines="1" />
 
         </com.google.android.material.textfield.TextInputLayout>
