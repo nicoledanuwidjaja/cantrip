@@ -48,6 +48,7 @@ public class AddLandmarkFragment extends DialogFragment {
 
     private String location;
     private String tripId;
+    private String placeId;
 
     public AddLandmarkFragment() {
 
@@ -107,7 +108,9 @@ public class AddLandmarkFragment extends DialogFragment {
         landmarkLocation.setOnPlaceSelectedListener(new PlaceSelectionListener() {
             @Override
             public void onPlaceSelected(Place place) {
-                 location = place.getName();
+                placeId = place.getId();
+                landmarkName.setText(place.getName());
+                location = place.getName();
             }
 
             @Override

@@ -144,7 +144,6 @@ public class AddFlightFragment extends DialogFragment {
         flightStartLocation = (AutocompleteSupportFragment)
                 getFragmentManager().findFragmentById(R.id.home_flight_search);
 
-
         flightStartLocation.setTypeFilter(TypeFilter.ADDRESS);
 
         // Specify the types of place data to return.
@@ -166,6 +165,8 @@ public class AddFlightFragment extends DialogFragment {
         AutocompleteSupportFragment flightEndLocation = (AutocompleteSupportFragment)
                 getFragmentManager().findFragmentById(R.id.destination_flight_search);
 
+        flightEndLocation.setTypeFilter(TypeFilter.ADDRESS);
+
         // Specify the types of place data to return.
         flightEndLocation.setPlaceFields(Arrays.asList(Place.Field.ID, Place.Field.NAME));
 
@@ -184,8 +185,9 @@ public class AddFlightFragment extends DialogFragment {
         });
 
 
+        // TODO: FIX DATE VALIDATION
 //        if (!Utils.checkEndDateValid(departDate, arriveDate)) {
-            Toast.makeText(getContext(), "End date cannot be before start date", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(getContext(), "End date cannot be before start date", Toast.LENGTH_SHORT).show();
 
             saveButton = view.findViewById(R.id.saveButton);
             saveButton.setOnClickListener(new View.OnClickListener() {

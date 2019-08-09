@@ -18,6 +18,7 @@ import androidx.fragment.app.Fragment;
 import com.google.android.gms.common.api.Status;
 import com.google.android.libraries.places.api.Places;
 import com.google.android.libraries.places.api.model.Place;
+import com.google.android.libraries.places.api.model.TypeFilter;
 import com.google.android.libraries.places.widget.AutocompleteSupportFragment;
 import com.google.android.libraries.places.widget.listener.PlaceSelectionListener;
 import com.google.firebase.database.DatabaseReference;
@@ -97,6 +98,8 @@ public class AddHotelFragment extends DialogFragment {
         AutocompleteSupportFragment hotelLocation = (AutocompleteSupportFragment)
                 getFragmentManager().findFragmentById(R.id.search_bar_hotel);
 
+        hotelLocation.setTypeFilter(TypeFilter.ADDRESS);
+
         // Specify the types of place data to return.
         hotelLocation.setPlaceFields(Arrays.asList(Place.Field.ID, Place.Field.NAME));
 
@@ -105,6 +108,7 @@ public class AddHotelFragment extends DialogFragment {
             @Override
             public void onPlaceSelected(Place place) {
                 placeId = place.getId();
+                hotelName.setText(place.getName());
                 location = place.getName();
             }
 
