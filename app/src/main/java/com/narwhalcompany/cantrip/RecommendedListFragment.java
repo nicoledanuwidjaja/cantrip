@@ -33,9 +33,14 @@ public class RecommendedListFragment extends Fragment {
     ListView listView;
     ArrayList<RecAdapterItem> recArray = new ArrayList<>();
     TextView textView;
+    String tripDestination;
 
     public RecommendedListFragment() {
         // Required empty public constructor
+    }
+
+    public RecommendedListFragment(String tripDestination) {
+        this.tripDestination = tripDestination;
     }
 
     @Override
@@ -56,7 +61,7 @@ public class RecommendedListFragment extends Fragment {
 // Instantiate the RequestQueue.
         String apiKey = getString(R.string.google_places_api);
         RequestQueue queue = Volley.newRequestQueue(getContext());
-        String url ="https://maps.googleapis.com/maps/api/place/textsearch/xml?query=restaurants+in+Sydney&key=" + apiKey;
+        String url ="https://maps.googleapis.com/maps/api/place/textsearch/json?query=attractions+in+" + tripDestination + "&key=" + apiKey;
 
 // Request a string response from the provided URL.
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
@@ -64,7 +69,7 @@ public class RecommendedListFragment extends Fragment {
                     @Override
                     public void onResponse(String response) {
                         // Display the first 500 characters of the response string.
-                        textView.setText("Response is: "+ response.substring(0,500));
+                        textView.setText("Response is: "+ response);
                     }
                 }, new Response.ErrorListener() {
             @Override

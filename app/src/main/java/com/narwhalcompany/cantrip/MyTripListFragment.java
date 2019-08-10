@@ -73,6 +73,7 @@ public class MyTripListFragment extends Fragment {
                 String tripDuration = tripObjectList.get(i).formatDate(tripObjectList.get(i).getStartDate())
                         + " - " + tripObjectList.get(i).formatDate(tripObjectList.get(i).getEndDate());
 
+                tripIntent.putExtra("tripDestination", tripObjectList.get(i).getEndLoc());
                 tripIntent.putExtra("trip id", tripObjectList.get(i).getId());
                 tripIntent.putExtra("tripName", tripName);
                 tripIntent.putExtra("tripDuration", tripDuration);

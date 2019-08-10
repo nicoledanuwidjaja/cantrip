@@ -30,8 +30,9 @@ public class DetailedTripActivity extends AppCompatActivity {
 
         // unique trip id for each trip
         String tripId = getIntent().getStringExtra("trip id");
+        String tripDestination = getIntent().getStringExtra("tripDestination");
         SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this,
-                getSupportFragmentManager(), tripId);
+                getSupportFragmentManager(), tripId, tripDestination);
         viewPager.setAdapter(sectionsPagerAdapter);
         TabLayout tabs = findViewById(R.id.tabs);
         tabs.setupWithViewPager(viewPager);
