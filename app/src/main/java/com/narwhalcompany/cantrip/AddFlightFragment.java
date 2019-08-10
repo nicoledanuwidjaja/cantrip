@@ -186,38 +186,46 @@ public class AddFlightFragment extends DialogFragment {
 
 
         // TODO: FIX DATE VALIDATION
-//        if (!Utils.checkEndDateValid(departDate, arriveDate)) {
+//        System.out.println("depart date: " + departDate.getText().toString());
+//        if (!Utils.isDatePeriodValid(departDate.getText().toString(), arriveDate.getText().toString())) {
 //            Toast.makeText(getContext(), "End date cannot be before start date", Toast.LENGTH_SHORT).show();
+//        } else {
 
             saveButton = view.findViewById(R.id.saveButton);
             saveButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent addFlightIntent = new Intent(getActivity(), DetailedTripActivity.class);
-                    addFlightIntent.putExtra("trip id", tripId);
 
-                    DatabaseReference planRef = databaseReference.child("plans" + tripId).push();
-                    String planKey = planRef.getKey();
+                    if (!Utils.isDatePeriodValid(departDate.getText().toString(), arriveDate.getText().toString())) {
+                        Toast.makeText(getContext(), "Cannot arrive before departure.", Toast.LENGTH_LONG).show();
+                    } else if (departDate.getText().toString().compareTo(arriveDate.getText().toString()) == 0
+                            && Utils.isTimePeriodValidGivenValidDates(departTime.getText().toString(), arriveTime.getText().toString())){
+                        Toast.makeText(getContext(), "Cannot arrive before departure.", Toast.LENGTH_LONG).show();
+                    } else {
+                        Intent addFlightIntent = new Intent(getActivity(), DetailedTripActivity.class);
+                        addFlightIntent.putExtra("trip id", tripId);
 
-                    // create a new plan and save data
-                    Plan newFlight = new Plan(planKey,
-                            airplaneLabel.getText().toString() + " #" + flightNumber.getText(),
-                            Utils.stringToDate(departDate.getText().toString()),
-                            Utils.stringToDate(arriveDate.getText().toString()),
-                            tripId, Reservation.FLIGHT, startLoc,
-                            Utils.stringToHours(departTime.getText().toString()),
-                            Utils.stringToMins(departTime.getText().toString()),
-                            Utils.stringToHours(arriveTime.getText().toString()),
-                            Utils.stringToMins(arriveTime.getText().toString()),
-                            endLoc);
+                        DatabaseReference planRef = databaseReference.child("plans" + tripId).push();
+                        String planKey = planRef.getKey();
 
-                    planRef.setValue(newFlight);
+                        // create a new plan and save data
+                        Plan newFlight = new Plan(planKey,
+                                airplaneLabel.getText().toString() + " #" + flightNumber.getText(),
+                                Utils.stringToDate(departDate.getText().toString()),
+                                Utils.stringToDate(arriveDate.getText().toString()),
+                                tripId, Reservation.FLIGHT, startLoc,
+                                Utils.stringToHours(departTime.getText().toString()),
+                                Utils.stringToMins(departTime.getText().toString()),
+                                Utils.stringToHours(arriveTime.getText().toString()),
+                                Utils.stringToMins(arriveTime.getText().toString()),
+                                endLoc);
 
-                    startActivity(addFlightIntent);
+                        planRef.setValue(newFlight);
+
+                        startActivity(addFlightIntent);
+                    }
                 }
-            });
-//        }
-
+                    });
 
         return view;
     }

@@ -20,10 +20,12 @@ public class Plan {
     private int startMin;
     private int endHour;
     private int endMin;
+    private String placeId;
 
     // throwaway test constructor
     public Plan(String planId, String name, Date startTime, Date endTime, String tripId, Reservation planType,
-                String location, int startHour, int startMin, int endHour, int endMin) {
+                String location, int startHour, int startMin, int endHour, int endMin,
+                String placeId) {
         this.planId = planId;
         this.name = name;
         this.startTime = startTime;
@@ -35,12 +37,13 @@ public class Plan {
         this.startMin = startMin;
         this.endHour = endHour;
         this.endMin = endMin;
+        this.placeId = placeId;
     }
 
     // General Plan Object
     public Plan(String planId, String name, Date startTime, Date endTime, String tripId, Reservation planType,
-                String location, int startHour, int startMin, int endHour, int endMin, String endLocation) {
-        this(planId, name, startTime, endTime, tripId, planType, location, startHour, startMin, endHour, endMin);
+                String location, int startHour, int startMin, int endHour, int endMin, String endLocation, String placeId) {
+        this(planId, name, startTime, endTime, tripId, planType, location, startHour, startMin, endHour, endMin, placeId);
         this.endLocation = endLocation;
     }
 
@@ -144,5 +147,9 @@ public class Plan {
     public String getPlanId() {
         return planId;
     }
+
+    public String getPlaceId() { return placeId; }
+
+    public void setPlaceId(String placeId) { this.placeId = placeId; }
 
 }

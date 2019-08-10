@@ -6,6 +6,7 @@ import android.widget.DatePicker;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
@@ -86,6 +87,26 @@ public class Utils {
         }
 
         return true;
+    }
+
+    public static boolean isDatePeriodValid(String startDate, String endDate) {
+        return Utils.stringToDate(startDate).getTime() < Utils.stringToDate(endDate).getTime();
+    }
+
+    public static boolean isTimePeriodValidGivenValidDates(String startTime, String endTime) {
+        String[] startTimes = startTime.split(":");
+        String[] endTimes = endTime.split(":");
+
+        if (Integer.parseInt(startTimes[0]) > Integer.parseInt(endTimes[0])) {
+            return false;
+        } else {
+            if (Integer.parseInt(startTimes[0]) == Integer.parseInt(endTimes[0])
+            && Integer.parseInt(startTimes[1]) > Integer.parseInt(endTimes[0])) {
+                return false;
+            } else {
+                return true;
+            }
+        }
     }
 
     // formats a date to US calendar format
