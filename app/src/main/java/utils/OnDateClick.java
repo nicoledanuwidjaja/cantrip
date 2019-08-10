@@ -26,10 +26,9 @@ public class OnDateClick implements View.OnClickListener {
         DatePickerDialog datePickerDialog = new DatePickerDialog(view.getContext(), new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(android.widget.DatePicker datePicker, int year, int month, int day) {
-                ((EditText) view).setText(month + "/" + day + "/" + year);
+                ((EditText) view).setText(month + 1 + "/" + day + "/" + year);
             }
         }, mYear, mMonth, mDay);
         datePickerDialog.show();
     }
-
 }

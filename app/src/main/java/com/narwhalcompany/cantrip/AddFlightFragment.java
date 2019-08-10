@@ -111,7 +111,6 @@ public class AddFlightFragment extends DialogFragment {
 
         View view = inflater.inflate(R.layout.fragment_add_flight, container, false);
 
-        // TODO: Date clickers
         OnDateClick departDatePicker = new OnDateClick();
         OnDateClick arriveDatePicker = new OnDateClick();
         OnTimeClick departTimePicker = new OnTimeClick();
@@ -183,9 +182,6 @@ public class AddFlightFragment extends DialogFragment {
                 Log.i(TAG, "An error occurred: " + status);
             }
         });
-
-
-        // TODO: FIX DATE VALIDATION
 
         saveButton = view.findViewById(R.id.saveButton);
         saveButton.setOnClickListener(new View.OnClickListener() {
