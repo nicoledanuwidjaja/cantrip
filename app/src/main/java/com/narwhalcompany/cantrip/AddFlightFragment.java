@@ -144,7 +144,7 @@ public class AddFlightFragment extends DialogFragment {
         flightStartLocation = (AutocompleteSupportFragment)
                 getFragmentManager().findFragmentById(R.id.home_flight_search);
 
-        flightStartLocation.setTypeFilter(TypeFilter.ADDRESS);
+        flightStartLocation.setTypeFilter(TypeFilter.ESTABLISHMENT);
 
         // Specify the types of place data to return.
         flightStartLocation.setPlaceFields(Arrays.asList(Place.Field.ID, Place.Field.NAME));
@@ -165,7 +165,7 @@ public class AddFlightFragment extends DialogFragment {
         AutocompleteSupportFragment flightEndLocation = (AutocompleteSupportFragment)
                 getFragmentManager().findFragmentById(R.id.destination_flight_search);
 
-        flightEndLocation.setTypeFilter(TypeFilter.ADDRESS);
+        flightEndLocation.setTypeFilter(TypeFilter.ESTABLISHMENT);
 
         // Specify the types of place data to return.
         flightEndLocation.setPlaceFields(Arrays.asList(Place.Field.ID, Place.Field.NAME));

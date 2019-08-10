@@ -63,6 +63,8 @@ public class AddNewTripLocationFragment extends DialogFragment {
         AutocompleteSupportFragment autocompleteFragment = (AutocompleteSupportFragment)
                 getFragmentManager().findFragmentById(R.id.autocomplete_fragment);
 
+        autocompleteFragment.setTypeFilter(TypeFilter.CITIES);
+
         // Specify the types of place data to return.
         autocompleteFragment.setPlaceFields(Arrays.asList(Place.Field.ID, Place.Field.NAME));
 
@@ -85,6 +87,8 @@ public class AddNewTripLocationFragment extends DialogFragment {
         // Initialize the AutocompleteSupportFragment for destination
         AutocompleteSupportFragment autocompleteFragment2 = (AutocompleteSupportFragment)
                 getFragmentManager().findFragmentById(R.id.autocomplete_fragment_2);
+
+        autocompleteFragment2.setTypeFilter(TypeFilter.CITIES);
 
         // Specify the types of place data to return.
         autocompleteFragment2.setPlaceFields(Arrays.asList(Place.Field.ID, Place.Field.NAME));
