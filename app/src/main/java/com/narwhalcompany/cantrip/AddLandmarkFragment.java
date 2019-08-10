@@ -17,6 +17,7 @@ import androidx.fragment.app.FragmentManager;
 import com.google.android.gms.common.api.Status;
 import com.google.android.libraries.places.api.Places;
 import com.google.android.libraries.places.api.model.Place;
+import com.google.android.libraries.places.api.model.TypeFilter;
 import com.google.android.libraries.places.widget.AutocompleteSupportFragment;
 import com.google.android.libraries.places.widget.listener.PlaceSelectionListener;
 import com.google.firebase.database.DatabaseReference;
@@ -101,6 +102,8 @@ public class AddLandmarkFragment extends DialogFragment {
         // Initialize the AutocompleteSupportFragment for start location
         AutocompleteSupportFragment landmarkLocation = (AutocompleteSupportFragment)
                 getFragmentManager().findFragmentById(R.id.search_bar_landmark);
+
+        landmarkLocation.setTypeFilter(TypeFilter.ESTABLISHMENT);
 
         // Specify the types of place data to return.
         landmarkLocation.setPlaceFields(Arrays.asList(Place.Field.ID, Place.Field.NAME));

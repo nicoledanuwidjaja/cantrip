@@ -99,7 +99,7 @@ public class AddHotelFragment extends DialogFragment {
         AutocompleteSupportFragment hotelLocation = (AutocompleteSupportFragment)
                 getFragmentManager().findFragmentById(R.id.search_bar_hotel);
 
-        hotelLocation.setTypeFilter(TypeFilter.ADDRESS);
+        hotelLocation.setTypeFilter(TypeFilter.ESTABLISHMENT);
 
         // Specify the types of place data to return.
         hotelLocation.setPlaceFields(Arrays.asList(Place.Field.ID, Place.Field.NAME));
