@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
@@ -121,28 +122,37 @@ public class AddHotelFragment extends DialogFragment {
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent addHotelIntent = new Intent(getActivity(), DetailedTripActivity.class);
-                addHotelIntent.putExtra("trip id", tripId);
-                addHotelIntent.putExtra("place id", placeId);
 
-                DatabaseReference planRef = databaseReference.child("plans" + tripId).push();
-                String planKey = planRef.getKey();
+                if (!Utils.isDatePeriodValid(checkInText.getText().toString(), checkOutText.getText().toString())) {
+                    Toast.makeText(getContext(), "Cannot check out  before check-in.", Toast.LENGTH_LONG).show();
+                } else if (checkInText.getText().toString().compareTo(checkOutText.getText().toString()) == 0
+                        && Utils.isTimePeriodValidGivenValidDates(checkInTime.getText().toString(), checkOutTime.getText().toString())){
+                    Toast.makeText(getContext(), "Cannot check out before check-in.", Toast.LENGTH_LONG).show();
+                } else {
 
-                Plan newHotel = new Plan(planKey,
-                        hotelName.getText().toString(),
-                        Utils.stringToDate(checkInText.getText().toString()),
-                        Utils.stringToDate(checkOutText.getText().toString()),
-                        tripId,
-                        Reservation.HOTEL, location,
-                        Utils.stringToHours(checkInTime.getText().toString()),
-                        Utils.stringToMins(checkInTime.getText().toString()),
-                        Utils.stringToHours(checkOutTime.getText().toString()),
-                        Utils.stringToMins(checkOutTime.getText().toString()),
-                        null);
+                    Intent addHotelIntent = new Intent(getActivity(), DetailedTripActivity.class);
+                    addHotelIntent.putExtra("trip id", tripId);
+                    addHotelIntent.putExtra("place id", placeId);
 
-                planRef.setValue(newHotel);
+                    DatabaseReference planRef = databaseReference.child("plans" + tripId).push();
+                    String planKey = planRef.getKey();
 
-                startActivity(addHotelIntent);
+                    Plan newHotel = new Plan(planKey,
+                            hotelName.getText().toString(),
+                            Utils.stringToDate(checkInText.getText().toString()),
+                            Utils.stringToDate(checkOutText.getText().toString()),
+                            tripId,
+                            Reservation.HOTEL, location,
+                            Utils.stringToHours(checkInTime.getText().toString()),
+                            Utils.stringToMins(checkInTime.getText().toString()),
+                            Utils.stringToHours(checkOutTime.getText().toString()),
+                            Utils.stringToMins(checkOutTime.getText().toString()),
+                            null);
+
+                    planRef.setValue(newHotel);
+
+                    startActivity(addHotelIntent);
+                }
             }
         });
 

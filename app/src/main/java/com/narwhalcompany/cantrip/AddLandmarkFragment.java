@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
@@ -123,26 +124,35 @@ public class AddLandmarkFragment extends DialogFragment {
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent addLandmarkIntent = new Intent(getActivity(), DetailedTripActivity.class);
 
-                addLandmarkIntent.putExtra("trip id", tripId);
-                DatabaseReference planRef = databaseReference.child("plans" + tripId).push();
-                String planKey = planRef.getKey();
+                if (!Utils.isDatePeriodValid(startDate.getText().toString(), endDate.getText().toString())) {
+                    Toast.makeText(getContext(), "Cannot end before starting.", Toast.LENGTH_LONG).show();
+                } else if (startDate.getText().toString().compareTo(endDate.getText().toString()) == 0
+                        && Utils.isTimePeriodValidGivenValidDates(startTime.getText().toString(), endTime.getText().toString())){
+                    Toast.makeText(getContext(), "Cannot end before starting.", Toast.LENGTH_LONG).show();
+                } else {
 
-                // create a new plan and save data
-                Plan newFlight = new Plan(planKey,
-                        landmarkName.getText().toString(),
-                        Utils.stringToDate(startDate.getText().toString()),
-                        Utils.stringToDate(endDate.getText().toString()),
-                        tripId, Reservation.LANDMARK, location,
-                        Utils.stringToHours(startTime.getText().toString()),
-                        Utils.stringToMins(startTime.getText().toString()),
-                        Utils.stringToHours(endTime.getText().toString()),
-                        Utils.stringToMins(endTime.getText().toString()),
-                        null);
+                    Intent addLandmarkIntent = new Intent(getActivity(), DetailedTripActivity.class);
 
-                planRef.setValue(newFlight);
-                startActivity(addLandmarkIntent);
+                    addLandmarkIntent.putExtra("trip id", tripId);
+                    DatabaseReference planRef = databaseReference.child("plans" + tripId).push();
+                    String planKey = planRef.getKey();
+
+                    // create a new plan and save data
+                    Plan newFlight = new Plan(planKey,
+                            landmarkName.getText().toString(),
+                            Utils.stringToDate(startDate.getText().toString()),
+                            Utils.stringToDate(endDate.getText().toString()),
+                            tripId, Reservation.LANDMARK, location,
+                            Utils.stringToHours(startTime.getText().toString()),
+                            Utils.stringToMins(startTime.getText().toString()),
+                            Utils.stringToHours(endTime.getText().toString()),
+                            Utils.stringToMins(endTime.getText().toString()),
+                            null);
+
+                    planRef.setValue(newFlight);
+                    startActivity(addLandmarkIntent);
+                }
             }
         });
 
