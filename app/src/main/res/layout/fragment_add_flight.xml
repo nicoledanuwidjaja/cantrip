@@ -103,7 +103,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="5dp"
-            android:hint="On what date?">
+            android:hint="@string/departure_date">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/departDate"
@@ -175,7 +175,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="5dp"
-            android:hint="@string/what_date">
+            android:hint="@string/arrival_date">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/arriveDate"

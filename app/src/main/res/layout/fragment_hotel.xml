@@ -8,7 +8,7 @@
     tools:context=".HotelFragment">
 
     <TextView
-        android:id="@+id/flight_name"
+        android:id="@+id/hotel_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -53,6 +53,7 @@
             android:textSize="20sp" />
 
         <TextView
+            android:id="@+id/check_in_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="172dp"
@@ -78,6 +79,7 @@
             android:textSize="20sp" />
 
         <TextView
+            android:id="@+id/check_out_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="160dp"

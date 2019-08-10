@@ -11,6 +11,8 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -20,7 +22,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.libraries.places.api.model.TypeFilter;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -54,6 +58,7 @@ public class AddFlightFragment extends DialogFragment {
     private TextView departLocation;
     private EditText departDate;
     private EditText departTime;
+    private TextView flightNumber;
 
     private ImageView arriveImage;
     private TextView arriveLocation;
@@ -65,10 +70,13 @@ public class AddFlightFragment extends DialogFragment {
 
     private Button saveButton;
     private String tripId;
+    private String placeId;
     private String startLoc;
     private String endLoc;
 
     private DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+
+    private AutocompleteSupportFragment flightStartLocation;
 
     public AddFlightFragment() {
         // empty constructor
@@ -89,41 +97,54 @@ public class AddFlightFragment extends DialogFragment {
     }
 
     @Override
+    public void onDestroyView(){
+        super.onDestroyView();
+        if(flightStartLocation != null){
+            getFragmentManager().beginTransaction().remove(flightStartLocation).commit();
+        }
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_add_flight, container, false);
 
+        // TODO: Date clickers
 
-        airplaneLabel = view.findViewById(R.id.airplane_label);
+        OnDateClick departDatePicker = new OnDateClick();
+        OnDateClick arriveDatePicker = new OnDateClick();
+        OnTimeClick departTimePicker = new OnTimeClick();
+        OnTimeClick arriveTimePicker = new OnTimeClick();
+
+        flightNumber = view.findViewById(R.id.flightText);
+        airplaneLabel = view.findViewById(R.id.airlineText);
         airplaneImage = view.findViewById(R.id.airplaneImage);
         airlineText = view.findViewById(R.id.airlineText);
         flightText = view.findViewById(R.id.flightText);
 
         departImage = view.findViewById(R.id.departImage);
-
-        departDate = view.findViewById(R.id.departDate);
-        departDate.setOnClickListener(new OnDateClick());
-
-        departTime = view.findViewById(R.id.departTime);
-        departTime.setOnClickListener(new OnTimeClick());
-
         arriveImage = view.findViewById(R.id.arriveImage);
+        departDate = view.findViewById(R.id.departDate);
         arriveDate = view.findViewById(R.id.arriveDate);
-        arriveDate.setOnClickListener(new OnDateClick());
-
+        departTime = view.findViewById(R.id.departTime);
         arriveTime = view.findViewById(R.id.arriveTime);
-        arriveTime.setOnClickListener(new OnTimeClick());
 
-        ticketImage = view.findViewById(R.id.ticketImage);
-        confirmationNum = view.findViewById(R.id.confirmationNum);
+        departDate.setOnClickListener(departDatePicker);
+        arriveDate.setOnClickListener(arriveDatePicker);
+        departTime.setOnClickListener(departTimePicker);
+        arriveTime.setOnClickListener(arriveTimePicker);
+
+
         String apiKey = getString(R.string.google_places_api);
 
         Places.initialize(getActivity().getApplicationContext(), apiKey);
 
         // Initialize the AutocompleteSupportFragment for start location
-        AutocompleteSupportFragment flightStartLocation = (AutocompleteSupportFragment)
+        flightStartLocation = (AutocompleteSupportFragment)
                 getFragmentManager().findFragmentById(R.id.home_flight_search);
+
+        flightStartLocation.setTypeFilter(TypeFilter.ADDRESS);
 
         // Specify the types of place data to return.
         flightStartLocation.setPlaceFields(Arrays.asList(Place.Field.ID, Place.Field.NAME));
@@ -144,6 +165,8 @@ public class AddFlightFragment extends DialogFragment {
         AutocompleteSupportFragment flightEndLocation = (AutocompleteSupportFragment)
                 getFragmentManager().findFragmentById(R.id.destination_flight_search);
 
+        flightEndLocation.setTypeFilter(TypeFilter.ADDRESS);
+
         // Specify the types of place data to return.
         flightEndLocation.setPlaceFields(Arrays.asList(Place.Field.ID, Place.Field.NAME));
 
@@ -151,6 +174,7 @@ public class AddFlightFragment extends DialogFragment {
         flightEndLocation.setOnPlaceSelectedListener(new PlaceSelectionListener() {
             @Override
             public void onPlaceSelected(Place place) {
+                placeId = place.getId();
                 endLoc = place.getName();
             }
 
@@ -160,33 +184,48 @@ public class AddFlightFragment extends DialogFragment {
             }
         });
 
-        saveButton = view.findViewById(R.id.saveButton);
-        saveButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent addFlightIntent = new Intent(getActivity(), DetailedTripActivity.class);
 
-                addFlightIntent.putExtra("trip id", tripId);
-                DatabaseReference planRef = databaseReference.child("plans" + tripId).push();
-                String planKey = planRef.getKey();
+        // TODO: FIX DATE VALIDATION
+//        System.out.println("depart date: " + departDate.getText().toString());
+//        if (!Utils.isDatePeriodValid(departDate.getText().toString(), arriveDate.getText().toString())) {
+//            Toast.makeText(getContext(), "End date cannot be before start date", Toast.LENGTH_SHORT).show();
+//        } else {
 
-                // create a new plan and save data
-                Plan newFlight = new Plan(planKey, airplaneLabel.getText().toString(),
-                        Utils.stringToDate(departDate.getText().toString()),
-                        Utils.stringToDate(arriveDate.getText().toString()),
-                        tripId, Reservation.FLIGHT, startLoc,
-                        Utils.stringToHours(departTime.getText().toString()),
-                        Utils.stringToMins(departTime.getText().toString()),
-                        Utils.stringToHours(arriveTime.getText().toString()),
-                        Utils.stringToMins(arriveTime.getText().toString()),
-                        endLoc);
+            saveButton = view.findViewById(R.id.saveButton);
+            saveButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
 
-                planRef.setValue(newFlight);
+                    if (!Utils.isDatePeriodValid(departDate.getText().toString(), arriveDate.getText().toString())) {
+                        Toast.makeText(getContext(), "Cannot arrive before departure.", Toast.LENGTH_LONG).show();
+                    } else if (departDate.getText().toString().compareTo(arriveDate.getText().toString()) == 0
+                            && Utils.isTimePeriodValidGivenValidDates(departTime.getText().toString(), arriveTime.getText().toString())){
+                        Toast.makeText(getContext(), "Cannot arrive before departure.", Toast.LENGTH_LONG).show();
+                    } else {
+                        Intent addFlightIntent = new Intent(getActivity(), DetailedTripActivity.class);
+                        addFlightIntent.putExtra("trip id", tripId);
 
-                startActivity(addFlightIntent);
-            }
-        });
+                        DatabaseReference planRef = databaseReference.child("plans" + tripId).push();
+                        String planKey = planRef.getKey();
 
+                        // create a new plan and save data
+                        Plan newFlight = new Plan(planKey,
+                                airplaneLabel.getText().toString() + " #" + flightNumber.getText(),
+                                Utils.stringToDate(departDate.getText().toString()),
+                                Utils.stringToDate(arriveDate.getText().toString()),
+                                tripId, Reservation.FLIGHT, startLoc,
+                                Utils.stringToHours(departTime.getText().toString()),
+                                Utils.stringToMins(departTime.getText().toString()),
+                                Utils.stringToHours(arriveTime.getText().toString()),
+                                Utils.stringToMins(arriveTime.getText().toString()),
+                                endLoc);
+
+                        planRef.setValue(newFlight);
+
+                        startActivity(addFlightIntent);
+                    }
+                }
+                    });
 
         return view;
     }

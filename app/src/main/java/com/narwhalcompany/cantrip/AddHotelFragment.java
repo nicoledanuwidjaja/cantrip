@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
@@ -18,6 +19,7 @@ import androidx.fragment.app.Fragment;
 import com.google.android.gms.common.api.Status;
 import com.google.android.libraries.places.api.Places;
 import com.google.android.libraries.places.api.model.Place;
+import com.google.android.libraries.places.api.model.TypeFilter;
 import com.google.android.libraries.places.widget.AutocompleteSupportFragment;
 import com.google.android.libraries.places.widget.listener.PlaceSelectionListener;
 import com.google.firebase.database.DatabaseReference;
@@ -28,6 +30,8 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Locale;
 
+import utils.OnDateClick;
+import utils.OnTimeClick;
 import utils.Plan;
 import utils.Reservation;
 import utils.Utils;
@@ -39,9 +43,26 @@ public class AddHotelFragment extends DialogFragment {
     private Button saveButton;
     private EditText checkInText;
     private EditText checkOutText;
+    private EditText checkInTime;
+    private EditText checkOutTime;
+    private EditText hotelName;
     private String location;
 
+    private String tripId;
+    private String placeId;
+    private String startLoc;
+    private String endLoc;
+
     private DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+
+    public AddHotelFragment() {
+
+    }
+
+    public AddHotelFragment(String tripId) {
+        this.tripId = tripId;
+    }
+
 
     static AddHotelFragment newInstance() {
         return new AddHotelFragment();
@@ -59,8 +80,16 @@ public class AddHotelFragment extends DialogFragment {
         View view = inflater.inflate(R.layout.fragment_add_hotel, container, false);
 
         saveButton = view.findViewById(R.id.saveButton);
+        hotelName = view.findViewById(R.id.hotel_name);
         checkInText = view.findViewById(R.id.check_in_text);
         checkOutText = view.findViewById(R.id.check_out_text);
+        checkInTime = view.findViewById(R.id.check_in_time);
+        checkOutTime = view.findViewById(R.id.check_out_time);
+
+        checkInText.setOnClickListener(new OnDateClick());
+        checkOutText.setOnClickListener(new OnDateClick());
+        checkInTime.setOnClickListener(new OnTimeClick());
+        checkOutTime.setOnClickListener(new OnTimeClick());
 
         String apiKey = getString(R.string.google_places_api);
 
@@ -70,6 +99,8 @@ public class AddHotelFragment extends DialogFragment {
         AutocompleteSupportFragment hotelLocation = (AutocompleteSupportFragment)
                 getFragmentManager().findFragmentById(R.id.search_bar_hotel);
 
+        hotelLocation.setTypeFilter(TypeFilter.ADDRESS);
+
         // Specify the types of place data to return.
         hotelLocation.setPlaceFields(Arrays.asList(Place.Field.ID, Place.Field.NAME));
 
@@ -77,6 +108,8 @@ public class AddHotelFragment extends DialogFragment {
         hotelLocation.setOnPlaceSelectedListener(new PlaceSelectionListener() {
             @Override
             public void onPlaceSelected(Place place) {
+                placeId = place.getId();
+                hotelName.setText(place.getName());
                 location = place.getName();
             }
 
@@ -86,86 +119,40 @@ public class AddHotelFragment extends DialogFragment {
             }
         });
 
-        final Calendar hotelStartDate = Calendar.getInstance();
-
-        final DatePickerDialog.OnDateSetListener datePicker = new DatePickerDialog.OnDateSetListener() {
-
-            @Override
-            public void onDateSet(DatePicker view, int year, int monthOfYear,
-                                  int dayOfMonth) {
-                // sets the calendar date of the hotel start date
-                hotelStartDate.set(Calendar.YEAR, year);
-                hotelStartDate.set(Calendar.MONTH, monthOfYear);
-                hotelStartDate.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-                String myFormat = "MM/dd/yy";
-                SimpleDateFormat date = new SimpleDateFormat(myFormat, Locale.US);
-
-                checkInText.setText(date.format(hotelStartDate.getTime()));
-            }
-
-        };
-
-        checkInText.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                new DatePickerDialog(getContext(), datePicker, hotelStartDate
-                        .get(Calendar.YEAR), hotelStartDate.get(Calendar.MONTH),
-                        hotelStartDate.get(Calendar.DAY_OF_MONTH)).show();
-            }
-        });
-
-        final Calendar hotelEndDate = Calendar.getInstance();
-
-        final DatePickerDialog.OnDateSetListener datePicker2 = new DatePickerDialog.OnDateSetListener() {
-
-            @Override
-            public void onDateSet(DatePicker view, int year, int monthOfYear,
-                                  int dayOfMonth) {
-                // sets the calendar date of the hotel end date
-                hotelEndDate.set(Calendar.YEAR, year);
-                hotelEndDate.set(Calendar.MONTH, monthOfYear);
-                hotelEndDate.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-                String myFormat = "MM/dd/yy";
-                SimpleDateFormat date = new SimpleDateFormat(myFormat, Locale.US);
-
-                checkOutText.setText(date.format(hotelEndDate.getTime()));
-            }
-
-        };
-
-        checkOutText.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                new DatePickerDialog(getContext(), datePicker2, hotelEndDate
-                        .get(Calendar.YEAR), hotelEndDate.get(Calendar.MONTH),
-                        hotelEndDate.get(Calendar.DAY_OF_MONTH)).show();
-            }
-        });
-
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent addHotelIntent = new Intent(getActivity(), DetailedTripActivity.class);
-                String tripId = getArguments().getString("trip id");
-                DatabaseReference planRef = databaseReference.child("trips").child(tripId)
-                        .child("plans").push();
-                String planKey = planRef.getKey();
 
-//                Plan newHotel = new Plan(planKey,
-//                        "Hotel at " + location,
-//                        Utils.stringToDate(departDate.getText().toString()),
-//                        Utils.stringToDate(arriveDate.getText().toString()),
-//                        tripId,
-//                        Reservation.HOTEL, location,
-//                        Utils.stringToHours(departTime.getText().toString()),
-//                        Utils.stringToMins(departTime.getText().toString()),
-//                        Utils.stringToHours(arriveTime.getText().toString()),
-//                        Utils.stringToMins(arriveTime.getText().toString()),
-//                        null);
+                if (!Utils.isDatePeriodValid(checkInText.getText().toString(), checkOutText.getText().toString())) {
+                    Toast.makeText(getContext(), "Cannot check out  before check-in.", Toast.LENGTH_LONG).show();
+                } else if (checkInText.getText().toString().compareTo(checkOutText.getText().toString()) == 0
+                        && Utils.isTimePeriodValidGivenValidDates(checkInTime.getText().toString(), checkOutTime.getText().toString())){
+                    Toast.makeText(getContext(), "Cannot check out before check-in.", Toast.LENGTH_LONG).show();
+                } else {
 
-//                planRef.setValue(newHotel);
+                    Intent addHotelIntent = new Intent(getActivity(), DetailedTripActivity.class);
+                    addHotelIntent.putExtra("trip id", tripId);
+                    addHotelIntent.putExtra("place id", placeId);
 
-                startActivity(addHotelIntent);
+                    DatabaseReference planRef = databaseReference.child("plans" + tripId).push();
+                    String planKey = planRef.getKey();
+
+                    Plan newHotel = new Plan(planKey,
+                            hotelName.getText().toString(),
+                            Utils.stringToDate(checkInText.getText().toString()),
+                            Utils.stringToDate(checkOutText.getText().toString()),
+                            tripId,
+                            Reservation.HOTEL, location,
+                            Utils.stringToHours(checkInTime.getText().toString()),
+                            Utils.stringToMins(checkInTime.getText().toString()),
+                            Utils.stringToHours(checkOutTime.getText().toString()),
+                            Utils.stringToMins(checkOutTime.getText().toString()),
+                            null);
+
+                    planRef.setValue(newHotel);
+
+                    startActivity(addHotelIntent);
+                }
             }
         });
 

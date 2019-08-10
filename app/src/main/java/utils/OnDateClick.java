@@ -2,6 +2,7 @@ package utils;
 
 import android.app.DatePickerDialog;
 import android.view.View;
+import android.widget.EditText;
 
 import com.google.android.material.textfield.TextInputEditText;
 
@@ -9,6 +10,9 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class OnDateClick implements View.OnClickListener {
+
+    public OnDateClick() {
+    }
 
     @Override
     public void onClick(final View view){
@@ -22,7 +26,7 @@ public class OnDateClick implements View.OnClickListener {
         DatePickerDialog datePickerDialog = new DatePickerDialog(view.getContext(), new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(android.widget.DatePicker datePicker, int year, int month, int day) {
-                ((TextInputEditText) view).setText((month + 1) + "/" + day + "/" + year);
+                ((EditText) view).setText(month + "/" + day + "/" + year);
             }
         }, mYear, mMonth, mDay);
         datePickerDialog.show();

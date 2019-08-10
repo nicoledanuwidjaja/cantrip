@@ -33,12 +33,9 @@ import utils.TripOverviewAdapterItem;
 public class MyTripListFragment extends Fragment {
 
 
-//    private Context context;
-
     private ArrayList<TripOverviewAdapterItem> tripList = new ArrayList<>();
-
-    ArrayList<TripObject> tripObjectList = new ArrayList<>();
-    DatabaseReference databaseRef = FirebaseDatabase.getInstance().getReference();
+    private ArrayList<TripObject> tripObjectList = new ArrayList<>();
+    private DatabaseReference databaseRef = FirebaseDatabase.getInstance().getReference();
 
 
     public MyTripListFragment() {
@@ -72,7 +69,6 @@ public class MyTripListFragment extends Fragment {
                 // trigger second activity - DetailedTripActivity
 
                 Intent tripIntent = new Intent(getActivity().getApplicationContext(), DetailedTripActivity.class);
-
                 String tripName = tripObjectList.get(i).getStartLoc() + " to " + tripObjectList.get(i).getEndLoc();
                 String tripDuration = tripObjectList.get(i).formatDate(tripObjectList.get(i).getStartDate())
                         + " - " + tripObjectList.get(i).formatDate(tripObjectList.get(i).getEndDate());

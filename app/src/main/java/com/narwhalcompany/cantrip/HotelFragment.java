@@ -37,9 +37,12 @@ public class HotelFragment extends AbstractPlanFragment implements OnMapReadyCal
 
     private TextView checkIn;
     private TextView checkOut;
-    private TextView address;
+    private TextView hotelName;
+    private TextView fromTime;
+    private TextView toTime;
+    private TextView location;
     private PlacesClient placesClient;
-    private ImageView attractionImage;
+    private ImageView hotelImage;
 
     public HotelFragment() {
         // Required empty public constructor
@@ -59,10 +62,26 @@ public class HotelFragment extends AbstractPlanFragment implements OnMapReadyCal
                     .findFragmentById(R.id.map);
             mapFragment.getMapAsync(this);
 
-            attractionImage = view.findViewById(R.id.hotelImage);
-            checkIn = view.findViewById(R.id.check_in_label);
-            checkOut = view.findViewById(R.id.check_out_label);
-            address = view.findViewById(R.id.address);
+            hotelImage = view.findViewById(R.id.hotelImage);
+            checkIn = view.findViewById(R.id.check_in_date);
+            checkOut = view.findViewById(R.id.check_out_date);
+            location = view.findViewById(R.id.address);
+            hotelName = view.findViewById(R.id.hotel_name);
+//            fromTime = view.findViewById(R.id.from_time);
+//            toTime = view.findViewById(R.id.to_time);
+
+            String planName = getArguments().getString("hotelName");
+            String planLocation = getArguments().getString("hotelLoc");
+            String planFromDate = getArguments().getString("hotelStartDate");
+            String planToDate = getArguments().getString("hotelEndDate");
+            String planStartTime = getArguments().getString("hotelStartTime");
+            String planEndTime = getArguments().getString("hotelEndTime");
+
+            hotelName.setText(planName);
+            location.setText(planLocation);
+            checkIn.setText(planFromDate);
+            checkOut.setText(planToDate);
+
 
             List<Place.Field> fields = Arrays.asList(Place.Field.PHOTO_METADATAS);
             FetchPlaceRequest placeRequest = FetchPlaceRequest.builder(apiKey, fields).build();
@@ -95,7 +114,7 @@ public class HotelFragment extends AbstractPlanFragment implements OnMapReadyCal
                         @Override
                         public void onSuccess(FetchPhotoResponse fetchPhotoResponse) {
                             Bitmap bitmap = fetchPhotoResponse.getBitmap();
-                            attractionImage.setImageBitmap(bitmap);
+                            hotelImage.setImageBitmap(bitmap);
                         }
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override
