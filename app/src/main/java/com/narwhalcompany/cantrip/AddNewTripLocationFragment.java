@@ -30,11 +30,8 @@ import static androidx.constraintlayout.widget.Constraints.TAG;
 
 public class AddNewTripLocationFragment extends DialogFragment {
 
-    @NonNull
-    private TextView startLocation;
-
-    @NonNull
-    private TextView endLocation;
+    private String startLocation;
+    private String endLocation;
 
     private Button completeButton;
 
@@ -60,19 +57,19 @@ public class AddNewTripLocationFragment extends DialogFragment {
 
         Places.initialize(getActivity().getApplicationContext(), apiKey);
         // Initialize the AutocompleteSupportFragment for start location
-        AutocompleteSupportFragment autocompleteFragment = (AutocompleteSupportFragment)
+        AutocompleteSupportFragment beginLocation = (AutocompleteSupportFragment)
                 getFragmentManager().findFragmentById(R.id.autocomplete_fragment);
 
-        autocompleteFragment.setTypeFilter(TypeFilter.CITIES);
+        beginLocation.setTypeFilter(TypeFilter.CITIES);
 
         // Specify the types of place data to return.
-        autocompleteFragment.setPlaceFields(Arrays.asList(Place.Field.ID, Place.Field.NAME));
+        beginLocation.setPlaceFields(Arrays.asList(Place.Field.ID, Place.Field.NAME));
 
         // Set up a PlaceSelectionListener to handle the response.
-        autocompleteFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
+        beginLocation.setOnPlaceSelectedListener(new PlaceSelectionListener() {
             @Override
             public void onPlaceSelected(Place place) {
-                startLocation.setText(place.getName());
+                startLocation = place.getName();
             }
 
             @Override
@@ -81,23 +78,20 @@ public class AddNewTripLocationFragment extends DialogFragment {
             }
         });
 
-        startLocation = view.findViewById(R.id.start_location);
-        endLocation = view.findViewById(R.id.end_location);
-
         // Initialize the AutocompleteSupportFragment for destination
-        AutocompleteSupportFragment autocompleteFragment2 = (AutocompleteSupportFragment)
+        AutocompleteSupportFragment endingLocation = (AutocompleteSupportFragment)
                 getFragmentManager().findFragmentById(R.id.autocomplete_fragment_2);
 
-        autocompleteFragment2.setTypeFilter(TypeFilter.CITIES);
+        endingLocation.setTypeFilter(TypeFilter.CITIES);
 
         // Specify the types of place data to return.
-        autocompleteFragment2.setPlaceFields(Arrays.asList(Place.Field.ID, Place.Field.NAME));
+        endingLocation.setPlaceFields(Arrays.asList(Place.Field.ID, Place.Field.NAME));
 
         // Set up a PlaceSelectionListener to handle the response.
-        autocompleteFragment2.setOnPlaceSelectedListener(new PlaceSelectionListener() {
+        endingLocation.setOnPlaceSelectedListener(new PlaceSelectionListener() {
             @Override
             public void onPlaceSelected(Place place) {
-                endLocation.setText(place.getName());
+                endLocation = place.getName();
             }
 
             @Override
@@ -116,8 +110,8 @@ public class AddNewTripLocationFragment extends DialogFragment {
                 AddNewTripDateFragment getDateFragment = new AddNewTripDateFragment();
 
                 Bundle bundle = new Bundle();
-                bundle.putString("startLocation", startLocation.getText().toString());
-                bundle.putString("endLocation", endLocation.getText().toString());
+                bundle.putString("startLocation", startLocation);
+                bundle.putString("endLocation", endLocation);
                 getDateFragment.setArguments(bundle);
                 getDateFragment.show(tripManager, "add trip");
                 tripTransaction.addToBackStack(null);

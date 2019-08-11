@@ -19,6 +19,8 @@ import com.narwhalcompany.cantrip.R;
 
 import java.util.ArrayList;
 
+import static utils.Utils.formatDate;
+
 public class CustomPlanListAdapter extends BaseAdapter {
 
     // receive context from main activity
@@ -94,11 +96,6 @@ public class CustomPlanListAdapter extends BaseAdapter {
     public View getView(final int i, View view, ViewGroup viewGroup) {
 
         Plan retrieved = (Plan) getItem(i);
-
-        ImageView planImage;
-        TextView planName;
-        ImageView removeIcon;
-
         ViewHolder viewHolder;
 
         if (view == null) {
@@ -107,32 +104,36 @@ public class CustomPlanListAdapter extends BaseAdapter {
 
             viewHolder = new ViewHolder();
             viewHolder.planImage = view.findViewById(R.id.plan_image);
+            viewHolder.planDate = view.findViewById(R.id.plan_date);
             viewHolder.planName = view.findViewById(R.id.plan_name);
             viewHolder.removeIcon = view.findViewById(R.id.remove_icon);
 
             view.setTag(viewHolder);
         } else {
-            viewHolder = (ViewHolder)view.getTag();
+            viewHolder = (ViewHolder) view.getTag();
         }
 
-
+        // sets images for each plan type
         if (retrieved != null) {
             if (retrieved.getPlanType() == Reservation.FLIGHT) {
                 viewHolder.planImage.setImageResource(R.drawable.plane_horiz);
             } else if (retrieved.getPlanType() == Reservation.HOTEL) {
                 viewHolder.planImage.setImageResource(R.drawable.hotel);
             } else {
-               viewHolder.planImage.setImageResource(R.drawable.landmark);
+                viewHolder.planImage.setImageResource(R.drawable.landmark);
             }
         }
 
         viewHolder.planName.setText(retrieved.getName());
+        viewHolder.planDate.setText(Utils.formatDate(planList.get(i).getStartTime())
+                + " - " + Utils.formatDate(planList.get(i).getEndTime()));
+
         viewHolder.removeIcon.setImageResource(R.drawable.trash);
 
         viewHolder.removeIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Plan removePlan = (Plan)getItem(i);
+                Plan removePlan = (Plan) getItem(i);
                 databaseReference.child(removePlan.getPlanId()).removeValue();
             }
         });
@@ -144,6 +145,7 @@ public class CustomPlanListAdapter extends BaseAdapter {
     static class ViewHolder {
         TextView planName;
         ImageView planImage;
+        TextView planDate;
         ImageView removeIcon;
     }
 }

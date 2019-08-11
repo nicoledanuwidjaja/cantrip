@@ -135,7 +135,7 @@ public class AddLandmarkFragment extends DialogFragment {
                     Toast.makeText(getContext(), "Cannot end before starting.", Toast.LENGTH_LONG).show();
                 } else {
 
-                    Intent addLandmarkIntent = new Intent(getActivity(), DetailedTripActivity.class);
+                    Intent addLandmarkIntent = new Intent(getActivity(), MainActivity.class);
 
                     addLandmarkIntent.putExtra("trip id", tripId);
                     DatabaseReference planRef = databaseReference.child("plans" + tripId).push();

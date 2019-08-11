@@ -130,7 +130,7 @@ public class AddHotelFragment extends DialogFragment {
                     Toast.makeText(getContext(), "Cannot check out before check-in.", Toast.LENGTH_LONG).show();
                 } else {
 
-                    Intent addHotelIntent = new Intent(getActivity(), DetailedTripActivity.class);
+                    Intent addHotelIntent = new Intent(getActivity(), MainActivity.class);
                     addHotelIntent.putExtra("trip id", tripId);
                     addHotelIntent.putExtra("place id", placeId);
 
