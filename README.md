@@ -96,7 +96,7 @@ Digital Prototype: https://marvelapp.com/77a36bb
 - User can view and add recommended events (S)
 - App lists events nearby user location (S)
 
-- * Not completed due to similarities to other functionality already completed, or we did not feel it necessary to include it in the checkpoint because of similarity to already completed functionality
+- *Not completed due to similarities to other functionality already completed, or we did not feel it necessary to include it in the checkpoint because of similarity to already completed functionality
 - ** Not projected in the schedule from Checkpoint, but we figured it was worth including (and in some cases, included in place of incomplete functionalities
 
 #### Final Checkpoint: Final Application/API Integration
@@ -107,3 +107,28 @@ Digital Prototype: https://marvelapp.com/77a36bb
 
 ## Overall
 Working as a team to develop CanTrip was a rewarding (yet intense) experience. We were able to integrate APIs and utilize Firebase Database to make our app a success.
+
+## Key Components
+#### Android XML Layouts
+Layouts created for:
+- Main Activity (List of Trips)
+- Tab Layout (Detailed Trip List and Recommended Tab)
+- Adding a New Plan (Flight/Hotel/Landmark)
+- Adding a New Trip
+- Detailed Plan
+- Splash Activity
+
+#### ViewModel Objects
+ViewModel Objects necessary for holding user information:
+- TripObject 
+- Plan 
+- Adapters (Plan/Recommended/Trip Lists, Individual Plan/Recommended/Trip)
+- Plan Enum
+
+#### Google Firebase Database
+Data storage and retrieval of Plans and Trips
+
+#### Google APIs
+Used several APIs to obtain validated information:
+- Places API (Autocomplete, Query, Places Photo)
+- Maps API (Geolocate)
