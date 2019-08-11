@@ -17,7 +17,6 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
         android:orientation="horizontal">
 
         <TextView
@@ -34,12 +33,13 @@
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp" />
 
-        <ImageView
-            android:id="@+id/remove_trip_icon"
-            android:layout_width="18dp"
-            android:layout_height="18dp"
-            android:layout_gravity="bottom|end"
-            android:layout_marginLeft="10dp" />
     </LinearLayout>
 
+    <ImageView
+        android:id="@+id/remove_trip_icon"
+        android:layout_width="18dp"
+        android:layout_height="18dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_gravity="right" />
 </LinearLayout>
