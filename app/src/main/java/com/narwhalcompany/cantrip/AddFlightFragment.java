@@ -26,6 +26,8 @@ import android.widget.Toast;
 
 import com.google.android.libraries.places.api.model.TypeFilter;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -41,6 +43,8 @@ import com.google.android.libraries.places.api.model.Place;
 import com.google.android.libraries.places.api.net.PlacesClient;
 import com.google.android.libraries.places.widget.AutocompleteSupportFragment;
 import com.google.android.libraries.places.widget.listener.PlaceSelectionListener;
+import com.google.firebase.database.ValueEventListener;
+import com.narwhalcompany.cantrip.model.main.TripObject;
 
 import java.util.Arrays;
 import java.util.Date;
@@ -76,6 +80,9 @@ public class AddFlightFragment extends DialogFragment {
     private String endLoc;
 
     private DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+
+    String tripName = "";
+    String tripTime = "";
 
     private AutocompleteSupportFragment flightStartLocation;
 
@@ -183,6 +190,23 @@ public class AddFlightFragment extends DialogFragment {
             }
         });
 
+
+        databaseReference.child("trips").child(tripId).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                TripObject tripInfo = dataSnapshot.getValue(TripObject.class);
+
+                tripName = tripInfo.getEndLoc();
+                tripTime = tripInfo.formatDate(tripInfo.getStartDate()) + " to "
+                        + tripInfo.formatDate(tripInfo.getEndDate());
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
         saveButton = view.findViewById(R.id.saveButton);
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -196,9 +220,12 @@ public class AddFlightFragment extends DialogFragment {
                 } else {
                     Intent addFlightIntent = new Intent(getActivity(), DetailedTripActivity.class);
                     addFlightIntent.putExtra("trip id", tripId);
+                    addFlightIntent.putExtra("tripName", tripName);
+                    addFlightIntent.putExtra("tripDuration", tripTime);
 
                     Date departDateFormat = Utils.stringToDate(departDate.getText().toString());
                     Date arriveDateFormat = Utils.stringToDate(arriveDate.getText().toString());
+
 
                     DatabaseReference planRef = databaseReference.child("plans" + tripId).push();
                     String planKey = planRef.getKey();

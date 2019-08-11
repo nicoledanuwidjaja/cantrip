@@ -60,20 +60,14 @@ public class LandmarkFragment extends AbstractPlanFragment {
         endDate = view.findViewById(R.id.visit_end_date);
 
         String planName = getArguments().getString("landmarkName");
-        String planLocation = getArguments().getString("landmarkLoc");
-        String planStartTime = getArguments().getString("landmarkStartTime");
-        String planEndTime = getArguments().getString("landmarkEndTime");
         String planStartDate = getArguments().getString("landmarkStartDate");
         String planEndDate = getArguments().getString("landmarkEndDate");
 
-        String placeId = "ChIJ9U1mz_5YwokRosza1aAk0jM";
+        String placeId = getArguments().getString("landmarkPlace");
 
         name.setText(planName);
-        location.setText(planLocation);
         startDate.setText(planStartDate);
         endDate.setText(planEndDate);
-//        startTime.setText(planStartTime);
-//        endTime.setText(planEndTime);
 
         // PLACES API
         List<Place.Field> fields = Arrays.asList(Place.Field.PHOTO_METADATAS);
@@ -114,6 +108,23 @@ public class LandmarkFragment extends AbstractPlanFragment {
                         }
                     }
                 });
+            }
+        });
+
+        // Place request for addresses
+        List<Place.Field> fields2 = Arrays.asList(Place.Field.ADDRESS);
+        FetchPlaceRequest placeRequest2 = FetchPlaceRequest.builder(placeId, fields2).build();
+
+        // Initialize Places.
+        Places.initialize(getActivity().getApplicationContext(), apiKey);
+
+        placesClient = Places.createClient(getContext());
+
+        placesClient.fetchPlace(placeRequest2).addOnSuccessListener(new OnSuccessListener<FetchPlaceResponse>() {
+            @Override
+            public void onSuccess(FetchPlaceResponse fetchPlaceResponse) {
+                Place planLocation = fetchPlaceResponse.getPlace();
+                location.setText(planLocation.getAddress());
             }
         });
 

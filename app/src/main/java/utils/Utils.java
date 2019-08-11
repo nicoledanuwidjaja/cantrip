@@ -70,7 +70,7 @@ public class Utils {
         }
 
         date = "" + startMonth + "/" +
-                datePicker.getDayOfMonth() + "/" + datePicker.getYear() + "";
+                (datePicker.getDayOfMonth()) + "/" + datePicker.getYear() + "";
 
         return date;
     }
@@ -97,15 +97,8 @@ public class Utils {
         String[] startTimes = startTime.split(":");
         String[] endTimes = endTime.split(":");
 
-        if (Integer.parseInt(startTimes[0]) > Integer.parseInt(endTimes[0])) {
-            return false;
-        } else {
-            if (Integer.parseInt(startTimes[0]) == Integer.parseInt(endTimes[0])
-                    && Integer.parseInt(startTimes[1]) > Integer.parseInt(endTimes[0])) {
-                return false;
-            } else {
-                return true;
-            }
-        }
+        return (Integer.parseInt(startTimes[0]) < Integer.parseInt(endTimes[0])) ?
+                ((Integer.parseInt(startTimes[0]) == Integer.parseInt(endTimes[0]))
+                        && Integer.parseInt(startTimes[1]) < Integer.parseInt(endTimes[0])) : false;
     }
 }

@@ -52,6 +52,7 @@ public class AbstractPlanFragment extends DialogFragment {
                 getArguments().getInt("start min");
         String planEndTime = getArguments().getInt("end hour") + ":" +
                 getArguments().getInt("end min");
+        String planPlace = getArguments().getString("place");
 
         AbstractPlanFragment fragPlan;
 
@@ -77,6 +78,7 @@ public class AbstractPlanFragment extends DialogFragment {
                 planBundle.putString("hotelEndTime", planEndTime);
                 planBundle.putString("hotelStartDate", planStartDate);
                 planBundle.putString("hotelEndDate", planEndDate);
+                planBundle.putString("hotelPlace", planPlace);
                 fragPlan.setArguments(planBundle);
                 fragPlan.show(planManager, "hotel");
                 break;
@@ -88,6 +90,7 @@ public class AbstractPlanFragment extends DialogFragment {
                 planBundle.putString("landmarkEndTime", planEndTime);
                 planBundle.putString("landmarkStartDate", planStartDate);
                 planBundle.putString("landmarkEndDate", planEndDate);
+                planBundle.putString("landmarkPlace", planPlace);
                 fragPlan.setArguments(planBundle);
                 fragPlan.show(planManager, "landmark");
                 break;

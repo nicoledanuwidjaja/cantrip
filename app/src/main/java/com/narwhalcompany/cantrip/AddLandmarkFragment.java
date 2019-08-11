@@ -27,8 +27,12 @@ import com.google.android.libraries.places.api.net.FetchPlaceResponse;
 import com.google.android.libraries.places.api.net.PlacesClient;
 import com.google.android.libraries.places.widget.AutocompleteSupportFragment;
 import com.google.android.libraries.places.widget.listener.PlaceSelectionListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.narwhalcompany.cantrip.model.main.TripObject;
 
 import java.util.Arrays;
 import java.util.Date;
@@ -62,6 +66,9 @@ public class AddLandmarkFragment extends DialogFragment {
     private String placeId;
     private View view;
 
+
+    private String tripName = "";
+    private String tripDuration = "";
 
     public AddLandmarkFragment() {
 
@@ -192,6 +199,21 @@ public class AddLandmarkFragment extends DialogFragment {
             });
         }
 
+        databaseReference.child("trips").child(tripId).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                TripObject trip = dataSnapshot.getValue(TripObject.class);
+                tripName = trip.getEndLoc();
+                tripDuration = trip.formatDate(trip.getStartDate()) + " to "
+                        + trip.formatDate(trip.getEndDate());
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
         saveButton = view.findViewById(R.id.saveButton);
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -207,6 +229,8 @@ public class AddLandmarkFragment extends DialogFragment {
                     Intent addLandmarkIntent = new Intent(getActivity(), DetailedTripActivity.class);
 
                     addLandmarkIntent.putExtra("trip id", tripId);
+                    addLandmarkIntent.putExtra("tripName", tripName);
+                    addLandmarkIntent.putExtra("tripDuration", tripDuration);
                     DatabaseReference planRef = databaseReference.child("plans" + tripId).push();
                     String planKey = planRef.getKey();
 

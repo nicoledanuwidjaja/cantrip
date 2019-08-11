@@ -93,6 +93,10 @@ public class MyPlansFragment extends BottomSheetDialogFragment {
                         planBundle.putString("end location", currentPlan.getEndLocation());
                     }
 
+                    if (currentPlan.getPlaceId() != null) {
+                        planBundle.putString("place", currentPlan.getPlaceId());
+                    }
+
                     AbstractPlanFragment fragPlan = new AbstractPlanFragment();
                     fragPlan.setArguments(planBundle);
 
