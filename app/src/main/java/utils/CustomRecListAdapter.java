@@ -10,6 +10,7 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.narwhalcompany.cantrip.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -59,8 +60,14 @@ public class CustomRecListAdapter extends BaseAdapter {
             viewHolder = (ViewHolder) view.getTag();
         }
 
-        viewHolder.recImage.setImageResource(recItems.get(i).getImageID());
-        viewHolder.recTitle.setText(recItems.get(i).getTitle());
+        RecAdapterItem currItem = recItems.get(i);
+        String imageID = currItem.getImageID();
+
+        String apiKey = "AIzaSyChC1eDZHa54rv4rqdw7vJjnRBMxiXOpsM";
+        viewHolder.recImage.setImageResource(R.drawable.airplane);
+        Picasso.get().load("https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=" + imageID + "&key=" + apiKey).into(viewHolder.recImage);
+
+        viewHolder.recTitle.setText(currItem.getTitle());
 
         return view;
     }

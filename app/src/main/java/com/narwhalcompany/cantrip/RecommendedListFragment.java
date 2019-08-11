@@ -6,6 +6,7 @@ import android.provider.ContactsContract;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -75,7 +76,8 @@ public class RecommendedListFragment extends Fragment {
                             for (int i = 0; i < jsonArray.length(); i++) {
                                 JSONObject jo = jsonArray.getJSONObject(i);
                                 JSONObject photos = jo.getJSONArray("photos").getJSONObject(0);
-                                System.out.println(photos.getString("photo_reference"));
+                                String photoURI = photos.getString("photo_reference");
+
 
 //                                System.out.println(photo);
 
@@ -93,7 +95,7 @@ public class RecommendedListFragment extends Fragment {
 //                                        place.mPhotos[i].mAttributions[j].mHtmlAttribution = attributions.getString(j);
 //                                    }
 //                                }
-                                recArray.add(new RecAdapterItem(R.drawable.statue_of_liberty, jo.getString("name")));
+                                recArray.add(new RecAdapterItem(photoURI, jo.getString("name")));
 
                             }
                             CustomRecListAdapter myAdapter = new CustomRecListAdapter(getContext(), recArray);
@@ -131,10 +133,10 @@ public class RecommendedListFragment extends Fragment {
 
     }
 
-    private void PopulateList() {
-        recArray.add(new RecAdapterItem(R.drawable.statue_of_liberty, "Statue of Liberty"));
-        recArray.add(new RecAdapterItem(R.drawable.central_park, "Central Park"));
-        recArray.add(new RecAdapterItem(R.drawable.empire_state_building, "Empire State Building"));
-
-    }
+//    private void PopulateList() {
+//        recArray.add(new RecAdapterItem(R.drawable.statue_of_liberty, "Statue of Liberty"));
+//        recArray.add(new RecAdapterItem(R.drawable.central_park, "Central Park"));
+//        recArray.add(new RecAdapterItem(R.drawable.empire_state_building, "Empire State Building"));
+//
+//    }
 }
