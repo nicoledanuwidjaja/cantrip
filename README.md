@@ -1,11 +1,10 @@
-#cantrip
-##Trip Planner and Travel Guide
+# cantrip
+## Trip Planner and Travel Guide
 ### By: Nicole Danuwidjaja, Sharon He, Caroline Liu
 ##### Professor Pratheep Paranthaman - CS4520: Mobile App Development
 ##### Northeastern University - August 10, 2019
 
 CanTrip is a modern and convenient way for travelers to efficiently create, plan, and organize their trips. For those who plan trips beforehand and want to find events and attractions nearby, this is the mobile app for you! Input your trip data, add your reservations, and get guided recommendations for fun places to visit and events to attend to make the most of your trip!
-
 
 ### Schedule
 ##### We, as a team, completed the design and programming of CanTrip within five weeks. We broke down our app into 5 sizeable checkpoints and worked with Professor Paranthaman and CS4520 TAs to improve and revise our app every week.
@@ -42,7 +41,7 @@ User enters hotel information*
 
 #### Checkpoint 3: Complete Basic App Functionality
 ##### Goal: achieve all basic user-input trip and reservation functionalities
-**Add all uncompleted Checkpoint 2 Items
+*Add all uncompleted Checkpoint 2 Items
 User enters duration dates of trips (M)
 User can choose reservation type (M)
 User enters flight information (M)
