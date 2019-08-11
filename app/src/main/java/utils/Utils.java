@@ -16,7 +16,64 @@ public class Utils {
     // formats a date to US calendar format
     public static String formatDate(Date date) {
         SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy", Locale.US);
-        return format.format(date);
+
+        String stringToReturn = "";
+
+        try {
+            if (date != null) {
+                stringToReturn = format.format(date);
+                return monthFormat(stringToReturn);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return stringToReturn;
+    }
+
+    private static String monthFormat(String date) {
+        String month = date.substring(0, 2);
+        switch(month) {
+            case "01":
+                month = "Jan";
+                break;
+            case "02":
+                month = "Feb";
+                break;
+            case "03":
+                month = "Mar";
+                break;
+            case "04":
+                month = "Apr";
+                break;
+            case "05":
+                month = "May";
+                break;
+            case "06":
+                month = "Jun";
+                break;
+            case "07":
+                month = "Jul";
+                break;
+            case "08":
+                month = "Aug";
+                break;
+            case "09":
+                month = "Sep";
+                break;
+            case "10":
+                month = "Oct";
+                break;
+            case "11":
+                month = "Nov";
+                break;
+            case "12":
+                month = "Dec";
+                break;
+            default:
+                break;
+        }
+        return month + " " + date.substring(3, 5) + ", " + date.substring(6);
     }
 
     public static Date stringToDate(String s) {

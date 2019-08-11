@@ -31,6 +31,7 @@ public class DetailedTripActivity extends AppCompatActivity {
         // unique trip id for each trip
         String tripId = getIntent().getStringExtra("trip id");
         String tripDestination = getIntent().getStringExtra("tripDestination");
+
         SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this,
                 getSupportFragmentManager(), tripId, tripDestination);
         viewPager.setAdapter(sectionsPagerAdapter);
@@ -45,7 +46,7 @@ public class DetailedTripActivity extends AppCompatActivity {
         String tripTime = getIntent().getStringExtra("tripDuration");
 
         tripTitle.setText("Trip from " + tripName);
-        tripDuration.setText("Date: " +  tripTime);
+        tripDuration.setText(tripTime);
     }
 
     @Override

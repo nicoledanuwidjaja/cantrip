@@ -10,12 +10,12 @@
         android:id="@+id/trip_tab"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/background_color"
+        android:background="@color/colorPrimary"
         android:gravity="center"
-        android:padding="10dp"
+        android:padding="15dp"
         android:text="@string/my_trips_tab"
         android:textColor="#FFFFFF"
-        android:textSize="20sp" />
+        android:textSize="25sp" />
 
     <FrameLayout
         android:layout_width="match_parent"

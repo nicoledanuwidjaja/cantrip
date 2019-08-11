@@ -38,6 +38,7 @@
     <string name="end_visit">End Visit:</string>
     <string name="start_visit">Start Visit:</string>
     <string name="add_new_plan">Add New Plan</string>
+    <string name="landmark_address">Attraction Address</string>
     <string name="add_date_button">Next</string>
     <string name="flight">Flight</string>
     <string name="hotel">Hotel</string>
