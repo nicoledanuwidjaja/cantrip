@@ -147,7 +147,7 @@ public class AddHotelFragment extends DialogFragment {
                             Utils.stringToMins(checkInTime.getText().toString()),
                             Utils.stringToHours(checkOutTime.getText().toString()),
                             Utils.stringToMins(checkOutTime.getText().toString()),
-                            null);
+                            placeId);
 
                     planRef.setValue(newHotel);
 
