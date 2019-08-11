@@ -18,9 +18,12 @@
         android:textColor="#FFFFFF"
         android:textSize="25sp" />
 
-    <FrameLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
         <ListView
             android:id="@+id/myTripsList"
@@ -29,11 +32,13 @@
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/add_trip_button"
+            android:layout_alignParentBottom="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
             android:layout_margin="@dimen/fab_margin"
             android:src="@drawable/plus" />
-    </FrameLayout>
+        </FrameLayout>
 
+    </RelativeLayout>
 </LinearLayout>
