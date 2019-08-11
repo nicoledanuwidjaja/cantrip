@@ -37,12 +37,58 @@ public class TripObject {
         try {
             if (date != null) {
                 stringToReturn = format.format(date);
-                return stringToReturn;
+                return monthFormat(stringToReturn);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
         return stringToReturn;
+    }
+
+    // formats the date based on the month
+    private String monthFormat(String stringDate) {
+        String month = stringDate.substring(0, 2);
+        switch(month) {
+            case "01":
+                month = "Jan";
+                break;
+            case "02":
+                month = "Feb";
+                break;
+            case "03":
+                month = "Mar";
+                break;
+            case "04":
+                month = "Apr";
+                break;
+            case "05":
+                month = "May";
+                break;
+            case "06":
+                month = "Jun";
+                break;
+            case "07":
+                month = "Jul";
+                break;
+            case "08":
+                month = "Aug";
+                break;
+            case "09":
+                month = "Sep";
+                break;
+            case "10":
+                month = "Oct";
+                break;
+            case "11":
+                month = "Nov";
+                break;
+            case "12":
+                month = "Dec";
+                break;
+            default:
+                break;
+        }
+        return month + " " + stringDate.substring(3, 5) + ", " + stringDate.substring(6);
     }
 
     @Override

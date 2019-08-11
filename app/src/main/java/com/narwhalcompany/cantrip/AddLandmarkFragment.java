@@ -212,9 +212,10 @@ public class AddLandmarkFragment extends DialogFragment {
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (allFieldsComplete()) {
-                    Toast.makeText(getContext(), "All fields need to be complete.", Toast.LENGTH_LONG).show();
-                } else if (!Utils.isDatePeriodValid(startDate.getText().toString(), endDate.getText().toString())
+//                if (allFieldsComplete()) {
+//                    Toast.makeText(getContext(), "All fields need to be complete.", Toast.LENGTH_LONG).show();
+//                } else
+                if (!Utils.isDatePeriodValid(startDate.getText().toString(), endDate.getText().toString())
                         && startDate.getText().toString().compareTo(endDate.getText().toString()) == 0
                         && Utils.isTimePeriodValidGivenValidDates(startTime.getText().toString(), endTime.getText().toString())) {
                     Toast.makeText(getContext(), "Cannot end before starting.", Toast.LENGTH_LONG).show();
@@ -249,11 +250,11 @@ public class AddLandmarkFragment extends DialogFragment {
         return view;
     }
 
-    // checks to see if all fields of form are complete
-    private boolean allFieldsComplete() {
-        return startTime != null && endTime != null
-                && (landmarkName.getText().toString().equals("")
-                && startDate.getText().toString().equals("")
-                && endDate.getText().toString().equals(""));
-    }
+//    // checks to see if all fields of form are complete
+//    private boolean allFieldsComplete() {
+//        return startTime != null && endTime != null
+//                && (landmarkName.getText().toString().equals("")
+//                && startDate.getText().toString().equals("")
+//                && endDate.getText().toString().equals(""));
+//    }
 }

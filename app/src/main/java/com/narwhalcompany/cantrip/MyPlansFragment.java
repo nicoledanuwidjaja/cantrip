@@ -104,7 +104,6 @@ public class MyPlansFragment extends BottomSheetDialogFragment {
                 }
             });
 
-
             addNewPlanButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
