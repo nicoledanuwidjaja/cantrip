@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 
@@ -22,8 +23,12 @@ import com.google.android.libraries.places.api.model.Place;
 import com.google.android.libraries.places.api.model.TypeFilter;
 import com.google.android.libraries.places.widget.AutocompleteSupportFragment;
 import com.google.android.libraries.places.widget.listener.PlaceSelectionListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.narwhalcompany.cantrip.model.main.TripObject;
 
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
@@ -54,6 +59,9 @@ public class AddHotelFragment extends DialogFragment {
     private String endLoc;
 
     private DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+
+    private String tripName = "";
+    private String tripDuration = "";
 
     public AddHotelFragment() {
 
@@ -119,6 +127,20 @@ public class AddHotelFragment extends DialogFragment {
             }
         });
 
+        databaseReference.child("trips").child(tripId).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                TripObject trip = dataSnapshot.getValue(TripObject.class);
+                tripName = trip.getEndLoc();
+                tripDuration = trip.getStartDate() + " to " + trip.getEndDate();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -133,6 +155,8 @@ public class AddHotelFragment extends DialogFragment {
                     Intent addHotelIntent = new Intent(getActivity(), MainActivity.class);
                     addHotelIntent.putExtra("trip id", tripId);
                     addHotelIntent.putExtra("place id", placeId);
+                    addHotelIntent.putExtra("tripName", tripName);
+                    addHotelIntent.putExtra("tripDuration", tripDuration);
 
                     DatabaseReference planRef = databaseReference.child("plans" + tripId).push();
                     String planKey = planRef.getKey();
