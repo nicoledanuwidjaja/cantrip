@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // set splash screen
-        setTheme(R.style.AppTheme);
+        setTheme(R.style.SplashTheme);
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
