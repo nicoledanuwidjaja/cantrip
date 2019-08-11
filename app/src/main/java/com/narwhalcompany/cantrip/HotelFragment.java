@@ -2,6 +2,7 @@ package com.narwhalcompany.cantrip;
 
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.InflateException;
 import android.view.LayoutInflater;
@@ -49,7 +50,7 @@ public class HotelFragment extends AbstractPlanFragment implements OnMapReadyCal
     private ImageView hotelImage;
     private TextView hotelAddress;
     private LatLng mapLocation;
-    private SupportMapFragment mapFragment;
+    public SupportMapFragment mapFragment;
 
     public HotelFragment() {
         // Required empty public constructor
@@ -68,7 +69,7 @@ public class HotelFragment extends AbstractPlanFragment implements OnMapReadyCal
                 .findFragmentById(R.id.map);
 
         assert mapFragment != null;
-        mapFragment.getMapAsync(this);
+
 
         hotelImage = view.findViewById(R.id.hotelImage);
         checkIn = view.findViewById(R.id.check_in_date);
@@ -87,7 +88,7 @@ public class HotelFragment extends AbstractPlanFragment implements OnMapReadyCal
         checkIn.setText(planFromDate);
         checkOut.setText(planToDate);
 
-        List<Place.Field> fields = Arrays.asList(Place.Field.ID, Place.Field.ADDRESS, Place.Field.LAT_LNG);
+        List<Place.Field> fields = Arrays.asList(Place.Field.ADDRESS, Place.Field.LAT_LNG);
         FetchPlaceRequest placeRequest = FetchPlaceRequest.builder(placeId, fields).build();
 
         // Initialize Places.
@@ -101,18 +102,33 @@ public class HotelFragment extends AbstractPlanFragment implements OnMapReadyCal
                 Place place = fetchPlaceResponse.getPlace();
                 location.setText(place.getAddress());
                 mapLocation = place.getLatLng();
+                mMap.addMarker(new MarkerOptions()
+                        .position(mapLocation)
+                        .snippet("Hotel Location"));
+                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(mapLocation, 15));
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                if (e instanceof ApiException) {
+                    ApiException apiException = (ApiException) e;
+                    int statusCode = apiException.getStatusCode();
+                    // Handle error with given status code.
+                    Log.e(TAG, "Place not found: " + e.getMessage());
+                }
             }
         });
+        mapFragment.getMapAsync(this);
+
         return view;
     }
-
-
     @Override
     public void onMapReady(GoogleMap googleMap) {
+
         mMap = googleMap;
-        googleMap.addMarker(new MarkerOptions()
-                .position(mapLocation)
-                .snippet("Hotel Location"));
-        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(mapLocation, 2));
+
+        //add this here:
     }
+
+
 }
