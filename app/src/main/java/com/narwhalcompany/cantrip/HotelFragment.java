@@ -41,6 +41,8 @@ import java.util.List;
 import static android.content.ContentValues.TAG;
 
 public class HotelFragment extends AbstractPlanFragment implements OnMapReadyCallback {
+
+    private GoogleMap mMap;
     private TextView checkIn;
     private TextView checkOut;
     private TextView hotelName;
@@ -50,7 +52,7 @@ public class HotelFragment extends AbstractPlanFragment implements OnMapReadyCal
     private TextView hotelAddress;
     private LatLng mapLocation;
     public SupportMapFragment mapFragment;
-    private GoogleMap mMap;
+
 
     public HotelFragment() {
         // Required empty public constructor
@@ -114,8 +116,6 @@ public class HotelFragment extends AbstractPlanFragment implements OnMapReadyCal
                 if (e instanceof ApiException) {
                     ApiException apiException = (ApiException) e;
                     int statusCode = apiException.getStatusCode();
-
-                    // Handle error with given status code.
                     Log.e(TAG, "Place not found: " + e.getMessage());
                 }
             }
