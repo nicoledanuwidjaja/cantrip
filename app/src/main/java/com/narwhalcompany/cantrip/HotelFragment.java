@@ -13,6 +13,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 
 import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -37,7 +38,7 @@ import static com.android.volley.VolleyLog.TAG;
 
 public class HotelFragment extends AbstractPlanFragment implements OnMapReadyCallback {
 
-
+    private GoogleMap mMap;
     private TextView checkIn;
     private TextView checkOut;
     private TextView hotelName;
@@ -47,6 +48,8 @@ public class HotelFragment extends AbstractPlanFragment implements OnMapReadyCal
     private PlacesClient placesClient;
     private ImageView hotelImage;
     private TextView hotelAddress;
+    private LatLng mapLocation;
+    private SupportMapFragment mapFragment;
 
     public HotelFragment() {
         // Required empty public constructor
@@ -61,8 +64,10 @@ public class HotelFragment extends AbstractPlanFragment implements OnMapReadyCal
 
         String apiKey = getString(R.string.google_maps_api);
 
-        SupportMapFragment mapFragment = (SupportMapFragment) getActivity().getSupportFragmentManager()
+        mapFragment = (SupportMapFragment) getFragmentManager()
                 .findFragmentById(R.id.map);
+
+        assert mapFragment != null;
         mapFragment.getMapAsync(this);
 
         hotelImage = view.findViewById(R.id.hotelImage);
@@ -74,7 +79,6 @@ public class HotelFragment extends AbstractPlanFragment implements OnMapReadyCal
 //            toTime = view.findViewById(R.id.to_time);
 
         String planName = getArguments().getString("hotelName");
-        String planLocation = getArguments().getString("hotelLoc");
         String planFromDate = getArguments().getString("hotelStartDate");
         String planToDate = getArguments().getString("hotelEndDate");
         String placeId = getArguments().getString("hotelPlace");
@@ -83,7 +87,7 @@ public class HotelFragment extends AbstractPlanFragment implements OnMapReadyCal
         checkIn.setText(planFromDate);
         checkOut.setText(planToDate);
 
-        List<Place.Field> fields = Arrays.asList(Place.Field.ADDRESS);
+        List<Place.Field> fields = Arrays.asList(Place.Field.ID, Place.Field.ADDRESS, Place.Field.LAT_LNG);
         FetchPlaceRequest placeRequest = FetchPlaceRequest.builder(placeId, fields).build();
 
         // Initialize Places.
@@ -96,17 +100,19 @@ public class HotelFragment extends AbstractPlanFragment implements OnMapReadyCal
             public void onSuccess(FetchPlaceResponse fetchPlaceResponse) {
                 Place place = fetchPlaceResponse.getPlace();
                 location.setText(place.getAddress());
+                mapLocation = place.getLatLng();
             }
         });
-
         return view;
     }
 
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
+        mMap = googleMap;
         googleMap.addMarker(new MarkerOptions()
-                .position(new LatLng(0, 0))
-                .title("Marker"));
+                .position(mapLocation)
+                .snippet("Hotel Location"));
+        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(mapLocation, 2));
     }
 }
