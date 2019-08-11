@@ -2,10 +2,14 @@ package com.narwhalcompany.cantrip;
 
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Parcel;
+
+import android.os.Handler;
+import android.util.Log;
+import android.view.InflateException;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -34,15 +38,19 @@ import com.google.android.libraries.places.api.net.PlacesClient;
 import java.util.Arrays;
 import java.util.List;
 
+import static android.content.ContentValues.TAG;
+
 public class HotelFragment extends AbstractPlanFragment implements OnMapReadyCallback {
     private TextView checkIn;
     private TextView checkOut;
     private TextView hotelName;
     private TextView location;
     private PlacesClient placesClient;
-    private SupportMapFragment mapFragment;
-    private String apiKey;
+    private ImageView hotelImage;
+    private TextView hotelAddress;
     private LatLng mapLocation;
+    public SupportMapFragment mapFragment;
+    private GoogleMap mMap;
 
     public HotelFragment() {
         // Required empty public constructor
@@ -55,13 +63,14 @@ public class HotelFragment extends AbstractPlanFragment implements OnMapReadyCal
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_hotel, container, false);
 
-        apiKey = getString(R.string.google_places_api);
+
+        String apiKey = getString(R.string.google_places_api);
 
         mapFragment = (SupportMapFragment) getFragmentManager()
                 .findFragmentById(R.id.map);
 
         assert mapFragment != null;
-        mapFragment.getMapAsync(this);
+
 
         checkIn = view.findViewById(R.id.check_in_date);
         checkOut = view.findViewById(R.id.check_out_date);
@@ -77,7 +86,9 @@ public class HotelFragment extends AbstractPlanFragment implements OnMapReadyCal
         checkIn.setText(planFromDate);
         checkOut.setText(planToDate);
 
-        List<Place.Field> fields = Arrays.asList(Place.Field.NAME, Place.Field.ADDRESS, Place.Field.LAT_LNG);
+
+        List<Place.Field> fields = Arrays.asList(Place.Field.ADDRESS, Place.Field.LAT_LNG);
+
         FetchPlaceRequest placeRequest = FetchPlaceRequest.builder(placeId, fields).build();
 
         // Initialize Places.
@@ -90,9 +101,12 @@ public class HotelFragment extends AbstractPlanFragment implements OnMapReadyCal
             public void onSuccess(FetchPlaceResponse fetchPlaceResponse) {
                 Place place = fetchPlaceResponse.getPlace();
                 location.setText(place.getAddress());
-                System.out.println("HELP: " + location.getText().toString());
-                System.out.println("HELP: " + place.getLatLng().latitude);
-                mapLocation = new LatLng(place.getLatLng().latitude, place.getLatLng().longitude);
+
+                mapLocation = place.getLatLng();
+                mMap.addMarker(new MarkerOptions()
+                        .position(mapLocation)
+                        .snippet("Hotel Location"));
+                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(mapLocation, 15));
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -100,20 +114,25 @@ public class HotelFragment extends AbstractPlanFragment implements OnMapReadyCal
                 if (e instanceof ApiException) {
                     ApiException apiException = (ApiException) e;
                     int statusCode = apiException.getStatusCode();
-                    System.out.println("WE'RE FAILING");
+
+                    // Handle error with given status code.
+                    Log.e(TAG, "Place not found: " + e.getMessage());
                 }
             }
         });
-
+        mapFragment.getMapAsync(this);
 
         return view;
     }
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        googleMap.addMarker(new MarkerOptions()
-                .position(mapLocation)
-                .snippet("Hotel Location"));
-        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(mapLocation, 50));
+
+        mMap = googleMap;
+
+
+
     }
+
+
 }
