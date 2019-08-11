@@ -6,6 +6,8 @@
 
 CanTrip is a modern and convenient way for travelers to efficiently create, plan, and organize their trips. For those who plan trips beforehand and want to find events and attractions nearby, this is the mobile app for you! Input your trip data, add your reservations, and get guided recommendations for fun places to visit and events to attend to make the most of your trip!
 
+![CanTrip logo](/app/src/main/res/drawable/cantriplogo.png)
+
 ## Schedule
 ##### We, as a team, completed the design and programming of CanTrip within five weeks. We broke down our app into 5 sizeable checkpoints and worked with Professor Paranthaman and CS4520 TAs to improve and revise our app every week.
 
@@ -71,8 +73,9 @@ Digital Prototype: https://marvelapp.com/77a36bb
 #### Checkpoint 4: Data Storage and Collection/API Integration
 ##### Goal: store memory and integrate advanced third-party features
 ###### Primary focus is to be able to store data both locally and through Firebase, fix, clean, and complete all base functionalities of the app 
-Secondary focus is to integrate APIs
-**Add all uncompleted Checkpoint 3 Items
+###### Secondary focus is to integrate APIs
+
+- **Add all uncompleted Checkpoint 3 Items
 
 ##### Completed:
 - Implement a database for storing and collecting user data (Caroline/Sharon)
@@ -93,17 +96,14 @@ Secondary focus is to integrate APIs
 - User can view and add recommended events (S)
 - App lists events nearby user location (S)
 
-* Not completed due to similarities to other functionality already completed, or we did not feel it necessary to include it in the checkpoint because of similarity to already completed functionality
-** Not projected in the schedule from Checkpoint, but we figured it was worth including (and in some cases, included in place of incomplete functionalities
+- * Not completed due to similarities to other functionality already completed, or we did not feel it necessary to include it in the checkpoint because of similarity to already completed functionality
+- ** Not projected in the schedule from Checkpoint, but we figured it was worth including (and in some cases, included in place of incomplete functionalities
 
 #### Final Checkpoint: Final Application/API Integration
 ###### Goal: Complete CanTrip!
-**Add ALL uncompleted items
-Add user feedback
-App reflections and analysis
+- **Add ALL uncompleted items
+- Add user feedback
+- App reflections and analysis
 
 ## Overall
 Working as a team to develop CanTrip was a rewarding (yet intense) experience. We were able to integrate APIs and utilize Firebase Database to make our app a success.
-
-
-![CanTrip logo](/app/src/main/res/drawable/cantriplogo.png)
