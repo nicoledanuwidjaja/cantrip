@@ -60,8 +60,11 @@ public class Utils {
         String date = "";
         String startMonth;
 
-        if (datePicker.getMonth() < 10) {
-            startMonth = "0" + datePicker.getMonth();
+        if (datePicker.getMonth() < 9) {
+            int month = datePicker.getMonth() + 1;
+            startMonth = "0" + month;
+        } else if (datePicker.getMonth() == 9) {
+            startMonth = "10";
         } else {
             startMonth = "" + datePicker.getMonth() + 1 + "";
         }
