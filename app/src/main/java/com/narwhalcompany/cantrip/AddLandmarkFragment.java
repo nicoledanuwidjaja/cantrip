@@ -151,7 +151,7 @@ public class AddLandmarkFragment extends DialogFragment {
                             Utils.stringToMins(startTime.getText().toString()),
                             Utils.stringToHours(endTime.getText().toString()),
                             Utils.stringToMins(endTime.getText().toString()),
-                            null);
+                            placeId);
 
                     planRef.setValue(newFlight);
                     startActivity(addLandmarkIntent);
