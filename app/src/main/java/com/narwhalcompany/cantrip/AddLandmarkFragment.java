@@ -35,7 +35,6 @@ import com.google.firebase.database.ValueEventListener;
 import com.narwhalcompany.cantrip.model.main.TripObject;
 
 import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 
 import utils.OnDateClick;
@@ -46,10 +45,6 @@ import utils.Utils;
 
 import static androidx.constraintlayout.widget.Constraints.TAG;
 
-
-/**
- * A simple {@link Fragment} subclass.
- */
 public class AddLandmarkFragment extends DialogFragment {
 
     private Button saveButton;
@@ -102,8 +97,7 @@ public class AddLandmarkFragment extends DialogFragment {
             view = inflater.inflate(R.layout.fragment_save_landmark, container, false);
             landmarkName = view.findViewById(R.id.landmarkName);
 
-        }
-        else {
+        } else {
             view = inflater.inflate(R.layout.fragment_add_landmark, container, false);
         }
 

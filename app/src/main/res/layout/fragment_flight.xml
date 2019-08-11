@@ -31,7 +31,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="20dp"
-        android:text="Airlines"
+        android:text="@string/airlines"
         android:textSize="20sp" />
 
     <LinearLayout
@@ -75,7 +75,7 @@
             android:layout_marginLeft="15dp"
             android:layout_marginTop="25dp"
             android:gravity="right"
-            android:text="From:"
+            android:text="@string/from"
             android:textSize="20sp" />
 
         <TextView
@@ -85,7 +85,6 @@
             android:layout_marginLeft="35dp"
             android:layout_marginTop="25dp"
             android:gravity="end"
-            android:text="Thu, Jun 21 8:05 PM"
             android:textSize="20sp" />
     </LinearLayout>
 
@@ -99,7 +98,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="15dp"
             android:layout_marginTop="25dp"
-            android:text="To:"
+            android:text="@string/to"
             android:textSize="20sp" />
 
         <TextView
@@ -109,7 +108,6 @@
             android:layout_marginLeft="35dp"
             android:layout_marginTop="25dp"
             android:gravity="right"
-            android:text="Thu, Jun 21 10:52 PM"
             android:textSize="20sp" />
     </LinearLayout>
 
@@ -130,7 +128,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="15dp"
             android:layout_marginTop="20dp"
-            android:text="Departs:"
+            android:text="@string/departs"
             android:textSize="20sp" />
 
         <TextView
@@ -153,7 +151,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="15dp"
             android:layout_marginTop="25dp"
-            android:text="Arrives:"
+            android:text="@string/arrives"
             android:textSize="20sp" />
 
         <TextView

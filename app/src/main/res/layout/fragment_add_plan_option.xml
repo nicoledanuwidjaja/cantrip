@@ -32,7 +32,7 @@
             android:layout_height="wrap_content"
             android:textSize="18sp"
             android:layout_marginLeft="75dp"
-            android:text="Flight"
+            android:text="@string/flight"
             android:textColor="#FFFFFF" />
 
         <TextView
@@ -40,7 +40,7 @@
             android:layout_height="wrap_content"
             android:textSize="18sp"
             android:layout_marginLeft="55dp"
-            android:text="Hotel"
+            android:text="@string/hotel"
             android:textColor="#FFFFFF" />
 
         <TextView
@@ -48,7 +48,7 @@
             android:layout_height="wrap_content"
             android:textSize="18sp"
             android:layout_marginLeft="40dp"
-            android:text="Landmark"
+            android:text="@string/attraction"
             android:textColor="#FFFFFF" />
     </LinearLayout>
 

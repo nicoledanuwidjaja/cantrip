@@ -90,8 +90,6 @@ public class HotelFragment extends AbstractPlanFragment implements OnMapReadyCal
             public void onSuccess(FetchPlaceResponse fetchPlaceResponse) {
                 Place place = fetchPlaceResponse.getPlace();
                 location.setText(place.getAddress());
-                System.out.println("HELP: " + location.getText().toString());
-                System.out.println("HELP: " + place.getLatLng().latitude);
                 mapLocation = new LatLng(place.getLatLng().latitude, place.getLatLng().longitude);
             }
         }).addOnFailureListener(new OnFailureListener() {
@@ -100,7 +98,6 @@ public class HotelFragment extends AbstractPlanFragment implements OnMapReadyCal
                 if (e instanceof ApiException) {
                     ApiException apiException = (ApiException) e;
                     int statusCode = apiException.getStatusCode();
-                    System.out.println("WE'RE FAILING");
                 }
             }
         });

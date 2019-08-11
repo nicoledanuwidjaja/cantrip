@@ -38,13 +38,4 @@
             android:layout_marginLeft="5dp"
             android:layout_marginTop="10dp" />
     </LinearLayout>
-
-    <!-- TODO: FIX -->
-    <!--<ImageView-->
-        <!--android:id="@+id/delete_trip_button"-->
-        <!--android:layout_width="25dp"-->
-        <!--android:layout_height="25dp"-->
-        <!--android:layout_gravity="bottom|end"-->
-        <!--android:src="@drawable/trash" />-->
-
 </LinearLayout>
