@@ -9,14 +9,6 @@ import java.util.Date;
 
 public class TripOverviewAdapterItem {
 
-//    private int imageResId;
-//    private int startMonth;
-//    private int startDay;
-//    private int startYear;
-//    private int endMonth;
-//    private int endDay;
-//    private int endYear;
-
     private String startLoc;
     private String endloc;
     private Date startDate;

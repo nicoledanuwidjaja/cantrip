@@ -1,18 +1,10 @@
 package com.narwhalcompany.cantrip;
 
-import android.app.DatePickerDialog;
-import android.app.Dialog;
-import android.app.TimePickerDialog;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.DialogFragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -20,12 +12,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.libraries.places.api.model.TypeFilter;
-import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -40,7 +30,6 @@ import utils.Utils;
 import com.google.android.gms.common.api.Status;
 import com.google.android.libraries.places.api.Places;
 import com.google.android.libraries.places.api.model.Place;
-import com.google.android.libraries.places.api.net.PlacesClient;
 import com.google.android.libraries.places.widget.AutocompleteSupportFragment;
 import com.google.android.libraries.places.widget.listener.PlaceSelectionListener;
 import com.google.firebase.database.ValueEventListener;
@@ -54,24 +43,12 @@ import static androidx.constraintlayout.widget.Constraints.TAG;
 
 public class AddFlightFragment extends DialogFragment {
 
-    private ImageView airplaneImage;
-    private EditText airlineText;
-    private EditText flightText;
     private TextView airplaneLabel;
-
-    private ImageView departImage;
-    private TextView departLocation;
     private EditText departDate;
     private EditText departTime;
     private TextView flightNumber;
-
-    private ImageView arriveImage;
-    private TextView arriveLocation;
     private EditText arriveDate;
     private EditText arriveTime;
-
-    private ImageView ticketImage;
-    private EditText confirmationNum;
 
     private Button saveButton;
     private String tripId;
@@ -81,8 +58,8 @@ public class AddFlightFragment extends DialogFragment {
 
     private DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
 
-    String tripName = "";
-    String tripTime = "";
+    private String tripName = "";
+    private String tripTime = "";
 
     private AutocompleteSupportFragment flightStartLocation;
 
@@ -125,12 +102,6 @@ public class AddFlightFragment extends DialogFragment {
 
         flightNumber = view.findViewById(R.id.flightText);
         airplaneLabel = view.findViewById(R.id.airlineText);
-        airplaneImage = view.findViewById(R.id.airplaneImage);
-        airlineText = view.findViewById(R.id.airlineText);
-        flightText = view.findViewById(R.id.flightText);
-
-        departImage = view.findViewById(R.id.departImage);
-        arriveImage = view.findViewById(R.id.arriveImage);
         departDate = view.findViewById(R.id.departDate);
         arriveDate = view.findViewById(R.id.arriveDate);
         departTime = view.findViewById(R.id.departTime);
@@ -212,9 +183,10 @@ public class AddFlightFragment extends DialogFragment {
             @Override
             public void onClick(View view) {
 
-                if (!Utils.isDatePeriodValid(departDate.getText().toString(), arriveDate.getText().toString())) {
-                    Toast.makeText(getContext(), "Cannot arrive before departure.", Toast.LENGTH_LONG).show();
-                } else if (departDate.getText().toString().compareTo(arriveDate.getText().toString()) == 0
+                if (allFieldsComplete()) {
+                    Toast.makeText(getContext(), "All fields need to be complete.", Toast.LENGTH_LONG).show();
+                } else if (!Utils.isDatePeriodValid(departDate.getText().toString(), arriveDate.getText().toString()) &&
+                        departDate.getText().toString().compareTo(arriveDate.getText().toString()) == 0
                         && Utils.isTimePeriodValidGivenValidDates(departTime.getText().toString(), arriveTime.getText().toString())) {
                     Toast.makeText(getContext(), "Cannot arrive before departure.", Toast.LENGTH_LONG).show();
                 } else {
@@ -225,7 +197,6 @@ public class AddFlightFragment extends DialogFragment {
 
                     Date departDateFormat = Utils.stringToDate(departDate.getText().toString());
                     Date arriveDateFormat = Utils.stringToDate(arriveDate.getText().toString());
-
 
                     DatabaseReference planRef = databaseReference.child("plans" + tripId).push();
                     String planKey = planRef.getKey();
@@ -249,6 +220,14 @@ public class AddFlightFragment extends DialogFragment {
         });
 
         return view;
+    }
+
+    // checks to see if all fields of form are complete
+    private boolean allFieldsComplete() {
+        return departTime != null && arriveTime != null
+                && (airplaneLabel.getText().toString().equals("")
+                && departDate.getText().toString().equals("")
+                && arriveDate.getText().toString().equals(""));
     }
 
 

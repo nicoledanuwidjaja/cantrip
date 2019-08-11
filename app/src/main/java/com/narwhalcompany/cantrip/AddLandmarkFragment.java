@@ -150,11 +150,11 @@ public class AddLandmarkFragment extends DialogFragment {
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                if (!Utils.isDatePeriodValid(startDate.getText().toString(), endDate.getText().toString())) {
-                    Toast.makeText(getContext(), "Cannot end before starting.", Toast.LENGTH_LONG).show();
-                } else if (startDate.getText().toString().compareTo(endDate.getText().toString()) == 0
-                        && Utils.isTimePeriodValidGivenValidDates(startTime.getText().toString(), endTime.getText().toString())){
+                if (allFieldsComplete()) {
+                    Toast.makeText(getContext(), "All fields need to be complete.", Toast.LENGTH_LONG).show();
+                } else if (!Utils.isDatePeriodValid(startDate.getText().toString(), endDate.getText().toString())
+                        && startDate.getText().toString().compareTo(endDate.getText().toString()) == 0
+                        && Utils.isTimePeriodValidGivenValidDates(startTime.getText().toString(), endTime.getText().toString())) {
                     Toast.makeText(getContext(), "Cannot end before starting.", Toast.LENGTH_LONG).show();
                 } else {
 
@@ -175,8 +175,7 @@ public class AddLandmarkFragment extends DialogFragment {
                             Utils.stringToHours(startTime.getText().toString()),
                             Utils.stringToMins(startTime.getText().toString()),
                             Utils.stringToHours(endTime.getText().toString()),
-                            Utils.stringToMins(endTime.getText().toString()),
-                            placeId);
+                            Utils.stringToMins(endTime.getText().toString()), placeId);
 
                     planRef.setValue(newFlight);
                     startActivity(addLandmarkIntent);
@@ -186,5 +185,13 @@ public class AddLandmarkFragment extends DialogFragment {
 
         // Inflate the layout for this fragment
         return view;
+    }
+
+    // checks to see if all fields of form are complete
+    private boolean allFieldsComplete() {
+        return startTime != null && endTime != null
+                && (landmarkName.getText().toString().equals("")
+                && startDate.getText().toString().equals("")
+                && endDate.getText().toString().equals(""));
     }
 }

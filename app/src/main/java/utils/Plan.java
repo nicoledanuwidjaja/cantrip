@@ -24,8 +24,7 @@ public class Plan {
 
     // throwaway test constructor
     public Plan(String planId, String name, Date startTime, Date endTime, String tripId, Reservation planType,
-                String location, int startHour, int startMin, int endHour, int endMin,
-                String placeId) {
+                String location, int startHour, int startMin, int endHour, int endMin, String placeId) {
         this.planId = planId;
         this.name = name;
         this.startTime = startTime;

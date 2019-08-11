@@ -55,8 +55,6 @@ public class AddHotelFragment extends DialogFragment {
 
     private String tripId;
     private String placeId;
-    private String startLoc;
-    private String endLoc;
 
     private DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
 
@@ -116,9 +114,9 @@ public class AddHotelFragment extends DialogFragment {
         hotelLocation.setOnPlaceSelectedListener(new PlaceSelectionListener() {
             @Override
             public void onPlaceSelected(Place place) {
-                placeId = place.getId();
                 hotelName.setText(place.getName());
                 location = place.getName();
+                placeId = place.getId();
             }
 
             @Override
@@ -146,16 +144,16 @@ public class AddHotelFragment extends DialogFragment {
             @Override
             public void onClick(View view) {
 
-                if (!Utils.isDatePeriodValid(checkInText.getText().toString(), checkOutText.getText().toString())) {
-                    Toast.makeText(getContext(), "Cannot check out  before check-in.", Toast.LENGTH_LONG).show();
-                } else if (checkInText.getText().toString().compareTo(checkOutText.getText().toString()) == 0
+                if (allFieldsComplete()) {
+                    Toast.makeText(getContext(), "All fields need to be complete.", Toast.LENGTH_LONG).show();
+                } else if (!Utils.isDatePeriodValid(checkInText.getText().toString(), checkOutText.getText().toString())
+                && checkInText.getText().toString().compareTo(checkOutText.getText().toString()) == 0
                         && Utils.isTimePeriodValidGivenValidDates(checkInTime.getText().toString(), checkOutTime.getText().toString())){
                     Toast.makeText(getContext(), "Cannot check out before check-in.", Toast.LENGTH_LONG).show();
                 } else {
 
                     Intent addHotelIntent = new Intent(getActivity(), DetailedTripActivity.class);
                     addHotelIntent.putExtra("trip id", tripId);
-                    addHotelIntent.putExtra("place id", placeId);
                     addHotelIntent.putExtra("tripName", tripName);
                     addHotelIntent.putExtra("tripDuration", tripDuration);
 
@@ -166,13 +164,11 @@ public class AddHotelFragment extends DialogFragment {
                             hotelName.getText().toString(),
                             Utils.stringToDate(checkInText.getText().toString()),
                             Utils.stringToDate(checkOutText.getText().toString()),
-                            tripId,
-                            Reservation.HOTEL, location,
+                            tripId, Reservation.HOTEL, location,
                             Utils.stringToHours(checkInTime.getText().toString()),
                             Utils.stringToMins(checkInTime.getText().toString()),
                             Utils.stringToHours(checkOutTime.getText().toString()),
-                            Utils.stringToMins(checkOutTime.getText().toString()),
-                            placeId);
+                            Utils.stringToMins(checkOutTime.getText().toString()), placeId);
 
                     planRef.setValue(newHotel);
 
@@ -183,6 +179,14 @@ public class AddHotelFragment extends DialogFragment {
 
         // Inflate the layout for this fragment
         return view;
+    }
+
+    // checks to see if all fields of form are complete
+    private boolean allFieldsComplete() {
+        return checkInTime != null && checkOutTime != null
+                && (hotelName.getText().toString().equals("")
+                && checkInText.getText().toString().equals("")
+                && checkOutText.getText().toString().equals(""));
     }
 
 }

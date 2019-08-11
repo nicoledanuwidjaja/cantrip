@@ -15,6 +15,7 @@ import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.libraries.places.api.Places;
+import com.google.android.libraries.places.api.model.OpeningHours;
 import com.google.android.libraries.places.api.model.PhotoMetadata;
 import com.google.android.libraries.places.api.model.Place;
 import com.google.android.libraries.places.api.net.FetchPhotoRequest;
@@ -27,15 +28,11 @@ import java.util.Arrays;
 import java.util.List;
 
 public class LandmarkFragment extends AbstractPlanFragment {
-
-
     private TextView location;
-    private TextView phone;
     private TextView name;
-    private TextView startTime;
-    private TextView endTime;
     private TextView startDate;
     private TextView endDate;
+    private TextView hours;
     private PlacesClient placesClient;
     private ImageView attractionImage;
 
@@ -55,22 +52,21 @@ public class LandmarkFragment extends AbstractPlanFragment {
         attractionImage = view.findViewById(R.id.landmark_image);
         location = view.findViewById(R.id.address_label);
         name = view.findViewById(R.id.landmark_name);
-        startTime = view.findViewById(R.id.hours_open);
         startDate = view.findViewById(R.id.visit_start_date);
         endDate = view.findViewById(R.id.visit_end_date);
+        hours = view.findViewById(R.id.hours_open);
 
         String planName = getArguments().getString("landmarkName");
         String planStartDate = getArguments().getString("landmarkStartDate");
         String planEndDate = getArguments().getString("landmarkEndDate");
-
         String placeId = getArguments().getString("landmarkPlace");
 
-        name.setText(planName);
+        name.setText("Visit to " + planName);
         startDate.setText(planStartDate);
         endDate.setText(planEndDate);
 
         // PLACES API
-        List<Place.Field> fields = Arrays.asList(Place.Field.PHOTO_METADATAS);
+        List<Place.Field> fields = Arrays.asList(Place.Field.PHOTO_METADATAS, Place.Field.ADDRESS, Place.Field.OPENING_HOURS);
         FetchPlaceRequest placeRequest = FetchPlaceRequest.builder(placeId, fields).build();
 
         // Initialize Places.
@@ -83,6 +79,14 @@ public class LandmarkFragment extends AbstractPlanFragment {
             @Override
             public void onSuccess(FetchPlaceResponse fetchPlaceResponse) {
                 Place place = fetchPlaceResponse.getPlace();
+                location.setText(place.getAddress());
+                OpeningHours locationHours = place.getOpeningHours();
+
+                StringBuilder hoursString = new StringBuilder();
+                for (String s : locationHours.getWeekdayText()) {
+                    hoursString.append(s + "\n");
+                }
+                hours.setText(hoursString);
 
                 // Get the photo metadata.
                 PhotoMetadata photoMetadata = place.getPhotoMetadatas().get(0);
@@ -108,23 +112,6 @@ public class LandmarkFragment extends AbstractPlanFragment {
                         }
                     }
                 });
-            }
-        });
-
-        // Place request for addresses
-        List<Place.Field> fields2 = Arrays.asList(Place.Field.ADDRESS);
-        FetchPlaceRequest placeRequest2 = FetchPlaceRequest.builder(placeId, fields2).build();
-
-        // Initialize Places.
-        Places.initialize(getActivity().getApplicationContext(), apiKey);
-
-        placesClient = Places.createClient(getContext());
-
-        placesClient.fetchPlace(placeRequest2).addOnSuccessListener(new OnSuccessListener<FetchPlaceResponse>() {
-            @Override
-            public void onSuccess(FetchPlaceResponse fetchPlaceResponse) {
-                Place planLocation = fetchPlaceResponse.getPlace();
-                location.setText(planLocation.getAddress());
             }
         });
 
