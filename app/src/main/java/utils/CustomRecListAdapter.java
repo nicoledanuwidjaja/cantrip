@@ -118,24 +118,6 @@ public class CustomRecListAdapter extends BaseAdapter {
         viewHolder.addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Intent addLandmarkIntent = new Intent(view.getContext(), DetailedTripActivity.class);
-//
-//                addLandmarkIntent.putExtra("trip id", tripId);
-//                DatabaseReference planRef = FirebaseDatabase.getInstance().getReference().child("plans" + tripId).push();
-//                String planKey = planRef.getKey();
-
-//                // create a new plan and save data
-//                Plan newFlight = new Plan(planKey,
-//                        .getText().toString(),
-//                        Utils.stringToDate(startDate.getText().toString()),
-//                        Utils.stringToDate(endDate.getText().toString()),
-//                        tripId, Reservation.LANDMARK, location, placeId);
-//
-//                planRef.setValue(newFlight);
-//                startActivity(addLandmarkIntent);
-
-
-                // sets a fragment manager for managing all fragments (for adding new trips)
                 FragmentManager planManager = ((AppCompatActivity)context).getSupportFragmentManager();
                 FragmentTransaction transaction = planManager.beginTransaction();
                 DialogFragment newLandmark = new AddLandmarkFragment(tripId, recItems.get(recItemsPos - 1).getPlaceID());
@@ -158,7 +140,7 @@ public class CustomRecListAdapter extends BaseAdapter {
         RatingBar recStarsRatingBar;
         TextView recHours;
         ImageView recHoursImage;
-        ImageButton addButton;
+        ImageView addButton;
     }
 
 }
