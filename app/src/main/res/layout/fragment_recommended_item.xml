@@ -31,7 +31,7 @@
                     android:id="@+id/recTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
+                    android:layout_marginLeft="18dp"
                     android:layout_marginTop="12dp"
                     android:layout_weight="1.5"
                     android:maxWidth="140dp"
@@ -40,9 +40,10 @@
                 <ImageView
                     android:id="@+id/addButton"
                     android:layout_width="wrap_content"
-                    android:layout_height="45dp"
+                    android:layout_height="35dp"
+                    android:paddingRight="-25dp"
                     android:layout_gravity="top|right"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="10dp"
                     android:layout_weight="0.7"
                     android:src="@drawable/plus_button" />
 
