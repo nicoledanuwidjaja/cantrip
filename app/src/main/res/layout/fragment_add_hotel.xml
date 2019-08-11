@@ -29,7 +29,6 @@
             android:layout_marginTop="30dp"
             android:src="@drawable/hotel_bed" />
 
-
         <fragment
             android:id="@+id/search_bar_hotel"
             android:name="com.google.android.libraries.places.widget.AutocompleteSupportFragment"
@@ -89,7 +88,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="20dp"
-            android:hint="Check in">
+            android:hint="@string/check_in">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/check_in_text"
@@ -106,7 +105,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="40dp"
             android:layout_marginTop="20dp"
-            android:hint="At what time?">
+            android:hint="@string/what_time">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/check_in_time"
@@ -138,7 +137,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="20dp"
-            android:hint="Check out">
+            android:hint="@string/check_out">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/check_out_text"
@@ -155,7 +154,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="40dp"
             android:layout_marginTop="20dp"
-            android:hint="At what time?">
+            android:hint="@string/what_time">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/check_out_time"
@@ -175,6 +174,6 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="295dp"
         android:layout_marginTop="40dp"
-        android:text="Save" />
+        android:text="@string/save" />
 
 </LinearLayout>

@@ -229,8 +229,6 @@ public class AddFlightFragment extends DialogFragment {
                 && departDate.getText().toString().equals("")
                 && arriveDate.getText().toString().equals(""));
     }
-
-
 }
 
 

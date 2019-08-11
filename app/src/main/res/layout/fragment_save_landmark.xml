@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/add_landmark"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/add_landmark"
     android:orientation="vertical"
     tools:context=".AddFlightFragment">
 
@@ -35,7 +35,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="4dp"
             android:layout_marginTop="20dp"
-            android:hint="Attraction name">
+            android:hint="@string/attraction_name">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/landmarkName"
@@ -64,7 +64,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
             android:layout_marginTop="20dp"
-            android:hint="Attraction address">
+            android:hint="@string/attraction_address">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/landmarkAddress"
@@ -94,14 +94,14 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="20dp"
-            android:hint="Start date">
+            android:hint="@string/start_date">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/visit_start_date"
-                android:focusable="false"
-                android:inputType="none"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:focusable="false"
+                android:inputType="none"
                 android:maxLines="1" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -118,14 +118,14 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="20dp"
-            android:hint="Start time">
+            android:hint="@string/start_time">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/startTimeText"
-                android:focusable="false"
-                android:inputType="none"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:focusable="false"
+                android:inputType="none"
                 android:maxLines="1" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -151,14 +151,14 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="20dp"
-            android:hint="End date">
+            android:hint="@string/end_date">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/visit_end_date"
-                android:focusable="false"
-                android:inputType="none"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:focusable="false"
+                android:inputType="none"
                 android:maxLines="1" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -175,14 +175,14 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="20dp"
-            android:hint="End time">
+            android:hint="@string/end_time">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/endTimeText"
-                android:focusable="false"
-                android:inputType="none"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:focusable="false"
+                android:inputType="none"
                 android:maxLines="1" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -194,6 +194,6 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="295dp"
         android:layout_marginTop="40dp"
-        android:text="Save" />
+        android:text="@string/save" />
 
 </LinearLayout>

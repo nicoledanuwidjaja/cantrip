@@ -89,7 +89,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="20dp"
-            android:hint="Start date">
+            android:hint="@string/start_date">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/visit_start_date"
@@ -113,7 +113,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="20dp"
-            android:hint="Start time">
+            android:hint="@string/start_time">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/startTimeText"
@@ -146,7 +146,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="20dp"
-            android:hint="End date">
+            android:hint="@string/end_date">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/visit_end_date"
@@ -170,7 +170,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="20dp"
-            android:hint="End time">
+            android:hint="@string/end_time">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/endTimeText"
@@ -189,6 +189,6 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="295dp"
         android:layout_marginTop="40dp"
-        android:text="Save" />
+        android:text="@string/save" />
 
 </LinearLayout>

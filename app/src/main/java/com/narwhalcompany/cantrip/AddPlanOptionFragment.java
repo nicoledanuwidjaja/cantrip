@@ -54,8 +54,7 @@ public class AddPlanOptionFragment extends BottomSheetDialogFragment
         // sets a fragment manager for managing all fragments (for adding new trips)
         FragmentManager planManager = getActivity().getSupportFragmentManager();
         FragmentTransaction transaction = planManager.beginTransaction();
- //       Bundle bundle = new Bundle();
-//        bundle.putString("trip id", getArguments().getString("trip id"));
+
         switch (view.getId()) {
             case R.id.flight_button:
                 DialogFragment newFlight = new AddFlightFragment(tripId);

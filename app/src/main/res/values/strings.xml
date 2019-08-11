@@ -12,6 +12,8 @@
     <string name="trip_location_from">Where from?</string>
     <string name="confirmation_text">Confirmation #:</string>
     <string name="trip_location_to">Where to?</string>
+    <string name="airline">Airline</string>
+    <string name="flight_number">Flight #</string>
     <string name="trip_button">Complete</string>
     <string name="trip_date_from">From:</string>
     <string name="add_new_trip">Add New Trip</string>
@@ -29,8 +31,21 @@
     <string name="check_in">Check in:</string>
     <string name="check_out">Check out:</string>
     <string name="save">Save</string>
+    <string name="start_date">Start date</string>
+    <string name="end_date">End date</string>
+    <string name="end_time">End time</string>
+    <string name="start_time">Start time</string>
     <string name="end_visit">End Visit:</string>
     <string name="start_visit">Start Visit:</string>
     <string name="add_new_plan">Add New Plan</string>
     <string name="add_date_button">Next</string>
+    <string name="flight">Flight</string>
+    <string name="hotel">Hotel</string>
+    <string name="attraction">Attraction</string>
+    <string name="airlines">Airlines</string>
+    <string name="from">From:</string>
+    <string name="to">To:</string>
+    <string name="departs">Departs:</string>
+    <string name="arrives">Arrives:</string>
+    <string name="attraction_address">Attraction address</string>
 </resources>

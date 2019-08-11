@@ -103,6 +103,7 @@ public class HotelFragment extends AbstractPlanFragment implements OnMapReadyCal
             public void onSuccess(FetchPlaceResponse fetchPlaceResponse) {
                 Place place = fetchPlaceResponse.getPlace();
                 location.setText(place.getAddress());
+                mapLocation = new LatLng(place.getLatLng().latitude, place.getLatLng().longitude);
 
                 mapLocation = place.getLatLng();
                 mMap.addMarker(new MarkerOptions()

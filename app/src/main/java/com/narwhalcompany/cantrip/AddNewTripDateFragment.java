@@ -32,8 +32,6 @@ import utils.Utils;
 
 public class AddNewTripDateFragment extends DialogFragment {
 
-    private TextView tripFromDate;
-    private TextView tripToDate;
     private DatePicker startDatePicker;
     private DatePicker endDatePicker;
     private FirebaseDatabase db;
@@ -56,8 +54,6 @@ public class AddNewTripDateFragment extends DialogFragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_add_new_trip_date, container, false);
-        tripFromDate = view.findViewById(R.id.date_from);
-        tripToDate = view.findViewById(R.id.date_to);
 
         startDatePicker = view.findViewById(R.id.start_date_picker);
         endDatePicker = view.findViewById(R.id.end_date_picker);
@@ -72,33 +68,33 @@ public class AddNewTripDateFragment extends DialogFragment {
 
                 Bundle pastLocationArgs = getArguments();
 
-               if (!Utils.checkEndDateValid(startDatePicker, endDatePicker)) {
-                   Toast.makeText(getContext(), "End date cannot be before start date", Toast.LENGTH_SHORT).show();
-               } else {
-                   Date startDateParsed = Utils.getStaticDate(startDatePicker);
-                   Date endDateParsed = Utils.getStaticDate(endDatePicker);
+                if (!Utils.checkEndDateValid(startDatePicker, endDatePicker)) {
+                    Toast.makeText(getContext(), "End date cannot be before start date", Toast.LENGTH_SHORT).show();
+                } else {
+                    Date startDateParsed = Utils.getStaticDate(startDatePicker);
+                    Date endDateParsed = Utils.getStaticDate(endDatePicker);
 
-                   final TripObject newTrip = new TripObject();
-                   newTrip.setStartLoc(pastLocationArgs.getString("startLocation"));
-                   newTrip.setEndLoc(pastLocationArgs.getString("endLocation"));
-                   newTrip.setStartDate(startDateParsed);
-                   newTrip.setEndDate(endDateParsed);
-                   newTrip.setPlans(new ArrayList<Plan>());
+                    final TripObject newTrip = new TripObject();
+                    newTrip.setStartLoc(pastLocationArgs.getString("startLocation"));
+                    newTrip.setEndLoc(pastLocationArgs.getString("endLocation"));
+                    newTrip.setStartDate(startDateParsed);
+                    newTrip.setEndDate(endDateParsed);
+                    newTrip.setPlans(new ArrayList<Plan>());
 
-                   DatabaseReference pushedReference = databaseReference.child("trips").push();
+                    DatabaseReference pushedReference = databaseReference.child("trips").push();
 
-                   final String tripKey = pushedReference.getKey();
-                   newTrip.setId(tripKey);
+                    final String tripKey = pushedReference.getKey();
+                    newTrip.setId(tripKey);
 
-                   pushedReference.setValue(newTrip);
+                    pushedReference.setValue(newTrip);
 
-                   Intent mainIntent = new Intent(getActivity(), MainActivity.class);
-                   startActivity(mainIntent);
+                    Intent mainIntent = new Intent(getActivity(), MainActivity.class);
+                    startActivity(mainIntent);
 
-                   MyTripListFragment newTripListFragment = new MyTripListFragment();
-                   transaction.replace(R.id.fragment_container, newTripListFragment);
-                   transaction.commit();
-               }
+                    MyTripListFragment newTripListFragment = new MyTripListFragment();
+                    transaction.replace(R.id.fragment_container, newTripListFragment);
+                    transaction.commit();
+                }
             }
         });
         return view;
