@@ -78,8 +78,15 @@ public class RecommendedListFragment extends Fragment {
                                 if (jo.getJSONArray("photos") != null) {
                                     JSONObject photos = jo.getJSONArray("photos").getJSONObject(0);
                                     String photoURI = photos.getString("photo_reference");
-                                    recArray.add(new RecAdapterItem(photoURI, jo.getString("name"), jo.getDouble("rating")));
+                                    String openHours = "N/A";
+                                    if (!jo.isNull("opening_hours")) {
+                                        openHours = jo.getJSONObject("opening_hours").getString("open_now");
+                                    }
+                                    recArray.add(new RecAdapterItem(photoURI, jo.getString("name"), jo.getDouble("rating"), openHours));
                                 }
+//                                jo.getJSONObject("opening_hours");
+
+//                                System.out.println(jo.getJSONObject("opening_hours"));
                             }
                             CustomRecListAdapter myAdapter = new CustomRecListAdapter(getContext(), recArray);
                             listView.setAdapter(myAdapter);
@@ -116,10 +123,4 @@ public class RecommendedListFragment extends Fragment {
 
     }
 
-//    private void PopulateList() {
-//        recArray.add(new RecAdapterItem(R.drawable.statue_of_liberty, "Statue of Liberty"));
-//        recArray.add(new RecAdapterItem(R.drawable.central_park, "Central Park"));
-//        recArray.add(new RecAdapterItem(R.drawable.empire_state_building, "Empire State Building"));
-//
-//    }
 }

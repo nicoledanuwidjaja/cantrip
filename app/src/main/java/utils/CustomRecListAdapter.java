@@ -1,6 +1,7 @@
 package utils;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -52,6 +53,7 @@ public class CustomRecListAdapter extends BaseAdapter {
             viewHolder.recStarsText = view.findViewById(R.id.recStarsText);
             viewHolder.recStarsRatingBar = view.findViewById(R.id.recStarsRatingBar);
             viewHolder.recHours = view.findViewById(R.id.recHours);
+            viewHolder.recHoursImage = view.findViewById(R.id.recHoursImage);
 
             view.setTag(viewHolder);
             Log.d("VIEWLOG", "New view created!");
@@ -75,6 +77,23 @@ public class CustomRecListAdapter extends BaseAdapter {
         viewHolder.recStarsRatingBar.setIsIndicator(true);
         viewHolder.recStarsRatingBar.setNumStars((int) currItem.getStars());
         viewHolder.recStarsText.setText(Double.toString(currItem.getStars()));
+        switch ( currItem.getOpeningHours() ) {
+            case "true":
+                viewHolder.recHours.setText("Open now");
+                viewHolder.recHours.setTextColor(Color.rgb(37, 181, 27));
+                viewHolder.recHoursImage.setImageResource(R.drawable.time_green);
+                break;
+            case "false":
+                viewHolder.recHours.setText("Closed now");
+                viewHolder.recHours.setTextColor(Color.rgb(255, 82, 82));
+                viewHolder.recHoursImage.setImageResource(R.drawable.time_red);
+                break;
+            default:
+                viewHolder.recHours.setText("N/A");
+                viewHolder.recHours.setTextColor(Color.GRAY);
+                viewHolder.recHoursImage.setImageResource(R.drawable.time);
+                break;
+        }
 
         return view;
     }
@@ -85,6 +104,7 @@ public class CustomRecListAdapter extends BaseAdapter {
         TextView recStarsText;
         RatingBar recStarsRatingBar;
         TextView recHours;
+        ImageView recHoursImage;
     }
 
 }
