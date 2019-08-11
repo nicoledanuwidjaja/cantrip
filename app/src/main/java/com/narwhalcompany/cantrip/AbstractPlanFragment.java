@@ -60,6 +60,7 @@ public class AbstractPlanFragment extends DialogFragment {
         switch (planSelection) {
             case "flight":
                 fragPlan = new FlightFragment();
+
                 planBundle.putString("flightName", planName);
                 planBundle.putString("flightStartLoc", planStartLoc);
                 planBundle.putString("flightEndLoc", planEndLoc);
