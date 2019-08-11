@@ -212,7 +212,7 @@ public class AddLandmarkFragment extends DialogFragment {
 
                     // create a new plan and save data
                     Plan newFlight = new Plan(planKey,
-                            "visit" + location,
+                            "Visit to " + location,
                             Utils.stringToDate(startDate.getText().toString()),
                             Utils.stringToDate(endDate.getText().toString()),
                             tripId, Reservation.LANDMARK, location,

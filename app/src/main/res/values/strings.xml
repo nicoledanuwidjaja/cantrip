@@ -18,7 +18,7 @@
     <string name="trip_date_from">From:</string>
     <string name="add_new_trip">Add New Trip</string>
     <string name="trip_date_to">To:</string>
-    <string name="hotel_name">Hotel name</string>
+    <string name="hotel_address">Hotel address</string>
     <string name="my_trips_tab">My Trips</string>
     <string name="recommended_tab">Recommended</string>
     <string name="month_hint">MM</string>

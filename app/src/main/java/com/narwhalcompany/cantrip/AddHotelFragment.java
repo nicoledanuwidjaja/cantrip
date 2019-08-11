@@ -45,7 +45,7 @@ public class AddHotelFragment extends DialogFragment {
     private EditText checkOutText;
     private EditText checkInTime;
     private EditText checkOutTime;
-    private EditText hotelName;
+    private EditText hotelAddress;
     private String location;
 
     private String tripId;
@@ -80,7 +80,7 @@ public class AddHotelFragment extends DialogFragment {
         View view = inflater.inflate(R.layout.fragment_add_hotel, container, false);
 
         saveButton = view.findViewById(R.id.saveButton);
-        hotelName = view.findViewById(R.id.hotel_name);
+        hotelAddress = view.findViewById(R.id.hotel_address);
         checkInText = view.findViewById(R.id.check_in_text);
         checkOutText = view.findViewById(R.id.check_out_text);
         checkInTime = view.findViewById(R.id.check_in_time);
@@ -102,14 +102,14 @@ public class AddHotelFragment extends DialogFragment {
         hotelLocation.setTypeFilter(TypeFilter.ESTABLISHMENT);
 
         // Specify the types of place data to return.
-        hotelLocation.setPlaceFields(Arrays.asList(Place.Field.ID, Place.Field.NAME));
+        hotelLocation.setPlaceFields(Arrays.asList(Place.Field.ID, Place.Field.NAME, Place.Field.ADDRESS));
 
         // Set up a PlaceSelectionListener to handle the response.
         hotelLocation.setOnPlaceSelectedListener(new PlaceSelectionListener() {
             @Override
             public void onPlaceSelected(Place place) {
                 placeId = place.getId();
-                hotelName.setText(place.getName());
+                hotelAddress.setText(place.getAddress());
                 location = place.getName();
             }
 
@@ -138,7 +138,7 @@ public class AddHotelFragment extends DialogFragment {
                     String planKey = planRef.getKey();
 
                     Plan newHotel = new Plan(planKey,
-                            hotelName.getText().toString(),
+                            "Stay at " + location,
                             Utils.stringToDate(checkInText.getText().toString()),
                             Utils.stringToDate(checkOutText.getText().toString()),
                             tripId,
