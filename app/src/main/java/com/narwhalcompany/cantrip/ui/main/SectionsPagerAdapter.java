@@ -39,13 +39,14 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
         Fragment selectedFragment = null;
         Bundle bundle = new Bundle();
         bundle.putString("trip id", this.tripId);
+        bundle.putString("trip destination", this.tripDestination);
 
         switch (position) {
             case 0:
                 selectedFragment = new MyPlansFragment(bundle);
                 break;
             case 1:
-                selectedFragment = new RecommendedListFragment(tripDestination);
+                selectedFragment = new RecommendedListFragment(bundle);
                 break;
         }
         return selectedFragment;

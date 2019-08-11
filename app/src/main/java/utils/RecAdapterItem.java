@@ -9,12 +9,14 @@ public class RecAdapterItem {
     private String title;
     private double rating;
     private String openingHours;
+    private String placeID;
 
-    public RecAdapterItem(String imageResID, String title, double rating, String openingHours) {
+    public RecAdapterItem(String imageResID, String title, double rating, String openingHours, String placeID) {
         this.imageID = imageResID;
         this.title = title;
         this.rating = rating;
         this.openingHours = openingHours;
+        this.placeID = placeID;
     }
 
     public String getImageID() {
@@ -40,4 +42,8 @@ public class RecAdapterItem {
     public String getOpeningHours() { return openingHours; }
 
     public void setOpeningHours(String openingHours) { this.openingHours = openingHours; }
+
+    public String getPlaceID() { return placeID; }
+
+    public void setPlaceID(String placeId) {this.placeID = placeId; }
 }

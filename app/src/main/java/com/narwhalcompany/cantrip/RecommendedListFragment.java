@@ -32,39 +32,33 @@ import java.util.ArrayList;
 import utils.CustomRecListAdapter;
 import utils.RecAdapterItem;
 
-
-/**
- * A simple {@link Fragment} subclass.
- */
 public class RecommendedListFragment extends Fragment {
 
-    ListView listView;
-    ArrayList<RecAdapterItem> recArray = new ArrayList<>();
-    TextView textView;
-    String tripDestination;
+    private ListView listView;
+    private ArrayList<RecAdapterItem> recArray = new ArrayList<>();
+    private TextView textView;
+    private String tripDestination;
+    private String tripId;
 
     public RecommendedListFragment() {
         // Required empty public constructor
     }
 
-    public RecommendedListFragment(String tripDestination) {
-        this.tripDestination = tripDestination;
+    public RecommendedListFragment(Bundle bundle) {
+        if (bundle != null) {
+            this.tripId = bundle.getString("trip id");
+            this.tripDestination = bundle.getString("trip destination");
+        }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-
-
-// ...
-
-// Instantiate the RequestQueue.
+        // Instantiate the RequestQueue.
         String apiKey = getString(R.string.google_places_api);
         RequestQueue queue = Volley.newRequestQueue(getContext());
-        String url ="https://maps.googleapis.com/maps/api/place/textsearch/json?query=attractions+in+" + tripDestination + "&key=" + apiKey;
-
-
+        String url = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=attractions+in+" + tripDestination + "&key=" + apiKey;
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
                 (Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
@@ -82,13 +76,10 @@ public class RecommendedListFragment extends Fragment {
                                     if (!jo.isNull("opening_hours")) {
                                         openHours = jo.getJSONObject("opening_hours").getString("open_now");
                                     }
-                                    recArray.add(new RecAdapterItem(photoURI, jo.getString("name"), jo.getDouble("rating"), openHours));
+                                    recArray.add(new RecAdapterItem(photoURI, jo.getString("name"), jo.getDouble("rating"), openHours, jo.getString("place_id")));
                                 }
-//                                jo.getJSONObject("opening_hours");
-
-//                                System.out.println(jo.getJSONObject("opening_hours"));
                             }
-                            CustomRecListAdapter myAdapter = new CustomRecListAdapter(getContext(), recArray);
+                            CustomRecListAdapter myAdapter = new CustomRecListAdapter(getContext(), recArray, tripId);
                             listView.setAdapter(myAdapter);
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -99,11 +90,9 @@ public class RecommendedListFragment extends Fragment {
 
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        // TODO: Handle error
-
+                        error.printStackTrace();
                     }
                 });
-
 
 // Access the RequestQueue through your singleton class.
         queue.add(jsonObjectRequest);
@@ -112,7 +101,6 @@ public class RecommendedListFragment extends Fragment {
 
         listView = view.findViewById(R.id.recListView);
         textView = view.findViewById(R.id.text);
-
 
 
         return view;

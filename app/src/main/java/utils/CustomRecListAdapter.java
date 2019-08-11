@@ -1,15 +1,28 @@
 package utils;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
+import android.media.Image;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.narwhalcompany.cantrip.AddLandmarkFragment;
+import com.narwhalcompany.cantrip.DetailedTripActivity;
+import com.narwhalcompany.cantrip.MainActivity;
 import com.narwhalcompany.cantrip.R;
 import com.squareup.picasso.Picasso;
 
@@ -19,10 +32,15 @@ public class CustomRecListAdapter extends BaseAdapter {
 
     Context context;
     ArrayList<RecAdapterItem> recItems;
+    String tripId;
+    String placeId;
+    int recItemsPos;
 
-    public CustomRecListAdapter(Context context, ArrayList<RecAdapterItem> recItems) {
+    public CustomRecListAdapter(Context context, ArrayList<RecAdapterItem> recItems, String tripId) {
         this.context = context;
         this.recItems = recItems;
+        this.tripId = tripId;
+
     }
 
     @Override
@@ -44,6 +62,7 @@ public class CustomRecListAdapter extends BaseAdapter {
     public View getView(int i, View view, ViewGroup viewGroup) {
 
         ViewHolder viewHolder;
+        recItemsPos = i;
 
         if(view == null) {
             view = View.inflate(context, R.layout.fragment_recommended_item, null);
@@ -54,6 +73,7 @@ public class CustomRecListAdapter extends BaseAdapter {
             viewHolder.recStarsRatingBar = view.findViewById(R.id.recStarsRatingBar);
             viewHolder.recHours = view.findViewById(R.id.recHours);
             viewHolder.recHoursImage = view.findViewById(R.id.recHoursImage);
+            viewHolder.addButton = view.findViewById(R.id.addButton);
 
             view.setTag(viewHolder);
             Log.d("VIEWLOG", "New view created!");
@@ -95,6 +115,39 @@ public class CustomRecListAdapter extends BaseAdapter {
                 break;
         }
 
+        viewHolder.addButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//                Intent addLandmarkIntent = new Intent(view.getContext(), DetailedTripActivity.class);
+//
+//                addLandmarkIntent.putExtra("trip id", tripId);
+//                DatabaseReference planRef = FirebaseDatabase.getInstance().getReference().child("plans" + tripId).push();
+//                String planKey = planRef.getKey();
+
+//                // create a new plan and save data
+//                Plan newFlight = new Plan(planKey,
+//                        .getText().toString(),
+//                        Utils.stringToDate(startDate.getText().toString()),
+//                        Utils.stringToDate(endDate.getText().toString()),
+//                        tripId, Reservation.LANDMARK, location, placeId);
+//
+//                planRef.setValue(newFlight);
+//                startActivity(addLandmarkIntent);
+
+
+                // sets a fragment manager for managing all fragments (for adding new trips)
+                FragmentManager planManager = ((AppCompatActivity)context).getSupportFragmentManager();
+                FragmentTransaction transaction = planManager.beginTransaction();
+                DialogFragment newLandmark = new AddLandmarkFragment(tripId, recItems.get(recItemsPos - 1).getPlaceID());
+                newLandmark.show(planManager, "landmark");
+
+                transaction.addToBackStack(null);
+                transaction.commit();
+            }
+        });
+
+
+
         return view;
     }
 
@@ -105,6 +158,7 @@ public class CustomRecListAdapter extends BaseAdapter {
         RatingBar recStarsRatingBar;
         TextView recHours;
         ImageView recHoursImage;
+        ImageButton addButton;
     }
 
 }
