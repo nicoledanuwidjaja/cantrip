@@ -54,8 +54,6 @@ public class MyTripListFragment extends Fragment {
             Log.d("trip overview", tripOverviewAdapterItem.getStartLoc());
         }
 
-        System.out.println("trip length" + "" + tripList.size() + "");
-
         ListView listView = view.findViewById(R.id.myTripsList);
         // CustomTripOverviewAdapter adapter = new CustomTripOverviewAdapter(getContext(), databaseRef.child("user"));
 

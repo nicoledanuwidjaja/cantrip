@@ -83,10 +83,6 @@ public class RecommendedListFragment extends Fragment {
                             }
                             CustomRecListAdapter myAdapter = new CustomRecListAdapter(getContext(), recArray);
                             listView.setAdapter(myAdapter);
-
-                            for (RecAdapterItem ri : recArray) {
-                                System.out.println("ri: " + ri.getTitle());
-                            }
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }

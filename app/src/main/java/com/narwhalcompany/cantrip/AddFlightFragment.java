@@ -218,7 +218,7 @@ public class AddFlightFragment extends DialogFragment {
                         && Utils.isTimePeriodValidGivenValidDates(departTime.getText().toString(), arriveTime.getText().toString())) {
                     Toast.makeText(getContext(), "Cannot arrive before departure.", Toast.LENGTH_LONG).show();
                 } else {
-                    Intent addFlightIntent = new Intent(getActivity(), MainActivity.class);
+                    Intent addFlightIntent = new Intent(getActivity(), DetailedTripActivity.class);
                     addFlightIntent.putExtra("trip id", tripId);
                     addFlightIntent.putExtra("tripName", tripName);
                     addFlightIntent.putExtra("tripDuration", tripTime);
