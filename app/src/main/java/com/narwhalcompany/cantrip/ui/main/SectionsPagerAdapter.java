@@ -23,11 +23,13 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
     private static final int[] TAB_TITLES = new int[]{R.string.plan_activity, R.string.recommended_tab};
     private final Context mContext;
     private final String tripId;
+    private final String tripDestination;
 
-    public SectionsPagerAdapter(Context context, FragmentManager fm, String tripId) {
+    public SectionsPagerAdapter(Context context, FragmentManager fm, String tripId, String tripDestination) {
         super(fm);
         mContext = context;
         this.tripId = tripId;
+        this.tripDestination = tripDestination;
     }
 
     @Override
@@ -43,7 +45,7 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
                 selectedFragment = new MyPlansFragment(bundle);
                 break;
             case 1:
-                selectedFragment = new RecommendedListFragment();
+                selectedFragment = new RecommendedListFragment(tripDestination);
                 break;
         }
         return selectedFragment;

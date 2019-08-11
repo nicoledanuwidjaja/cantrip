@@ -20,6 +20,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.google.android.gms.common.api.Status;
 import com.google.android.libraries.places.api.Places;
 import com.google.android.libraries.places.api.model.Place;
+import com.google.android.libraries.places.api.model.TypeFilter;
 import com.google.android.libraries.places.widget.AutocompleteSupportFragment;
 import com.google.android.libraries.places.widget.listener.PlaceSelectionListener;
 
@@ -62,6 +63,8 @@ public class AddNewTripLocationFragment extends DialogFragment {
         AutocompleteSupportFragment autocompleteFragment = (AutocompleteSupportFragment)
                 getFragmentManager().findFragmentById(R.id.autocomplete_fragment);
 
+        autocompleteFragment.setTypeFilter(TypeFilter.CITIES);
+
         // Specify the types of place data to return.
         autocompleteFragment.setPlaceFields(Arrays.asList(Place.Field.ID, Place.Field.NAME));
 
@@ -84,6 +87,8 @@ public class AddNewTripLocationFragment extends DialogFragment {
         // Initialize the AutocompleteSupportFragment for destination
         AutocompleteSupportFragment autocompleteFragment2 = (AutocompleteSupportFragment)
                 getFragmentManager().findFragmentById(R.id.autocomplete_fragment_2);
+
+        autocompleteFragment2.setTypeFilter(TypeFilter.CITIES);
 
         // Specify the types of place data to return.
         autocompleteFragment2.setPlaceFields(Arrays.asList(Place.Field.ID, Place.Field.NAME));
