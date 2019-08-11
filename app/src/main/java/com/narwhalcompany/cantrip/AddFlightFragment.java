@@ -197,7 +197,8 @@ public class AddFlightFragment extends DialogFragment {
                 TripObject tripInfo = dataSnapshot.getValue(TripObject.class);
 
                 tripName = tripInfo.getEndLoc();
-                tripTime = tripInfo.getStartDate() + " to " + tripInfo.getEndDate();
+                tripTime = tripInfo.formatDate(tripInfo.getStartDate()) + " to "
+                        + tripInfo.formatDate(tripInfo.getEndDate());
             }
 
             @Override

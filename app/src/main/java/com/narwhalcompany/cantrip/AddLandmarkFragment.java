@@ -136,7 +136,8 @@ public class AddLandmarkFragment extends DialogFragment {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 TripObject trip = dataSnapshot.getValue(TripObject.class);
                 tripName = trip.getEndLoc();
-                tripDuration = trip.getStartDate() + " to " + trip.getEndDate();
+                tripDuration = trip.formatDate(trip.getStartDate()) + " to "
+                        + trip.formatDate(trip.getEndDate());
             }
 
             @Override
