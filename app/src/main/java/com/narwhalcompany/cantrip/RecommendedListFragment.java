@@ -75,28 +75,11 @@ public class RecommendedListFragment extends Fragment {
                             JSONArray jsonArray = response.getJSONArray("results");
                             for (int i = 0; i < jsonArray.length(); i++) {
                                 JSONObject jo = jsonArray.getJSONObject(i);
-                                JSONObject photos = jo.getJSONArray("photos").getJSONObject(0);
-                                String photoURI = photos.getString("photo_reference");
-
-
-//                                System.out.println(photo);
-
-
-//                                place.mPhotos = new Photo[photos.length()];
-//                                for(int i=0;i<photos.length();i++){
-//                                    place.mPhotos[i] = new Photo();
-//                                    place.mPhotos[i].mWidth = ((JSONObject)photos.get(i)).getInt("width");
-//                                    place.mPhotos[i].mHeight = ((JSONObject)photos.get(i)).getInt("height");
-//                                    place.mPhotos[i].mPhotoReference = ((JSONObject)photos.get(i)).getString("photo_reference");
-//                                    JSONArray attributions = ((JSONObject)photos.get(i)).getJSONArray("html_attributions");
-//                                    place.mPhotos[i].mAttributions = new Attribution[attributions.length()];
-//                                    for(int j=0;j<attributions.length();j++){
-//                                        place.mPhotos[i].mAttributions[j] = new Attribution();
-//                                        place.mPhotos[i].mAttributions[j].mHtmlAttribution = attributions.getString(j);
-//                                    }
-//                                }
-                                recArray.add(new RecAdapterItem(photoURI, jo.getString("name")));
-
+                                if (jo.getJSONArray("photos") != null) {
+                                    JSONObject photos = jo.getJSONArray("photos").getJSONObject(0);
+                                    String photoURI = photos.getString("photo_reference");
+                                    recArray.add(new RecAdapterItem(photoURI, jo.getString("name"), jo.getDouble("rating")));
+                                }
                             }
                             CustomRecListAdapter myAdapter = new CustomRecListAdapter(getContext(), recArray);
                             listView.setAdapter(myAdapter);
