@@ -61,13 +61,20 @@ public class CustomRecListAdapter extends BaseAdapter {
         }
 
         RecAdapterItem currItem = recItems.get(i);
-        String imageID = currItem.getImageID();
 
+        String imageID = currItem.getImageID();
         String apiKey = "AIzaSyChC1eDZHa54rv4rqdw7vJjnRBMxiXOpsM";
         viewHolder.recImage.setImageResource(R.drawable.airplane);
-        Picasso.get().load("https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=" + imageID + "&key=" + apiKey).into(viewHolder.recImage);
+        Picasso.get().load("https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&maxheight=400&photoreference=" + imageID + "&key=" + apiKey).into(viewHolder.recImage);
 
         viewHolder.recTitle.setText(currItem.getTitle());
+
+//        viewHolder.recStarsRatingBar.setNumStars(currItem.getStars());
+
+        viewHolder.recStarsRatingBar.setStepSize((float) 0.25);
+        viewHolder.recStarsRatingBar.setIsIndicator(true);
+        viewHolder.recStarsRatingBar.setNumStars((int) currItem.getStars());
+        viewHolder.recStarsText.setText(Double.toString(currItem.getStars()));
 
         return view;
     }
