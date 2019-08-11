@@ -23,27 +23,30 @@
             android:id="@+id/titleLayout"
             android:orientation="horizontal"
             android:layout_below="@+id/recImage"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
         <TextView
         android:id="@+id/recTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+            android:layout_weight="1.5"
+            android:maxWidth="140dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="12dp"
         android:text="Statue of Liberty"
         android:textSize="20dp" />
 
-        <ImageButton
+        <ImageView
             android:id="@+id/addButton"
-            android:layout_marginLeft="20dp"
             android:layout_marginTop="8dp"
             android:src="@drawable/plus_button"
+            android:layout_weight="0.7"
+            android:layout_gravity="top|right"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="45dp" />
 
-</LinearLayout>
+    </LinearLayout>
 
         <LinearLayout
         android:id="@+id/recStars"
@@ -95,7 +98,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
                 android:layout_marginBottom="12dp"
-            android:text=" 8:30 AM - 4:00 PM"
+            android:text="Open now"
             android:textSize="16sp" />
 
         </LinearLayout>
