@@ -32,7 +32,17 @@ public class TripObject {
 
     // formats a date to US calendar format
     public String formatDate(Date date) {
-        return format.format(date);
+        String stringToReturn = "";
+
+        try {
+            if (date != null) {
+                stringToReturn = format.format(date);
+                return stringToReturn;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return stringToReturn;
     }
 
     @Override
