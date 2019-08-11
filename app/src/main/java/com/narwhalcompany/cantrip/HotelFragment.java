@@ -62,7 +62,7 @@ public class HotelFragment extends AbstractPlanFragment implements OnMapReadyCal
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_hotel, container, false);
 
-        String apiKey = getString(R.string.google_maps_api);
+        String apiKey = getString(R.string.google_places_api);
 
         mapFragment = (SupportMapFragment) getFragmentManager()
                 .findFragmentById(R.id.map);
