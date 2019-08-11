@@ -18,7 +18,7 @@
         android:textSize="20sp" />
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
@@ -30,18 +30,24 @@
             android:layout_marginTop="30dp"
             android:src="@drawable/landmark" />
 
-        <fragment
-            android:id="@+id/search_bar_landmark"
-            android:name="com.google.android.libraries.places.widget.AutocompleteSupportFragment"
-            android:layout_width="match_parent"
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="330dp"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="10dp" />
+            android:layout_marginLeft="4dp"
+            android:layout_marginTop="20dp"
+            android:hint="Attraction name">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/landmarkName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </com.google.android.material.textfield.TextInputLayout>
 
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
@@ -52,7 +58,6 @@
             android:layout_marginLeft="14dp"
             android:layout_marginTop="30dp"
             android:src="@drawable/location" />
-
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="330dp"
@@ -67,6 +72,7 @@
                 android:layout_height="wrap_content" />
 
         </com.google.android.material.textfield.TextInputLayout>
+
 
     </LinearLayout>
 

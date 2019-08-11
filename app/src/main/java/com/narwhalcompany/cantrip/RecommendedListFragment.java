@@ -42,13 +42,17 @@ public class RecommendedListFragment extends Fragment {
     ArrayList<RecAdapterItem> recArray = new ArrayList<>();
     TextView textView;
     String tripDestination;
+    String tripId;
 
     public RecommendedListFragment() {
         // Required empty public constructor
     }
 
-    public RecommendedListFragment(String tripDestination) {
-        this.tripDestination = tripDestination;
+    public RecommendedListFragment(Bundle bundle) {
+        if (bundle != null) {
+            this.tripId = bundle.getString("trip id");
+            this.tripDestination = bundle.getString("trip destination");
+        }
     }
 
     @Override
@@ -82,18 +86,12 @@ public class RecommendedListFragment extends Fragment {
                                     if (!jo.isNull("opening_hours")) {
                                         openHours = jo.getJSONObject("opening_hours").getString("open_now");
                                     }
-                                    recArray.add(new RecAdapterItem(photoURI, jo.getString("name"), jo.getDouble("rating"), openHours));
+                                    recArray.add(new RecAdapterItem(photoURI, jo.getString("name"), jo.getDouble("rating"), openHours, jo.getString("place_id")));
                                 }
-//                                jo.getJSONObject("opening_hours");
-
-//                                System.out.println(jo.getJSONObject("opening_hours"));
                             }
-                            CustomRecListAdapter myAdapter = new CustomRecListAdapter(getContext(), recArray);
+                            CustomRecListAdapter myAdapter = new CustomRecListAdapter(getContext(), recArray, tripId);
                             listView.setAdapter(myAdapter);
 
-                            for (RecAdapterItem ri : recArray) {
-                                System.out.println("ri: " + ri.getTitle());
-                            }
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
