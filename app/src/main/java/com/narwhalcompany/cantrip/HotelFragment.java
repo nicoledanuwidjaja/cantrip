@@ -88,7 +88,6 @@ public class HotelFragment extends AbstractPlanFragment implements OnMapReadyCal
         checkIn.setText(planFromDate);
         checkOut.setText(planToDate);
 
-
         List<Place.Field> fields = Arrays.asList(Place.Field.ADDRESS, Place.Field.LAT_LNG);
 
         FetchPlaceRequest placeRequest = FetchPlaceRequest.builder(placeId, fields).build();
@@ -128,12 +127,6 @@ public class HotelFragment extends AbstractPlanFragment implements OnMapReadyCal
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
-
         mMap = googleMap;
-
-
-
     }
-
-
 }
