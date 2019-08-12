@@ -59,11 +59,13 @@ public class LandmarkFragment extends AbstractPlanFragment {
         String planName = getArguments().getString("landmarkName");
         String planStartDate = getArguments().getString("landmarkStartDate");
         String planEndDate = getArguments().getString("landmarkEndDate");
+        String planStartTime = getArguments().getString("landmarkStartTime");
+        String planEndTime = getArguments().getString("landmarkEndTime");
         String placeId = getArguments().getString("landmarkPlace");
 
         name.setText("Visit to " + planName);
-        startDate.setText(planStartDate);
-        endDate.setText(planEndDate);
+        startDate.setText(planStartDate + ", " + planStartTime);
+        endDate.setText(planEndDate + ", " + planEndTime);
 
         // PLACES API
         List<Place.Field> fields = Arrays.asList(Place.Field.PHOTO_METADATAS, Place.Field.ADDRESS, Place.Field.OPENING_HOURS);

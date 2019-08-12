@@ -51,7 +51,7 @@ public class HotelFragment extends AbstractPlanFragment implements OnMapReadyCal
     private ImageView hotelImage;
     private TextView hotelAddress;
     private LatLng mapLocation;
-    public SupportMapFragment mapFragment;
+    private SupportMapFragment mapFragment;
 
 
     public HotelFragment() {
@@ -62,17 +62,18 @@ public class HotelFragment extends AbstractPlanFragment implements OnMapReadyCal
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_hotel, container, false);
-
 
         String apiKey = getString(R.string.google_places_api);
 
-        mapFragment = (SupportMapFragment) getFragmentManager()
-                .findFragmentById(R.id.map);
+        // Inflate the layout for this fragment
 
-        assert mapFragment != null;
+        View view = null;
 
+        try {
+            view = inflater.inflate(R.layout.fragment_hotel, container, false);
+
+            mapFragment = (SupportMapFragment) getFragmentManager()
+                    .findFragmentById(R.id.map);
 
         checkIn = view.findViewById(R.id.check_in_date);
         checkOut = view.findViewById(R.id.check_out_date);
@@ -123,6 +124,11 @@ public class HotelFragment extends AbstractPlanFragment implements OnMapReadyCal
         });
         mapFragment.getMapAsync(this);
 
+
+        } catch (InflateException e) {
+            e.printStackTrace();
+        }
+
         return view;
     }
 
@@ -132,6 +138,15 @@ public class HotelFragment extends AbstractPlanFragment implements OnMapReadyCal
         mMap = googleMap;
 
 
+    }
+
+    @Override
+    public void onDestroyView() {
+        if (mapFragment != null) {
+            getFragmentManager().beginTransaction().remove(mapFragment);
+        }
+
+        super.onDestroyView();
 
     }
 
