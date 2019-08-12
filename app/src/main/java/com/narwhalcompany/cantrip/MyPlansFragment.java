@@ -1,6 +1,8 @@
 package com.narwhalcompany.cantrip;
 
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -13,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -101,6 +104,42 @@ public class MyPlansFragment extends BottomSheetDialogFragment {
                     fragPlan.setArguments(planBundle);
 
                     getFragmentManager().beginTransaction().replace(R.id.detailed_plan_container, fragPlan).commit();
+                }
+            });
+
+            listOfPlans.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+                @Override
+                public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+                    final String currentPlanId = planList.get(i).getPlanId();
+
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                    builder.setMessage("Are you sure you want to delete this plan "
+                            + planList.get(i).getName() + "?" +
+                            "\nChoosing \"Delete\" will result in permanent deletion of the current plan.");
+                    builder.setTitle("Delete Plan Alert");
+
+                    builder.setPositiveButton("Delete", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int j) {
+                            dataRef.child("plans" + tripId).child(currentPlanId).removeValue();
+                            for (int k = 0; k < planList.size(); k++) {
+                                if (planList.get(k).getPlanId().compareTo(currentPlanId) == 0) {
+                                    planList.remove(k);
+                                }
+                            }
+                        }
+                    });
+                    builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int j) {
+                            Toast.makeText(getContext(), "Canceled delete.", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+
+                    AlertDialog alert = builder.create();
+                    alert.show();
+                    return true;
                 }
             });
 
