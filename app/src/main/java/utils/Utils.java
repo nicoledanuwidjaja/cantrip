@@ -146,8 +146,10 @@ public class Utils {
         return true;
     }
 
+    // returns true if date period is valid
     public static boolean isDatePeriodValid(String startDate, String endDate) {
-        return Utils.stringToDate(startDate).getTime() <= Utils.stringToDate(endDate).getTime();
+//        return Utils.stringToDate(startDate).getTime() <= Utils.stringToDate(endDate).getTime();
+        return Utils.stringToDate(startDate).compareTo(Utils.stringToDate(endDate)) <=0;
     }
 
     public static boolean isTimePeriodValidGivenValidDates(String startTime, String endTime) {

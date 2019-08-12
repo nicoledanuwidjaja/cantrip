@@ -48,8 +48,6 @@ public class AddHotelFragment extends DialogFragment {
     private Button saveButton;
     private EditText checkInText;
     private EditText checkOutText;
-    private EditText checkInTime;
-    private EditText checkOutTime;
     private EditText hotelAddress;
     private String location;
     private String tripId;
@@ -88,13 +86,9 @@ public class AddHotelFragment extends DialogFragment {
         hotelAddress = view.findViewById(R.id.hotel_address);
         checkInText = view.findViewById(R.id.check_in_text);
         checkOutText = view.findViewById(R.id.check_out_text);
-        checkInTime = view.findViewById(R.id.check_in_time);
-        checkOutTime = view.findViewById(R.id.check_out_time);
 
         checkInText.setOnClickListener(new OnDateClick());
         checkOutText.setOnClickListener(new OnDateClick());
-        checkInTime.setOnClickListener(new OnTimeClick());
-        checkOutTime.setOnClickListener(new OnTimeClick());
 
         String apiKey = getString(R.string.google_places_api);
 
@@ -144,13 +138,14 @@ public class AddHotelFragment extends DialogFragment {
             @Override
             public void onClick(View view) {
 
-                if (allFieldsComplete()) {
+                if (areFieldsEmpty()) {
                     Toast.makeText(getContext(), "All fields need to be complete.", Toast.LENGTH_LONG).show();
-                } else if (!Utils.isDatePeriodValid(checkInText.getText().toString(), checkOutText.getText().toString())
-                && checkInText.getText().toString().compareTo(checkOutText.getText().toString()) == 0
-                        && Utils.isTimePeriodValidGivenValidDates(checkInTime.getText().toString(), checkOutTime.getText().toString())){
-                    Toast.makeText(getContext(), "Cannot check out before check-in.", Toast.LENGTH_LONG).show();
-                } else {
+                }
+                else if (!Utils.isDatePeriodValid(checkInText.getText().toString(), checkOutText.getText().toString())){
+//                        && Utils.isTimePeriodValidGivenValidDates(checkInTime.getText().toString(), checkOutTime.getText().toString())){
+                    Toast.makeText(getContext(), "Check out date cannot be before check in date.", Toast.LENGTH_LONG).show();
+                }
+                else {
 
                     Intent addHotelIntent = new Intent(getActivity(), DetailedTripActivity.class);
                     addHotelIntent.putExtra("trip id", tripId);
@@ -160,15 +155,17 @@ public class AddHotelFragment extends DialogFragment {
                     DatabaseReference planRef = databaseReference.child("plans" + tripId).push();
                     String planKey = planRef.getKey();
 
-                    Plan newHotel = new Plan(planKey,
-                            "Stay at " + location,
+                    Plan newHotel = new Plan(planKey, location,
                             Utils.stringToDate(checkInText.getText().toString()),
                             Utils.stringToDate(checkOutText.getText().toString()),
                             tripId, Reservation.HOTEL, location,
-                            Utils.stringToHours(checkInTime.getText().toString()),
-                            Utils.stringToMins(checkInTime.getText().toString()),
-                            Utils.stringToHours(checkOutTime.getText().toString()),
-                            Utils.stringToMins(checkOutTime.getText().toString()), placeId);
+                            0,
+                            0,
+                            0,
+                            0, placeId);
+
+                    System.out.println(checkInText.getText().toString());
+                    System.out.println(checkOutText.getText().toString());
 
                     planRef.setValue(newHotel);
 
@@ -181,12 +178,11 @@ public class AddHotelFragment extends DialogFragment {
         return view;
     }
 
-    // checks to see if all fields of form are complete
-    private boolean allFieldsComplete() {
-        return checkInTime != null && checkOutTime != null
-                && (hotelAddress.getText().toString().equals("")
-                && checkInText.getText().toString().equals("")
-                && checkOutText.getText().toString().equals(""));
+    // returns true if any field is empty
+    private boolean areFieldsEmpty() {
+        return hotelAddress.getText().toString().equals("")
+                || checkInText.getText().toString().equals("")
+                || checkOutText.getText().toString().equals("");
     }
 
 }
