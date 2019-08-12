@@ -148,7 +148,6 @@ public class AddLandmarkFragment extends DialogFragment {
                     landmarkName.setClickable(false);
 
                     landmarkAddress.setText(place.getAddress());
-                    System.out.println("address: " + place.getAddress());
                     landmarkAddress.setFocusable(false);
                     landmarkAddress.setClickable(false);
                 }
@@ -212,12 +211,14 @@ public class AddLandmarkFragment extends DialogFragment {
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                if (allFieldsComplete()) {
-//                    Toast.makeText(getContext(), "All fields need to be complete.", Toast.LENGTH_LONG).show();
-//                } else
-                if (!Utils.isDatePeriodValid(startDate.getText().toString(), endDate.getText().toString())
-                        && startDate.getText().toString().compareTo(endDate.getText().toString()) == 0
-                        && Utils.isTimePeriodValidGivenValidDates(startTime.getText().toString(), endTime.getText().toString())) {
+                String startDateString = startDate.getText().toString();
+                String endDateString = endDate.getText().toString();
+                String startTimeString = startTime.getText().toString();
+                String endTimeString = endTime.getText().toString();
+
+                if (areFieldsEmpty()) {
+                    Toast.makeText(getContext(), "All fields need to be complete.", Toast.LENGTH_LONG).show();
+                } else if (!Utils.isDateAndTimeValid(startDateString, endDateString, startTimeString, endTimeString)) {
                     Toast.makeText(getContext(), "Cannot end before starting.", Toast.LENGTH_LONG).show();
                 } else {
 
@@ -250,11 +251,13 @@ public class AddLandmarkFragment extends DialogFragment {
         return view;
     }
 
-//    // checks to see if all fields of form are complete
-//    private boolean allFieldsComplete() {
-//        return startTime != null && endTime != null
-//                && (landmarkName.getText().toString().equals("")
-//                && startDate.getText().toString().equals("")
-//                && endDate.getText().toString().equals(""));
-//    }
+    // returns true if any field is empty
+    private boolean areFieldsEmpty() {
+        return landmarkAddress.getText().toString().equals("")
+                || startDate.getText().toString().equals("")
+                || startTime.getText().toString().equals("")
+                || endDate.getText().toString().equals("")
+                || endTime.getText().toString().equals("");
+    }
+
 }

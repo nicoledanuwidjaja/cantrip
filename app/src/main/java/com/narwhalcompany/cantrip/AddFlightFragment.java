@@ -53,8 +53,8 @@ public class AddFlightFragment extends DialogFragment {
     private Button saveButton;
     private String tripId;
     private String placeId;
-    private String startLoc;
-    private String endLoc;
+    private String startLoc = "";
+    private String endLoc = "";
 
     private DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
 
@@ -183,12 +183,16 @@ public class AddFlightFragment extends DialogFragment {
             @Override
             public void onClick(View view) {
 
-                if (allFieldsComplete()) {
+                String departDateString = departDate.getText().toString();
+                String arriveDateString = arriveDate.getText().toString();
+                String departTimeString = departTime.getText().toString();
+                String arriveTimeString = arriveTime.getText().toString();
+
+
+                if (areFieldsEmpty()) {
                     Toast.makeText(getContext(), "All fields need to be complete.", Toast.LENGTH_LONG).show();
-                } else if (!Utils.isDatePeriodValid(departDate.getText().toString(), arriveDate.getText().toString()) &&
-                        departDate.getText().toString().compareTo(arriveDate.getText().toString()) == 0
-                        && Utils.isTimePeriodValidGivenValidDates(departTime.getText().toString(), arriveTime.getText().toString())) {
-                    Toast.makeText(getContext(), "Cannot arrive before departure.", Toast.LENGTH_LONG).show();
+                } else if (!Utils.isDateAndTimeValid(departDateString, arriveDateString, departTimeString, arriveTimeString)) {
+                    Toast.makeText(getContext(), "Depart date and time must be after arrive date and time.", Toast.LENGTH_LONG).show();
                 } else {
                     Intent addFlightIntent = new Intent(getActivity(), DetailedTripActivity.class);
                     addFlightIntent.putExtra("trip id", tripId);
@@ -222,12 +226,16 @@ public class AddFlightFragment extends DialogFragment {
         return view;
     }
 
-    // checks to see if all fields of form are complete
-    private boolean allFieldsComplete() {
-        return departTime != null && arriveTime != null
-                && (airplaneLabel.getText().toString().equals("")
-                && departDate.getText().toString().equals("")
-                && arriveDate.getText().toString().equals(""));
+    // returns true if any field is empty
+    private boolean areFieldsEmpty() {
+        return airplaneLabel.getText().toString().equals("")
+                || flightNumber.getText().toString().equals("")
+                || startLoc.equals("")
+                || endLoc.equals("")
+                || departDate.getText().toString().equals("")
+                || departTime.getText().toString().equals("")
+                || arriveDate.getText().toString().equals("")
+                || arriveTime.getText().toString().equals("");
     }
 }
 

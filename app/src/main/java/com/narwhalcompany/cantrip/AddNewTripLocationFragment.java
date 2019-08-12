@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -104,22 +105,31 @@ public class AddNewTripLocationFragment extends DialogFragment {
         completeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // sets a fragment manager for managing all fragments (for adding new trips)
-                FragmentManager tripManager = getActivity().getSupportFragmentManager();
-                FragmentTransaction tripTransaction = tripManager.beginTransaction();
-                AddNewTripDateFragment getDateFragment = new AddNewTripDateFragment();
+                if (areFieldsEmpty()) {
+                    Toast.makeText(getContext(), "All fields need to be complete.", Toast.LENGTH_LONG).show();
+                } else {
+                    // sets a fragment manager for managing all fragments (for adding new trips)
+                    FragmentManager tripManager = getActivity().getSupportFragmentManager();
+                    FragmentTransaction tripTransaction = tripManager.beginTransaction();
+                    AddNewTripDateFragment getDateFragment = new AddNewTripDateFragment();
 
-                Bundle bundle = new Bundle();
-                bundle.putString("startLocation", startLocation);
-                bundle.putString("endLocation", endLocation);
-                getDateFragment.setArguments(bundle);
-                getDateFragment.show(tripManager, "add trip");
-                tripTransaction.addToBackStack(null);
-                tripTransaction.commit();
+                    Bundle bundle = new Bundle();
+                    bundle.putString("startLocation", startLocation);
+                    bundle.putString("endLocation", endLocation);
+                    getDateFragment.setArguments(bundle);
+                    getDateFragment.show(tripManager, "add trip");
+                    tripTransaction.addToBackStack(null);
+                    tripTransaction.commit();
+                }
             }
         });
 
         return view;
+    }
+
+    // returns true if any field is empty
+    private boolean areFieldsEmpty() {
+        return startLocation == null || endLocation == null;
     }
 }
 

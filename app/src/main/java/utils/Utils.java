@@ -6,7 +6,7 @@ import android.widget.DatePicker;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
@@ -86,6 +86,16 @@ public class Utils {
         throw new IllegalArgumentException("Not a valid string.");
     }
 
+    public static Date stringToDateWithTime(String s) {
+        try {
+            return new SimpleDateFormat("MM/dd/yyyy HH:mm", Locale.US).parse(s);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        throw new IllegalArgumentException("Not a valid string.");
+    }
+
     public static int stringToHours(String s) {
         String[] stringArr = s.split(":");
         return Integer.parseInt(stringArr[0]);
@@ -146,16 +156,24 @@ public class Utils {
         return true;
     }
 
-    public static boolean isDatePeriodValid(String startDate, String endDate) {
-        return Utils.stringToDate(startDate).getTime() <= Utils.stringToDate(endDate).getTime();
+
+    // returns true if date period is valid
+    public static boolean isDateValid(String startDate, String endDate) {
+        return Utils.stringToDate(startDate).compareTo(Utils.stringToDate(endDate)) < 0;
     }
 
-    public static boolean isTimePeriodValidGivenValidDates(String startTime, String endTime) {
-        String[] startTimes = startTime.split(":");
-        String[] endTimes = endTime.split(":");
+    // returns true if date and time period is valid
+    public static boolean isDateAndTimeValid(String startDate, String endDate, String startTime, String endTime) {
+        if (Utils.stringToDate(startDate).compareTo(Utils.stringToDate(endDate)) < 0) {
+            return true;
+        } else if (Utils.stringToDate(startDate).compareTo(Utils.stringToDate(endDate)) == 0) {
+            String startTimeStrT = startDate + " " + startTime;
+            String endTimeStrT = endDate + " " + endTime;
 
-        return (Integer.parseInt(startTimes[0]) < Integer.parseInt(endTimes[0])) ?
-                ((Integer.parseInt(startTimes[0]) == Integer.parseInt(endTimes[0]))
-                        && Integer.parseInt(startTimes[1]) < Integer.parseInt(endTimes[0])) : false;
+            return Utils.stringToDateWithTime(startTimeStrT).before(Utils.stringToDateWithTime(endTimeStrT));
+        } else {
+            return false;
+        }
     }
+
 }
