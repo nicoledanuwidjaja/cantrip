@@ -141,9 +141,8 @@ public class AddHotelFragment extends DialogFragment {
                 if (areFieldsEmpty()) {
                     Toast.makeText(getContext(), "All fields need to be complete.", Toast.LENGTH_LONG).show();
                 }
-                else if (!Utils.isDatePeriodValid(checkInText.getText().toString(), checkOutText.getText().toString())){
-//                        && Utils.isTimePeriodValidGivenValidDates(checkInTime.getText().toString(), checkOutTime.getText().toString())){
-                    Toast.makeText(getContext(), "Check out date cannot be before check in date.", Toast.LENGTH_LONG).show();
+                else if (!Utils.isDateValid(checkInText.getText().toString(), checkOutText.getText().toString())){
+                    Toast.makeText(getContext(), "Check out date must be after check in date.", Toast.LENGTH_LONG).show();
                 }
                 else {
 
