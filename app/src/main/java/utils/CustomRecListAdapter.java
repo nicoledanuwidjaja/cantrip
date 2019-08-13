@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
@@ -61,7 +62,7 @@ public class CustomRecListAdapter extends BaseAdapter {
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
 
-        ViewHolder viewHolder;
+        final ViewHolder viewHolder;
         recItemsPos = i;
 
         if(view == null) {
@@ -115,12 +116,18 @@ public class CustomRecListAdapter extends BaseAdapter {
                 break;
         }
 
+
         viewHolder.addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 FragmentManager planManager = ((AppCompatActivity)context).getSupportFragmentManager();
                 FragmentTransaction transaction = planManager.beginTransaction();
-                DialogFragment newLandmark = new AddLandmarkFragment(tripId, recItems.get(recItemsPos - 1).getPlaceID());
+
+                View parentRow = (View) view.getParent();
+                ListView listView = (ListView) parentRow.getParent().getParent().getParent().getParent();
+                final int position = listView.getPositionForView(parentRow);
+
+                DialogFragment newLandmark = new AddLandmarkFragment(tripId, recItems.get(position).getPlaceID());
                 newLandmark.show(planManager, "landmark");
 
                 transaction.addToBackStack(null);
@@ -131,6 +138,10 @@ public class CustomRecListAdapter extends BaseAdapter {
 
 
         return view;
+    }
+
+    public void AdapterViewListClicked() {
+
     }
 
     static class ViewHolder {
