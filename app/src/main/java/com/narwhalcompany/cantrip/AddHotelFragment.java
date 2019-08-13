@@ -57,6 +57,7 @@ public class AddHotelFragment extends DialogFragment {
 
     private String tripName = "";
     private String tripDuration = "";
+    private String tripDestination;
 
     public AddHotelFragment() {
 
@@ -123,9 +124,10 @@ public class AddHotelFragment extends DialogFragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 TripObject trip = dataSnapshot.getValue(TripObject.class);
-                tripName = trip.getEndLoc();
+                tripName = trip.getStartLoc() + " to " + trip.getEndLoc();
                 tripDuration = trip.formatDate(trip.getStartDate()) + " to "
                         + trip.formatDate(trip.getEndDate());
+                tripDestination = trip.getEndLoc();
             }
 
             @Override
@@ -150,6 +152,7 @@ public class AddHotelFragment extends DialogFragment {
                     addHotelIntent.putExtra("trip id", tripId);
                     addHotelIntent.putExtra("tripName", tripName);
                     addHotelIntent.putExtra("tripDuration", tripDuration);
+                    addHotelIntent.putExtra("tripDestination", tripDestination);
 
                     DatabaseReference planRef = databaseReference.child("plans" + tripId).push();
                     String planKey = planRef.getKey();

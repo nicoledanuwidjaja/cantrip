@@ -60,6 +60,7 @@ public class AddFlightFragment extends DialogFragment {
 
     private String tripName = "";
     private String tripTime = "";
+    private String tripDestination;
 
     private AutocompleteSupportFragment flightStartLocation;
 
@@ -167,9 +168,10 @@ public class AddFlightFragment extends DialogFragment {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 TripObject tripInfo = dataSnapshot.getValue(TripObject.class);
 
-                tripName = tripInfo.getEndLoc();
+                tripName = tripInfo.getStartLoc() + " to " + tripInfo.getEndLoc();
                 tripTime = tripInfo.formatDate(tripInfo.getStartDate()) + " to "
                         + tripInfo.formatDate(tripInfo.getEndDate());
+                tripDestination = tripInfo.getEndLoc();
             }
 
             @Override
@@ -198,6 +200,7 @@ public class AddFlightFragment extends DialogFragment {
                     addFlightIntent.putExtra("trip id", tripId);
                     addFlightIntent.putExtra("tripName", tripName);
                     addFlightIntent.putExtra("tripDuration", tripTime);
+                    addFlightIntent.putExtra("tripDestination", tripDestination);
 
                     Date departDateFormat = Utils.stringToDate(departDate.getText().toString());
                     Date arriveDateFormat = Utils.stringToDate(arriveDate.getText().toString());

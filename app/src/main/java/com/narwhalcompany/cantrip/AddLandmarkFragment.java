@@ -64,6 +64,7 @@ public class AddLandmarkFragment extends DialogFragment {
 
     private String tripName = "";
     private String tripDuration = "";
+    private String tripDestination;
 
     public AddLandmarkFragment() {
 
@@ -196,9 +197,10 @@ public class AddLandmarkFragment extends DialogFragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 TripObject trip = dataSnapshot.getValue(TripObject.class);
-                tripName = trip.getEndLoc();
+                tripName = trip.getStartLoc() + " to " + trip.getEndLoc();
                 tripDuration = trip.formatDate(trip.getStartDate()) + " to "
                         + trip.formatDate(trip.getEndDate());
+                tripDestination = trip.getEndLoc();
             }
 
             @Override
@@ -227,6 +229,7 @@ public class AddLandmarkFragment extends DialogFragment {
                     addLandmarkIntent.putExtra("trip id", tripId);
                     addLandmarkIntent.putExtra("tripName", tripName);
                     addLandmarkIntent.putExtra("tripDuration", tripDuration);
+                    addLandmarkIntent.putExtra("tripDestination", tripDestination);
                     DatabaseReference planRef = databaseReference.child("plans" + tripId).push();
                     String planKey = planRef.getKey();
 

@@ -39,7 +39,7 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
         Fragment selectedFragment = null;
         Bundle bundle = new Bundle();
         bundle.putString("trip id", this.tripId);
-        bundle.putString("trip destination", this.tripDestination);
+        bundle.putString("tripDestination", this.tripDestination);
 
         switch (position) {
             case 0:

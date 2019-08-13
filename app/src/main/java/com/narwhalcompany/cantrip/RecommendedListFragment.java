@@ -47,7 +47,7 @@ public class RecommendedListFragment extends Fragment {
     public RecommendedListFragment(Bundle bundle) {
         if (bundle != null) {
             this.tripId = bundle.getString("trip id");
-            this.tripDestination = bundle.getString("trip destination");
+            this.tripDestination = bundle.getString("tripDestination");
         }
     }
 
